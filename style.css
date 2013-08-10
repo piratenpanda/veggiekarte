@@ -1,0 +1,40 @@
+body {
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#map {
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+#logo {
+  right: 10px;
+  top: 10px;
+  position: absolute;
+  z-index: 7;
+  font-size: xx-large;
+  font-style: italic;
+}
+
+#footer {
+  font-size: 13px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 5px #bbb;
+  padding: 0 5px;
+  color: #333;
+  z-index: 7;
+  left: 0px;
+  top: 0px;
+  line-height: 150%;
+}
+
+a {
+  color: #0078A8;
+}
