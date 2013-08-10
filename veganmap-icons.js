@@ -1,4 +1,4 @@
-var icon_vegan = L.icon({iconUrl: 'vegan24.png', iconSize: [24, 24] });
+var icon_vegan = L.icon({iconUrl: 'icons/vegan24.png', iconSize: [24, 24] });
 var icon_transport_airport = L.icon({iconUrl: 'icons/transport_airport.n.24.png', iconSize: [24, 24] });
 var icon_place_of_worship_unknown3 = L.icon({iconUrl: 'icons/place_of_worship_unknown3.n.24.png', iconSize: [24, 24] });
 var icon_amenity_firestation2 = L.icon({iconUrl: 'icons/amenity_firestation2.n.24.png', iconSize: [24, 24] });
