@@ -15,7 +15,7 @@ function veganmap() {
     maxZoom: 18
   });
 
-  var map = new L.map('map', { center: [0, 0], zoom: 3, layers: [tileCloudMade], zoomControl: false, worldCopyJump: true });
+  var map = new L.map('map', { center: [51.04, 17.40], zoom: 4, layers: [tileCloudMade], zoomControl: false, worldCopyJump: true });
 
   var layers = {
     "OpenStreetMap": tileOSM,
