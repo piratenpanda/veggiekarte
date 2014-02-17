@@ -9,7 +9,7 @@ body {
   top: 0px;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 65%;
   z-index: 0;
 }
 
@@ -35,6 +35,25 @@ body {
   line-height: 150%;
 }
 
+#foot {
+	top: 65%;
+	text-align:center;
+	position: absolute;
+	margin: auto;
+	width:100%; 
+	overflow:auto;
+}
+
+#foot div {
+	margin: 20px auto;
+	float:left; 
+	width:33%;
+}
+
 a {
   color: #0078A8;
 }
+
+.clearfix { zoom: 1; }
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
