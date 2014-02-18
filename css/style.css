@@ -9,7 +9,7 @@ body {
   top: 0px;
   position: absolute;
   width: 100%;
-  height: 400px;
+  height: 50%;
   z-index: 0;
 }
 
@@ -36,7 +36,7 @@ body {
 }
 
 #foot {
-	top: 400px;
+	top: 50%;
 	text-align:left;
 	position: absolute;
 	padding: 10px;
@@ -51,7 +51,3 @@ h1 {
 a {
   color: #0078A8;
 }
-
-.clearfix { zoom: 1; }
-.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
-.clearfix:after { clear: both; }
