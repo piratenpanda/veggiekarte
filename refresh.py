@@ -176,7 +176,7 @@ f.close()
 nodes = {}
 cnt = 0
 
-with open(scriptdir + 'js/veganmap-data.js', 'w') as f:
+with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
   f.write('function veganmap_populate(markers) {\n')
   for e in json['elements']:
     lat = e.get('lat', None)
