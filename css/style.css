@@ -9,7 +9,7 @@ body {
   top: 0px;
   position: absolute;
   width: 100%;
-  height: 90%;
+  height: 100%;
   z-index: 0;
 }
 
@@ -36,10 +36,9 @@ body {
 }
 
 #foot {
-	top: 90%;
+	top: 95%;
 	position: absolute;
 	text-align:left;
-	margin-top: 25px;
 	padding: 10px;
 }
 
@@ -54,23 +53,27 @@ a {
 }
 
 ul, li {
-	list-style: none;
+	list-style: none;	
+}
+
+ul li ul li {
+	margin-left: -70px;
+	
 }
 
 #foot li {
-	padding: 2px 2px 2px 15px;
+	padding: 2px 2px 2px 55px;
 	cursor: default;
 	}
 
 #foot ul {
 	display: none;
-	background: url(../icons/dots.png) repeat-y scroll 10px 0 transparent;
 }
 
 #foot li.expand {
-	background: url(../icons/arrow-down.gif) no-repeat scroll 0px 12px transparent;
+	background: url(../icons/maximize.png) no-repeat scroll 0px 0px transparent;
 }
 
 .expanded {
-	background: url(../icons/arrow-up.gif) no-repeat scroll 0px 12px transparent !important;
+	background: url(../icons/minimize.png) no-repeat scroll 0px 0px transparent !important;
 }
