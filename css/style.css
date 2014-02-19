@@ -9,7 +9,7 @@ body {
   top: 0px;
   position: absolute;
   width: 100%;
-  height: 60%;
+  height: 90%;
   z-index: 0;
 }
 
@@ -36,9 +36,10 @@ body {
 }
 
 #foot {
-	top: 60%;
-	text-align:left;
+	top: 90%;
 	position: absolute;
+	text-align:left;
+	margin-top: 25px;
 	padding: 10px;
 }
 
@@ -50,4 +51,26 @@ h1 {
 
 a {
   color: #0078A8;
+}
+
+ul, li {
+	list-style: none;
+}
+
+#foot li {
+	padding: 2px 2px 2px 15px;
+	cursor: default;
+	}
+
+#foot ul {
+	display: none;
+	background: url(../icons/dots.png) repeat-y scroll 10px 0 transparent;
+}
+
+#foot li.expand {
+	background: url(../icons/arrow-down.gif) no-repeat scroll 0px 12px transparent;
+}
+
+.expanded {
+	background: url(../icons/arrow-up.gif) no-repeat scroll 0px 12px transparent !important;
 }

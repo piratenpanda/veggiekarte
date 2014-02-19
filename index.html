@@ -25,7 +25,20 @@
 	<script src="js/veganmap.js"></script>
 	<script src="js/veganmap-icons.js"></script>
 	<script src="js/veganmap-data.js"></script>
-
+	<script src="js/expandable_menu.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$(".expand").click(function(e) {
+			$(this).toggleClass("expanded");
+			$(this).children("ul:first").slideToggle("300");
+			e.stopPropagation();
+			$('html, body').animate({
+                    scrollTop: $("#foot").offset().top
+                }, 2000);
+		});
+	}); //$(document).ready
+	</script>
 
 	<link rel="icon" type="image/png" href="icons/veggie-penguin.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -33,15 +46,17 @@
 
 <body onload="veganmap()">
 	<div id="map"></div>
-	<div id="foot">
-	<h1>Willkommen</h1>
-	Auf veggiekarte.de findest du alle in OpenStreetMap eingetragenen veganen Restaurants, Eisdielen, Cafes etc. Demnächst auch alle vegetarischen. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen. 
-
-	<h1>Über OpenStreetMap</h1>
-	OpenStreetMap ist eine freie Weltkarte und versteht sich, wenn man so will, als Wikipedia der Karten, auch wenn diese Definition nicht 100% korrekt ist. Wer Verbesserungsvorschläge hat oder Fehler in der Karte findet, kann diese einfach selbst eintragen oder verbessern.
-
-	<h1>Informationen beitragen</h1>
-	Wenn du selbst Restaurants, Cafes, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst durch hinzufügen des "diet:vegan"- oder "diet:vegetarian"-Tags in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es bald hier. Die Karte aktualisiert sich automatisch jede Stunde. Den Code findet ihr auf <a href="https://github.com/piratenpanda/veggiekarte">GitHub</a>. Der Veggie-Pinguin des FavIcons kommt von <a href="http://www.openclipart.org/detail/189178/veggie-penguin-by-moini-189178">OpenClipart</a>.
-	</div>
+	<ul id="foot" class="expand">
+	<li class="expand">Weitere Informationen
+	
+			<ul><h1>Willkommen</h1>
+			<li>Auf veggiekarte.de findest du alle in OpenStreetMap eingetragenen veganen Restaurants, Eisdielen, Cafes etc. Demnächst auch alle vegetarischen. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen.</li>
+			<li><h1>Über OpenStreetMap</h1>
+	OpenStreetMap ist eine freie Weltkarte und versteht sich, wenn man so will, als Wikipedia der Karten, auch wenn diese Definition nicht 100% korrekt ist. Wer Verbesserungsvorschläge hat oder Fehler in der Karte findet, kann diese einfach selbst eintragen oder verbessern.</li>
+			<li><h1>Informationen beitragen</h1>
+	Wenn du selbst Restaurants, Cafes, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst durch hinzufügen des "diet:vegan"- oder "diet:vegetarian"-Tags in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es bald hier. Die Karte aktualisiert sich automatisch jede Stunde. Den Code findet ihr auf <a href="https://github.com/piratenpanda/veggiekarte">GitHub</a>. Der Veggie-Pinguin des FavIcons kommt von <a href="http://www.openclipart.org/detail/189178/veggie-penguin-by-moini-189178">OpenClipart</a>.</li>
+		</ul>
+	</li>
+	</ul>
 </body>
 </html>
