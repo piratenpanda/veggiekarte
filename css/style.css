@@ -39,7 +39,7 @@ body {
 	top: 95%;
 	position: absolute;
 	text-align:left;
-	padding: 10px;
+	padding: 10px 10px 0 10px;
 }
 
 h1 {
@@ -62,7 +62,7 @@ ul li ul li {
 }
 
 #foot li {
-	padding: 2px 2px 2px 55px;
+	padding: 2px 2px 0 55px;
 	cursor: default;
 	}
 
