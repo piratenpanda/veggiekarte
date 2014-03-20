@@ -23,8 +23,6 @@ body {
 
 div img#close {
 	width:25px; 
-	margin-top: 2px;
-	margin-right: 2px;
 	z-index: 1;
 	float: right;
 }
@@ -51,6 +49,7 @@ div.information {
   color: #111;
   z-index: 7;
   line-height: 150%;
+  padding: 10px;
 }
 
 h1 {
