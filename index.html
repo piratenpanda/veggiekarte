@@ -28,16 +28,14 @@
 	<script src="js/expandable_menu.js"></script>
 	
 	<script type="text/javascript">
-	$(document).ready(function() {
-		$(".expand").click(function(e) {
-			$(this).toggleClass("expanded");
-			$(this).children("ul:first").slideToggle("300");
-			e.stopPropagation();
-			$('html, body').animate({
-                    scrollTop: $("#foot").offset().top
-                }, 2000);
-		});
-	}); //$(document).ready
+		$(document).ready(function(){
+			$("#info").click(function(){
+				$(".information").show();
+			});
+			$("#close").click(function(){
+				$(".information").hide();
+			});
+}		);
 	</script>
 
 	<link rel="icon" type="image/png" href="icons/veggie-penguin.png" />
@@ -45,9 +43,13 @@
 </head>
 
 <body onload="veganmap()">
+
+	<img src="icons/info.png" id="info" />
 	<div id="map"></div>
-	<ul id="foot" class="expand">
-	<li class="expand">Weitere Informationen:
+	
+	<div class="information">
+	
+		<img src="icons/close.png" id="close" />
 		<ul>
 			<li><h1>Willkommen</h1>Auf veggiekarte.de findest du alle in OpenStreetMap eingetragenen veganen Restaurants, Eisdielen, Cafes etc. Demnächst auch alle vegetarischen. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen.</li>
 			<li><h1>Über OpenStreetMap</h1>
@@ -55,7 +57,6 @@
 			<li><h1>Informationen beitragen</h1>
 	Wenn du selbst Restaurants, Cafes, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst durch hinzufügen des "diet:vegan"- oder "diet:vegetarian"-Tags in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es bald hier. Die Karte aktualisiert sich automatisch jede Stunde. Den Code findet ihr auf <a href="https://github.com/piratenpanda/veggiekarte">GitHub</a>. Der Veggie-Pinguin des FavIcons kommt von <a href="http://www.openclipart.org/detail/189178/veggie-penguin-by-moini-189178">OpenClipart</a>.</li>
 		</ul>
-	</li>
-	</ul>
+	</div>
 </body>
 </html>

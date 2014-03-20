@@ -13,6 +13,22 @@ body {
   z-index: 0;
 }
 
+#info {
+	position: absolute; 
+	left: 32%; 
+	top: 11px;
+	width:36px; 
+	z-index: 1;
+}
+
+div img#close {
+	width:25px; 
+	margin-top: 2px;
+	margin-right: 2px;
+	z-index: 1;
+	float: right;
+}
+
 #logo {
   right: 10px;
   top: 10px;
@@ -22,24 +38,19 @@ body {
   font-style: italic;
 }
 
-#footer {
+div.information {
   font-size: 13px;
+  margin: auto;  
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.7);
+  left:0;
+  right: 0;
+  top: 100px;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 5px #bbb;
-  padding: 0 5px;
-  color: #333;
+  color: #111;
   z-index: 7;
-  left: 0px;
-  top: 0px;
   line-height: 150%;
-}
-
-#foot {
-	top: 95%;
-	position: absolute;
-	text-align:left;
-	padding: 10px 10px 0 10px;
 }
 
 h1 {
@@ -50,30 +61,4 @@ h1 {
 
 a {
   color: #0078A8;
-}
-
-ul, li {
-	list-style: none;	
-}
-
-ul li ul li {
-	margin-left: -70px;
-	
-}
-
-#foot li {
-	padding: 2px 2px 0 55px;
-	cursor: default;
-	}
-
-#foot ul {
-	display: none;
-}
-
-#foot li.expand {
-	background: url(../icons/maximize.png) no-repeat scroll 0px 0px transparent;
-}
-
-.expanded {
-	background: url(../icons/minimize.png) no-repeat scroll 0px 0px transparent !important;
 }
