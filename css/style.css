@@ -15,9 +15,8 @@ body {
 
 #info {
 	position: absolute; 
-	left: 32%; 
+	left: 33%; 
 	top: 11px;
-	width:36px; 
 	z-index: 1;
 }
 
