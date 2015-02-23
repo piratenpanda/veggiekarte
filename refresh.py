@@ -169,7 +169,7 @@ def determine_icon(tags):
 
 scriptdir = os.path.dirname(os.path.abspath(__file__))
 
-f = urllib2.urlopen('http://overpass-api.de/api/interpreter?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;);out;')
+f = urllib2.urlopen('http://overpass-api.de/api/interpreter?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
 json = simplejson.load(f)
 f.close()
 
@@ -189,10 +189,8 @@ with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 
     if typ == 'node':
       nodes[ide] = (lat,lon)
-      if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only':
+      if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only' and tags.get('diet:vegetarian') != 'only' and tags.get('diet:vegetarian') != 'yes':
         continue
-      #if tags.get('diet:vegetarian') != 'yes' and tags.get('diet:vegetarian') != 'only':
-	#continue
 
     if typ == 'way':
       lat, lon = nodes[e['nodes'][0]] # extract coordinate of first node
@@ -208,6 +206,12 @@ with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
       name = '%s %s' % (typ, ide)
 
     icon = determine_icon(tags)
+
+    if tags.get('diet:vegetarian', '') != "" and tags.get('diet:vegan', '') == "":
+      icon += "_veggie"
+    else:
+      icon += "_vegan"
+
     popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
     if 'addr:street' in tags:
       popup += '%s %s<br/>' % (tags.get('addr:street', ''), tags.get('addr:housenumber', ''))
@@ -229,5 +233,4 @@ with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
     elif 'phone' in tags:
       popup += 'phone: %s<br/>' % (tags['phone'])
     f.write('  L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
-#  f.write('  document.getElementById("count").innerHTML = "<b>%d</b>";\n' % cnt);
   f.write('}\n')
