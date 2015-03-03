@@ -49,8 +49,8 @@ function veganmap() {
 	drawCircle: true, // controls whether a circle is drawn that shows the uncertainty about the location
 	follow: false, // follow the user's location
 	setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
-	keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
 	maxZoom: 16,
+	keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
 	stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
 	remainActive: false, // if true locate control remains active on click even if the user's location is in view.
 	markerClass: L.circleMarker, // L.circleMarker or L.marker
