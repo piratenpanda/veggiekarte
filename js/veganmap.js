@@ -30,13 +30,13 @@ function veganmap() {
         }).addTo(map);
 
 
-  function onLocationFound(e) {
+  function onLocationFound(e){
   	var radius = e.accuracy / 2;
   	L.marker(e.latlng).addTo(map)
   	var circle = L.circle(e.latlng, 800, {
-  		// color: 'red',
+  		color: 'blue',
   		stroke: false,
-  		fillColor: '#f03',
+  		//fillColor: '#f03',
   		fillOpacity: 0.1
   	}).addTo(map);
 
@@ -52,17 +52,21 @@ function veganmap() {
 	remainActive: false, // if true locate control remains active on click even if the user's location is in view.
 	markerClass: L.circleMarker, // L.circleMarker or L.marker
 	circleStyle: {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.2,
-		stroke: false
-	}, // change the style of the circle around the user's location
-	markerStyle: {
-		//color: 'red',
-		fillColor: '#464646',
-		fillOpacity: 1.0,
-		stroke: false
-	},
+                color: '#136AEC',
+                fillColor: '#136AEC',
+                fillOpacity: 0.15,
+                weight: 2,
+                opacity: 0.5
+        },
+        // inner marker
+        markerStyle: {
+                color: '#136AEC',
+                fillColor: '#2A93EE',
+                fillOpacity: 0.7,
+                weight: 2,
+                opacity: 0.9,
+                radius: 5
+        },
 	//followCircleStyle: {}, // set difference for the style of the circle around the user's location while following
 	//followMarkerStyle: {},
 	icon: 'fa fa-map-marker', // class for icon, fa-location-arrow or fa-map-marker
