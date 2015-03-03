@@ -33,15 +33,13 @@ function veganmap() {
   function onLocationFound(e) {
   	var radius = e.accuracy / 2;
   	L.marker(e.latlng).addTo(map)
-  	// .bindPopup("Du bist innerhalb von " + radius + " Meter von dieser Stelle.").openPopup();
-  	// L.circle(e.latlng, radius).addTo(map);
   	var circle = L.circle(e.latlng, 800, {
   		// color: 'red',
   		stroke: false,
   		fillColor: '#f03',
   		fillOpacity: 0.1
   	}).addTo(map);
-  	//L.circle(e.latlng, 800).addTo(map);
+
   }
 
   L.control.locate({
@@ -49,13 +47,12 @@ function veganmap() {
 	drawCircle: true, // controls whether a circle is drawn that shows the uncertainty about the location
 	follow: false, // follow the user's location
 	setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
-	maxZoom: 16,
 	keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
 	stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
 	remainActive: false, // if true locate control remains active on click even if the user's location is in view.
 	markerClass: L.circleMarker, // L.circleMarker or L.marker
 	circleStyle: {
-		//color: 'red',
+		color: 'red',
 		fillColor: '#f03',
 		fillOpacity: 0.2,
 		stroke: false
@@ -80,7 +77,7 @@ function veganmap() {
 	strings: {
 	title: "Standort ermitteln", // title of the locate control
 	},
-	locateOptions: {} // define location options e.g enableHighAccuracy: true or maxZoom: 10
+	locateOptions: {maxZoom: 16} // define location options e.g enableHighAccuracy: true or maxZoom: 10
   }).addTo(map);
 
   var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 32});
