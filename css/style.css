@@ -81,6 +81,19 @@ div.information {
   z-index: 7;
   line-height: 150%;
   padding: 10px;
+
+}
+
+@media only screen and (max-device-width: 480px) {
+	
+	div.information {
+
+		max-height: 600px;
+  		overflow: scroll;
+		box-shadow: none;
+  		border: 2px solid rgba(0, 0, 0, 0.2);
+		border-radius: 4px;
+	}
 }
 
 h1 {
