@@ -32,6 +32,25 @@ body {
 	background-color: #f4f4f4;
 }
 
+@media only screen and (max-device-width: 480px) {
+
+	#info {
+		position: absolute; 
+		left: 10px; 
+		top: 163px;
+		z-index: 1;
+  		border-bottom: none;
+		background: white;
+		width: 44px;
+		height: 44px;
+		text-align: center;
+		box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+		border-radius: 4px;
+		line-height: 26px;
+		cursor: pointer;
+	}
+}
+
 div img#close {
 	width:25px; 
 	z-index: 1;
