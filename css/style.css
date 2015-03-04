@@ -88,11 +88,12 @@ div.information {
 	
 	div.information {
 
-		max-height: 600px;
+		max-height: 400px;
   		overflow: scroll;
 		box-shadow: none;
   		border: 2px solid rgba(0, 0, 0, 0.2);
 		border-radius: 4px;
+		overflow-y: hidden;
 	}
 }
 
