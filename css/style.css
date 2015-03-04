@@ -55,7 +55,8 @@ body {
 div img#close {
 	width:25px; 
 	z-index: 1;
-	float: right;
+	right: 10px;
+	top: 10px;
 	position: fixed;
 }
 
