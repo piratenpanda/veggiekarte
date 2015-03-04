@@ -11,7 +11,7 @@
 	box-shadow: none;
 	border: 2px solid rgba(0,0,0,0.2);
 	background-clip: padding-box;
-    line-height: 30px;
+        line-height: 30px;
 }
 
 .leaflet-control-geocoder-form {
