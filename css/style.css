@@ -37,16 +37,17 @@ body {
 	#info {
 		position: absolute; 
 		left: 10px; 
-		top: 139px;
+		top: 121px;
 		z-index: 1;
   		border-bottom: none;
 		background: white;
-		width: 36px;
-		height: 36px;
+		width: 30px;
+		height: 30px;
 		text-align: center;
-		box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+		box-shadow: none;
+  		border: 2px solid rgba(0, 0, 0, 0.2);
 		border-radius: 4px;
-		line-height: 36px;
+		line-height: 30px;
 		cursor: pointer;
 	}
 }
