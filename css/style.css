@@ -55,9 +55,7 @@ body {
 div img#close {
 	width:25px; 
 	z-index: 1;
-	right: 10px;
-	top: 10px;
-	position: fixed;
+	float: right;
 }
 
 #logo {
@@ -95,8 +93,8 @@ div.information {
 		box-shadow: none;
   		border: 2px solid rgba(0, 0, 0, 0.2);
 		border-radius: 4px;
-		overflow-y: -moz-scrollbars-vertical;
-     		overflow-y: scroll;
+		overflow: -moz-scrollbars-vertical;
+     		overflow: scroll;
 
 	}
 }
