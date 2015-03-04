@@ -23,12 +23,8 @@ function veganmap() {
   var regionParameter = getURLParameter('region');
   var region = (regionParameter === 'undefined') ? '' : regionParameter;
 
-  new L.Control.GeoSearch({
-          provider: new L.GeoSearch.Provider.OpenStreetMap({
-            	region: region
-            })
-        }).addTo(map);
-
+  //new L.Control.GeoSearch({provider: new L.GeoSearch.Provider.OpenStreetMap({region: region})}).addTo(map);
+  L.Control.geocoder().addTo(map);
 
   function onLocationFound(e){
   	var radius = e.accuracy / 2;

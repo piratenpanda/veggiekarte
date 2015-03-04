@@ -13,8 +13,9 @@
 	<link rel="stylesheet" href="css/leaflet.css" />
 	<link href="css/MarkerCluster.css" rel="stylesheet" type="text/css" />
 	<link href="css/MarkerCluster.Default.css" rel="stylesheet" type="text/css" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="css/l.geosearch.css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+
 	
 	<!-- Font Awesome - donwloaded from http://fortawesome.github.io/Font-Awesome -->
 	<link href="js/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -25,8 +26,11 @@
 	<link rel="stylesheet" href="css/L.Control.Locate.ie.min.css"/>
 	<![endif]-->
 
+	<link rel="stylesheet" href="css/Control.Geocoder.css" />
+	
 	<script src="js/leaflet/leaflet.js"></script>
 	<script src="js/leaflet/leaflet-hash.js"></script>
+	<script src="js/geocoder/Control.Geocoder.js"></script>
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<script src="js/geosearch/l.control.geosearch.js"></script>
 	<script src="js/geosearch/l.geosearch.provider.openstreetmap.js"></script>
@@ -55,12 +59,14 @@
 
 <body onload="veganmap()">
 
-	<img src="icons/info.png" id="info" alt="info icon" />
+	<div id="info" alt="info icon"><i class="fa fa-info"></i></div>
 	<div id="map"></div>
 	
 	<div class="information">	
 		<img src="icons/close.png" id="close" alt="close icon" />
-        <h1>Willkommen</h1>
+        <h1>Willkommen</h1> 
+        
+
         <p>Auf veggiekarte.de findest du alle in OpenStreetMap eingetragenen veganen und vegetarischen Restaurants, Eisdielen, Cafes etc. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen. Alle großen grünen Icons sind Lokalitäten in denen es vegane Optionen gibt. Icons die nicht grün sind, bieten vegetarische aber keine veganen Optionen an.</p>
         
         <h1>Über OpenStreetMap</h1>
