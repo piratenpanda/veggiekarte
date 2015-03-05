@@ -25,6 +25,7 @@ function veganmap() {
 
   //new L.Control.GeoSearch({provider: new L.GeoSearch.Provider.OpenStreetMap({region: region})}).addTo(map);
   L.Control.geocoder().addTo(map);
+  L.control.info().addTo(map);
 
   function onLocationFound(e){
   	var radius = e.accuracy / 2;

@@ -34,32 +34,20 @@
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<script src="js/markercluster/leaflet.markercluster.js"></script>
 	<script src="js/locatecontrol/L.Control.Locate.min.js"></script>
+	<script src="js/info/leaftlet.info.js"></script>
 	<script src="js/veganmap.js"></script>
 	<script src="js/veganmap-icons.js"></script>
 	<script src="js/veganmap-data.js"></script>
 	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#info").click(function(){
-				$(".information").show();
-			});
-			$("#close").click(function(){
-				$(".information").hide();
-			});
-		});
-	</script>		
-
 	<link rel="icon" type="image/png" href="icons/veggie-penguin.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
 <body onload="veganmap()">
 
-	<div id="info" alt="info icon"><i class="fa fa-info"></i></div>
 	<div id="map"></div>
 	
-	<div class="information">	
-		<img src="icons/close.png" id="close" alt="close icon" />
+	<div class="information">			
         <h1>Willkommen</h1> 
         
 
