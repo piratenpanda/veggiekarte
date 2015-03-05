@@ -32,9 +32,7 @@ body {
 	background-color: #f4f4f4;
 }
 
-@media only screen and (max-device-width: 480px) {
-
-	#info {
+.leaflet-touch #info {
 		position: absolute; 
 		left: 10px; 
 		top: 127px;
@@ -49,7 +47,6 @@ body {
 		border-radius: 4px;
 		line-height: 30px;
 		cursor: pointer;
-	}
 }
 
 div img#close {
@@ -84,14 +81,11 @@ div.information {
 
 }
 
-@media only screen and (max-device-width: 480px) {
-	
-	div.information {
+.leaflet-touch div.information {
 
 		box-shadow: none;
   		border: 2px solid rgba(0, 0, 0, 0.2);
 		border-radius: 4px;
-	}
 }
 
 h1 {
