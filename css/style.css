@@ -29,6 +29,14 @@ body {
         line-height: 30px;
 }
 
+#close {
+	width:25px;
+	height: 25px;
+ 	line-height: 25px;
+	z-index: 100;
+	float: right;
+}
+
 #logo {
   right: 10px;
   top: 10px;

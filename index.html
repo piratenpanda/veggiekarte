@@ -39,6 +39,13 @@
 	<script src="js/veganmap-icons.js"></script>
 	<script src="js/veganmap-data.js"></script>
 	
+	 <script type="text/javascript">
+		function closeinfo() {
+			close = document.getElementsByClassName("information");
+			close[0].style.display = "none";
+		}
+	</script> 
+
 	<link rel="icon" type="image/png" href="icons/veggie-penguin.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
@@ -47,7 +54,8 @@
 
 	<div id="map"></div>
 	
-	<div class="information">			
+	<div class="information">	
+		<div id="close" onclick="closeinfo();"><span class="fa fa-times"></span></div>
         <h1>Willkommen</h1> 
         
 
