@@ -154,7 +154,7 @@ def get_data_urllib2():
 			get_data()
 
 	else:
-		return simplejson.load(response)
+		return simplejson.load(response.decode('utf-8'))
 
 json = get_data_urllib2()
 
@@ -168,8 +168,8 @@ with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 		typ = e['type']
 		tags = e.get('tags', {})
 
-	for k in tags.keys():
-		tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
+		for k in tags.keys():
+			tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
 
 		ide = e['id']
 
