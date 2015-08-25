@@ -154,9 +154,9 @@ def get_data_urllib2():
 			get_data()
 
 	else:
-		json = simplejson.load(response)
+		return simplejson.load(response)
 
-get_data_urllib2()
+json = get_data_urllib2()
 
 with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 
