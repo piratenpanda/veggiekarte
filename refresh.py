@@ -140,7 +140,7 @@ def get_data_urllib2():
 	req = urllib2.Request('http://overpass-api.de/api/interpreter?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
 	
 	try:
-		urllib2.urlopen(req)
+		response = urllib2.urlopen(req)
 
 	except urllib2.HTTPError as e:
 		if(e == 429):
@@ -154,7 +154,7 @@ def get_data_urllib2():
 			get_data()
 
 	else:
-		json = simplejson.load(req)
+		json = simplejson.load(response)
 		req.close()
 
 get_data_urllib2()
