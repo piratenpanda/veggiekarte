@@ -2,8 +2,9 @@
 import cgi
 import urllib
 import urllib2
-import simplejson
+import json
 import os
+import time
 
 icon_mapping = {
 'amenity:atm': 'money_atm',
@@ -108,84 +109,128 @@ icon_mapping = {
 'tourism:zoo': 'tourist_zoo',
 }
 
-def determine_icon(tags):
-  icon = 'vegan'
-  for kv in icon_mapping:
-    k,v = kv.split(':')
-    t = tags.get(k)
-    if not t:
-        continue
-    t = t.split(';')[0]
-    if t == v:
-      icon = icon_mapping[kv]
-      break
-  icon = icon.replace('-', '_')
-  return icon
-
 scriptdir = os.path.dirname(os.path.abspath(__file__))
-
-f = urllib2.urlopen('http://overpass-api.de/api/interpreter?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
-json = simplejson.load(f)
-f.close()
-
 nodes = {}
 cnt = 0
 
+def determine_icon(tags):
+
+	icon = 'vegan'
+
+	for kv in icon_mapping:
+		k,v = kv.split(':')
+
+		t = tags.get(k)
+
+		if not t:
+			continue
+
+		t = t.split(';')[0]
+
+		if t == v:
+			icon = icon_mapping[kv]
+			break
+
+	icon = icon.replace('-', '_')
+	return icon
+
+
+def get_data_urllib2():
+
+	req = urllib2.Request('http://overpass-api.de/api/interpreter?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
+	
+	try:
+		urllib2.urlopen(req)
+
+	except urllib2.HTTPError as e:
+		if(e == 429):
+			print("Error 429, waiting 60 s before retry")
+			time.sleep(60) 
+			get_data()
+
+		if (e == 504):
+			print("Error 504, waiting 600 s before retry")
+			time.sleep(600) 
+			get_data()
+
+	else:
+		json = simplejson.load(req)
+		req.close()
+
+get_data_urllib2()
+
 with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
-  f.write('function veganmap_populate(markers) {\n')
-  for e in json['elements']:
-    lat = e.get('lat', None)
-    lon = e.get('lon', None)
-    typ = e['type']
-    tags = e.get('tags', {})
-    for k in tags.keys():
-        tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
-    ide = e['id']
 
-    if typ == 'node':
-      nodes[ide] = (lat,lon)
-      if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only' and tags.get('diet:vegetarian') != 'only' and tags.get('diet:vegetarian') != 'yes':
-        continue
+	f.write('function veganmap_populate(markers) {\n')
 
-    if typ == 'way':
-      lat, lon = nodes[e['nodes'][0]] # extract coordinate of first node
+	for e in json['elements']:
+		lat = e.get('lat', None)
+		lon = e.get('lon', None)
+		typ = e['type']
+		tags = e.get('tags', {})
 
-    if not lat or not lon:
-      continue
+	for k in tags.keys():
+		tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
 
-    cnt += 1
+		ide = e['id']
 
-    if 'name' in tags:
-      name = tags['name']
-    else:
-      name = '%s %s' % (typ, ide)
+		if typ == 'node':
+			nodes[ide] = (lat,lon)
+	
+		if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only' and tags.get('diet:vegetarian') != 'only' and tags.get('diet:vegetarian') != 'yes':
+			continue
 
-    icon = determine_icon(tags)
+		if typ == 'way':
+			lat, lon = nodes[e['nodes'][0]] # extract coordinate of first node
 
-    if tags.get('diet:vegetarian', '') != "" and tags.get('diet:vegan', '') == "":
-      icon += "_veggie"
-    else:
-      icon += "_vegan"
+		if not lat or not lon:
+			continue
 
-    popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
-    if 'addr:street' in tags:
-      popup += '%s %s<br/>' % (tags.get('addr:street', ''), tags.get('addr:housenumber', ''))
-    if 'addr:city' in tags:
-      popup += '%s %s<br/>' % (tags.get('addr:postcode', ''), tags.get('addr:city', ''))
-    if 'addr:country' in tags:
-      popup += '%s<br/>' % (tags.get('addr:country', ''))
-    popup += '<hr/>'
-    if 'contact:website' in tags:
-      popup += 'website: <a href=\\"%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['contact:website'], tags['contact:website'])
-    elif 'website' in tags:
-      popup += 'website: <a href=\\"%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['website'], tags['website'])
-    if 'contact:email' in tags:
-      popup += 'email: <a href=\\"mailto:%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['contact:email'], tags['contact:email'])
-    elif 'email' in tags:
-      popup += 'email: <a href=\\"mailto:%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['email'], tags['email'])
-    if 'contact:phone' in tags:
-      popup += 'phone: %s<br/>' % (tags['contact:phone'])
-    elif 'phone' in tags:
-      popup += 'phone: %s<br/>' % (tags['phone'])
-    f.write('  L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
-  f.write('}\n')
+		cnt += 1
+
+		if 'name' in tags:
+			name = tags['name']
+	
+		else:
+			name = '%s %s' % (typ, ide)
+
+		icon = determine_icon(tags)
+
+		if tags.get('diet:vegetarian', '') != "" and tags.get('diet:vegan', '') == "":
+			icon += "_veggie"
+
+		else:
+			icon += "_vegan"
+
+		popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
+	
+		if 'addr:street' in tags:
+			popup += '%s %s<br/>' % (tags.get('addr:street', ''), tags.get('addr:housenumber', ''))
+
+		if 'addr:city' in tags:
+			popup += '%s %s<br/>' % (tags.get('addr:postcode', ''), tags.get('addr:city', ''))
+
+		if 'addr:country' in tags:
+			popup += '%s<br/>' % (tags.get('addr:country', ''))
+			popup += '<hr/>'
+
+		if 'contact:website' in tags:
+			popup += 'website: <a href=\\"%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['contact:website'], tags['contact:website'])
+
+		elif 'website' in tags:
+			popup += 'website: <a href=\\"%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['website'], tags['website'])
+
+		if 'contact:email' in tags:
+			popup += 'email: <a href=\\"mailto:%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['contact:email'], tags['contact:email'])
+
+		elif 'email' in tags:
+			popup += 'email: <a href=\\"mailto:%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['email'], tags['email'])
+
+		if 'contact:phone' in tags:
+			popup += 'phone: %s<br/>' % (tags['contact:phone'])
+
+		elif 'phone' in tags:
+			popup += 'phone: %s<br/>' % (tags['phone'])
+
+		f.write('  L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
+	f.write('}\n')
