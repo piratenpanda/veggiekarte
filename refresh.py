@@ -2,7 +2,7 @@
 import cgi
 import urllib
 import urllib2
-import simplejson
+import json
 import os
 import time
 
@@ -154,7 +154,7 @@ def get_data_urllib2():
 			get_data()
 
 	else:
-		return simplejson.load(response.decode('utf-8'))
+		return json.load(response)
 
 json = get_data_urllib2()
 
