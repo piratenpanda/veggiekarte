@@ -2,7 +2,7 @@
 import cgi
 import urllib
 import urllib2
-import json
+import simplejson
 import os
 import time
 
