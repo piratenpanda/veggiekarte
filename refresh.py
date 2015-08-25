@@ -155,7 +155,6 @@ def get_data_urllib2():
 
 	else:
 		json = simplejson.load(response)
-		req.close()
 
 get_data_urllib2()
 
