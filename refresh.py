@@ -174,10 +174,9 @@ with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 		ide = e['id']
 
 		if typ == 'node':
-			nodes[ide] = (lat,lon)
-	
-		if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only' and tags.get('diet:vegetarian') != 'only' and tags.get('diet:vegetarian') != 'yes':
-			continue
+			nodes[ide] = (lat,lon)	
+			if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only' and tags.get('diet:vegetarian') != 'only' and tags.get('diet:vegetarian') != 'yes':
+				continue
 
 		if typ == 'way':
 			lat, lon = nodes[e['nodes'][0]] # extract coordinate of first node
