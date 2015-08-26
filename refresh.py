@@ -142,6 +142,8 @@ def get_data_urllib2():
 
     	global server
 
+    	print("Using server" + server)
+
 	overpass_server = servers[server]
 
 	req = urllib2.Request(overpass_server + '?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
