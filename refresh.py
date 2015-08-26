@@ -149,6 +149,8 @@ def get_data_urllib2():
 		response = urllib2.urlopen(req)
 
 	except urllib2.HTTPError as e:
+
+     		print(e)
 		if(e == 429):
 			print("Error 429, waiting 60 s before retry")
 			time.sleep(60) 
