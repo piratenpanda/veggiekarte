@@ -6,9 +6,9 @@ import simplejson
 import os
 import time
 
-server1 = "http://overpass-api.de/api/interpreter"
-server2 = "http://overpass.osm.rambler.ru/cgi/interpreter"
-server3 = "http://dev.overpass-api.de/api_drolbr/interpreter"
+global server
+server = 0
+servers = ["http://overpass-api.de/api/interpreter","http://overpass.osm.rambler.ru/cgi/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
 
 icon_mapping = {
 'amenity:atm': 'money_atm',
@@ -141,7 +141,7 @@ def determine_icon(tags):
 
 def get_data_urllib2():
 
-	overpass_server = server1
+	overpass_server = servers[server]
 
 	req = urllib2.Request(overpass_server + '?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
 	
@@ -154,11 +154,29 @@ def get_data_urllib2():
 		if(e.code == 429):
 			print("Error 429, waiting 60 s before retry")
 			time.sleep(60) 
+
+			if(server < 2):
+				server = server + 1
+				print("changing to server" + str(server+1))
+
+    			if(server == 2):
+           			server = 0
+           			print("changing to first server again")
+
 			get_data_urllib2()
 
 		if (e.code == 504):
 			print("Error 504, waiting 600 s before retry")
 			time.sleep(600) 
+
+			if(server < 2):
+				server = server + 1
+				print("changing to server" + str(server+1))
+
+    			if(server == 2):
+           			server = 0
+           			print("changing to first server again")
+
 			get_data_urllib2()
 
 	else:
