@@ -6,6 +6,10 @@ import simplejson
 import os
 import time
 
+server1 = "http://overpass-api.de/api/interpreter"
+server2 = "http://overpass.osm.rambler.ru/cgi/interpreter"
+server3 = "http://dev.overpass-api.de/api_drolbr/interpreter""
+
 icon_mapping = {
 'amenity:atm': 'money_atm',
 'amenity:bank': 'money_bank2',
@@ -137,9 +141,9 @@ def determine_icon(tags):
 
 def get_data_urllib2():
 
-	overpass_server = "http://overpass-api.de/"
+	overpass_server = server1
 
-	req = urllib2.Request(overpass_server + 'api/interpreter?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
+	req = urllib2.Request(overpass_server + '?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
 	
 	try:
 		response = urllib2.urlopen(req)
