@@ -142,7 +142,7 @@ def get_data_urllib2():
 
     	global server
 
-    	print("Using server" + server)
+    	print("Using server" + str(server)
 
 	overpass_server = servers[server]
 
