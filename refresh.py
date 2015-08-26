@@ -154,12 +154,12 @@ def get_data_urllib2():
 		if(e.code == 429):
 			print("Error 429, waiting 60 s before retry")
 			time.sleep(60) 
-			get_data()
+			get_data_urllib2()
 
 		if (e.code == 504):
 			print("Error 504, waiting 600 s before retry")
 			time.sleep(600) 
-			get_data()
+			get_data_urllib2()
 
 	else:
 		opener = urllib2.build_opener()
