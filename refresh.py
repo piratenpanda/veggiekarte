@@ -137,7 +137,9 @@ def determine_icon(tags):
 
 def get_data_urllib2():
 
-	req = urllib2.Request('http://overpass-api.de/api/interpreter?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
+	overpass_server = "http://overpass-api.de/"
+
+	req = urllib2.Request(overpass_server + 'api/interpreter?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
 	
 	try:
 		response = urllib2.urlopen(req)
@@ -164,6 +166,9 @@ json = get_data_urllib2()
 with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 
 	f.write('function veganmap_populate(markers) {\n')
+
+	if(json == None):
+		json = get_data_urllib2()
 
 	for e in json['elements']:
 		lat = e.get('lat', None)
