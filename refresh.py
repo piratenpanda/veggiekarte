@@ -8,7 +8,7 @@ import time
 
 server1 = "http://overpass-api.de/api/interpreter"
 server2 = "http://overpass.osm.rambler.ru/cgi/interpreter"
-server3 = "http://dev.overpass-api.de/api_drolbr/interpreter""
+server3 = "http://dev.overpass-api.de/api_drolbr/interpreter"
 
 icon_mapping = {
 'amenity:atm': 'money_atm',
