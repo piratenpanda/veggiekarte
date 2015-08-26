@@ -6,8 +6,6 @@ import simplejson
 import os
 import time
 
-global server
-server = 0
 servers = ["http://overpass-api.de/api/interpreter","http://overpass.osm.rambler.ru/cgi/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
 
 icon_mapping = {
@@ -138,8 +136,11 @@ def determine_icon(tags):
 	icon = icon.replace('-', '_')
 	return icon
 
+server = 0
 
 def get_data_urllib2():
+
+    	global server
 
 	overpass_server = servers[server]
 
