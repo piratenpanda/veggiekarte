@@ -142,8 +142,6 @@ def get_data_urllib2():
 
     	global server
 
-    	print("Using server" + str(server))
-
 	overpass_server = servers[server]
 
 	req = urllib2.Request(overpass_server + '?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
@@ -153,32 +151,27 @@ def get_data_urllib2():
 
 	except urllib2.HTTPError as e:
 
-     		print(e.code)
 		if(e.code == 429):
-			print("Error 429, waiting 60 s before retry")
-			time.sleep(60) 
 
-			if(server < 2):
+			time.sleep(60)
+
+			if(server < len(servers)):
 				server = server + 1
-				print("changing to server" + str(server+1))
 
-    			if(server == 2):
+    			if(server == len(servers)):
            			server = 0
-           			print("changing to first server again")
 
 			get_data_urllib2()
 
 		if (e.code == 504):
-			print("Error 504, waiting 600 s before retry")
-			time.sleep(600) 
 
-			if(server < 2):
+			time.sleep(600)
+
+			if(server < len(servers)):
 				server = server + 1
-				print("changing to server" + str(server+1))
 
-    			if(server == 2):
+    			if(server == len(servers)):
            			server = 0
-           			print("changing to first server again")
 
 			get_data_urllib2()
 
@@ -194,7 +187,7 @@ with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 
 	f.write('function veganmap_populate(markers) {\n')
 
-	if(json == None):
+	if(json == ""):
 		json = get_data_urllib2()
 
 	for e in json['elements']:
