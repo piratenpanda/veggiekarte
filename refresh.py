@@ -187,7 +187,7 @@ with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 
 	f.write('function veganmap_populate(markers) {\n')
 
-	if(json == ""):
+	if(json == False):
 		json = get_data_urllib2()
 
 	for e in json['elements']:
