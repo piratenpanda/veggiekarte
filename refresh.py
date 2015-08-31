@@ -189,7 +189,7 @@ if(json == True):
 		f.write('function veganmap_populate(markers) {\n')
 
 		for e in json['elements']:
-    		lat = e.get('lat', None)
+			lat = e.get('lat', None)
 			lon = e.get('lon', None)
 			typ = e['type']
 			tags = e.get('tags', {})
