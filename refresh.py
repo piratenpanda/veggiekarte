@@ -113,7 +113,6 @@ icon_mapping = {
 
 scriptdir = os.path.dirname(os.path.abspath(__file__))
 nodes = {}
-cnt = 0
 
 def determine_icon(tags):
 
@@ -207,8 +206,6 @@ def write_data():
 
 			if not lat or not lon:
 				continue
-
-			cnt += 1
 
 			if 'name' in tags:
 				name = tags['name']
