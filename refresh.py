@@ -257,8 +257,10 @@ def write_data():
 			f.write('  L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
 		f.write('}\n')
 
+json = get_data_urllib2()
+
 while(json == False):
-    json = get_data_urllib2()
+	json = get_data_urllib2()
 
 write_data()
 
