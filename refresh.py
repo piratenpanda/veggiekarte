@@ -181,9 +181,7 @@ def get_data_urllib2():
 
 		return simplejson.load(f)
 
-json = get_data_urllib2()
-
-if(json == True):
+def write_data():
 	with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 
 		f.write('function veganmap_populate(markers) {\n')
@@ -258,3 +256,10 @@ if(json == True):
 
 			f.write('  L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
 		f.write('}\n')
+
+while(json == False):
+    json = get_data_urllib2()
+
+write_data()
+
+  
