@@ -256,7 +256,7 @@ def write_data():
 
 json = get_data_urllib2()
 
-while(json == False):
+while(json == False || None || ""):
 	json = get_data_urllib2()
 
 write_data()
