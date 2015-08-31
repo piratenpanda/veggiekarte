@@ -256,9 +256,10 @@ def write_data():
 
 json = get_data_urllib2()
 
-while(json == False or None or ""):
+while(json == False or json == None or json == ""):
 	json = get_data_urllib2()
 
-write_data()
+if(json != False or json != None or json != ""):
+    write_data()
 
   
