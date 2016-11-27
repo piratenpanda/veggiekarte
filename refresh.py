@@ -4,6 +4,9 @@ import urllib3
 import os
 import time
 import json
+import sys
+
+assert sys.version_info >= (3,0)
 
 servers = ["http://overpass-api.de/api/interpreter","http://overpass.osm.rambler.ru/cgi/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
 http = urllib3.PoolManager()
