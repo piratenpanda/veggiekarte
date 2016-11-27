@@ -1,12 +1,12 @@
 #!/usr/bin/python
 import cgi
-import urllib
-import urllib2
-import simplejson
+import urllib3
 import os
 import time
+import json
 
 servers = ["http://overpass-api.de/api/interpreter","http://overpass.osm.rambler.ru/cgi/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
+http = urllib3.PoolManager()
 
 icon_mapping = {
 'amenity:atm': 'money_atm',
@@ -111,11 +111,7 @@ icon_mapping = {
 'tourism:zoo': 'tourist_zoo',
 }
 
-scriptdir = os.path.dirname(os.path.abspath(__file__))
-nodes = {}
-
 def determine_icon(tags):
-
 	icon = 'vegan'
 
 	for kv in icon_mapping:
@@ -137,55 +133,41 @@ def determine_icon(tags):
 
 server = 0
 
-def get_data_urllib2():
-
+def get_data_osm():
 	global server
 
 	overpass_server = servers[server]
 
-	req = urllib2.Request(overpass_server + '?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
-	
-	try:
-		response = urllib2.urlopen(req)
+	r = http.request('GET', overpass_server + '?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
 
-	except urllib2.HTTPError as e:
+	if r.status == 200:
+		return json.loads(r.data.decode('utf-8'))
 
-		if(e.code == 429):
+	elif(r.status == 429):
+		time.sleep(60)
 
-			time.sleep(60)
+		server = (server+1)%len(servers)
+		return get_data_osm()
 
-			if(server < len(servers)):
-				server = server + 1
+	elif (r.status == 504):
+		time.sleep(600)
 
-    			if(server == len(servers)):
-           			server = 0
-
-			get_data_urllib2()
-
-		if (e.code == 504):
-
-			time.sleep(600)
-
-			if(server < len(servers)):
-				server = server + 1
-
-    			if(server == len(servers)):
-           			server = 0
-
-			get_data_urllib2()
+		server = (server+1)%len(servers)
+		return get_data_osm()
 
 	else:
-		opener = urllib2.build_opener()
-		f = opener.open(req)
+		print("Unknown HTTP error code", r.status)
+		return None
 
-		return simplejson.load(f)
+def write_data(osm_data):
+	scriptdir = os.path.dirname(os.path.abspath(__file__))
 
-def write_data():
 	with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
 
 		f.write('function veganmap_populate(markers) {\n')
+		nodes = {}
 
-		for e in json['elements']:
+		for e in osm_data['elements']:
 			lat = e.get('lat', None)
 			lon = e.get('lon', None)
 			typ = e['type']
@@ -209,7 +191,6 @@ def write_data():
 
 			if 'name' in tags:
 				name = tags['name']
-
 			else:
 				name = '%s %s' % (typ, ide)
 
@@ -217,12 +198,11 @@ def write_data():
 
 			if tags.get('diet:vegetarian', '') != "" and tags.get('diet:vegan', '') == "":
 				icon += "_veggie"
-
 			else:
 				icon += "_vegan"
 
 			popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
-	
+
 			if 'addr:street' in tags:
 				popup += '%s %s<br/>' % (tags.get('addr:street', ''), tags.get('addr:housenumber', ''))
 
@@ -251,15 +231,12 @@ def write_data():
 			elif 'phone' in tags:
 				popup += 'phone: %s<br/>' % (tags['phone'])
 
-			f.write('  L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name.encode('utf-8'), icon, popup.encode('utf-8')))
+			f.write('  L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name, icon, popup))
 		f.write('}\n')
 
-json = get_data_urllib2()
+osm_data = get_data_osm()
 
-while(json == False or json == None or json == ""):
-	json = get_data_urllib2()
+while(osm_data == False or osm_data == None or osm_data == ""):
+	osm_data = get_data_osm()
 
-if(json != False or json != None or json != ""):
-    write_data()
-
-  
+write_data(osm_data)
