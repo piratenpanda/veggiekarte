@@ -199,7 +199,7 @@ def write_data(osm_data):
 
 			icon = determine_icon(tags)
 
-			if tags.get('diet:vegetarian', '') != "" and tags.get('diet:vegan', '') == "":
+			if (tags.get('diet:vegetarian', '') != "" and tags.get('diet:vegan', '') == "") or tags.get('diet:vegan') != 'no':
 				icon += "_veggie"
 			else:
 				icon += "_vegan"
