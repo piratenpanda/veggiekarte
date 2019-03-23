@@ -1,5 +1,10 @@
-function getURLParameter(name) {
+// To close the infomation window per click on the x.
+function closeinfo() {
+	close = document.getElementsByClassName("information");
+	close[0].style.display = "none";
+}
 
+function getURLParameter(name) {
 	return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,])[1]);
 }
 
