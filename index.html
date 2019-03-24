@@ -6,28 +6,32 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Expires" content="-1">
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<!-- favicon -->
+	<link rel="icon" type="image/png" href="images/veggie-penguin.png" />
+
 	<!--[if lte IE 8]>
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
-	<link href="css/MarkerCluster.Default.ie.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css"/>
+	<link rel="stylesheet" type="text/css" href="css/MarkerCluster.Default.ie.css"/>
 	<![endif]-->
-	
-	<link rel="stylesheet" href="css/leaflet.css" />
-	<link href="css/MarkerCluster.css" rel="stylesheet" type="text/css" />
-	<link href="css/MarkerCluster.Default.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="css/Control.Geocoder.css" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
 
-	
-	<!-- Font Awesome - donwloaded from http://fortawesome.github.io/Font-Awesome -->
-	<link href="js/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<!-- Third party styles -->
+	<link rel="stylesheet" type="text/css" href="css/leaflet.css"/>
+	<link rel="stylesheet" type="text/css" href="css/MarkerCluster.css"/>
+	<link rel="stylesheet" type="text/css" href="css/MarkerCluster.Default.css"/>
+	<link rel="stylesheet" type="text/css" href="css/Control.Geocoder.css"/>
 
- 	<!-- Leaflet.Locate - downloaded from https://github.com/domoritz/leaflet-locatecontrol.git -->
-	<link rel="stylesheet" href="css/L.Control.Locate.min.css"/>
-	<!--[if lt IE 9]>
-	<link rel="stylesheet" href="css/L.Control.Locate.ie.min.css"/>
-	<![endif]-->
-	
+	<!-- Font Awesome - downloaded from https://fontawesome.com/ -->
+	<link rel="stylesheet" type="text/css" href="js/font-awesome/css/font-awesome.css">
+
+ 	<!-- Leaflet.Locate - downloaded from https://github.com/domoritz/leaflet-locatecontrol -->
+	<link rel="stylesheet" type="text/css" href="css/L.Control.Locate.min.css"/>
+
+	<!-- Own style -->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+	<!-- Third party  scripts -->
 	<script src="js/leaflet/leaflet.js"></script>
 	<script src="js/leaflet/leaflet-hash.js"></script>
 	<script src="js/geocoder/Control.Geocoder.js"></script>
@@ -35,39 +39,28 @@
 	<script src="js/markercluster/leaflet.markercluster.js"></script>
 	<script src="js/locatecontrol/L.Control.Locate.min.js"></script>
 	<script src="js/info/leaftlet.info.js"></script>
+
+	<!-- Own scripts -->
 	<script src="js/veganmap.js"></script>
 	<script src="js/veganmap-icons.js"></script>
 	<script src="js/veganmap-data.js"></script>
-	
-	 <script type="text/javascript">
-		function closeinfo() {
-			close = document.getElementsByClassName("information");
-			close[0].style.display = "none";
-		}
-	</script> 
-
-	<link rel="icon" type="image/png" href="images/veggie-penguin.png" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
 <body onload="veganmap()">
 
+	<!-- Map placeholder -->
 	<div id="map"></div>
-	
-	<div class="information">	
-		<div id="close" onclick="closeinfo();"><span class="fa fa-times"></span></div>
-        <h1>Willkommen</h1> 
-        
 
+	<!-- Info box -->
+	<div class="information">	
+	<div id="close" onclick="closeinfo();"><span class="fa fa-times"></span></div>
+        <h1>Willkommen</h1>
         <p>Auf veggiekarte.de findest du alle in OpenStreetMap eingetragenen veganen und vegetarischen Restaurants, Eisdielen, Cafes etc. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen. Alle großen grünen Icons sind Lokalitäten in denen es vegane Optionen gibt. Icons die nicht grün sind, bieten vegetarische aber keine veganen Optionen an.</p>
-        
         <h1>Über OpenStreetMap</h1>
         <p>OpenStreetMap ist eine freie Weltkarte und funktioniert so ähnlich wie Wikipedia. Jeder kann mitmachen und Informationen eintragen. Dadurch ist die Karte immer aktuell und voll von nützlichen Informationen. Wer Verbesserungsvorschläge hat oder Fehler in der Karte findet, kann diese einfach selbst eintragen oder verbessern</p>
-            
         <h1>Informationen beitragen</h1>
-        <p>Wenn du selbst Restaurants, Cafes, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst hinzufügen. Dazu musst du den "diet:vegan"- oder "diet:vegetarian"-Tag bei deiner Location in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es <a href="http://www.lebsanft.org/?p=327">hier</a>.</p> 
-		
-		<p>Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findet ihr auf <a href="https://github.com/piratenpanda/veggiekarte">GitHub</a>. Der Veggie-Pinguin des FavIcons kommt von <a href="http://www.openclipart.org/detail/189178/veggie-penguin-by-moini-189178">OpenClipart</a>.</p>
+        <p>Wenn du selbst Restaurants, Cafes, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst hinzufügen. Dazu musst du den "diet:vegan"- oder "diet:vegetarian"-Tag bei deiner Location in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es <a href="https://www.lebsanft.org/posts/informationen-zur-veggiekarte-hinzufuegen/">hier</a>.</p>
+	<p>Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findet ihr auf <a href="https://github.com/piratenpanda/veggiekarte">GitHub</a>. Der Veggie-Pinguin des FavIcons kommt von <a href="https://openclipart.org/detail/189178/veggiepenguin">OpenClipart</a>.</p>
 	</div>
 </body>
 </html>
