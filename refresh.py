@@ -149,9 +149,9 @@ def get_data_osm():
 def write_data(osm_data):
 	scriptdir = os.path.dirname(os.path.abspath(__file__))
 
-	with open(scriptdir + '/js/veganmap-data.js', 'w') as f:
+	with open(scriptdir + '/js/veggiemap-data.js', 'w') as f:
 
-		f.write('function veganmap_populate(markers) {\n')
+		f.write('function veggiemap_populate(markers) {\n')
 		nodes = {}
 
 		for e in osm_data['elements']:
