@@ -88,7 +88,7 @@ function veggiemap() {
 
   var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 32});
 
-  veganmap_populate(markers);
+  veggiemap_populate(markers);
 
   map.addLayer(markers);
 
