@@ -177,7 +177,7 @@ nodes = {}
 cnt = 0
 
 with open(scriptdir + '/veggiemap-data.js', 'w') as f:
-  f.write('function veganmap_populate(markers) {\n')
+  f.write('function veggiemap_populate(markers) {\n')
   for e in json['elements']:
     lat = e.get('lat', None)
     lon = e.get('lon', None)
