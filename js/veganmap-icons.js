@@ -69,6 +69,7 @@ var icon_education_university_vegan = L.icon({iconUrl: 'images/vegan/education_u
 var icon_education_nursery3_vegan = L.icon({iconUrl: 'images/vegan/education_nursery3.n.24.png', iconSize: [24, 24] });
 
 var icon_place_of_worship_unknown_vegan = L.icon({iconUrl: 'images/vegan/place_of_worship_unknown.n.24.png', iconSize: [24, 24] });
+var icon_transport_fuel_vegan  = L.icon({iconUrl: 'images/vegan/transport_fuel.n.24.png', iconSize: [24, 24] });
 
 // veggie
 
@@ -141,3 +142,4 @@ var icon_education_university_veggie = L.icon({iconUrl: 'images/veggie/education
 var icon_education_nursery3_veggie = L.icon({iconUrl: 'images/veggie/education_nursery3.n.24.png', iconSize: [24, 24] });
 
 var icon_place_of_worship_unknown_veggie = L.icon({iconUrl: 'images/veggie/place_of_worship_unknown.n.24.png', iconSize: [24, 24] });
+var icon_transport_fuel_veggie  = L.icon({iconUrl: 'images/vegan/transport_fuel.n.24.png', iconSize: [24, 24] });
