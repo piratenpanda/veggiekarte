@@ -8,8 +8,14 @@ import sys
 
 assert sys.version_info >= (3,0)
 
+# variables for the overpass request
 servers = ["http://overpass-api.de/api/interpreter","http://overpass.osm.rambler.ru/cgi/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
 http = urllib3.PoolManager()
+
+# variables for the output files
+scriptdir = os.path.dirname(os.path.abspath(__file__))		# get the path of the directory of this script
+veggiemap_tempfile = scriptdir + '/js/veggiemap-data-temp.js'	# the temp file to store the data from the overpass request
+veggiemap_file = scriptdir + '/js/veggiemap-data.js'		# the data file which will be used for the map
 
 icon_mapping = {
 'amenity:atm': 'money_atm',
@@ -147,9 +153,8 @@ def get_data_osm():
 		return None
 
 def write_data(osm_data):
-	scriptdir = os.path.dirname(os.path.abspath(__file__))
 
-	with open(scriptdir + '/js/veggiemap-data.js', 'w') as f:
+	with open(veggiemap_tempfile, 'w') as f:
 
 		f.write('function veggiemap_populate(markers) {\n')
 		nodes = {}
@@ -227,3 +232,7 @@ while(osm_data == False or osm_data == None or osm_data == ""):
 	osm_data = get_data_osm()
 
 write_data(osm_data)
+
+if os.path.isfile(veggiemap_tempfile):			# check if temp file exists
+	print("rename " + veggiemap_tempfile + " to " + veggiemap_file)
+	os.rename(veggiemap_tempfile, veggiemap_file)	# override destination file with temp file
