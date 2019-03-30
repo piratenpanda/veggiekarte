@@ -5,6 +5,7 @@ import os
 import time
 import json
 import sys
+import datetime	# for the timestamp
 
 assert sys.version_info >= (3,0)
 
@@ -13,10 +14,12 @@ servers = ["http://overpass-api.de/api/interpreter","http://overpass.osm.rambler
 http = urllib3.PoolManager()
 
 # variables for the output files
+timestamp = datetime.datetime.now()				# the actual date and time
 scriptdir = os.path.dirname(os.path.abspath(__file__))		# get the path of the directory of this script
 veggiemap_tempfile = scriptdir + '/js/veggiemap-data-temp.js'	# the temp file to store the data from the overpass request
 veggiemap_file = scriptdir + '/js/veggiemap-data.js'		# the data file which will be used for the map
 
+# icon mapping
 icon_mapping = {
 'amenity:atm': 'money_atm',
 'amenity:bank': 'money_bank2',
@@ -126,11 +129,14 @@ def determine_icon(tags):
 
 server = 0
 
+
+# Overpass request
 def get_data_osm():
 	global server
 
 	overpass_server = servers[server]
 
+	# Overpass request
 	r = http.request('GET', overpass_server + '?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
 
 	if r.status == 200:
@@ -138,13 +144,11 @@ def get_data_osm():
 
 	elif(r.status == 429):
 		time.sleep(60)
-
 		server = (server+1)%len(servers)
 		return get_data_osm()
 
 	elif (r.status == 504):
 		time.sleep(600)
-
 		server = (server+1)%len(servers)
 		return get_data_osm()
 
@@ -155,7 +159,7 @@ def get_data_osm():
 def write_data(osm_data):
 
 	with open(veggiemap_tempfile, 'w') as f:
-
+		f.write('// Created: %s\n' % (timestamp))
 		f.write('function veggiemap_populate(markers) {\n')
 		nodes = {}
 
@@ -193,6 +197,7 @@ def write_data(osm_data):
 			else:
 				icon += "_vegan"
 
+			# Building the textbox of the Marker
 			popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
 
 			if 'addr:street' in tags:
