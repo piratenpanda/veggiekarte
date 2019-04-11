@@ -112,7 +112,6 @@ def determine_icon(tags):
 
 	for kv in icon_mapping:
 		k,v = kv.split(':')
-
 		t = tags.get(k)
 
 		if not t:
@@ -129,15 +128,19 @@ def determine_icon(tags):
 
 server = 0
 
-
-# Overpass request
+# Getting osm data
 def get_data_osm():
 	global server
 
-	overpass_server = servers[server]
+	# Preparing the string for the Overpass request
+	overpass_server =		servers[server]
+	overpass_data_out =		'?data=[out:json];('
+	overpass_vegan_objects =	'node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];'
+	overpass_veggie_objects =	'node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];'
+	overpass_out =			');out+center;'
 
 	# Overpass request
-	r = http.request('GET', overpass_server + '?data=[out:json];(node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];>;node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];>;);out;')
+	r = http.request('GET', overpass_server + overpass_data_out + overpass_vegan_objects + overpass_veggie_objects + overpass_out)
 
 	if r.status == 200:
 		return json.loads(r.data.decode('utf-8'))
@@ -152,6 +155,12 @@ def get_data_osm():
 		server = (server+1)%len(servers)
 		return get_data_osm()
 
+	elif (r.status == 400):
+		print("HTTP error code", r.status, ": Bad Request")
+		time.sleep(5)
+		server = (server+1)%len(servers)
+		return get_data_osm()
+
 	else:
 		print("Unknown HTTP error code", r.status)
 		return None
@@ -161,26 +170,25 @@ def write_data(osm_data):
 	with open(veggiemap_tempfile, 'w') as f:
 		f.write('// Created: %s\n' % (timestamp))
 		f.write('function veggiemap_populate(markers) {\n')
-		nodes = {}
 
 		for e in osm_data['elements']:
-			lat = e.get('lat', None)
-			lon = e.get('lon', None)
+			ide = e['id']
 			typ = e['type']
 			tags = e.get('tags', {})
 
 			for k in tags.keys():
 				tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
 
-			ide = e['id']
-
 			if typ == 'node':
-				nodes[ide] = (lat,lon)
+				lat = e.get('lat', None)
+				lon = e.get('lon', None)
 				if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only' and tags.get('diet:vegetarian') != 'only' and tags.get('diet:vegetarian') != 'yes':
 					continue
 
 			if typ == 'way':
-				lat, lon = nodes[e['nodes'][0]] # extract coordinate of first node
+				centerCoordinates = e.get('center', None) # get the coordinates from the center of the object
+				lat = centerCoordinates.get('lat', None)
+				lon = centerCoordinates.get('lon', None)
 
 			if not lat or not lon:
 				continue
