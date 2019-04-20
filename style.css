@@ -1,0 +1,74 @@
+body {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.leaflet-control-info {
+  background: #ddd;
+  box-shadow: 0 1px 7px rgba(0,0,0,0.65);
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  line-height: 26px;
+  overflow: hidden;
+}
+
+.leaflet-touch .leaflet-control-info {
+  box-shadow: none;
+  border: 2px solid rgba(0,0,0,0.2);
+  background-clip: padding-box;
+  line-height: 30px;
+}
+
+#close {
+  width:25px;
+  height: 25px;
+  line-height: 25px;
+  z-index: 100;
+  float: right;
+}
+
+#logo {
+  right: 10px;
+  top: 10px;
+  position: absolute;
+  z-index: 7;
+  font-size: xx-large;
+  font-style: italic;
+}
+
+.information {
+  font-size: 13px;
+  margin: auto;  
+  position: absolute;
+  left:0;
+  right: 0;
+  top: 10px;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 10px grey;
+  color: #111;
+  z-index: 7;
+  line-height: 150%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 14pt;
+  font-weight: bold;
+  text-align: left;
+}
+
+a {
+  color: #0078A8;
+}
