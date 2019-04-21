@@ -19,5 +19,4 @@ This is an overview of the third-party software we use. Many thanks to the open 
 |[leaflet.hash](https://github.com/mlevans/leaflet-hash/) |MIT [*](https://github.com/mlevans/leaflet-hash/blob/master/LICENSE.md) | 0.2.1 | Add coordante hashes to the URL in the browser adress field. |
 |[leaflet.locatecontrol](https://github.com/domoritz/leaflet-locatecontrol/) |MIT [*](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE) | 0.66.2 | A control to geolocate the user. The button with the marker on the top left. |
 |[leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster/) |MIT [*](https://github.com/Leaflet/Leaflet.markercluster/blob/master/MIT-LICENCE.txt) | 1.4.1 | Marker Clustering plugin. |
-|[jquery](https://github.com/jquery/jquery) | MIT [*](https://github.com/jquery/jquery/blob/master/LICENSE.txt) | | |
 |[veggiepenguin](https://openclipart.org/detail/189178/veggiepenguin) | CC0 | | favicon |
