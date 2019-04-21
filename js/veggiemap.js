@@ -4,10 +4,6 @@ function closeinfo() {
   close[0].style.display = "none";
 }
 
-function getURLParameter(name) {
-  return decodeURI((RegExp(name + "=" + "(.+?)(&|$)").exec(location.search)||[,])[1]);
-}
-
 function veggiemap() {
 
   // TileLayer
@@ -24,22 +20,8 @@ function veggiemap() {
     worldCopyJump: true
   });
 
-  var regionParameter = getURLParameter("region");
-  var region = (regionParameter === "undefined") ? "" : regionParameter;
-
   // add info button
   L.control.info().addTo(map);        
-
-  function onLocationFound(e){
-    var radius = e.accuracy / 2;
-    L.marker(e.latlng).addTo(map)
-    var circle = L.circle(e.latlng, 800, {
-      color: "blue",
-      stroke: false,
-      //fillColor: '#f03',
-      fillOpacity: 0.1
-    }).addTo(map);
-  }
 
   var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 32});
 
@@ -50,13 +32,13 @@ function veggiemap() {
   // add hash to the url
   var hash = new L.Hash(map);
 
-  // add search field
+  // add button for search places
   L.Control.geocoder({
 	placeholder: 'Nach Ortsnamen suchen...',
 	errorMessage: 'Nichts gefunden'
   }).addTo(map);
 
-  // add position search field
+  // add button to search own position
   L.control.locate({
     strings: {
       title: "Standort ermitteln",
