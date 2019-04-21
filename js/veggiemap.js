@@ -27,9 +27,14 @@ function veggiemap() {
   var regionParameter = getURLParameter("region");
   var region = (regionParameter === "undefined") ? "" : regionParameter;
 
-  //new L.Control.GeoSearch({provider: new L.GeoSearch.Provider.OpenStreetMap({region: region})}).addTo(map);
-  L.Control.geocoder().addTo(map);    // add geo search field
-  L.control.info().addTo(map);        // add info button
+  // add search field
+  L.Control.geocoder({
+	placeholder: 'Nach Ortsnamen suchen...',
+	errorMessage: 'Nichts gefunden'
+  }).addTo(map);
+
+  // add info button
+  L.control.info().addTo(map);        
 
   function onLocationFound(e){
     var radius = e.accuracy / 2;
