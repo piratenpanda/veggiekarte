@@ -59,7 +59,8 @@ function veggiemap() {
   // add position search field
   L.control.locate({
     strings: {
-      title: "Standort ermitteln", // title of the locate control
+      title: "Standort ermitteln",
+      metersUnit: "Meter",
       popup: "Du befindest dich maximal {distance} {unit} entfernt von diesem Punkt."
     },
   }).addTo(map);
