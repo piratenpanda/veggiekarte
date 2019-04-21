@@ -18,6 +18,7 @@ timestamp = datetime.datetime.now()				# the actual date and time
 scriptdir = os.path.dirname(os.path.abspath(__file__))		# get the path of the directory of this script
 veggiemap_tempfile = scriptdir + '/js/veggiemap-data-temp.js'	# the temp file to store the data from the overpass request
 veggiemap_file = scriptdir + '/js/veggiemap-data.js'		# the data file which will be used for the map
+veggiemap_oldfile = scriptdir + '/js/veggiemap-data_old.js'	# previous version of the data file (helpful to examine changes)
 
 # icon mapping
 icon_mapping = {
@@ -107,6 +108,7 @@ icon_mapping = {
 'shop:toys': 'shopping_toys',
 }
 
+# Determine icon for the marker
 def determine_icon(tags):
 	icon = 'vegan'
 
@@ -208,6 +210,10 @@ def write_data(osm_data):
 			# Building the textbox of the Marker
 			popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
 
+			if 'cuisine' in tags:
+			#	cuisine = tags['cuisine']
+				popup += 'cuisine: %s <br/>' % (tags['cuisine'])
+
 			if 'addr:street' in tags:
 				popup += '%s %s<br/>' % (tags.get('addr:street', ''), tags.get('addr:housenumber', ''))
 
@@ -248,4 +254,5 @@ write_data(osm_data)
 
 if os.path.isfile(veggiemap_tempfile):			# check if temp file exists
 	print("rename " + veggiemap_tempfile + " to " + veggiemap_file)
-	os.rename(veggiemap_tempfile, veggiemap_file)	# override destination file with temp file
+	os.rename(veggiemap_file, veggiemap_oldfile)	# rename old file
+	os.rename(veggiemap_tempfile, veggiemap_file)	# rename temp file to new file
