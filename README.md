@@ -16,8 +16,8 @@ This is an overview of the third-party software we use. Many thanks to the open 
 |[fontawesome](https://github.com/FortAwesome/Font-Awesome/) | CC-BY-4.0, OFL-1.1, MIT [*](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt) | | 
 |[leaflet](https://github.com/Leaflet/Leaflet/) |BSD-2-Clause [*](https://github.com/Leaflet/Leaflet/blob/master/LICENSE) | 1.4.0 |
 |[leaflet.control.geocoder](https://github.com/perliedman/leaflet-control-geocoder/) |BSD-2-Clause [*](https://github.com/perliedman/leaflet-control-geocoder/blob/master/LICENSE) | |
-|[leaflet.hash](https://github.com/mlevans/leaflet-hash/) |MIT [*](https://github.com/mlevans/leaflet-hash/blob/master/LICENSE.md) | |
+|[leaflet.hash](https://github.com/mlevans/leaflet-hash/) |MIT [*](https://github.com/mlevans/leaflet-hash/blob/master/LICENSE.md) | 0.2.1 |
 |[leaflet.locatecontrol](https://github.com/domoritz/leaflet-locatecontrol/) |MIT [*](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE) |  | A control to geolocate the user. The button with the marker on the top left.  |
-|[https://github.com/Leaflet/Leaflet.markercluster/leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster/) |MIT [*](https://github.com/Leaflet/Leaflet.markercluster/blob/master/MIT-LICENCE.txt) | 1.4.1 |
+|[leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster/) |MIT [*](https://github.com/Leaflet/Leaflet.markercluster/blob/master/MIT-LICENCE.txt) | 1.4.1 |
 |[jquery](https://github.com/jquery/jquery) | MIT [*](https://github.com/jquery/jquery/blob/master/LICENSE.txt) | | |
 |[veggiepenguin](https://openclipart.org/detail/189178/veggiepenguin) | | | favicon |
