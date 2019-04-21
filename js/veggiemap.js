@@ -63,5 +63,6 @@ function veggiemap() {
       metersUnit: "Meter",
       popup: "Du befindest dich maximal {distance} {unit} entfernt von diesem Punkt."
     },
+    locateOptions: {maxZoom: 16}
   }).addTo(map);
 }
