@@ -252,7 +252,13 @@ while(osm_data == False or osm_data == None or osm_data == ""):
 
 write_data(osm_data)
 
-if os.path.isfile(veggiemap_tempfile):			# check if temp file exists
-	print("rename " + veggiemap_tempfile + " to " + veggiemap_file)
-	os.rename(veggiemap_file, veggiemap_oldfile)	# rename old file
-	os.rename(veggiemap_tempfile, veggiemap_file)	# rename temp file to new file
+if os.path.isfile(veggiemap_tempfile):				# check if the temp file exists
+	if os.path.getsize(veggiemap_tempfile) > 100:		# check if the temp file isn't to small (see issue #21)
+		print("rename " + veggiemap_tempfile + " to " + veggiemap_file)
+		os.rename(veggiemap_file, veggiemap_oldfile)	# rename old file
+		os.rename(veggiemap_tempfile, veggiemap_file)	# rename temp file to new file
+	else:
+		print("temp file is to small!")
+		print(os.path.getsize(veggiemap_tempfile))
+else:
+    print("temp file don't exists!")
