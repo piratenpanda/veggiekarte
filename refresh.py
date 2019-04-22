@@ -6,6 +6,7 @@ import time
 import json
 import sys
 import datetime	# for the timestamp
+import html
 
 assert sys.version_info >= (3,0)
 
@@ -196,7 +197,8 @@ def write_data(osm_data):
 				continue
 
 			if 'name' in tags:
-				name = tags['name']
+				name = html.unescape(tags['name'])
+				# html.unescape() to convert HTML entities to proper characters (issue #25)
 			else:
 				name = '%s %s' % (typ, ide)
 
