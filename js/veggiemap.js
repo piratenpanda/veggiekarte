@@ -20,9 +20,6 @@ function veggiemap() {
     worldCopyJump: true
   });
 
-  // add info button
-  L.control.info().addTo(map);        
-
   var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 32});
 
   veggiemap_populate(markers);
@@ -32,10 +29,13 @@ function veggiemap() {
   // add hash to the url
   var hash = new L.Hash(map);
 
+  // add info button
+  L.control.info().addTo(map);
+
   // add button for search places
   L.Control.geocoder({
-	placeholder: 'Nach Ortsnamen suchen...',
-	errorMessage: 'Nichts gefunden'
+    placeholder: 'Nach Ortsnamen suchen...',
+    errorMessage: 'Nichts gefunden.'
   }).addTo(map);
 
   // add button to search own position
