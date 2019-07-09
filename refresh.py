@@ -11,7 +11,7 @@ import html
 assert sys.version_info >= (3,0)
 
 # variables for the overpass request
-servers = ["http://overpass-api.de/api/interpreter","http://overpass.osm.rambler.ru/cgi/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
+servers = ["http://overpass-api.de/api/interpreter","http://api.openstreetmap.fr/api/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
 http = urllib3.PoolManager()
 
 # variables for the output files
