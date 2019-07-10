@@ -174,7 +174,7 @@ def write_data(osm_data):
 				icon += "_vegan"
 
 			# Building the textbox of the Marker
-			popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
+			popup = '<b>%s</b> <a href=\\"https://openstreetmap.org/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
 
 			if 'cuisine' in tags:
 			#	cuisine = tags['cuisine']
