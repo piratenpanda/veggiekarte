@@ -11,7 +11,7 @@ import html
 assert sys.version_info >= (3,0)
 
 # variables for the overpass request
-servers = ["http://overpass-api.de/api/interpreter","http://overpass.osm.rambler.ru/cgi/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
+servers = ["http://overpass-api.de/api/interpreter","http://api.openstreetmap.fr/api/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
 http = urllib3.PoolManager()
 
 # variables for the output files
@@ -107,29 +107,29 @@ def get_data_osm():
 	overpass_out =			');out+center;'
 
 	# Overpass request
+	print("Send query to server: ", overpass_server)
 	r = http.request('GET', overpass_server + overpass_data_out + overpass_vegan_objects + overpass_veggie_objects + overpass_out)
 
 	if r.status == 200:
+		print("Received answer successfully.")
 		return json.loads(r.data.decode('utf-8'))
-
-	elif(r.status == 429):
-		time.sleep(60)
-		server = (server+1)%len(servers)
-		return get_data_osm()
-
-	elif (r.status == 504):
-		time.sleep(600)
-		server = (server+1)%len(servers)
-		return get_data_osm()
-
 	elif (r.status == 400):
-		print("HTTP error code", r.status, ": Bad Request")
+		print("HTTP error code ", r.status, ": Bad Request")
 		time.sleep(5)
 		server = (server+1)%len(servers)
 		return get_data_osm()
-
+	elif(r.status == 429):
+		print("HTTP error code ", r.status, ": Too Many Requests")
+		time.sleep(60)
+		server = (server+1)%len(servers)
+		return get_data_osm()
+	elif (r.status == 504):
+		print("HTTP error code ", r.status, ": Gateway Timeout")
+		time.sleep(600)
+		server = (server+1)%len(servers)
+		return get_data_osm()
 	else:
-		print("Unknown HTTP error code", r.status)
+		print("Unknown HTTP error code: ", r.status)
 		return None
 
 def write_data(osm_data):
@@ -174,7 +174,7 @@ def write_data(osm_data):
 				icon += "_vegan"
 
 			# Building the textbox of the Marker
-			popup = '<b>%s</b> <a href=\\"http://openstreetmap.org/browse/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
+			popup = '<b>%s</b> <a href=\\"https://openstreetmap.org/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
 
 			if 'cuisine' in tags:
 			#	cuisine = tags['cuisine']
