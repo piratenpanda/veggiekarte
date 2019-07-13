@@ -168,10 +168,14 @@ def write_data(osm_data):
 
 			icon = determine_icon(tags)
 
+			# Give the object a category
 			if (tags.get('diet:vegetarian', '') != '' and tags.get('diet:vegan', '') == '') or tags.get('diet:vegan', '') == 'no':
-				icon += "_veggie"
+				category = "veggie"
 			else:
-				icon += "_vegan"
+				category = "vegan"
+
+			# Add category to the icon name
+			icon += "_%s" % (category)
 
 			# Building the textbox of the Marker
 			popup = '<b>%s</b> <a href=\\"https://openstreetmap.org/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
@@ -208,7 +212,7 @@ def write_data(osm_data):
 			elif 'phone' in tags:
 				popup += 'phone: %s<br/>' % (tags['phone'])
 
-			f.write('L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name, icon, popup))
+			f.write('L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(%s);\n' % (lat, lon, name, icon, popup, category))
 		f.write('}\n')
 
 osm_data = get_data_osm()

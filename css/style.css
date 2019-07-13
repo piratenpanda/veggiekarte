@@ -72,3 +72,32 @@ h1 {
 a {
   color: #0078A8;
 }
+
+/* legend */
+.legendRow {
+  display: table-cell;
+  max-height: 15px;
+  position: relative;
+  top: -3px;
+}
+.firstCell {
+  display: table-cell;
+  width: 15px;
+  border-radius: 5px;
+  border: solid 1px #cdcdcddd;
+  margin-right: 5px;
+}
+.secondCell {
+  display: table-cell;
+  padding-left: 5px;
+}
+
+/* categorie properties */
+.vegan {
+  background: #25961b;
+  border-color: #559922;
+}
+.veggie {
+  background: #734a08;
+  border-color: Sienna;
+}

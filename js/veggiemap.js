@@ -4,6 +4,11 @@ function closeinfo() {
   close[0].style.display = "none";
 }
 
+// Define marker groups
+var parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 35});
+var vegan = L.featureGroup.subGroup(parentGroup, {});
+var veggie = L.featureGroup.subGroup(parentGroup, {});
+
 function veggiemap() {
 
   // TileLayer
@@ -20,25 +25,34 @@ function veggiemap() {
     worldCopyJump: true
   });
 
-  var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 32});
+  // Define overlays (each marker group gets a layer) + add legend to the description
+  var overlays = {
+    "<div class='legendRow' title='Place which offers vegan food.'><div class='firstCell vegan'></div><div class='secondCell'>vegan</div></div>" : vegan,
+    "<div class='legendRow' title='Place which offers vegetarian but no vegan food.'><div class='firstCell veggie'></div><div class='secondCell'>veggie</div></div>"  : veggie
+  };
 
-  veggiemap_populate(markers);
+  // Add marker groups to the map
+  vegan.addTo(map);
+  veggie.addTo(map);
 
-  map.addLayer(markers);
+  veggiemap_populate(parentGroup);
 
-  // add hash to the url
+  // Add the parent marker group to the map
+  parentGroup.addTo(map);
+
+  // Add hash to the url
   var hash = new L.Hash(map);
 
-  // add info button
+  // Add info button
   L.control.info().addTo(map);
 
-  // add button for search places
+  // Add button for search places
   L.Control.geocoder({
     placeholder: 'Nach Ortsnamen suchen...',
     errorMessage: 'Nichts gefunden.'
   }).addTo(map);
 
-  // add button to search own position
+  // Add button to search own position
   L.control.locate({
     strings: {
       title: "Standort ermitteln",
@@ -47,4 +61,7 @@ function veggiemap() {
     },
     locateOptions: {maxZoom: 16}
   }).addTo(map);
+
+  // Add layer control button
+  L.control.layers(null, overlays).addTo(map);
 }
