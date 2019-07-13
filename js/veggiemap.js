@@ -7,7 +7,9 @@ function closeinfo() {
 // Define marker groups
 var parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 35});
 var vegan = L.featureGroup.subGroup(parentGroup, {});
+var vegan_limited = L.featureGroup.subGroup(parentGroup, {});
 var veggie = L.featureGroup.subGroup(parentGroup, {});
+var no_category = L.featureGroup.subGroup(parentGroup, {});
 
 function veggiemap() {
 
@@ -28,12 +30,16 @@ function veggiemap() {
   // Define overlays (each marker group gets a layer) + add legend to the description
   var overlays = {
     "<div class='legendRow' title='Place which offers vegan food.'><div class='firstCell vegan'></div><div class='secondCell'>vegan</div></div>" : vegan,
-    "<div class='legendRow' title='Place which offers vegetarian but no vegan food.'><div class='firstCell veggie'></div><div class='secondCell'>veggie</div></div>"  : veggie
+    "<div class='legendRow' title='Place with limited vegan offer (usualy that means, you have to ask for it).'><div class='firstCell vegan_limited'></div><div class='secondCell'>vegan limited</div></div>"  : vegan_limited,
+    "<div class='legendRow' title='Place which offers vegetarian but no vegan food.'><div class='firstCell veggie'></div><div class='secondCell'>veggie</div></div>"  : veggie,
+    "<div class='legendRow' title='Place which use unusual vegetarian or vegan tags.'><div class='firstCell no_category'></div><div class='secondCell'>unknown</div></div>" : no_category
   };
 
   // Add marker groups to the map
   vegan.addTo(map);
+  vegan_limited.addTo(map);
   veggie.addTo(map);
+  no_category.addTo(map);
 
   veggiemap_populate(parentGroup);
 

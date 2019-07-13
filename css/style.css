@@ -15,9 +15,7 @@ body {
 
 .leaflet-control-info {
   background: #ddd;
-  box-shadow: 0 1px 7px rgba(0,0,0,0.65);
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+  box-shadow: 4px 4px 4px DimGray;
   line-height: 26px;
   overflow: hidden;
 }
@@ -55,7 +53,7 @@ body {
   top: 10px;
   width: 70%;
   background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 10px grey;
+  box-shadow: 0 0 10px DimGray;
   color: #111;
   z-index: 7;
   line-height: 150%;
@@ -65,8 +63,6 @@ body {
 
 h1 {
   font-size: 14pt;
-  font-weight: bold;
-  text-align: left;
 }
 
 a {
@@ -92,12 +88,33 @@ a {
   padding-left: 5px;
 }
 
+/* marker properties */
+.marker {
+  border-radius: 40% 5%;
+  border-style: solid;
+  border-width: 2px;
+  padding: 2px;
+  box-shadow: 4px 4px 4px DimGray;
+}
+.marker:hover {
+  border-color: NavajoWhite;
+  padding: 3px;
+}
+
 /* categorie properties */
 .vegan {
   background: #25961b;
   border-color: #559922;
 }
+.vegan_limited {
+  background: #cccccc;
+  border-color: #559922;
+}
 .veggie {
   background: #734a08;
   border-color: Sienna;
+}
+.no_category {
+  background: orange;
+  border-color: #559922;
 }
