@@ -1,0 +1,42 @@
+{
+  "name": "leaflet.featuregroup.subgroup",
+  "_name": "Leaflet.FeatureGroup.SubGroup",
+  "version": "1.0.2",
+  "_year": "2015-2017",
+  "description": "Creates a Leaflet Feature Group that adds its child layers into a parent group when added to a map",
+  "main": "dist/leaflet.featuregroup.subgroup",
+  "files": [
+    "dist/*.js"
+  ],
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build": "jake build",
+    "version": "npm run build && jake buildDocs && git add README.md",
+    "postversion": "npm run build",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup.git"
+  },
+  "keywords": [
+    "leaflet",
+    "leaflet.markercluster",
+    "plugins",
+    "maps",
+    "subgroup"
+  ],
+  "author": "Boris Seang",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues"
+  },
+  "homepage": "https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup#readme",
+  "devDependencies": {
+    "git-rev": "^0.2.1",
+    "magic-string": "^0.11.4",
+    "uglify-js": "^2.6.2"
+  }
+}

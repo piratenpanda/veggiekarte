@@ -1,5 +1,4 @@
 #!/usr/bin/python
-import cgi
 import urllib3
 import os
 import time
@@ -11,7 +10,17 @@ import html
 assert sys.version_info >= (3,0)
 
 # variables for the overpass request
-servers = ["http://overpass-api.de/api/interpreter","http://api.openstreetmap.fr/api/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
+
+# server list from: https://wiki.openstreetmap.org/wiki/Overpass_API
+servers = [	"https://lz4.overpass-api.de/api/interpreter",
+		"https://overpass.kumi.systems/api/interpreter",
+		"https://z.overpass-api.de/api/interpreter",
+		"http://api.openstreetmap.fr/api/interpreter",
+		"http://dev.overpass-api.de/api_drolbr/interpreter",
+		"http://overpass-api.de/api/interpreter",
+		"http://overpass.openstreetmap.fr/api/interpreter",
+		"http://overpass.osm.ch/api/interpreter"
+		]
 http = urllib3.PoolManager()
 
 # variables for the output files
@@ -23,60 +32,60 @@ veggiemap_oldfile = scriptdir + '/js/veggiemap-data_old.js'	# previous version o
 
 # icon mapping
 icon_mapping = {
-'amenity:bar': 'food_bar',
-'amenity:bbq': 'tourist_picnic',
-'amenity:cafe': 'food_cafe',
-'amenity:cinema': 'tourist_cinema',
-'amenity:college': 'education_university',
-'amenity:fast_food': 'food_fastfood',
-'amenity:fuel': 'transport_fuel',
-'amenity:hospital': 'health_hospital',
-'amenity:kindergarten': 'education_nursery3',
-'amenity:library': 'amenity_library',
-'amenity:marketplace': 'shopping_marketplace',
-'amenity:nightclub': 'food_bar',
-'amenity:pharmacy': 'health_pharmacy',
-'amenity:place_of_worship': 'place_of_worship_unknown',
-'amenity:pub': 'food_pub',
-'amenity:restaurant': 'food_restaurant',
-'amenity:school': 'education_school',
-'amenity:shelter': 'accommodation_shelter2',
-'amenity:swimming_pool': 'sport_swimming_outdoor',
-'amenity:theatre': 'tourist_theatre',
-'amenity:university': 'education_university',
-'amenity:vending_machine': 'shopping_vending_machine',
-'historic:memorial': 'tourist_memorial',
-'leisure:golf_course': 'sport_golf',
-'leisure:pitch': 'sport_leisure_centre',
-'leisure:recreation_ground': 'sport_leisure_centre',
-'leisure:sports_centre': 'sport_leisure_centre',
-'leisure:stadium': 'sport_stadium',
-'leisure:track': 'sport_leisure_centre',
-'shop:alcohol': 'shopping_alcohol',
-'shop:bakery': 'shopping_bakery',
-'shop:bicycle': 'shopping_bicycle',
-'shop:books': 'shopping_book',
-'shop:butcher': 'shopping_butcher',
-'shop:clothes': 'shopping_clothes',
-'shop:confectionery': 'shopping_confectionery',
-'shop:convenience': 'shopping_convenience',
-'shop:department_store': 'shopping_department_store',
-'shop:doityourself': 'shopping_diy',
-'shop:fishmonger': 'shopping_fish',
-'shop:garden_centre': 'shopping_garden_centre',
-'shop:gift': 'shopping_gift',
-'shop:greengrocer': 'shopping_greengrocer',
-'shop:hairdresser': 'shopping_hairdresser',
-'shop:kiosk': 'shopping_kiosk',
-'shop:laundry': 'shopping_laundrette',
-'shop:music': 'shopping_music',
-'shop:supermarket': 'shopping_supermarket'
+'amenity:bar': 'bar',
+'amenity:bbq': 'bbq',
+'amenity:cafe': 'cafe',
+'amenity:cinema': 'cinema',
+'amenity:college': 'maki_college',
+'amenity:fast_food': 'fast_food',
+'amenity:food_court': 'restaurant',
+'amenity:fuel': 'fuel',
+'amenity:hospital': 'hospital',
+'amenity:ice_cream': 'ice_cream',
+'amenity:kindergarten': 'playground',
+'amenity:pharmacy': 'pharmacy',
+'amenity:place_of_worship': 'place_of_worship',
+'amenity:pub': 'pub',
+'amenity:restaurant': 'restaurant',
+'amenity:school': 'maki_school',
+'amenity:shelter': 'shelter',
+'amenity:swimming_pool': 'maki_swimming',
+'amenity:theatre': 'theatre',
+'amenity:university': 'maki_college',
+'amenity:vending_machine': 'maki_shop',
+'historic:memorial': 'monument',
+'leisure:golf_course': 'golf',
+'leisure:pitch': 'maki_pitch',
+'leisure:sports_centre': 'sports',
+'leisure:stadium': 'maki_stadium',
+'shop:alcohol': 'alcohol',
+'shop:bakery': 'bakery',
+'shop:beauty': 'beauty',
+'shop:bicycle': 'bicycle',
+'shop:books': 'library',
+'shop:butcher': 'butcher',
+'shop:clothes': 'clothes',
+'shop:confectionery': 'confectionery',
+'shop:convenience': 'convenience',
+'shop:department_store': 'department_store',
+'shop:doityourself': 'diy',
+'shop:fishmonger': 'maki_shop',
+'shop:garden_centre': 'garden-centre',
+'shop:general': 'maki_shop',
+'shop:gift': 'gift',
+'shop:greengrocer': 'greengrocer',
+'shop:hairdresser': 'hairdresser',
+'shop:kiosk': 'maki_shop',
+'shop:music': 'music',
+'shop:supermarket': 'supermarket',
+'shop:wine': 'alcohol',
+'tourism:guest_house': 'guest_house',
+'tourism:museum': 'museum'
 }
 
 # Determine icon for the marker
 def determine_icon(tags):
-	icon = 'vegan'
-
+	icon = 'maki_star-stroked'	# Use this icon if there is no matching per icon_mapping.
 	for kv in icon_mapping:
 		k,v = kv.split(':')
 		t = tags.get(k)
@@ -89,8 +98,6 @@ def determine_icon(tags):
 		if t == v:
 			icon = icon_mapping[kv]
 			break
-
-	icon = icon.replace('-', '_')
 	return icon
 
 server = 0
@@ -144,13 +151,13 @@ def write_data(osm_data):
 			tags = e.get('tags', {})
 
 			for k in tags.keys():
-				tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
+				# Convert characters into html entities
+				# (to prevent escape any code)
+				tags[k] = html.escape(tags[k])
 
 			if typ == 'node':
 				lat = e.get('lat', None)
 				lon = e.get('lon', None)
-				if tags.get('diet:vegan') != 'yes' and tags.get('diet:vegan') != 'only' and tags.get('diet:vegetarian') != 'only' and tags.get('diet:vegetarian') != 'yes':
-					continue
 
 			if typ == 'way':
 				centerCoordinates = e.get('center', None) # get the coordinates from the center of the object
@@ -161,17 +168,31 @@ def write_data(osm_data):
 				continue
 
 			if 'name' in tags:
-				name = html.unescape(tags['name'])
-				# html.unescape() to convert HTML entities to proper characters (issue #25)
+				# The name will be shown in the popup box
+				# (where the browser converts html entities).
+				name = tags['name']
+
+				# The title of a marker will be shown on mouse hover
+				# (where the browser DON'T converts html entities (issue #25)).
+				# So we reconvert the html entities into the proper characters:
+				title = html.unescape(name)
+				## But double quoutes could escape code, so we have to replace them:
+				title = title.replace('"', '”')
 			else:
 				name = '%s %s' % (typ, ide)
 
 			icon = determine_icon(tags)
 
+			# Give the object a category
 			if (tags.get('diet:vegetarian', '') != '' and tags.get('diet:vegan', '') == '') or tags.get('diet:vegan', '') == 'no':
-				icon += "_veggie"
+				category = "veggie"
+			elif (tags.get('diet:vegan', '') == 'yes' or tags.get('diet:vegan', '') == 'only'):
+				category = "vegan"
+			elif tags.get('diet:vegan', '') == 'limited':
+				category = "vegan_limited"
 			else:
-				icon += "_vegan"
+				category = "no_category"
+				print("Object without category!")
 
 			# Building the textbox of the Marker
 			popup = '<b>%s</b> <a href=\\"https://openstreetmap.org/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
@@ -208,7 +229,7 @@ def write_data(osm_data):
 			elif 'phone' in tags:
 				popup += 'phone: %s<br/>' % (tags['phone'])
 
-			f.write('L.marker([%s, %s], {"title": "%s", icon: icon_%s}).bindPopup("%s").addTo(markers);\n' % (lat, lon, name, icon, popup))
+			f.write('L.marker([%s, %s], {"title": "%s", icon: getIcon("%s", "%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon, category, popup, category))
 		f.write('}\n')
 
 osm_data = get_data_osm()
