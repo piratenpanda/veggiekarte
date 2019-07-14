@@ -1,5 +1,4 @@
 #!/usr/bin/python
-import cgi
 import urllib3
 import os
 import time
@@ -11,7 +10,17 @@ import html
 assert sys.version_info >= (3,0)
 
 # variables for the overpass request
-servers = ["http://overpass-api.de/api/interpreter","http://api.openstreetmap.fr/api/interpreter","http://dev.overpass-api.de/api_drolbr/interpreter"]
+
+# server list from: https://wiki.openstreetmap.org/wiki/Overpass_API
+servers = [	"https://lz4.overpass-api.de/api/interpreter",
+		"https://overpass.kumi.systems/api/interpreter",
+		"https://z.overpass-api.de/api/interpreter",
+		"http://api.openstreetmap.fr/api/interpreter",
+		"http://dev.overpass-api.de/api_drolbr/interpreter",
+		"http://overpass-api.de/api/interpreter",
+		"http://overpass.openstreetmap.fr/api/interpreter",
+		"http://overpass.osm.ch/api/interpreter"
+		]
 http = urllib3.PoolManager()
 
 # variables for the output files
@@ -142,7 +151,9 @@ def write_data(osm_data):
 			tags = e.get('tags', {})
 
 			for k in tags.keys():
-				tags[k] = cgi.escape(tags[k]).replace('"', '\\"')
+				# Convert characters into html entities
+				# (to prevent escape any code)
+				tags[k] = html.escape(tags[k])
 
 			if typ == 'node':
 				lat = e.get('lat', None)
@@ -157,8 +168,16 @@ def write_data(osm_data):
 				continue
 
 			if 'name' in tags:
-				name = html.unescape(tags['name'])
-				# html.unescape() to convert HTML entities to proper characters (issue #25)
+				# The name will be shown in the popup box
+				# (where the browser converts html entities).
+				name = tags['name']
+
+				# The title of a marker will be shown on mouse hover
+				# (where the browser DON'T converts html entities (issue #25)).
+				# So we reconvert the html entities into the proper characters:
+				title = html.unescape(name)
+				## But double quoutes could escape code, so we have to replace them:
+				title = title.replace('"', '”')
 			else:
 				name = '%s %s' % (typ, ide)
 
@@ -210,7 +229,7 @@ def write_data(osm_data):
 			elif 'phone' in tags:
 				popup += 'phone: %s<br/>' % (tags['phone'])
 
-			f.write('L.marker([%s, %s], {"title": "%s", icon: getIcon("%s", "%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, name, icon, category, popup, category))
+			f.write('L.marker([%s, %s], {"title": "%s", icon: getIcon("%s", "%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon, category, popup, category))
 		f.write('}\n')
 
 osm_data = get_data_osm()
