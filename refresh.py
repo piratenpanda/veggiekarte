@@ -180,6 +180,7 @@ def write_data(osm_data):
 				title = title.replace('"', '”')
 			else:
 				name = '%s %s' % (typ, ide)
+				title = name
 
 			icon = determine_icon(tags)
 
