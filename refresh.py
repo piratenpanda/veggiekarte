@@ -180,6 +180,7 @@ def write_data(osm_data):
 				title = title.replace('"', '”')
 			else:
 				name = '%s %s' % (typ, ide)
+				title = name
 
 			icon = determine_icon(tags)
 
@@ -229,7 +230,7 @@ def write_data(osm_data):
 			elif 'phone' in tags:
 				popup += 'phone: %s<br/>' % (tags['phone'])
 
-			f.write('L.marker([%s, %s], {"title": "%s", icon: getIcon("%s", "%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon, category, popup, category))
+			f.write('L.marker([%s, %s], {title: "%s", icon: getIcon("%s", "%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon, category, popup, category))
 		f.write('}\n')
 
 osm_data = get_data_osm()
