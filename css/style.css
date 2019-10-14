@@ -22,13 +22,13 @@ body {
 
 .leaflet-touch .leaflet-control-info {
   box-shadow: none;
-  border: 2px solid rgba(0,0,0,0.2);
+  border: 2px solid rgba(0, 0, 0, 0.2);
   background-clip: padding-box;
   line-height: 30px;
 }
 
 #close {
-  width:25px;
+  width: 25px;
   height: 25px;
   line-height: 25px;
   z-index: 100;
@@ -46,9 +46,9 @@ body {
 
 .information {
   font-size: 13px;
-  margin: auto;  
+  margin: auto;
   position: absolute;
-  left:0;
+  left: 0;
   right: 0;
   top: 10px;
   width: 70%;
@@ -66,7 +66,7 @@ h1 {
 }
 
 a {
-  color: #0078A8;
+  color: #0078a8;
 }
 
 /* legend */

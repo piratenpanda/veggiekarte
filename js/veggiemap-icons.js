@@ -1,8 +1,8 @@
 /* Variables for the icon color */
-var vegan_icon_color		= "-white.svg";
-var veggie_icon_color		= "-white.svg";
-var others_icon_color		= "-black.svg";
-var nocategory_icon_color	= "-black.svg";
+var vegan_icon_color      = "-white.svg";
+var veggie_icon_color     = "-white.svg";
+var others_icon_color     = "-black.svg";
+var nocategory_icon_color = "-black.svg";
 
 /* Function to get the icon depending from the symbol and the category */
 function getIcon(symbol, category) {
@@ -27,10 +27,10 @@ function getIcon(symbol, category) {
   }
 
   return L.icon({
-    iconUrl:	icon_path+symbol+icon_color,
-    iconSize:	[18, 18],
-    iconAnchor:	[11, 18],
-    popupAnchor:	[0, -18],
-    className:	"marker " + category
+    iconUrl:     icon_path+symbol+icon_color,
+    iconSize:    [18, 18],
+    iconAnchor:  [11, 18],
+    popupAnchor: [0, -18],
+    className:   "marker " + category
   });
 }
