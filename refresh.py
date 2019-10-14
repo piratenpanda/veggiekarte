@@ -32,61 +32,62 @@ veggiemap_file = scriptdir + '/js/veggiemap-data.js'          # the data file wh
 veggiemap_oldfile = scriptdir + '/js/veggiemap-data_old.js'   # previous version of the data file (helpful to examine changes)
 
 # icon mapping
+# (the first element of the array is for the icon in the marker, the second is an emoji and it is used in the titel)
 icon_mapping = {
-    'amenity:bar': 'bar',
-    'amenity:bbq': 'bbq',
-    'amenity:cafe': 'cafe',
-    'amenity:cinema': 'cinema',
-    'amenity:college': 'maki_college',
-    'amenity:fast_food': 'fast_food',
-    'amenity:food_court': 'restaurant',
-    'amenity:fuel': 'fuel',
-    'amenity:hospital': 'hospital',
-    'amenity:ice_cream': 'ice_cream',
-    'amenity:kindergarten': 'playground',
-    'amenity:pharmacy': 'pharmacy',
-    'amenity:place_of_worship': 'place_of_worship',
-    'amenity:pub': 'pub',
-    'amenity:restaurant': 'restaurant',
-    'amenity:school': 'maki_school',
-    'amenity:shelter': 'shelter',
-    'amenity:swimming_pool': 'maki_swimming',
-    'amenity:theatre': 'theatre',
-    'amenity:university': 'maki_college',
-    'amenity:vending_machine': 'maki_shop',
-    'historic:memorial': 'monument',
-    'leisure:golf_course': 'golf',
-    'leisure:pitch': 'maki_pitch',
-    'leisure:sports_centre': 'sports',
-    'leisure:stadium': 'maki_stadium',
-    'shop:alcohol': 'alcohol',
-    'shop:bakery': 'bakery',
-    'shop:beauty': 'beauty',
-    'shop:bicycle': 'bicycle',
-    'shop:books': 'library',
-    'shop:butcher': 'butcher',
-    'shop:clothes': 'clothes',
-    'shop:confectionery': 'confectionery',
-    'shop:convenience': 'convenience',
-    'shop:department_store': 'department_store',
-    'shop:doityourself': 'diy',
-    'shop:fishmonger': 'maki_shop',
-    'shop:garden_centre': 'garden-centre',
-    'shop:general': 'maki_shop',
-    'shop:gift': 'gift',
-    'shop:greengrocer': 'greengrocer',
-    'shop:hairdresser': 'hairdresser',
-    'shop:kiosk': 'maki_shop',
-    'shop:music': 'music',
-    'shop:supermarket': 'supermarket',
-    'shop:wine': 'alcohol',
-    'tourism:guest_house': 'guest_house',
-    'tourism:museum': 'museum'
+    'amenity:bar': ['bar', '🍸'],
+    'amenity:bbq': ['bbq', '🍴'],
+    'amenity:cafe': ['cafe', '☕'],
+    'amenity:cinema': ['cinema', '🎦'],
+    'amenity:college': ['maki_college', '🎓'],
+    'amenity:fast_food': ['fast_food', '🍔'],
+    'amenity:food_court': ['restaurant', '🍽️'],
+    'amenity:fuel': ['fuel', '⛽'],
+    'amenity:hospital': ['hospital', '🏥'],
+    'amenity:ice_cream': ['ice_cream', '🍨'],
+    'amenity:kindergarten': ['playground', '🧒'],
+    'amenity:pharmacy': ['pharmacy', '💊'],
+    'amenity:place_of_worship': ['place_of_worship', '🛐'],
+    'amenity:pub': ['pub', '🍻'],
+    'amenity:restaurant': ['restaurant', '🍽️'],
+    'amenity:school': ['maki_school', '🏫'],
+    'amenity:shelter': ['shelter', '☂️'],
+    'amenity:swimming_pool': ['maki_swimming', '🏊‍♀️'],
+    'amenity:theatre': ['theatre', '🎭'],
+    'amenity:university': ['maki_college', '🎓'],
+    'amenity:vending_machine': ['maki_shop', '🛒'],
+    'historic:memorial': ['monument', '🗿'],
+    'leisure:golf_course': ['golf', '🏌️'],
+    'leisure:pitch': ['maki_pitch', '🏃'],
+    'leisure:sports_centre': ['sports', '🤼'],
+    'leisure:stadium': ['maki_stadium', '🏟️'],
+    'shop:alcohol': ['alcohol', '🍷'],
+    'shop:bakery': ['bakery', '🥯'],
+    'shop:beauty': ['beauty', '💇'],
+    'shop:bicycle': ['bicycle', '🚲'],
+    'shop:books': ['library', '📚'],
+    'shop:butcher': ['butcher', '🔪'],
+    'shop:clothes': ['clothes', '👚'],
+    'shop:confectionery': ['confectionery', '🍬'],
+    'shop:convenience': ['convenience', '🏪'],
+    'shop:department_store': ['department_store', '🏬'],
+    'shop:doityourself': ['diy', '🛠️'],
+    'shop:fishmonger': ['maki_shop', '🐟'],
+    'shop:garden_centre': ['garden-centre', '🏡'],
+    'shop:general': ['maki_shop', '🛒'],
+    'shop:gift': ['gift', '🎁'],
+    'shop:greengrocer': ['greengrocer', '🍏'],
+    'shop:hairdresser': ['hairdresser', '💇'],
+    'shop:kiosk': ['maki_shop', '🛒'],
+    'shop:music': ['music', '🎶'],
+    'shop:supermarket': ['supermarket', '🏪'],
+    'shop:wine': ['alcohol', '🍷'],
+    'tourism:guest_house': ['guest_house', '🏠'],
+    'tourism:museum': ['museum', '🖼️']
 }
 
 # Determine icon for the marker
 def determine_icon(tags):
-    icon = 'maki_star-stroked'   # Use this icon if there is no matching per icon_mapping.
+    icon = ['maki_star-stroked', '']   # Use this icon if there is no matching per icon_mapping.
     for kv in icon_mapping:
         k, v = kv.split(':')
         t = tags.get(k)
@@ -171,10 +172,12 @@ def write_data(osm_data):
             if not lat or not lon:
                 continue
 
+            icon = determine_icon(tags)
+
             if 'name' in tags:
                 # The name will be shown in the popup box
                 # (where the browser converts html entities).
-                name = tags['name']
+                name = '%s %s' % (icon[1], tags['name'])
 
                 # The title of a marker will be shown on mouse hover
                 # (where the browser DON'T converts html entities (issue #25)).
@@ -183,10 +186,9 @@ def write_data(osm_data):
                 ## But double quoutes could escape code, so we have to replace them:
                 title = title.replace('"', '”')
             else:
-                name = '%s %s' % (typ, ide)
+                name = '%s %s %s' % (icon[1], typ, ide)
                 title = name
 
-            icon = determine_icon(tags)
 
             # Give the object a category
             if (tags.get('diet:vegetarian', '') != '' and tags.get('diet:vegan', '') == '') or tags.get('diet:vegan', '') == 'no':
@@ -233,7 +235,7 @@ def write_data(osm_data):
             elif 'phone' in tags:
                 popup += 'phone: %s<br/>' % (tags['phone'])
 
-            f.write('L.marker([%s,%s],{title:"%s",icon:getIcon("%s","%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon, category, popup, category))
+            f.write('L.marker([%s,%s],{title:"%s",icon:getIcon("%s","%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon[0], category, popup, category))
         f.write('}\n')
 
 
