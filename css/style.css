@@ -27,11 +27,12 @@ body {
   line-height: 30px;
 }
 
+/* For the close button in the Info box. */
 #close {
   width: 25px;
   height: 25px;
   line-height: 25px;
-  z-index: 100;
+  text-align: center;
   float: right;
 }
 
@@ -44,6 +45,7 @@ body {
   font-style: italic;
 }
 
+/* For the Info box. */
 .information {
   font-size: 13px;
   margin: auto;
