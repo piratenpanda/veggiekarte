@@ -35,6 +35,11 @@ body {
   text-align: center;
   float: right;
 }
+#close:hover {
+  cursor: pointer;
+  transform: rotate(360deg);
+  transition: all 0.6s ease-in-out;
+}
 
 #logo {
   right: 10px;
