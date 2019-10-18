@@ -1,9 +1,3 @@
-// To close the infomation window per click on the x.
-function closeinfo() {
-  close = document.getElementsByClassName("information");
-  close[0].style.display = "none";
-}
-
 // Define marker groups
 var parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 20});
 var vegan_only = L.featureGroup.subGroup(parentGroup, {});
@@ -53,7 +47,9 @@ function veggiemap() {
   var hash = new L.Hash(map);
 
   // Add info button
-  L.control.info().addTo(map);
+  L.easyButton('fa-info', function(btn, map){
+    toggleInfo();
+  }, 'Information').addTo(map);
 
   // Add button for search places
   L.Control.geocoder({
@@ -73,4 +69,16 @@ function veggiemap() {
 
   // Add layer control button
   L.control.layers(null, overlays).addTo(map);
+}
+
+// Function to toogle the visibility of the Info box.
+function toggleInfo() {
+  var element = document.getElementById('information');    // get the element of the information window
+  var computedStyle = window.getComputedStyle(element);    // get the actual style informations
+    if (computedStyle.display != "block") {
+      element.style.display = "block";
+    }
+    else {
+      element.style.display = "none";
+    }
 }

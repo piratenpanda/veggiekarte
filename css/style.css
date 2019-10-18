@@ -51,7 +51,7 @@ body {
 }
 
 /* For the Info box. */
-.information {
+#information {
   font-size: 13px;
   margin: auto;
   position: absolute;
