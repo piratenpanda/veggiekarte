@@ -11,23 +11,21 @@ if (!String.prototype.startsWith) {
 }
 
 /* Variables for the icon color */
-var vegan_icon_color      = "-white.svg";
-var veggie_icon_color     = "-white.svg";
-var others_icon_color     = "-black.svg";
-var nocategory_icon_color = "-black.svg";
+var white_icon_color = "-white.svg";
+var black_icon_color = "-black.svg";
 
 /* Function to get the icon depending from the symbol and the category */
 function getIcon(symbol, category) {
-  if (category == "vegan") {
-    var icon_color = vegan_icon_color;
+  if (category == "vegan_only") {
+    var icon_color = white_icon_color;
+  } else if (category == "vegetarian_only") {
+    var icon_color = white_icon_color;
+  } else if (category == "vegan_friendly") {
+    var icon_color = black_icon_color;
   } else if (category == "vegan_limited") {
-    var icon_color = others_icon_color;
-  } else if (category == "veggie") {
-    var icon_color = veggie_icon_color;
-  } else {
-    var icon_color = nocategory_icon_color;
-    /*  To find the entries without category. */
-    console.log("nocategory category");
+    var icon_color = black_icon_color;
+  } else if (category == "vegetarian_friendly") {
+    var icon_color = black_icon_color;
   }
 
   /* Check if it's a maki or osm-carto icon */

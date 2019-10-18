@@ -109,19 +109,23 @@ a {
 }
 
 /* categorie properties */
-.vegan {
-  background: #25961b;
-  border-color: #559922;
+.vegan_only {
+  background: #005500;
+  border-color: #117722;
+}
+.vegetarian_only {
+  background: #118811;
+  border-color: #118811;
+}
+.vegan_friendly {
+  background: #00BC00;
+  border-color: #00BC00;
 }
 .vegan_limited {
-  background: #cccccc;
-  border-color: #559922;
+  background: #AAFFAA;
+  border-color: SeaGreen;
 }
-.veggie {
-  background: #734a08;
-  border-color: Sienna;
-}
-.no_category {
-  background: orange;
-  border-color: #559922;
+.vegetarian_friendly {
+  background: #fefefe;
+  border-color: DarkGreen;
 }

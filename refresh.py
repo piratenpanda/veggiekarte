@@ -191,15 +191,17 @@ def write_data(osm_data):
 
 
             # Give the object a category
-            if (tags.get('diet:vegetarian', '') != '' and tags.get('diet:vegan', '') == '') or tags.get('diet:vegan', '') == 'no':
-                category = "veggie"
-            elif (tags.get('diet:vegan', '') == 'yes' or tags.get('diet:vegan', '') == 'only'):
-                category = "vegan"
+            if tags.get('diet:vegan', '') == 'only':
+                category = "vegan_only"
+            elif (tags.get('diet:vegetarian', '') == 'only'
+                  and tags.get('diet:vegan', '') == 'yes'):
+                category = "vegetarian_only"
+            elif tags.get('diet:vegan', '') == 'yes':
+                category = "vegan_friendly"
             elif tags.get('diet:vegan', '') == 'limited':
                 category = "vegan_limited"
             else:
-                category = "no_category"
-                print("Object without category!")
+                category = "vegetarian_friendly"
 
             # Building the textbox of the Marker
             popup = '<b>%s</b> <a href=\\"https://openstreetmap.org/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)

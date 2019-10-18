@@ -5,11 +5,12 @@ function closeinfo() {
 }
 
 // Define marker groups
-var parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 35});
-var vegan = L.featureGroup.subGroup(parentGroup, {});
+var parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 20});
+var vegan_only = L.featureGroup.subGroup(parentGroup, {});
+var vegetarian_only = L.featureGroup.subGroup(parentGroup, {});
+var vegan_friendly = L.featureGroup.subGroup(parentGroup, {});
 var vegan_limited = L.featureGroup.subGroup(parentGroup, {});
-var veggie = L.featureGroup.subGroup(parentGroup, {});
-var no_category = L.featureGroup.subGroup(parentGroup, {});
+var vegetarian_friendly = L.featureGroup.subGroup(parentGroup, {});
 
 function veggiemap() {
 
@@ -29,17 +30,19 @@ function veggiemap() {
 
   // Define overlays (each marker group gets a layer) + add legend to the description
   var overlays = {
-    "<div class='legendRow' title='Place which offers vegan food.'><div class='firstCell vegan'></div><div class='secondCell'>vegan</div></div>" : vegan,
+    "<div class='legendRow' title='Place which offers only vegan food.'><div class='firstCell vegan_only'></div><div class='secondCell'>vegan only</div></div>" : vegan_only,
+    "<div class='legendRow' title='Place which offers only vegetarian and vegan food.'><div class='firstCell vegetarian_only'></div><div class='secondCell'>vegetarian only + vegan</div></div>"  : vegetarian_only,
+    "<div class='legendRow' title='Place which offers also vegan food.'><div class='firstCell vegan_friendly'></div><div class='secondCell'>vegan friendly</div></div>" : vegan_friendly,
     "<div class='legendRow' title='Place with limited vegan offer (usualy that means, you have to ask for it).'><div class='firstCell vegan_limited'></div><div class='secondCell'>vegan limited</div></div>"  : vegan_limited,
-    "<div class='legendRow' title='Place which offers vegetarian but no vegan food.'><div class='firstCell veggie'></div><div class='secondCell'>veggie</div></div>"  : veggie,
-    "<div class='legendRow' title='Place which use unusual vegetarian or vegan tags.'><div class='firstCell no_category'></div><div class='secondCell'>unknown</div></div>" : no_category
+    "<div class='legendRow' title='Place which offers also vegetarian food, but no vegan.'><div class='firstCell vegetarian_friendly'></div><div class='secondCell'>vegetarian friendly</div></div>" : vegetarian_friendly
   };
 
   // Add marker groups to the map
-  vegan.addTo(map);
+  vegan_only.addTo(map);
+  vegetarian_only.addTo(map);
+  vegan_friendly.addTo(map);
+  vegetarian_friendly.addTo(map);
   vegan_limited.addTo(map);
-  veggie.addTo(map);
-  no_category.addTo(map);
 
   veggiemap_populate(parentGroup);
 
