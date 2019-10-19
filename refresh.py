@@ -34,6 +34,9 @@ veggiemap_oldfile = scriptdir + '/js/veggiemap-data_old.js'   # previous version
 # icon mapping
 # (the first element of the array is for the icon in the marker, the second is an emoji and it is used in the titel)
 icon_mapping = {
+    #Intentionally not alphabetical order
+    'cuisine:pizza' : ['maki_restaurant-pizza', '🍕'],
+    # Alphabetical order
     'amenity:bar': ['bar', '🍸'],
     'amenity:bbq': ['bbq', '🍴'],
     'amenity:cafe': ['cafe', '☕'],
