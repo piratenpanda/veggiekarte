@@ -240,6 +240,13 @@ def write_data(osm_data):
             elif 'phone' in tags:
                 popup += 'phone: %s<br/>' % (tags['phone'])
 
+            if 'opening_hours' in tags:
+                # Replacing line breaks with spaces (Usually there should be no line breaks,
+                # but if they do appear, they break the structure of the veggiemap-data.js).
+                openingHours = tags['opening_hours'].replace('\n', ' ').replace('\r', '')
+                popup += '<hr/>'
+                popup += 'opening hours: %s<br/>' % (openingHours)
+
             f.write('L.marker([%s,%s],{title:"%s",icon:getIcon("%s","%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon[0], category, popup, category))
         f.write('}\n')
 
