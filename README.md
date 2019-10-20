@@ -14,8 +14,9 @@ This is an overview of the third-party software we use. Many thanks to the open 
 |software			|license		|version	|purpose	|
 |---				|---			|---		|---		|
 |[fontawesome](https://github.com/FortAwesome/Font-Awesome/) | CC-BY-4.0, OFL-1.1, MIT [*](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt) | 5.8.1 | Webfont. We use it for the symbols for the control buttons. | 
-|[leaflet](https://github.com/Leaflet/Leaflet/) |BSD-2-Clause [*](https://github.com/Leaflet/Leaflet/blob/master/LICENSE) | 1.4.0 | JavaScript library to create interactive maps. |
+|[leaflet](https://github.com/Leaflet/Leaflet/) |BSD-2-Clause [*](https://github.com/Leaflet/Leaflet/blob/master/LICENSE) | 1.5.1 | JavaScript library to create interactive maps. |
 |[leaflet.control.geocoder](https://github.com/perliedman/leaflet-control-geocoder/) |BSD-2-Clause [*](https://github.com/perliedman/leaflet-control-geocoder/blob/master/LICENSE) | 1.6.0 | A control to locate places. The button with the 🔍 on the top right. |
+|[leaflet.easybutton](https://github.com/CliffCloud/Leaflet.EasyButton) |MIT [*](https://github.com/CliffCloud/Leaflet.EasyButton/blob/master/LICENSE) | 2.4.0| Adding buttons. We are using it for the info button. |
 |[leaflet.featuregroup.subgroup](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup) |BSD-2-Clause [*](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/blob/master/LICENSE) | 1.0.2| dynamically add/remove groups of markers |
 |[leaflet.hash](https://github.com/mlevans/leaflet-hash/) |MIT [*](https://github.com/mlevans/leaflet-hash/blob/master/LICENSE.md) | 0.2.1 | Add coordante hashes to the URL in the browser adress field. |
 |[leaflet.locatecontrol](https://github.com/domoritz/leaflet-locatecontrol/) |MIT [*](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE) | 0.66.2 | A control to geolocate the user. The button with the marker on the top left. |

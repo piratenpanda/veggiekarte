@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="third-party/leaflet.control.geocoder/Control.Geocoder.css" />
     <link rel="stylesheet" type="text/css" href="third-party/fontawesome-free/css/all.css" />
     <link rel="stylesheet" type="text/css" href="third-party/leaflet.locatecontrol/L.Control.Locate.min.css" />
+    <link rel="stylesheet" type="text/css" href="third-party/leaflet.easybutton/easy-button.css" />
 
     <!-- Own style -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -25,8 +26,8 @@
     <script src="third-party/leaflet.hash/leaflet-hash.js"></script>
     <script src="third-party/leaflet.control.geocoder/Control.Geocoder.js"></script>
     <script src="third-party/leaflet.locatecontrol/L.Control.Locate.min.js"></script>
+    <script src="third-party/leaflet.easybutton/easy-button.js"></script>
     <script src="third-party/leaflet.featuregroup.subgroup/leaflet.featuregroup.subgroup.js"></script>
-    <script src="js/info/leaftlet.info.js"></script>
 
     <!-- Own scripts -->
     <script src="js/veggiemap.js"></script>
@@ -39,8 +40,8 @@
     <div id="map"></div>
 
     <!-- Info box -->
-    <div class="information">
-      <div id="close" onclick="closeinfo()"><span class="fa fa-times"></span></div>
+    <div id="information">
+      <div id="close" onclick="toggleInfo()">✖</div>
       <h1>Willkommen</h1>
       <p>Auf veggiekarte.de findest du alle in OpenStreetMap eingetragenen veganen und vegetarischen Restaurants, Eisdielen, Cafés etc. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen. Alle großen grünen Icons sind Lokalitäten in denen es vegane Optionen gibt. Icons die nicht grün sind, bieten vegetarische aber keine veganen Optionen an.</p>
       <h1>Über OpenStreetMap</h1>
@@ -48,7 +49,7 @@
       <h1>Informationen beitragen</h1>
       <p>Wenn du selbst Restaurants, Cafés, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst hinzufügen. Dazu musst du den "diet:vegan"- oder "diet:vegetarian"-Tag bei deiner Location in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es <a href="https://www.lebsanft.org/posts/informationen-zur-veggiekarte-hinzufuegen/" target="_blank">hier</a>.</p>
       <h1>Sonstiges</h1>
-      <p>Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findest du auf <a href="https://github.com/piratenpanda/veggiekarte" target="_blank">GitHub</a>. Der Veggie-Pinguin des Favicons kommt von <a href="https://openclipart.org/detail/189178/veggiepenguin" target="_blank">OpenClipart</a>.</p>
+      <p>Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findest du auf <a href="https://github.com/piratenpanda/veggiekarte" target="_blank">GitHub</a>.</p>
     </div>
 
     <!-- Content if scripts are disabled or not supported. -->
