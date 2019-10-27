@@ -74,7 +74,7 @@ function veggiemap() {
 // Function to toogle the visibility of the Info box.
 function toggleInfo() {
   var element = document.getElementById('information');    // get the element of the information window
-  var computedStyle = window.getComputedStyle(element);    // get the actual style informations
+  var computedStyle = window.getComputedStyle(element);    // get the actual style information
     if (computedStyle.display != "block") {
       element.style.display = "block";
     }
