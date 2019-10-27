@@ -35,8 +35,8 @@ function veggiemap() {
   vegan_only.addTo(map);
   vegetarian_only.addTo(map);
   vegan_friendly.addTo(map);
-  vegetarian_friendly.addTo(map);
   vegan_limited.addTo(map);
+  vegetarian_friendly.addTo(map);
 
   veggiemap_populate(parentGroup);
 
