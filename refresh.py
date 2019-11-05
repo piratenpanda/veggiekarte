@@ -91,7 +91,7 @@ ICON_MAPPING = {
 
 def determine_icon(tags):
     """The function to determine a icon for the marker."""
-    
+
     icon = ['maki_star-stroked', '']   # Use this icon if there is no matching per ICON_MAPPING.
     for kv in ICON_MAPPING:
         k, v = kv.split(':')
@@ -107,46 +107,48 @@ def determine_icon(tags):
             break
     return icon
 
-
-server = 0
-
-
 def get_data_osm():
     """The function to get the data from OSM."""
-    global server
+
+    # Initialize variables
+    server = 0
+    result = None
 
     # Preparing the string for the Overpass request
-    overpass_server =         servers[server]
     overpass_data_out =       '?data=[out:json];('
     overpass_vegan_objects =  'node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];'
-    overpass_veggie_objects = 'node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];'
+    overpass_vegetarian_objects = 'node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];'
     overpass_out =            ');out+center;'
 
-    # Overpass request
-    print("Send query to server: ", overpass_server)
-    r = HTTP.request('GET', overpass_server + overpass_data_out + overpass_vegan_objects + overpass_veggie_objects + overpass_out)
+    # Sending a request to one server after another until one gives a valid answer or the end of the server list is reached.
+    while (server < len(SERVERS)) and (result is None):
+        # Get a server from the server list
+        overpass_server = SERVERS[server]
 
-    if r.status == 200:
-        print("Received answer successfully.")
-        return json.loads(r.data.decode('utf-8'))
-    elif (r.status == 400):
-        print("HTTP error code ", r.status, ": Bad Request")
-        time.sleep(5)
-        server = (server + 1) % len(SERVERS)
-        return get_data_osm()
-    elif (r.status == 429):
-        print("HTTP error code ", r.status, ": Too Many Requests")
-        time.sleep(60)
-        server = (server + 1) % len(SERVERS)
-        return get_data_osm()
-    elif (r.status == 504):
-        print("HTTP error code ", r.status, ": Gateway Timeout")
-        time.sleep(600)
-        server = (server + 1) % len(SERVERS)
-        return get_data_osm()
-    else:
-        print("Unknown HTTP error code: ", r.status)
-        return None
+        # Overpass request
+        print("Send query to server: ", overpass_server)
+        r = HTTP.request('GET', overpass_server + overpass_data_out + overpass_vegan_objects + overpass_vegetarian_objects + overpass_out)
+
+        # Check the status of the request
+        if r.status == 200:
+            print("Received answer successfully.")
+            result = json.loads(r.data.decode('utf-8'))
+        elif r.status == 400:
+            print("HTTP error code ", r.status, ": Bad Request")
+            time.sleep(5)
+        elif r.status == 429:
+            print("HTTP error code ", r.status, ": Too Many Requests")
+            time.sleep(60)
+        elif r.status == 504:
+            print("HTTP error code ", r.status, ": Gateway Timeout")
+            time.sleep(600)
+        else:
+            print("Unknown HTTP error code: ", r.status)
+
+        # Increase to get another server for the next pass of the loop.
+        server += 1
+
+    return result
 
 
 def write_data(data):
@@ -161,7 +163,7 @@ def write_data(data):
             typ = e['type']
             tags = e.get('tags', {})
 
-            for k in tags.keys():
+            for k in list(tags.keys()):
                 # Convert characters into html entities
                 # (to prevent escape any code)
                 tags[k] = html.escape(tags[k])
