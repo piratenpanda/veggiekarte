@@ -1,4 +1,6 @@
 #!/usr/bin/python
+"""With this module we get the POIs with the tags vegan = * and
+vegetarian = * from OpenStreetMap and fill them in a file."""
 import os
 import time
 import json
@@ -87,8 +89,8 @@ icon_mapping = {
     'tourism:museum': ['museum', '🖼️']
 }
 
-# Determine icon for the marker
 def determine_icon(tags):
+    """The function to determine a icon for the marker."""
     icon = ['maki_star-stroked', '']   # Use this icon if there is no matching per icon_mapping.
     for kv in icon_mapping:
         k, v = kv.split(':')
@@ -108,8 +110,8 @@ def determine_icon(tags):
 server = 0
 
 
-# Getting osm data
 def get_data_osm():
+    """The function to get the data from OSM."""
     global server
 
     # Preparing the string for the Overpass request
@@ -147,7 +149,8 @@ def get_data_osm():
 
 
 def write_data(osm_data):
-
+    """The function to write the data in a temp file."""
+    
     with open(veggiemap_tempfile, 'w') as f:
         f.write('// Created: %s\n' % (timestamp))
         f.write('function veggiemap_populate(markers) {\n')
