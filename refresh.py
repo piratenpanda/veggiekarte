@@ -1,11 +1,11 @@
 #!/usr/bin/python
-import urllib3
 import os
 import time
 import json
 import sys
 import datetime   # for the timestamp
 import html
+import urllib3
 
 assert sys.version_info >= (3, 0)
 
