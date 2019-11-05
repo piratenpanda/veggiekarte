@@ -270,13 +270,17 @@ def check_data():
     else:
         print("temp file don't exists!")
 
+def main():
+    """The main function to call the functions to get and write the osm data."""
 
-# Get data
-osm_data = get_data_osm()
+    # Get data
+    osm_data = get_data_osm()
 
-# Write data
-if osm_data is not None:
-    write_data(osm_data)
-    check_data()
-else:
-    print("A problem has occurred. The old VEGGIE_MAP was not replaced!")
+    # Write data
+    if osm_data is not None:
+        write_data(osm_data)
+        check_data()
+    else:
+        print("A problem has occurred. The old VEGGIE_MAP was not replaced!")
+
+main()
