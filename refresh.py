@@ -149,14 +149,14 @@ def get_data_osm():
         return None
 
 
-def write_data(osm_data):
+def write_data(data):
     """The function to write the data in a temp file."""
-    
+
     with open(VEGGIEMAP_TEMPFILE, 'w') as f:
         f.write('// Created: %s\n' % (TIMESTAMP))
         f.write('function veggiemap_populate(markers) {\n')
 
-        for e in osm_data['elements']:
+        for e in data['elements']:
             ide = e['id']
             typ = e['type']
             tags = e.get('tags', {})
@@ -171,9 +171,9 @@ def write_data(osm_data):
                 lon = e.get('lon', None)
 
             if typ == 'way':
-                centerCoordinates = e.get('center', None) # get the coordinates from the center of the object
-                lat = centerCoordinates.get('lat', None)
-                lon = centerCoordinates.get('lon', None)
+                center_coordinates = e.get('center', None) # get the coordinates from the center of the object
+                lat = center_coordinates.get('lat', None)
+                lon = center_coordinates.get('lon', None)
 
             if not lat or not lon:
                 continue
@@ -246,9 +246,9 @@ def write_data(osm_data):
             if 'opening_hours' in tags:
                 # Replacing line breaks with spaces (Usually there should be no line breaks,
                 # but if they do appear, they break the structure of the veggiemap-data.js).
-                openingHours = tags['opening_hours'].replace('\n', ' ').replace('\r', '')
+                opening_hours = tags['opening_hours'].replace('\n', ' ').replace('\r', '')
                 popup += '<hr/>'
-                popup += 'opening hours: %s<br/>' % (openingHours)
+                popup += 'opening hours: %s<br/>' % (opening_hours)
 
             f.write('L.marker([%s,%s],{title:"%s",icon:getIcon("%s","%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon[0], category, popup, category))
         f.write('}\n')
