@@ -11,10 +11,10 @@ import urllib3
 
 assert sys.version_info >= (3, 0)
 
-# variables for the overpass request
+# constants for the overpass request
 
 # server list (from: https://wiki.openstreetmap.org/wiki/Overpass_API)
-servers = [
+SERVERS = [
     "https://lz4.overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
     "https://z.overpass-api.de/api/interpreter",
@@ -23,19 +23,19 @@ servers = [
     "http://overpass-api.de/api/interpreter",
     "http://overpass.openstreetmap.fr/api/interpreter"
 ]
-http = urllib3.PoolManager()
+HTTP = urllib3.PoolManager()
 
-# variables for the output files
-timestamp = datetime.datetime.now()                           # the actual date and time
-scriptdir = os.path.dirname(os.path.abspath(__file__))        # get the path of the directory of this script
-veggiemap_tempfile = scriptdir + '/js/veggiemap-data-temp.js' # the temp file to store the data from the overpass request
-veggiemap_file = scriptdir + '/js/veggiemap-data.js'          # the data file which will be used for the map
-veggiemap_oldfile = scriptdir + '/js/veggiemap-data_old.js'   # previous version of the data file (helpful to examine changes)
+# constants for the output files
+TIMESTAMP = datetime.datetime.now()                           # the actual date and time
+SCRIPTDIR = os.path.dirname(os.path.abspath(__file__))        # get the path of the directory of this script
+VEGGIEMAP_TEMPFILE = SCRIPTDIR + '/js/veggiemap-data-temp.js' # the temp file to store the data from the overpass request
+VEGGIEMAP_FILE = SCRIPTDIR + '/js/veggiemap-data.js'          # the data file which will be used for the map
+VEGGIEMAP_OLDFILE = SCRIPTDIR + '/js/veggiemap-data_old.js'   # previous version of the data file (helpful to examine changes)
 
 # icon mapping
-# (the first element of the array is for the icon in the marker, the second is an emoji and it is used in the titel)
-icon_mapping = {
-    #Intentionally not alphabetical order
+# (the first element of the array is for the icon in the marker, the second is an emoji and it is used in the title)
+ICON_MAPPING = {
+    # Intentionally not alphabetical order
     'cuisine:pizza' : ['maki_restaurant-pizza', '🍕'],
     # Alphabetical order
     'amenity:bar': ['bar', '🍸'],
@@ -91,8 +91,9 @@ icon_mapping = {
 
 def determine_icon(tags):
     """The function to determine a icon for the marker."""
-    icon = ['maki_star-stroked', '']   # Use this icon if there is no matching per icon_mapping.
-    for kv in icon_mapping:
+    
+    icon = ['maki_star-stroked', '']   # Use this icon if there is no matching per ICON_MAPPING.
+    for kv in ICON_MAPPING:
         k, v = kv.split(':')
         t = tags.get(k)
 
@@ -102,7 +103,7 @@ def determine_icon(tags):
         t = t.split(';')[0]
 
         if t == v:
-            icon = icon_mapping[kv]
+            icon = ICON_MAPPING[kv]
             break
     return icon
 
@@ -123,7 +124,7 @@ def get_data_osm():
 
     # Overpass request
     print("Send query to server: ", overpass_server)
-    r = http.request('GET', overpass_server + overpass_data_out + overpass_vegan_objects + overpass_veggie_objects + overpass_out)
+    r = HTTP.request('GET', overpass_server + overpass_data_out + overpass_vegan_objects + overpass_veggie_objects + overpass_out)
 
     if r.status == 200:
         print("Received answer successfully.")
@@ -131,17 +132,17 @@ def get_data_osm():
     elif (r.status == 400):
         print("HTTP error code ", r.status, ": Bad Request")
         time.sleep(5)
-        server = (server + 1) % len(servers)
+        server = (server + 1) % len(SERVERS)
         return get_data_osm()
     elif (r.status == 429):
         print("HTTP error code ", r.status, ": Too Many Requests")
         time.sleep(60)
-        server = (server + 1) % len(servers)
+        server = (server + 1) % len(SERVERS)
         return get_data_osm()
     elif (r.status == 504):
         print("HTTP error code ", r.status, ": Gateway Timeout")
         time.sleep(600)
-        server = (server + 1) % len(servers)
+        server = (server + 1) % len(SERVERS)
         return get_data_osm()
     else:
         print("Unknown HTTP error code: ", r.status)
@@ -151,8 +152,8 @@ def get_data_osm():
 def write_data(osm_data):
     """The function to write the data in a temp file."""
     
-    with open(veggiemap_tempfile, 'w') as f:
-        f.write('// Created: %s\n' % (timestamp))
+    with open(VEGGIEMAP_TEMPFILE, 'w') as f:
+        f.write('// Created: %s\n' % (TIMESTAMP))
         f.write('function veggiemap_populate(markers) {\n')
 
         for e in osm_data['elements']:
@@ -260,13 +261,13 @@ while (osm_data == False or osm_data == None or osm_data == ""):
 
 write_data(osm_data)
 
-if os.path.isfile(veggiemap_tempfile):                  # check if the temp file exists
-    if os.path.getsize(veggiemap_tempfile) > 100:       # check if the temp file isn't to small (see issue #21)
-        print("rename " + veggiemap_tempfile + " to " + veggiemap_file)
-        os.rename(veggiemap_file, veggiemap_oldfile)    # rename old file
-        os.rename(veggiemap_tempfile, veggiemap_file)   # rename temp file to new file
+if os.path.isfile(VEGGIEMAP_TEMPFILE):                  # check if the temp file exists
+    if os.path.getsize(VEGGIEMAP_TEMPFILE) > 100:       # check if the temp file isn't to small (see issue #21)
+        print("rename " + VEGGIEMAP_TEMPFILE + " to " + VEGGIEMAP_FILE)
+        os.rename(VEGGIEMAP_FILE, VEGGIEMAP_OLDFILE)    # rename old file
+        os.rename(VEGGIEMAP_TEMPFILE, VEGGIEMAP_FILE)   # rename temp file to new file
     else:
         print("temp file is to small!")
-        print(os.path.getsize(veggiemap_tempfile))
+        print(os.path.getsize(VEGGIEMAP_TEMPFILE))
 else:
     print("temp file don't exists!")
