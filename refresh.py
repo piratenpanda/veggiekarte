@@ -254,20 +254,27 @@ def write_data(data):
         f.write('}\n')
 
 
+def check_data():
+    """The function to check the temp file and replace the old VEGGIE_MAP file if it is ok."""
+
+    if os.path.isfile(VEGGIEMAP_TEMPFILE):                  # check if the temp file exists
+        if os.path.getsize(VEGGIEMAP_TEMPFILE) > 250:       # check if the temp file isn't to small (see issue #21)
+            print("rename " + VEGGIEMAP_TEMPFILE + " to " + VEGGIEMAP_FILE)
+            os.rename(VEGGIEMAP_FILE, VEGGIEMAP_OLDFILE)    # rename old file
+            os.rename(VEGGIEMAP_TEMPFILE, VEGGIEMAP_FILE)   # rename temp file to new file
+        else:
+            print("temp file is to small!")
+            print(os.path.getsize(VEGGIEMAP_TEMPFILE))
+    else:
+        print("temp file don't exists!")
+
+
+# Get data
 osm_data = get_data_osm()
 
-while (osm_data == False or osm_data == None or osm_data == ""):
-    osm_data = get_data_osm()
-
-write_data(osm_data)
-
-if os.path.isfile(VEGGIEMAP_TEMPFILE):                  # check if the temp file exists
-    if os.path.getsize(VEGGIEMAP_TEMPFILE) > 100:       # check if the temp file isn't to small (see issue #21)
-        print("rename " + VEGGIEMAP_TEMPFILE + " to " + VEGGIEMAP_FILE)
-        os.rename(VEGGIEMAP_FILE, VEGGIEMAP_OLDFILE)    # rename old file
-        os.rename(VEGGIEMAP_TEMPFILE, VEGGIEMAP_FILE)   # rename temp file to new file
-    else:
-        print("temp file is to small!")
-        print(os.path.getsize(VEGGIEMAP_TEMPFILE))
+# Write data
+if osm_data is not None:
+    write_data(osm_data)
+    check_data()
 else:
-    print("temp file don't exists!")
+    print("A problem has occurred. The old VEGGIE_MAP was not replaced!")
