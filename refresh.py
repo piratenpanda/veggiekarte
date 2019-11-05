@@ -19,8 +19,7 @@ servers = [
     "http://api.openstreetmap.fr/api/interpreter",
     "http://dev.overpass-api.de/api_drolbr/interpreter",
     "http://overpass-api.de/api/interpreter",
-    "http://overpass.openstreetmap.fr/api/interpreter",
-    "http://overpass.osm.ch/api/interpreter"
+    "http://overpass.openstreetmap.fr/api/interpreter"
 ]
 http = urllib3.PoolManager()
 
