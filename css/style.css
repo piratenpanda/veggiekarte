@@ -13,20 +13,6 @@ body {
   z-index: 0;
 }
 
-.leaflet-control-info {
-  background: #ddd;
-  box-shadow: 4px 4px 4px DimGray;
-  line-height: 26px;
-  overflow: hidden;
-}
-
-.leaflet-touch .leaflet-control-info {
-  box-shadow: none;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  background-clip: padding-box;
-  line-height: 30px;
-}
-
 /* For the close button in the Info box. */
 #close {
   width: 25px;
@@ -39,15 +25,6 @@ body {
   cursor: pointer;
   transform: rotate(360deg);
   transition: all 0.6s ease-in-out;
-}
-
-#logo {
-  right: 10px;
-  top: 10px;
-  position: absolute;
-  z-index: 7;
-  font-size: xx-large;
-  font-style: italic;
 }
 
 /* For the Info box. */

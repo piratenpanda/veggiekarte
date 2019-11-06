@@ -1,18 +1,24 @@
 {
   "name": "leaflet-control-geocoder",
-  "version": "1.6.0",
-  "description": "Extendable geocoder with builtin support for Nominatim, Bing, Google, Mapbox, Photon, What3Words, MapQuest, Mapzen, HERE",
+  "version": "1.10.0",
+  "description": "Extendable geocoder with builtin support for OpenStreetMap Nominatim, Bing, Google, Mapbox, MapQuest, What3Words, Photon, Pelias, HERE, Neutrino, Plus codes",
   "main": "dist/Control.Geocoder.js",
+  "module": "src/index.js",
   "scripts": {
     "prepare": "npm run build",
-    "build": "npm run build:js && npm run build:css && npm run build:img",
-    "build:js": "rollup --output.format=iife --name=L.Control.Geocoder --globals=leaflet:L src/index.js --output.file=dist/Control.Geocoder.js --sourcemap",
-    "build:css": "cpr Control.Geocoder.css dist/ --overwrite",
+    "build": "npm run build:js && npm run build:css && npm run build:img && npm run build:demo-rollup && npm run build:demo-webpack",
+    "build:js": "rollup -c",
+    "build:css": "cpr Control.Geocoder.css dist/Control.Geocoder.css --overwrite",
     "build:img": "cpr images/ dist/images/ --overwrite",
-    "test": "npm run lint",
-    "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint 'src/**'",
-    "lint:css": "prettier --list-different '*.css'",
+    "build:demo-rollup": "cd demo-rollup && npm install && npm run build",
+    "build:demo-webpack": "cd demo-rollup && npm install && npm run build",
+    "test": "npm run test:karma -- --single-run && npm run lint",
+    "test:karma": "karma start spec/karma.conf.js",
+    "lint": "npm run lint:js && npm run lint:style",
+    "lint:js": "eslint .",
+    "lint:style": "prettier --check $(npm run ls-files)",
+    "fix:style": "prettier --write $(npm run ls-files)",
+    "ls-files": "git ls-files '*.js' '*.json' '*.css' '*.html' '*.yaml' '*.yml' '*.md'",
     "publish": "sh ./scripts/publish.sh",
     "postpublish": "sh ./scripts/postpublish.sh"
   },
@@ -20,21 +26,40 @@
     "type": "git",
     "url": "git://github.com/perliedman/leaflet-control-geocoder.git"
   },
+  "files": [
+    "LICENCE",
+    "dist/**",
+    "demo/**",
+    "images/**",
+    "src/**",
+    "*.css"
+  ],
   "keywords": [
     "leaflet",
     "geocoder",
     "locations",
+    "openstreetmap",
     "nominatim",
     "bing",
-    "google",
+    "bingmaps",
+    "googlemaps",
+    "google-maps",
     "mapbox",
-    "photon",
-    "what3words",
     "mapquest",
+    "opencage",
+    "what3words",
+    "photon",
     "mapzen",
-    "here"
+    "pelias",
+    "here",
+    "neutrino",
+    "pluscodes",
+    "open location code"
   ],
   "author": "Per Liedman <per@liedman.net>",
+  "contributors": [
+    "Simon Legner <Simon.Legner@gmail.com>"
+  ],
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/perliedman/leaflet-control-geocoder/issues"
@@ -42,9 +67,23 @@
   "dependencies": {},
   "devDependencies": {
     "cpr": "^3.0.1",
-    "eslint": "^4.15.0",
-    "eslint-plugin-prettier": "^2.4.0",
-    "prettier": "^1.9.2",
-    "rollup": "^0.53.2"
+    "eslint": "^6.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "karma": "^4.1.0",
+    "karma-expect": "^1.1.3",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sinon": "^1.0.5",
+    "leaflet": "^1.5.1",
+    "mocha": "^6.1.4",
+    "phantomjs-prebuilt": "^2.1.16",
+    "prettier": "^1.18.2",
+    "rollup": "^0.65.2",
+    "rollup-plugin-uglify": "^5.0.2",
+    "sinon": "^7.3.2",
+    "uglify-js": "^3.6.0"
+  },
+  "optionalDependencies": {
+    "open-location-code": "^1.0.0"
   }
 }
