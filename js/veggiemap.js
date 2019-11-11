@@ -1,3 +1,6 @@
+// The "use strict" Directive helps to write cleaner code.
+"use strict";
+
 // Define marker groups
 var parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 20});
 var vegan_only = L.featureGroup.subGroup(parentGroup, {});
