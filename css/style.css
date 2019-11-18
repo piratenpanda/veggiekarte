@@ -71,6 +71,10 @@ a {
   display: table-cell;
   padding-left: 5px;
 }
+.thirdCell {
+  display: table-cell;
+  padding-left: 10px;
+}
 
 /* marker properties */
 .marker {

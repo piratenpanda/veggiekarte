@@ -1,3 +1,6 @@
+// The "use strict" Directive helps to write cleaner code.
+"use strict";
+
 // Define marker groups
 var parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 20});
 var vegan_only = L.featureGroup.subGroup(parentGroup, {});
@@ -24,11 +27,11 @@ function veggiemap() {
 
   // Define overlays (each marker group gets a layer) + add legend to the description
   var overlays = {
-    "<div class='legendRow' title='Place which offers only vegan food.'><div class='firstCell vegan_only'></div><div class='secondCell'>vegan only</div></div>" : vegan_only,
-    "<div class='legendRow' title='Place which offers only vegetarian and vegan food.'><div class='firstCell vegetarian_only'></div><div class='secondCell'>vegetarian only + vegan</div></div>" : vegetarian_only,
-    "<div class='legendRow' title='Place which offers also vegan food.'><div class='firstCell vegan_friendly'></div><div class='secondCell'>vegan friendly</div></div>" : vegan_friendly,
-    "<div class='legendRow' title='Place with limited vegan offer (usualy that means, you have to ask for it).'><div class='firstCell vegan_limited'></div><div class='secondCell'>vegan limited</div></div>" : vegan_limited,
-    "<div class='legendRow' title='Place which offers also vegetarian food, but no vegan.'><div class='firstCell vegetarian_friendly'></div><div class='secondCell'>vegetarian friendly</div></div>" : vegetarian_friendly
+    "<div class='legendRow' title='Place which offers only vegan food.'><div class='firstCell vegan_only'></div><div class='secondCell'>vegan only</div><div class='thirdCell' id='n_vegan_only'></div></div>" : vegan_only,
+    "<div class='legendRow' title='Place which offers only vegetarian and vegan food.'><div class='firstCell vegetarian_only'></div><div class='secondCell'>vegetarian only + vegan</div><div class='thirdCell' id='n_vegetarian_only'></div></div>" : vegetarian_only,
+    "<div class='legendRow' title='Place which offers also vegan food.'><div class='firstCell vegan_friendly'></div><div class='secondCell'>vegan friendly</div><div class='thirdCell' id='n_vegan_friendly'></div></div>" : vegan_friendly,
+    "<div class='legendRow' title='Place with limited vegan offer (usualy that means, you have to ask for it).'><div class='firstCell vegan_limited'></div><div class='secondCell'>vegan limited</div><div class='thirdCell' id='n_vegan_limited'></div></div>" : vegan_limited,
+    "<div class='legendRow' title='Place which offers also vegetarian food, but no vegan.'><div class='firstCell vegetarian_friendly'></div><div class='secondCell'>vegetarian friendly</div><div class='thirdCell' id='n_vegetarian_friendly'></div></div>" : vegetarian_friendly
   };
 
   // Add marker groups to the map
@@ -69,6 +72,9 @@ function veggiemap() {
 
   // Add layer control button
   L.control.layers(null, overlays).addTo(map);
+
+  // Call the function to put the numbers in the legend
+  numbersToLegend();
 }
 
 // Function to toogle the visibility of the Info box.
@@ -81,4 +87,13 @@ function toggleInfo() {
     else {
       element.style.display = "none";
     }
+}
+
+// Function to put the numbers of markers into the legend.
+//   The numbers are calculated using the refresh.py script and stored in the veggiemap-data.js file.
+function numbersToLegend() {
+  // Get all elements of the object 'numbers' and put the value in the div element with the same id as the element name.
+  for (var x in numbers) {
+    document.getElementById(x).innerHTML = numbers[x] + "x";
+  }
 }

@@ -154,6 +154,13 @@ def get_data_osm():
 def write_data(data):
     """The function to write the data in a temp file."""
 
+    # Initialize variables to count the markers
+    n_vegan_only = 0
+    n_vegetarian_only = 0
+    n_vegan_friendly = 0
+    n_vegan_limited = 0
+    n_vegetarian_friendly = 0
+
     with open(VEGGIEMAP_TEMPFILE, 'w') as f:
         f.write('// Created: %s\n' % (TIMESTAMP))
         f.write('function veggiemap_populate(markers) {\n')
@@ -201,15 +208,20 @@ def write_data(data):
             # Give the object a category
             if tags.get('diet:vegan', '') == 'only':
                 category = "vegan_only"
+                n_vegan_only += 1
             elif (tags.get('diet:vegetarian', '') == 'only'
                   and tags.get('diet:vegan', '') == 'yes'):
                 category = "vegetarian_only"
+                n_vegetarian_only += 1
             elif tags.get('diet:vegan', '') == 'yes':
                 category = "vegan_friendly"
+                n_vegan_friendly += 1
             elif tags.get('diet:vegan', '') == 'limited':
                 category = "vegan_limited"
+                n_vegan_limited += 1
             else:
                 category = "vegetarian_friendly"
+                n_vegetarian_friendly += 1
 
             # Building the textbox of the Marker
             popup = '<b>%s</b> <a href=\\"https://openstreetmap.org/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
@@ -254,6 +266,7 @@ def write_data(data):
 
             f.write('L.marker([%s,%s],{title:"%s",icon:getIcon("%s","%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon[0], category, popup, category))
         f.write('}\n')
+        f.write('numbers = {\n n_vegan_only:%s,\n n_vegetarian_only:%s,\n n_vegan_friendly:%s,\n n_vegan_limited:%s,\n n_vegetarian_friendly:%s\n};\n' % (n_vegan_only, n_vegetarian_only, n_vegan_friendly, n_vegan_limited, n_vegetarian_friendly))
 
 
 def check_data():
