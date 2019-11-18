@@ -110,3 +110,14 @@ a {
   background: #fefefe;
   border-color: DarkGreen;
 }
+
+/* Adjust the size of the layer button to the other buttons. */
+.leaflet-control-layers-toggle {
+  width: 26px !important;
+  height: 26px !important;
+  background-size: 80%;
+}
+.leaflet-touch .leaflet-control-layers-toggle {
+  width: 30px !important;
+  height: 30px !important;
+}
