@@ -94,6 +94,6 @@ function toggleInfo() {
 function numbersToLegend() {
   // Get all elements of the object 'numbers' and put the value in the div element with the same id as the element name.
   for (var x in numbers) {
-    document.getElementById(x).innerHTML = numbers[x] + "x";
+    document.getElementById(x).innerHTML = "(" + numbers[x] + ")";
   }
 }
