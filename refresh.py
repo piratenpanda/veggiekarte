@@ -116,7 +116,7 @@ def get_data_osm():
 
     # Preparing the string for the Overpass request
     overpass_data_out =       '?data=[out:json];('
-    overpass_vegan_objects =  'node["diet:vegan"~"yes|only"];way["diet:vegan"~"yes|only"];'
+    overpass_vegan_objects =  'node["diet:vegan"~"yes|only|limited"];way["diet:vegan"~"yes|only|limited"];'
     overpass_vegetarian_objects = 'node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];'
     overpass_out =            ');out+center;'
 
