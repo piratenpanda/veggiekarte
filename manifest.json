@@ -1,20 +1,20 @@
 {
     "name": "Veggiekarte",
     "short_name": "Veggiekarte",
-    "start_url": "https://www.veggiekarte.de/",
+    "start_url": "./index.html",
     "icons": [
         {
-            "src": "android-chrome-192x192.png",
+            "src": "favicon/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "android-chrome-512x512.png",
+            "src": "favicon/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
     ],
     "theme_color": "#26ab44",
-    "background_color": "#26ab44",
+    "background_color": "transparent",
     "display": "standalone"
 }

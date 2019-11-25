@@ -10,12 +10,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
-    <link rel="manifest" href="favicon/site.webmanifest" />
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#26ab44" />
     <link rel="shortcut icon" href="favicon/favicon.ico" />
     <meta name="msapplication-TileColor" content="#26ab44" />
     <meta name="msapplication-config" content="favicon/browserconfig.xml" />
     <meta name="theme-color" content="#26ab44" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json" />
 
     <!-- Third party styles -->
     <link rel="stylesheet" type="text/css" href="third-party/leaflet/leaflet.css" />
@@ -42,6 +44,28 @@
     <script src="js/veggiemap.js"></script>
     <script src="js/veggiemap-icons.js"></script>
     <script src="js/veggiemap-data.js"></script>
+
+    <!-- Service worker -->
+    <script>
+    // Check if service workers are supported
+    if ('serviceWorker' in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log("[PWA Builder] active service worker found, no need to register");
+      } else {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+          // Register the service worker
+          navigator.serviceWorker.register('service-worker.js')
+            .then(registration => {
+              console.log('SW registered with scope:', registration.scope);
+            })
+            .catch(err => {
+              console.error('Registration failed.', err);
+            });
+        });
+      }
+    }
+    </script>
   </head>
 
   <body onload="veggiemap()">
