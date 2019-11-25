@@ -4,10 +4,7 @@ console.log(CACHENAME);
 
 // List of files to cache here.
 const FILES_TO_CACHE = [
- './',
- './index.html',
- './css/style.css',
- './js/veggiemap-data.js'
+ './index.html'
 ];
 
 
