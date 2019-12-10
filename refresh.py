@@ -266,7 +266,7 @@ def write_data(data):
 
             f.write('L.marker([%s,%s],{title:"%s",icon:getIcon("%s","%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon[0], category, popup, category))
         f.write('}\n')
-        f.write('numbers = {\n n_vegan_only:%s,\n n_vegetarian_only:%s,\n n_vegan_friendly:%s,\n n_vegan_limited:%s,\n n_vegetarian_friendly:%s\n};\n' % (n_vegan_only, n_vegetarian_only, n_vegan_friendly, n_vegan_limited, n_vegetarian_friendly))
+        f.write('let numbers = {\n n_vegan_only:%s,\n n_vegetarian_only:%s,\n n_vegan_friendly:%s,\n n_vegan_limited:%s,\n n_vegetarian_friendly:%s\n};\n' % (n_vegan_only, n_vegetarian_only, n_vegan_friendly, n_vegan_limited, n_vegetarian_friendly))
 
 
 def check_data():

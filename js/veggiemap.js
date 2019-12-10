@@ -2,23 +2,23 @@
 "use strict";
 
 // Define marker groups
-var parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 20});
-var vegan_only = L.featureGroup.subGroup(parentGroup, {});
-var vegetarian_only = L.featureGroup.subGroup(parentGroup, {});
-var vegan_friendly = L.featureGroup.subGroup(parentGroup, {});
-var vegan_limited = L.featureGroup.subGroup(parentGroup, {});
-var vegetarian_friendly = L.featureGroup.subGroup(parentGroup, {});
+let parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 20});
+let vegan_only = L.featureGroup.subGroup(parentGroup, {});
+let vegetarian_only = L.featureGroup.subGroup(parentGroup, {});
+let vegan_friendly = L.featureGroup.subGroup(parentGroup, {});
+let vegan_limited = L.featureGroup.subGroup(parentGroup, {});
+let vegetarian_friendly = L.featureGroup.subGroup(parentGroup, {});
 
 function veggiemap() {
 
   // TileLayer
-  var tileOSM = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  let tileOSM = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a> contributors, <a href='https://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>",
     maxZoom: 18
   });
 
   // Map
-  var map = L.map("map", {
+  let map = L.map("map", {
     layers: [tileOSM],
     center: [51.43,17.58],
     zoom: 4,
@@ -26,7 +26,7 @@ function veggiemap() {
   });
 
   // Define overlays (each marker group gets a layer) + add legend to the description
-  var overlays = {
+  let overlays = {
     "<div class='legendRow' title='Place which offers only vegan food.'><div class='firstCell vegan_only'></div><div class='secondCell'>vegan only</div><div class='thirdCell' id='n_vegan_only'></div></div>" : vegan_only,
     "<div class='legendRow' title='Place which offers only vegetarian and vegan food.'><div class='firstCell vegetarian_only'></div><div class='secondCell'>vegetarian only + vegan</div><div class='thirdCell' id='n_vegetarian_only'></div></div>" : vegetarian_only,
     "<div class='legendRow' title='Place which offers also vegan food.'><div class='firstCell vegan_friendly'></div><div class='secondCell'>vegan friendly</div><div class='thirdCell' id='n_vegan_friendly'></div></div>" : vegan_friendly,
@@ -47,7 +47,7 @@ function veggiemap() {
   parentGroup.addTo(map);
 
   // Add hash to the url
-  var hash = new L.Hash(map);
+  let hash = new L.Hash(map);
 
   // Add info button
   L.easyButton('fa-info', function(btn, map){
@@ -79,8 +79,8 @@ function veggiemap() {
 
 // Function to toogle the visibility of the Info box.
 function toggleInfo() {
-  var element = document.getElementById('information');    // get the element of the information window
-  var computedStyle = window.getComputedStyle(element);    // get the actual style information
+  let element = document.getElementById('information');    // get the element of the information window
+  let computedStyle = window.getComputedStyle(element);    // get the actual style information
     if (computedStyle.display != "block") {
       element.style.display = "block";
     }
@@ -93,7 +93,7 @@ function toggleInfo() {
 //   The numbers are calculated using the refresh.py script and stored in the veggiemap-data.js file.
 function numbersToLegend() {
   // Get all elements of the object 'numbers' and put the value in the div element with the same id as the element name.
-  for (var x in numbers) {
+  for (let x in numbers) {
     document.getElementById(x).innerHTML = "(" + numbers[x] + ")";
   }
 }
