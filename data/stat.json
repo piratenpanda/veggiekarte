@@ -1,0 +1,12 @@
+{
+ "stat": [
+  {
+   "date": "2020-08-31",
+   "n_vegan_friendly": 8504,
+   "n_vegan_limited": 167,
+   "n_vegan_only": 1840,
+   "n_vegetarian_friendly": 12452,
+   "n_vegetarian_only": 1301
+  }
+ ]
+}
