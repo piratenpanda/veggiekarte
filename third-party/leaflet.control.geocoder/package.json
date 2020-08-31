@@ -1,6 +1,6 @@
 {
   "name": "leaflet-control-geocoder",
-  "version": "1.10.0",
+  "version": "1.13.0",
   "description": "Extendable geocoder with builtin support for OpenStreetMap Nominatim, Bing, Google, Mapbox, MapQuest, What3Words, Photon, Pelias, HERE, Neutrino, Plus codes",
   "main": "dist/Control.Geocoder.js",
   "module": "src/index.js",
@@ -18,9 +18,7 @@
     "lint:js": "eslint .",
     "lint:style": "prettier --check $(npm run ls-files)",
     "fix:style": "prettier --write $(npm run ls-files)",
-    "ls-files": "git ls-files '*.js' '*.json' '*.css' '*.html' '*.yaml' '*.yml' '*.md'",
-    "publish": "sh ./scripts/publish.sh",
-    "postpublish": "sh ./scripts/postpublish.sh"
+    "ls-files": "git ls-files '*.js' '*.json' '*.css' '*.html' '*.yaml' '*.yml' '*.md'"
   },
   "repository": {
     "type": "git",
@@ -67,21 +65,21 @@
   "dependencies": {},
   "devDependencies": {
     "cpr": "^3.0.1",
-    "eslint": "^6.1.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "karma": "^4.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "karma": "^4.4.1",
     "karma-expect": "^1.1.3",
     "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sinon": "^1.0.5",
-    "leaflet": "^1.5.1",
-    "mocha": "^6.1.4",
+    "leaflet": "^1.6.0",
+    "mocha": "^6.2.2",
     "phantomjs-prebuilt": "^2.1.16",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "rollup": "^0.65.2",
     "rollup-plugin-uglify": "^5.0.2",
-    "sinon": "^7.3.2",
-    "uglify-js": "^3.6.0"
+    "sinon": "^7.5.0",
+    "uglify-js": "^3.7.5"
   },
   "optionalDependencies": {
     "open-location-code": "^1.0.0"
