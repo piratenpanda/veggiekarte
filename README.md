@@ -19,7 +19,7 @@ This is an overview of the third-party software we use. Many thanks to the open 
 |[leaflet.easybutton](https://github.com/CliffCloud/Leaflet.EasyButton) |MIT [*](https://github.com/CliffCloud/Leaflet.EasyButton/blob/master/LICENSE) | 2.4.0| Adding buttons. We are using it for the info button. |
 |[leaflet.featuregroup.subgroup](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup) |BSD-2-Clause [*](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/blob/master/LICENSE) | 1.0.2| dynamically add/remove groups of markers |
 |[leaflet.hash](https://github.com/siimots/leaflet-hash) |MIT [*](https://github.com/siimots/leaflet-hash/blob/master/LICENSE.md) | 1.0.1 | Add coordinate hashes to the URL in the browser adress field. |
-|[leaflet.locatecontrol](https://github.com/domoritz/leaflet-locatecontrol/) |MIT [*](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE) | 0.70 | A control to geolocate the user. The button with the marker on the top left. |
+|[leaflet.locatecontrol](https://github.com/domoritz/leaflet-locatecontrol/) |MIT [*](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE) | 0.72 | A control to geolocate the user. The button with the marker on the top left. |
 |[leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster/) |MIT [*](https://github.com/Leaflet/Leaflet.markercluster/blob/master/MIT-LICENCE.txt) | 1.4.1 | Marker Clustering plugin. |
 |icons from [OpenStreetMap Carto](https://github.com/gravitystorm/openstreetmap-carto) | CC0 | | default icons |
 |icons from [Maki](https://labs.mapbox.com/maki-icons/) | CC0 | | fallback icons |
