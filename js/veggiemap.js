@@ -1,4 +1,4 @@
-// The "use strict" Directive helps to write cleaner code.
+// The "use strict" directive helps to write cleaner code.
 "use strict";
 
 // Define marker groups
@@ -8,6 +8,7 @@ let vegetarian_only = L.featureGroup.subGroup(parentGroup, {});
 let vegan_friendly = L.featureGroup.subGroup(parentGroup, {});
 let vegan_limited = L.featureGroup.subGroup(parentGroup, {});
 let vegetarian_friendly = L.featureGroup.subGroup(parentGroup, {});
+let map;
 
 function veggiemap() {
 
@@ -18,9 +19,9 @@ function veggiemap() {
   });
 
   // Map
-  let map = L.map("map", {
+  map = L.map("map", {
     layers: [tileOSM],
-    center: [51.43,17.58],
+    center: [51.43, 17.58],
     zoom: 4,
     worldCopyJump: true
   });

@@ -1,19 +1,19 @@
 #!/usr/bin/python
 """With this module we get the POIs with the tags vegan = * and
 vegetarian = * from OpenStreetMap and fill them in a file."""
-import os
-import time
-import json
-import sys
+import os         # for handling files
+import time       # for sleep
+import json       # read and write json
+import sys        # to check the python version
 import datetime   # for the timestamp
 import html
-import urllib3
+import urllib3    # for the HTTP GET request
 
 assert sys.version_info >= (3, 0)
 
 # constants for the overpass request
 
-# server list (from: https://wiki.openstreetmap.org/wiki/Overpass_API)
+## server list (from: https://wiki.openstreetmap.org/wiki/Overpass_API)
 SERVERS = [
     "https://lz4.overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
@@ -25,87 +25,89 @@ SERVERS = [
 ]
 HTTP = urllib3.PoolManager()
 
-# constants for the output files
+## constants for the output files
 TIMESTAMP = datetime.datetime.now()                           # the actual date and time
 SCRIPTDIR = os.path.dirname(os.path.abspath(__file__))        # get the path of the directory of this script
-VEGGIEMAP_TEMPFILE = SCRIPTDIR + '/js/veggiemap-data-temp.js' # the temp file to store the data from the overpass request
-VEGGIEMAP_FILE = SCRIPTDIR + '/js/veggiemap-data.js'          # the data file which will be used for the map
-VEGGIEMAP_OLDFILE = SCRIPTDIR + '/js/veggiemap-data_old.js'   # previous version of the data file (helpful to examine changes)
+VEGGIEMAP_TEMPFILE = SCRIPTDIR + "/js/veggiemap-data-temp.js" # the temp file to store the data from the overpass request
+VEGGIEMAP_FILE = SCRIPTDIR + "/js/veggiemap-data.js"          # the data file which will be used for the map
+VEGGIEMAP_OLDFILE = SCRIPTDIR + "/js/veggiemap-data_old.js"   # previous version of the data file (helpful to examine changes)
 
 # icon mapping
 # (the first element of the array is for the icon in the marker, the second is an emoji and it is used in the title)
 ICON_MAPPING = {
     # Intentionally not alphabetical order
-    'cuisine:pizza' : ['maki_restaurant-pizza', '🍕'],
+    "cuisine:pizza": ["maki_restaurant-pizza", "🍕"],
     # Alphabetical order
-    'amenity:bar': ['bar', '🍸'],
-    'amenity:bbq': ['bbq', '🍴'],
-    'amenity:cafe': ['cafe', '☕'],
-    'amenity:cinema': ['cinema', '🎦'],
-    'amenity:college': ['maki_college', '🎓'],
-    'amenity:fast_food': ['fast_food', '🍔'],
-    'amenity:food_court': ['restaurant', '🍽️'],
-    'amenity:fuel': ['fuel', '⛽'],
-    'amenity:hospital': ['hospital', '🏥'],
-    'amenity:ice_cream': ['ice_cream', '🍨'],
-    'amenity:kindergarten': ['playground', '🧒'],
-    'amenity:pharmacy': ['pharmacy', '💊'],
-    'amenity:place_of_worship': ['place_of_worship', '🛐'],
-    'amenity:pub': ['pub', '🍻'],
-    'amenity:restaurant': ['restaurant', '🍽️'],
-    'amenity:school': ['maki_school', '🏫'],
-    'amenity:shelter': ['shelter', '☂️'],
-    'amenity:swimming_pool': ['maki_swimming', '🏊‍♀️'],
-    'amenity:theatre': ['theatre', '🎭'],
-    'amenity:university': ['maki_college', '🎓'],
-    'amenity:vending_machine': ['maki_shop', '🛒'],
-    'historic:memorial': ['monument', '🗿'],
-    'leisure:golf_course': ['golf', '🏌️'],
-    'leisure:pitch': ['maki_pitch', '🏃'],
-    'leisure:sports_centre': ['sports', '🤼'],
-    'leisure:stadium': ['maki_stadium', '🏟️'],
-    'shop:alcohol': ['alcohol', '🍷'],
-    'shop:bakery': ['bakery', '🥯'],
-    'shop:beauty': ['beauty', '💇'],
-    'shop:bicycle': ['bicycle', '🚲'],
-    'shop:books': ['library', '📚'],
-    'shop:butcher': ['butcher', '🔪'],
-    'shop:clothes': ['clothes', '👚'],
-    'shop:confectionery': ['confectionery', '🍬'],
-    'shop:convenience': ['convenience', '🏪'],
-    'shop:department_store': ['department_store', '🏬'],
-    'shop:doityourself': ['diy', '🛠️'],
-    'shop:fishmonger': ['maki_shop', '🐟'],
-    'shop:garden_centre': ['garden-centre', '🏡'],
-    'shop:general': ['maki_shop', '🛒'],
-    'shop:gift': ['gift', '🎁'],
-    'shop:greengrocer': ['greengrocer', '🍏'],
-    'shop:hairdresser': ['hairdresser', '💇'],
-    'shop:kiosk': ['maki_shop', '🛒'],
-    'shop:music': ['music', '🎶'],
-    'shop:supermarket': ['supermarket', '🏪'],
-    'shop:wine': ['alcohol', '🍷'],
-    'tourism:guest_house': ['guest_house', '🏠'],
-    'tourism:museum': ['museum', '🖼️']
+    "amenity:bar": ["bar", "🍸"],
+    "amenity:bbq": ["bbq", "🍴"],
+    "amenity:cafe": ["cafe", "☕"],
+    "amenity:cinema": ["cinema", "🎦"],
+    "amenity:college": ["maki_college", "🎓"],
+    "amenity:fast_food": ["fast_food", "🍔"],
+    "amenity:food_court": ["restaurant", "🍽️"],
+    "amenity:fuel": ["fuel", "⛽"],
+    "amenity:hospital": ["hospital", "🏥"],
+    "amenity:ice_cream": ["ice_cream", "🍨"],
+    "amenity:kindergarten": ["playground", "🧒"],
+    "amenity:pharmacy": ["pharmacy", "💊"],
+    "amenity:place_of_worship": ["place_of_worship", "🛐"],
+    "amenity:pub": ["pub", "🍻"],
+    "amenity:restaurant": ["restaurant", "🍽️"],
+    "amenity:school": ["maki_school", "🏫"],
+    "amenity:shelter": ["shelter", "☂️"],
+    "amenity:swimming_pool": ["maki_swimming", "🏊‍♀️"],
+    "amenity:theatre": ["theatre", "🎭"],
+    "amenity:university": ["maki_college", "🎓"],
+    "amenity:vending_machine": ["maki_shop", "🛒"],
+    "historic:memorial": ["monument", "🗿"],
+    "leisure:golf_course": ["golf", "🏌️"],
+    "leisure:pitch": ["maki_pitch", "🏃"],
+    "leisure:sports_centre": ["sports", "🤼"],
+    "leisure:stadium": ["maki_stadium", "🏟️"],
+    "shop:alcohol": ["alcohol", "🍷"],
+    "shop:bakery": ["bakery", "🥯"],
+    "shop:beauty": ["beauty", "💇"],
+    "shop:bicycle": ["bicycle", "🚲"],
+    "shop:books": ["library", "📚"],
+    "shop:butcher": ["butcher", "🔪"],
+    "shop:clothes": ["clothes", "👚"],
+    "shop:confectionery": ["confectionery", "🍬"],
+    "shop:convenience": ["convenience", "🏪"],
+    "shop:department_store": ["department_store", "🏬"],
+    "shop:doityourself": ["diy", "🛠️"],
+    "shop:fishmonger": ["maki_shop", "🐟"],
+    "shop:garden_centre": ["garden-centre", "🏡"],
+    "shop:general": ["maki_shop", "🛒"],
+    "shop:gift": ["gift", "🎁"],
+    "shop:greengrocer": ["greengrocer", "🍏"],
+    "shop:hairdresser": ["hairdresser", "💇"],
+    "shop:kiosk": ["maki_shop", "🛒"],
+    "shop:music": ["music", "🎶"],
+    "shop:supermarket": ["supermarket", "🏪"],
+    "shop:wine": ["alcohol", "🍷"],
+    "tourism:guest_house": ["guest_house", "🏠"],
+    "tourism:museum": ["museum", "🖼️"],
 }
 
-def determine_icon(tags):
-    """The function to determine a icon for the marker."""
 
-    icon = ['maki_star-stroked', '']   # Use this icon if there is no matching per ICON_MAPPING.
+def determine_icon(tags):
+    """The function to determine an icon for the marker."""
+
+    icon = ["maki_star-stroked", ""]   # Use this icon if there is no matching per ICON_MAPPING.
     for kv in ICON_MAPPING:
-        k, v = kv.split(':')
+        k, v = kv.split(":")
         t = tags.get(k)
 
         if not t:
             continue
 
-        t = t.split(';')[0]
+        t = t.split(";")[0]
 
         if t == v:
             icon = ICON_MAPPING[kv]
             break
     return icon
+
 
 def get_data_osm():
     """The function to get the data from OSM."""
@@ -115,10 +117,10 @@ def get_data_osm():
     result = None
 
     # Preparing the string for the Overpass request
-    overpass_data_out =       '?data=[out:json];('
-    overpass_vegan_objects =  'node["diet:vegan"~"yes|only|limited"];way["diet:vegan"~"yes|only|limited"];'
+    overpass_data_out = '?data=[out:json];('
+    overpass_vegan_objects = 'node["diet:vegan"~"yes|only|limited"];way["diet:vegan"~"yes|only|limited"];'
     overpass_vegetarian_objects = 'node["diet:vegetarian"~"yes|only"];way["diet:vegetarian"~"yes|only"];'
-    overpass_out =            ');out+center;'
+    overpass_out = ');out+center;'
 
     # Sending a request to one server after another until one gives a valid answer or the end of the server list is reached.
     while (server < len(SERVERS)) and (result is None):
@@ -127,12 +129,12 @@ def get_data_osm():
 
         # Overpass request
         print("Send query to server: ", overpass_server)
-        r = HTTP.request('GET', overpass_server + overpass_data_out + overpass_vegan_objects + overpass_vegetarian_objects + overpass_out)
+        r = HTTP.request("GET", overpass_server + overpass_data_out + overpass_vegan_objects + overpass_vegetarian_objects + overpass_out)
 
         # Check the status of the request
         if r.status == 200:
             print("Received answer successfully.")
-            result = json.loads(r.data.decode('utf-8'))
+            result = json.loads(r.data.decode("utf-8"))
         elif r.status == 400:
             print("HTTP error code ", r.status, ": Bad Request")
             time.sleep(5)
@@ -283,6 +285,7 @@ def check_data():
     else:
         print("temp file don't exists!")
 
+
 def main():
     """The main function to call the functions to get and write the osm data."""
 
@@ -295,5 +298,6 @@ def main():
         check_data()
     else:
         print("A problem has occurred. The old VEGGIE_MAP was not replaced!")
+
 
 main()
