@@ -1,3 +1,8 @@
+[![GitHub issues](https://img.shields.io/github/issues/piratenpanda/veggiekarte)](https://github.com/piratenpanda/veggiekarte/issues)
+[![GitHub forks](https://img.shields.io/github/forks/piratenpanda/veggiekarte)](https://github.com/piratenpanda/veggiekarte/network)
+[![GitHub stars](https://img.shields.io/github/stars/piratenpanda/veggiekarte)](https://github.com/piratenpanda/veggiekarte/stargazers)
+[![GitHub license](https://img.shields.io/github/license/piratenpanda/veggiekarte?style=plastic)](https://github.com/piratenpanda/veggiekarte/blob/master/LICENSE)
+
 # veggiekarte
 
 A map to find vegetarian/vegan POIs in your area.
