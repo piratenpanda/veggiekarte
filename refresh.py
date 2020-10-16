@@ -228,45 +228,64 @@ def write_data(data):
             # Building the textbox of the Marker
             popup = '<b>%s</b> <a href=\\"https://openstreetmap.org/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
 
+            ## Cuisine
             if 'cuisine' in tags:
-                popup += 'cuisine: %s<br/>' % (tags['cuisine'])
+                popup += '<div class=\\"popupflex-container\\"><div>👩‍🍳</div><div>%s</div></div>' % (tags['cuisine'])
 
+            ## Address
+            placeAddress = ""
             if 'addr:street' in tags:
-                popup += '%s %s<br/>' % (tags.get('addr:street', ''), tags.get('addr:housenumber', ''))
-
+                placeAddress += tags.get('addr:street', '') + ' ' + tags.get('addr:housenumber', '')
             if 'addr:city' in tags:
-                popup += '%s %s<br/>' % (tags.get('addr:postcode', ''), tags.get('addr:city', ''))
-
+                if placeAddress != "":
+                   placeAddress += "<br/>"
+                placeAddress += tags.get('addr:city', '')
             if 'addr:country' in tags:
-                popup += '%s<br/>' % (tags.get('addr:country', ''))
-                popup += '<hr/>'
+                if placeAddress != "":
+                   placeAddress += "<br/>"
+                placeAddress += tags.get('addr:country', '')
+            if placeAddress != "":
+                popup += '<div class=\\"popupflex-container\\"><div>📍</div><div>%s</div></div>' % (placeAddress)
 
+            ## Website
+            placeWebsite = ""
             if 'contact:website' in tags:
-                popup += 'website: <a href=\\"%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['contact:website'], tags['contact:website'])
-
+                placeWebsite = tags['contact:website']
             elif 'website' in tags:
-                popup += 'website: <a href=\\"%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['website'], tags['website'])
+                placeWebsite = tags['website']
+            if placeWebsite != "":
+                placeWebsiteWithout = placeWebsite.replace('https://', '')
+                popup += '<div class=\\"popupflex-container\\"><div>🌐</div><div><a href=\\"%s\\" target=\\"_blank\\">%s</a></div></div>' % (placeWebsite, placeWebsiteWithout)
 
+            ## E-Mail
+            placeEmail = ""
             if 'contact:email' in tags:
-                popup += 'email: <a href=\\"mailto:%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['contact:email'], tags['contact:email'])
-
+                placeEmail = tags['contact:email']
             elif 'email' in tags:
-                popup += 'email: <a href=\\"mailto:%s\\" target=\\"_blank\\">%s</a><br/>' % (tags['email'], tags['email'])
+                placeEmail = tags['email']
+            if placeEmail != "":
+                popup += '<div class=\\"popupflex-container\\"><div>📧</div><div><a href=\\"mailto:%s\\" target=\\"_blank\\">%s</a><br/></div></div>' % (placeEmail, placeEmail)
 
+            ## Phone
+            placePhone = ""
             if 'contact:phone' in tags:
-                popup += 'phone: %s<br/>' % (tags['contact:phone'])
-
+                placePhone = tags['contact:phone']
             elif 'phone' in tags:
-                popup += 'phone: %s<br/>' % (tags['phone'])
+                placePhone = tags['phone']
+            if placePhone != "":
+                popup += '<div class=\\"popupflex-container\\"><div>☎️</div><div><a href=\\"tel:%s\\" target=\\"_blank\\">%s</a><br/></div></div>' % (placePhone, placePhone)
 
+            ## Opening hours
             if 'opening_hours' in tags:
                 # Replacing line breaks with spaces (Usually there should be no line breaks,
                 # but if they do appear, they break the structure of the veggiemap-data.js).
-                opening_hours = tags['opening_hours'].replace('\n', ' ').replace('\r', '')
-                popup += '<hr/>'
-                popup += 'opening hours: %s<br/>' % (opening_hours)
+                opening_hours = tags['opening_hours'].replace('\n', '').replace('\r', '')
+                # Diverting entries with break (that looks better in the popup box)
+                opening_hours = opening_hours.replace("; ", "<br/>")
+                popup += '<div class=\\"popupflex-container\\"><div>🕖</div><div>%s</div></div>' % (opening_hours)
 
             f.write('L.marker([%s,%s],{title:"%s",icon:getIcon("%s","%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon[0], category, popup, category))
+
         f.write('}\n')
         f.write('let numbers = {\n n_vegan_only:%s,\n n_vegetarian_only:%s,\n n_vegan_friendly:%s,\n n_vegan_limited:%s,\n n_vegetarian_friendly:%s\n};\n' % (n_vegan_only, n_vegetarian_only, n_vegan_friendly, n_vegan_limited, n_vegetarian_friendly))
 

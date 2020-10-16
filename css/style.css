@@ -120,3 +120,13 @@ a {
   width: 30px !important;
   height: 30px !important;
 }
+
+/* Emojis and content in the popup in one line */
+.popupflex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.popupflex-container > div {
+  min-width: 2em;
+  padding-bottom: 7px;
+}
