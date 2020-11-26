@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="third-party/leaflet.markercluster/MarkerCluster.css" />
     <link rel="stylesheet" href="third-party/leaflet.markercluster/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="third-party/leaflet.control.geocoder/Control.Geocoder.css" />
-    <link rel="stylesheet" href="third-party/fontawesome-free/css/all.css" />
     <link rel="stylesheet" href="third-party/leaflet.locatecontrol/L.Control.Locate.min.css" />
     <link rel="stylesheet" href="third-party/leaflet.easybutton/easy-button.css" />
 
@@ -45,9 +44,9 @@
         <h1>Über OpenStreetMap</h1>
         <p>OpenStreetMap ist eine freie Weltkarte und funktioniert so ähnlich wie Wikipedia. Jeder kann mitmachen und Informationen eintragen. Dadurch ist die Karte immer aktuell und voll von nützlichen Informationen. Wer Verbesserungsvorschläge hat oder Fehler in der Karte findet, kann diese einfach selbst eintragen oder verbessern</p>
         <h1>Informationen beitragen</h1>
-        <p>Wenn du selbst Restaurants, Cafés, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst hinzufügen. Dazu musst du den "diet:vegan"- oder "diet:vegetarian"-Tag bei deiner Location in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es <a href="https://www.lebsanft.org/posts/informationen-zur-veggiekarte-hinzufuegen/" target="_blank">hier</a>.</p>
+        <p>Wenn du selbst Restaurants, Cafés, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst hinzufügen. Dazu musst du den "diet:vegan"- oder "diet:vegetarian"-Tag bei deiner Location in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es <a href="https://www.lebsanft.org/posts/informationen-zur-veggiekarte-hinzufuegen/" target="_blank" rel="noopener noreferrer">hier</a>.</p>
         <h1>Sonstiges</h1>
-        <p>Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findest du auf <a href="https://github.com/piratenpanda/veggiekarte" target="_blank">GitHub</a>.</p>
+        <p>Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findest du auf <a href="https://github.com/piratenpanda/veggiekarte" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
       </div>
     </div>
 
@@ -84,7 +83,7 @@
           // Register the service worker
           navigator.serviceWorker.register('service-worker.js')
             .then(registration => {
-              console.log('SW registered with scope:', registration.scope);
+              console.log('Service Worker registered with scope:', registration.scope);
             })
             .catch(err => {
               console.error('Registration failed.', err);
