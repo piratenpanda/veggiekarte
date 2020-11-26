@@ -18,7 +18,6 @@ This is an overview of the third-party software we use. Many thanks to the open 
 
 |software			|license		|version	|purpose	|
 |---				|---			|---		|---		|
-|[fontawesome](https://github.com/FortAwesome/Font-Awesome/) | CC-BY-4.0, OFL-1.1, MIT [*](https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt) | 5.14.0 | Webfont. We use it for the symbols for the control buttons. | 
 |[leaflet](https://github.com/Leaflet/Leaflet/) |BSD-2-Clause [*](https://github.com/Leaflet/Leaflet/blob/master/LICENSE) | 1.7.1 | JavaScript library to create interactive maps. |
 |[leaflet.control.geocoder](https://github.com/perliedman/leaflet-control-geocoder/) |BSD-2-Clause [*](https://github.com/perliedman/leaflet-control-geocoder/blob/master/LICENSE) | 1.13.0 | A control to locate places. The button with the 🔍 on the top right. |
 |[leaflet.easybutton](https://github.com/CliffCloud/Leaflet.EasyButton) |MIT [*](https://github.com/CliffCloud/Leaflet.EasyButton/blob/master/LICENSE) | 2.4.0| Adding buttons. We are using it for the info button. |
