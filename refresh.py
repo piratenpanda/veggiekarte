@@ -1,6 +1,9 @@
 #!/usr/bin/python
-"""With this module we get the POIs with the tags vegan = * and
-vegetarian = * from OpenStreetMap and fill them in a file."""
+"""
+With this module we get the POIs with the tags vegan = * and
+vegetarian = * from OpenStreetMap and fill them in a file.
+"""
+
 import os         # for handling files
 import time       # for sleep
 import json       # read and write json
@@ -91,8 +94,7 @@ ICON_MAPPING = {
 
 
 def determine_icon(tags):
-    """The function to determine an icon for the marker."""
-
+    """Determine an icon for the marker."""
     icon = ["maki_star-stroked", ""]   # Use this icon if there is no matching per ICON_MAPPING.
     for kv in ICON_MAPPING:
         k, v = kv.split(":")
@@ -110,8 +112,7 @@ def determine_icon(tags):
 
 
 def get_data_osm():
-    """The function to get the data from OSM."""
-
+    """Get the data from OSM."""
     # Initialize variables
     server = 0
     result = None
@@ -154,8 +155,7 @@ def get_data_osm():
 
 
 def write_data(data):
-    """The function to write the data in a temp file."""
-
+    """Write the data in a temp file."""
     # Initialize variables to count the markers
     n_vegan_only = 0
     n_vegetarian_only = 0
@@ -291,7 +291,7 @@ def write_data(data):
 
 
 def check_data():
-    """The function to check the temp file and replace the old VEGGIE_MAP file if it is ok."""
+    """Check the temp file and replace the old VEGGIE_MAP file if it is ok."""
 
     if os.path.isfile(VEGGIEMAP_TEMPFILE):                  # check if the temp file exists
         if os.path.getsize(VEGGIEMAP_TEMPFILE) > 250:       # check if the temp file isn't to small (see issue #21)
@@ -306,8 +306,7 @@ def check_data():
 
 
 def main():
-    """The main function to call the functions to get and write the osm data."""
-
+    """Call the functions to get and write the osm data."""
     # Get data
     osm_data = get_data_osm()
 
