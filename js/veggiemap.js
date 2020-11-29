@@ -8,6 +8,7 @@ let vegetarian_only = L.featureGroup.subGroup(parentGroup, {});
 let vegan_friendly = L.featureGroup.subGroup(parentGroup, {});
 let vegan_limited = L.featureGroup.subGroup(parentGroup, {});
 let vegetarian_friendly = L.featureGroup.subGroup(parentGroup, {});
+let subgroups = { vegan_only, vegetarian_only, vegan_friendly, vegan_limited, vegetarian_friendly };
 let map;
 
 
@@ -47,6 +48,10 @@ function veggiemap() {
 
   // Add the parent marker group to the map
   parentGroup.addTo(map);
+
+  // Enable the on-demand popup and tooltip calculation
+  parentGroup.bindPopup(calculatePopup);
+  parentGroup.bindTooltip(calculateTooltip);
 
   // Add hash to the url
   let hash = new L.Hash(map);
@@ -113,13 +118,59 @@ function veggiemap_populate(parentGroup) {
 
     fetch(url)
     .then(response => response.json())
-    .then(data => {L.geoJSON([data], {onEachFeature: onEachFeature});})
+    .then(data => geojsonToMarkerGroups(data))
+    .then(markerGroups => {
+        map.removeLayer(parentGroup);
+        Object.entries(subgroups).forEach(([key, subgroup]) => {
+            map.removeLayer(subgroup);
+            subgroup.clearLayers();
+            // Bulk add all the markers from a markerGroup to a subgroup in one go
+            // Source: https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/5
+            subgroup.addLayer(L.layerGroup(markerGroups[key]) || []);
+            map.addLayer(subgroup);
+        });
+        // Reveal all the markers and clusters on the map in one go
+        map.addLayer(parentGroup);
+    })
     .catch(error  => {console.log('Request failed', error);});
+}
+
+// Process the places GeoJSON into the groups of markers
+function geojsonToMarkerGroups(data) {
+    const groups = {};
+    data.features.forEach(feature => {
+        const eCat = feature.properties.category;
+        if (!groups[eCat]) groups[eCat] = [];
+        groups[eCat].push(onEachFeature(feature));
+    });
+    return groups;
 }
 
 // Function to handle the places data.
 function onEachFeature(feature) {
-    // Get the Information 
+    let eLatLon = [feature.geometry.coordinates[1],feature.geometry.coordinates[0]];
+    let eSym = feature.properties.symbol;
+    let eNam = feature.properties.name;
+    let eIco = feature.properties.icon;
+    let eCat = feature.properties.category;
+
+    let marker = L.marker(eLatLon, { icon: getIcon(eIco, eCat) });
+    marker.feature = feature;
+    return marker;
+}
+
+// Calculate tooltip content for a given marker layer
+function calculateTooltip(layer) {
+    let feature = layer.feature;
+    let eSym = feature.properties.symbol;
+    let eNam = feature.properties.name;
+    return eSym + " " + eNam;
+}
+
+// Calculate popup content for a given marker layer
+function calculatePopup(layer) {
+    // Get the Information
+    let feature = layer.feature;
     let eId  = feature.properties._id;
     let eLatLon = [feature.geometry.coordinates[1],feature.geometry.coordinates[0]];
     let eNam = feature.properties.name;
@@ -163,8 +214,7 @@ function onEachFeature(feature) {
     if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href=\"" + eWeb + "\" target=\"_blank\">" + eWeb + "</a></div></div>"}
     if(eInf){popupContent += "<hr/><div class='popupflex-container'><div>ℹ️</div><div><a href=\"https://www.vegan-in-halle.de/wp/leben/vegane-stadtkarte/#"+eTyp+eId+"\" target=\"_top\">Mehr Infos</a></div>"}
 
-    // Adding the marker to the map
-    L.marker(eLatLon,{title:eSym + " " + eNam,icon:getIcon(eIco, eCat)}).bindPopup(popupContent).addTo(eval(eCat));
+    return popupContent;
 }
 
 // Main function to put the markers to the map
