@@ -126,7 +126,7 @@ function veggiemap_populate(parentGroup) {
             subgroup.clearLayers();
             // Bulk add all the markers from a markerGroup to a subgroup in one go
             // Source: https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/5
-            subgroup.addLayer(L.layerGroup(markerGroups[key]) || []);
+            subgroup.addLayer(L.layerGroup(markerGroups[key]));
             map.addLayer(subgroup);
         });
         // Reveal all the markers and clusters on the map in one go
