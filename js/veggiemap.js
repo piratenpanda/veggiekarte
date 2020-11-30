@@ -87,19 +87,17 @@ function toggleInfo() {
 // Function to put the numbers of markers into the legend.
 //   The numbers are calculated using the refresh.py script and stored in the places.json file.
 function stat_populate() {
-
-    const url = "data/stat.json";
-
-    fetch(url)
-    .then(response => response.json())
-    .then(data => onEachFeatureStat(data))
-    .catch(error  => {console.log('Request failed', error);});
+  const url = "data/stat.json";
+  fetch(url)
+  .then(response => response.json())
+  .then(data => onEachFeatureStat(data))
+  .catch(error  => {console.log('Request failed', error);});
 }
 
 function onEachFeatureStat(data) {
-
-  for (let x in data.stat[data.stat.length -1]){
-    document.getElementById(x).innerHTML = data.stat[data.stat.length -1][x];
+  for (let category in data.stat[data.stat.length -1]){
+    let number_of_elements = data.stat[data.stat.length -1][category];
+    document.getElementById(category).innerHTML = "(" + number_of_elements + ")";
   }
 }
 
@@ -173,7 +171,6 @@ function calculatePopup(layer) {
     let eWeb = feature.properties.contact_website;
     let eCui = feature.properties.cuisine;
     let eIco = feature.properties.icon;
-    let eInf = feature.properties.more_info;
     let eOpe = feature.properties.opening_hours;
     let eSym = feature.properties.symbol;
 
@@ -190,7 +187,7 @@ function calculatePopup(layer) {
     if(eStr!=undefined){eAddr += eStr +"<br/>"} // Street
     if(ePos!=undefined){eAddr += ePos +" "}     // Postcode
     if(eCit!=undefined){eAddr += eCit +" "}     // City
-    // if(eCou!=undefined){eAddr += eCou}       // Country
+    if(eCou!=undefined){eAddr += eCou}          // Country
 
     // Adding address information to popup
     if(eAddr!=""){popupContent += "<div class='popupflex-container'><div>📍</div><div>" + eAddr +"</div></div>"}
@@ -200,7 +197,6 @@ function calculatePopup(layer) {
     if(ePho!=undefined){popupContent += "<div class='popupflex-container'><div>☎️</div><div><a href=\"tel:" + ePho + "\" target=\"_blank\">" + ePho + "</a></div></div>"}
     if(eEma!=undefined){popupContent += "<div class='popupflex-container'><div>📧</div><div><a href=\"mailto:" + eEma + "\" target=\"_blank\">" + eEma + "</a></div></div>"}
     if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href=\"" + eWeb + "\" target=\"_blank\">" + eWeb + "</a></div></div>"}
-    if(eInf){popupContent += "<hr/><div class='popupflex-container'><div>ℹ️</div><div><a href=\"https://www.vegan-in-halle.de/wp/leben/vegane-stadtkarte/#"+eTyp+eId+"\" target=\"_top\">Mehr Infos</a></div>"}
 
     return popupContent;
 }
