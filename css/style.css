@@ -137,3 +137,13 @@ a {
 .leaflet-tooltip-right:before {
   border-color: transparent;
 }
+
+/* Emojis and content in the popup in one line */
+.popupflex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.popupflex-container > div {
+  min-width: 2em;
+  padding-bottom: 7px;
+}
