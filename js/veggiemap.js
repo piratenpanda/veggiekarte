@@ -108,25 +108,24 @@ function onEachFeatureStat(data) {
 
 // Function to get the information from the places json file.
 function veggiemap_populate(parentGroup) {
-    const url = "data/places.json";
+  const url = "data/places.json";
+  fetch(url)
+  .then(response => response.json())
+  .then(data => geojsonToMarkerGroups(data))
+  .then(markerGroups => {
+    Object.entries(subgroups).forEach(([key, subgroup]) => {
+      // Bulk add all the markers from a markerGroup to a subgroup in one go
+      // Source: https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/5
+      subgroup.addLayer(L.layerGroup(markerGroups[key]));
+      map.addLayer(subgroup);
+    });
+    // Reveal all the markers and clusters on the map in one go
+    map.addLayer(parentGroup);
 
-    fetch(url)
-    .then(response => response.json())
-    .then(data => geojsonToMarkerGroups(data))
-    .then(markerGroups => {
-        Object.entries(subgroups).forEach(([key, subgroup]) => {
-            // Bulk add all the markers from a markerGroup to a subgroup in one go
-            // Source: https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/5
-            subgroup.addLayer(L.layerGroup(markerGroups[key]));
-            map.addLayer(subgroup);
-        });
-        // Reveal all the markers and clusters on the map in one go
-        map.addLayer(parentGroup);
-
-        // Call the function to put the numbers into the legend
-        stat_populate();
-    })
-    .catch(error  => {console.log('Request failed', error);});
+    // Call the function to put the numbers into the legend
+    stat_populate();
+  })
+  .catch(error  => {console.log('Request failed', error);});
 }
 
 // Process the places GeoJSON into the groups of markers
@@ -202,9 +201,9 @@ function calculatePopup(layer) {
 
     // Adding addidtional information to popup
     if(eOpe!=undefined){popupContent += "<div class='popupflex-container'><div>🕖</div><div>" + eOpe +"</div></div>"}
-    if(ePho!=undefined){popupContent += "<div class='popupflex-container'><div>☎️</div><div><a href=\"tel:" + ePho + "\" target=\"_blank\">" + ePho + "</a></div></div>"}
-    if(eEma!=undefined){popupContent += "<div class='popupflex-container'><div>📧</div><div><a href=\"mailto:" + eEma + "\" target=\"_blank\">" + eEma + "</a></div></div>"}
-    if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href=\"" + eWeb + "\" target=\"_blank\">" + eWeb + "</a></div></div>"}
+    if(ePho!=undefined){popupContent += "<div class='popupflex-container'><div>☎️</div><div><a href='tel:" + ePho + "' target='_blank' rel='noopener noreferrer'>" + ePho + "</a></div></div>"}
+    if(eEma!=undefined){popupContent += "<div class='popupflex-container'><div>📧</div><div><a href='mailto:" + eEma + "' target='_blank' rel='noopener noreferrer'>" + eEma + "</a></div></div>"}
+    if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href='" + eWeb + "' target='_blank' rel='noopener noreferrer'>" + eWeb.replace("https://", "") + "</a></div></div>"}
 
     return popupContent;
 }
