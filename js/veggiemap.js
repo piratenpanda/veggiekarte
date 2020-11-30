@@ -192,10 +192,10 @@ function calculatePopup(layer) {
     // Address
     let eAddr = ""
     // Collecting address information
-    if(eStr!=undefined){eAddr += eStr +"<br/>"} // Street
-    if(ePos!=undefined){eAddr += ePos +" "}     // Postcode
-    if(eCit!=undefined){eAddr += eCit +" "}     // City
-    if(eCou!=undefined){eAddr += eCou}          // Country
+    if(eStr!=undefined){eAddr += eStr +"<br/>"}  // Street
+    if(ePos!=undefined){eAddr += ePos +" "}      // Postcode
+    if(eCit!=undefined){eAddr += eCit +" "}      // City
+    if(eCou!=undefined){eAddr += "<br/>" + eCou} // Country
 
     // Adding address information to popup
     if(eAddr!=""){popupContent += "<div class='popupflex-container'><div>📍</div><div>" + eAddr +"</div></div>"}
