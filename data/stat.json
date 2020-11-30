@@ -1,0 +1,28 @@
+{
+ "stat": [
+  {
+   "date": "2020-08-31",
+   "n_vegan_friendly": 8504,
+   "n_vegan_limited": 167,
+   "n_vegan_only": 1840,
+   "n_vegetarian_friendly": 12452,
+   "n_vegetarian_only": 1301
+  },
+  {
+   "date": "2020-11-30",
+   "n_vegan_friendly": 10720,
+   "n_vegan_limited": 171,
+   "n_vegan_only": 2119,
+   "n_vegetarian_friendly": 14135,
+   "n_vegetarian_only": 1523
+  },
+  {
+   "date": "2020-12-01",
+   "n_vegan_friendly": 10717,
+   "n_vegan_limited": 170,
+   "n_vegan_only": 2119,
+   "n_vegetarian_friendly": 14162,
+   "n_vegetarian_only": 1526
+  }
+ ]
+}

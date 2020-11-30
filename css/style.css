@@ -26,7 +26,7 @@ body {
   transition: all 0.6s ease-in-out;
 }
 
-/* For the Info box. */
+/* For the info box. */
 #information {
   font-size: 13px;
   margin: auto;
@@ -49,10 +49,14 @@ h1 {
 }
 
 a {
-  color: #0078a8;
+  color: #006688;
+  text-decoration: none;
+}
+a:hover {
+  color: #003388;
 }
 
-/* legend */
+/* Legend */
 .legendRow {
   display: table-cell;
   max-height: 15px;
@@ -75,7 +79,7 @@ a {
   padding-left: 10px;
 }
 
-/* marker properties */
+/* Marker properties */
 .marker {
   border-radius: 40% 5%;
   border-style: solid;
@@ -88,7 +92,7 @@ a {
   padding: 3px;
 }
 
-/* categorie properties */
+/* Categorie properties */
 .vegan_only {
   background: #005500;
   border-color: #117722;
@@ -110,7 +114,7 @@ a {
   border-color: DarkGreen;
 }
 
-/* Adjust the size of the layer button to the other buttons. */
+/* Layer button: Adjust the size to the other buttons. */
 .leaflet-control-layers-toggle {
   width: 26px !important;
   height: 26px !important;
@@ -121,6 +125,32 @@ a {
   height: 30px !important;
 }
 
+<<<<<<< HEAD
+/* Tooltip: Mimic Firefox's tooltip style */
+.leaflet-tooltip {
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Tooltip: Hide the pointing triangle */
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+  border-color: transparent;
+}
+
+/* PopupTitle */
+.mapPopupTitle {
+  font-size: medium;
+  text-align: center;
+}
+
+=======
+>>>>>>> master
 /* Emojis and content in the popup in one line */
 .popupflex-container {
   display: flex;
@@ -167,11 +197,19 @@ a {
   border-top-color: #434343;
   animation: 1.5s linear infinite spinner;
 }
+<<<<<<< HEAD
+/* Marker Icon: Color while following */
+.leaflet-control-locate.active.following a span {
+  background-color: #fc8428;
+}
+/* Marker Icon: Color while active */
+=======
 /* Marker Icon Color while following */
 .leaflet-control-locate.active.following a span {
   background-color: #fc8428;
 }
 /* Marker Icon Color while active */
+>>>>>>> master
 .leaflet-control-locate.active a span {
   background-color: #2074b6;
 }
