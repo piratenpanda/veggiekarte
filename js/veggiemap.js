@@ -183,8 +183,8 @@ function calculatePopup(layer) {
     let eSym = feature.properties.symbol;
 
     /*** Building the popup content ***/
-    let popupContent = "<b>" + eSym + " " + eNam + "</b> "; // Symbol and name
-    popupContent += "<a href=\"https://openstreetmap.org/"+eTyp+"/"+eId+"\" target=\"_blank\">*</a><hr/>"; // OSM link
+    let popupContent = "<div class='mapPopupTitle'>" + eSym + " " + eNam; // Symbol and name
+    popupContent += "<a href='https://openstreetmap.org/"+eTyp+"/"+eId+"' target='_blank' rel='noopener noreferrer'> *</a></div><hr/>"; // OSM link
 
     // Adding cuisine information to popup
     if(eCui!=undefined){popupContent += "<div class='popupflex-container'><div>👩‍🍳</div><div>" + eCui +"</div></div>"}
@@ -209,5 +209,5 @@ function calculatePopup(layer) {
     return popupContent;
 }
 
-// Main function to put the markers to the map
+// Main function
 veggiemap();
