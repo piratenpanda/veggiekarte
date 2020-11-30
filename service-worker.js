@@ -5,11 +5,7 @@ console.log(CACHE_NAME);
 // List of files to cache here.
 const FILES_TO_CACHE = [
  'index.html',
-<<<<<<< HEAD
  'data/places.json'
-=======
- 'js/veggiemap-data.js'
->>>>>>> master
 ];
 
 
