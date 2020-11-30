@@ -120,3 +120,20 @@ a {
   width: 30px !important;
   height: 30px !important;
 }
+
+/* Mimic Firefox's tooltip style */
+.leaflet-tooltip {
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Hide the pointing triangle */
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+  border-color: transparent;
+}
