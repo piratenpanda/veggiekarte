@@ -175,6 +175,7 @@ def write_data(data):
     n_vegan_limited = 0
     n_vegetarian_friendly = 0
 
+<<<<<<< HEAD
     # Adding timestamp
     places_data["_timestamp"] = TIMESTAMP
 
@@ -326,6 +327,137 @@ def check_data():
             outfilestat = open(VEGGIESTAT_FILE, "w")
             outfilestat.write(json.dumps(stat_data, indent=1, sort_keys=True))
             outfilestat.close()
+=======
+    with open(VEGGIEMAP_TEMPFILE, 'w') as f:
+        f.write('// Created: %s\n' % (TIMESTAMP))
+        f.write('function veggiemap_populate(markers) {\n')
+
+        for e in data['elements']:
+            ide = e['id']
+            typ = e['type']
+            tags = e.get('tags', {})
+
+            for k in list(tags.keys()):
+                # Convert characters into html entities
+                # (to prevent escape any code)
+                tags[k] = html.escape(tags[k])
+
+            if typ == 'node':
+                lat = e.get('lat', None)
+                lon = e.get('lon', None)
+
+            if typ == 'way':
+                center_coordinates = e.get('center', None) # get the coordinates from the center of the object
+                lat = center_coordinates.get('lat', None)
+                lon = center_coordinates.get('lon', None)
+
+            if not lat or not lon:
+                continue
+
+            icon = determine_icon(tags)
+
+            if 'name' in tags:
+                # The name will be shown in the popup box
+                # (where the browser converts html entities).
+                name = '%s %s' % (icon[1], tags['name'])
+
+                # The title of a marker will be shown on mouse hover
+                # (where the browser DON'T converts html entities (issue #25)).
+                # So we reconvert the html entities into the proper characters:
+                title = html.unescape(name)
+                ## But double quoutes could escape code, so we have to replace them:
+                title = title.replace('"', '”')
+            else:
+                name = '%s %s %s' % (icon[1], typ, ide)
+                title = name
+
+
+            # Give the object a category
+            if tags.get('diet:vegan', '') == 'only':
+                category = "vegan_only"
+                n_vegan_only += 1
+            elif (tags.get('diet:vegetarian', '') == 'only'
+                  and tags.get('diet:vegan', '') == 'yes'):
+                category = "vegetarian_only"
+                n_vegetarian_only += 1
+            elif tags.get('diet:vegan', '') == 'yes':
+                category = "vegan_friendly"
+                n_vegan_friendly += 1
+            elif tags.get('diet:vegan', '') == 'limited':
+                category = "vegan_limited"
+                n_vegan_limited += 1
+            else:
+                category = "vegetarian_friendly"
+                n_vegetarian_friendly += 1
+
+            # Building the textbox of the Marker
+            popup = '<b>%s</b> <a href=\\"https://openstreetmap.org/%s/%s\\" target=\\"_blank\\">*</a><hr/>' % (name, typ, ide)
+
+            ## Cuisine
+            if 'cuisine' in tags:
+                popup += '<div class=\\"popupflex-container\\"><div>👩‍🍳</div><div>%s</div></div>' % (tags['cuisine'])
+
+            ## Address
+            placeAddress = ""
+            if 'addr:street' in tags:
+                placeAddress += tags.get('addr:street', '') + ' ' + tags.get('addr:housenumber', '')
+            if 'addr:city' in tags:
+                if placeAddress != "":
+                   placeAddress += "<br/>"
+                placeAddress += tags.get('addr:city', '')
+            if 'addr:country' in tags:
+                if placeAddress != "":
+                   placeAddress += "<br/>"
+                placeAddress += tags.get('addr:country', '')
+            if placeAddress != "":
+                popup += '<div class=\\"popupflex-container\\"><div>📍</div><div>%s</div></div>' % (placeAddress)
+
+            ## Website
+            placeWebsite = ""
+            if 'contact:website' in tags:
+                placeWebsite = tags['contact:website']
+            elif 'website' in tags:
+                placeWebsite = tags['website']
+            if placeWebsite != "":
+                placeWebsiteWithout = placeWebsite.replace('https://', '')
+                popup += '<div class=\\"popupflex-container\\"><div>🌐</div><div><a href=\\"%s\\" target=\\"_blank\\">%s</a></div></div>' % (placeWebsite, placeWebsiteWithout)
+
+            ## E-Mail
+            placeEmail = ""
+            if 'contact:email' in tags:
+                placeEmail = tags['contact:email']
+            elif 'email' in tags:
+                placeEmail = tags['email']
+            if placeEmail != "":
+                popup += '<div class=\\"popupflex-container\\"><div>📧</div><div><a href=\\"mailto:%s\\" target=\\"_blank\\">%s</a><br/></div></div>' % (placeEmail, placeEmail)
+
+            ## Phone
+            placePhone = ""
+            if 'contact:phone' in tags:
+                placePhone = tags['contact:phone']
+            elif 'phone' in tags:
+                placePhone = tags['phone']
+            if placePhone != "":
+                popup += '<div class=\\"popupflex-container\\"><div>☎️</div><div><a href=\\"tel:%s\\" target=\\"_blank\\">%s</a><br/></div></div>' % (placePhone, placePhone)
+
+            ## Opening hours
+            if 'opening_hours' in tags:
+                # Replacing line breaks with spaces (Usually there should be no line breaks,
+                # but if they do appear, they break the structure of the veggiemap-data.js).
+                opening_hours = tags['opening_hours'].replace('\n', '').replace('\r', '')
+                # Diverting entries with break (that looks better in the popup box)
+                opening_hours = opening_hours.replace("; ", "<br/>")
+                popup += '<div class=\\"popupflex-container\\"><div>🕖</div><div>%s</div></div>' % (opening_hours)
+
+            f.write('L.marker([%s,%s],{title:"%s",icon:getIcon("%s","%s")}).bindPopup("%s").addTo(%s);\n' % (lat, lon, title, icon[0], category, popup, category))
+
+        f.write('}\n')
+        f.write('let numbers = {\n n_vegan_only:%s,\n n_vegetarian_only:%s,\n n_vegan_friendly:%s,\n n_vegan_limited:%s,\n n_vegetarian_friendly:%s\n};\n' % (n_vegan_only, n_vegetarian_only, n_vegan_friendly, n_vegan_limited, n_vegetarian_friendly))
+
+
+def check_data():
+    """Check the temp file and replace the old VEGGIE_MAP file if it is ok."""
+>>>>>>> master
 
         else:
             print("temp file is to small!")

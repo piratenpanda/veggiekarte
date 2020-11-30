@@ -125,6 +125,7 @@ a:hover {
   height: 30px !important;
 }
 
+<<<<<<< HEAD
 /* Tooltip: Mimic Firefox's tooltip style */
 .leaflet-tooltip {
   background: rgba(0, 0, 0, 0.85);
@@ -148,6 +149,8 @@ a:hover {
   text-align: center;
 }
 
+=======
+>>>>>>> master
 /* Emojis and content in the popup in one line */
 .popupflex-container {
   display: flex;
@@ -194,11 +197,19 @@ a:hover {
   border-top-color: #434343;
   animation: 1.5s linear infinite spinner;
 }
+<<<<<<< HEAD
 /* Marker Icon: Color while following */
 .leaflet-control-locate.active.following a span {
   background-color: #fc8428;
 }
 /* Marker Icon: Color while active */
+=======
+/* Marker Icon Color while following */
+.leaflet-control-locate.active.following a span {
+  background-color: #fc8428;
+}
+/* Marker Icon Color while active */
+>>>>>>> master
 .leaflet-control-locate.active a span {
   background-color: #2074b6;
 }
