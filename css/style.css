@@ -52,7 +52,7 @@ a {
   color: #0078a8;
 }
 
-/* legend */
+/* Legend */
 .legendRow {
   display: table-cell;
   max-height: 15px;
@@ -75,7 +75,7 @@ a {
   padding-left: 10px;
 }
 
-/* marker properties */
+/* Marker properties */
 .marker {
   border-radius: 40% 5%;
   border-style: solid;
@@ -88,7 +88,7 @@ a {
   padding: 3px;
 }
 
-/* categorie properties */
+/* Categorie properties */
 .vegan_only {
   background: #005500;
   border-color: #117722;
@@ -110,7 +110,7 @@ a {
   border-color: DarkGreen;
 }
 
-/* Adjust the size of the layer button to the other buttons. */
+/* Layer button: Adjust the size to the other buttons. */
 .leaflet-control-layers-toggle {
   width: 26px !important;
   height: 26px !important;
@@ -121,7 +121,7 @@ a {
   height: 30px !important;
 }
 
-/* Mimic Firefox's tooltip style */
+/* Tooltip: Mimic Firefox's tooltip style */
 .leaflet-tooltip {
   background: rgba(0, 0, 0, 0.85);
   color: #fff;
@@ -130,7 +130,7 @@ a {
   border-radius: 5px;
 }
 
-/* Hide the pointing triangle */
+/* Tooltip: Hide the pointing triangle */
 .leaflet-tooltip-top:before,
 .leaflet-tooltip-bottom:before,
 .leaflet-tooltip-left:before,
