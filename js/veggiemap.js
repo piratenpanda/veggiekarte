@@ -48,7 +48,9 @@ function veggiemap() {
   let hash = new L.Hash(map);
 
   // Add info button
-  L.easyButton('fa-info', function(btn, map){
+  L.easyButton(
+    '<div class="info-button"></div>',
+    function(btn, map){
     toggleInfo();
   }, 'Information').addTo(map);
 
@@ -60,6 +62,9 @@ function veggiemap() {
 
   // Add button to search own position
   L.control.locate({
+    icon: 'locate_icon',
+    iconLoading: 'loading_icon',
+    showCompass: true,
     strings: {
       title: "Standort ermitteln",
       metersUnit: "Meter",
