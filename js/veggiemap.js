@@ -8,6 +8,7 @@ let vegetarian_only = L.featureGroup.subGroup(parentGroup, {});
 let vegan_friendly = L.featureGroup.subGroup(parentGroup, {});
 let vegan_limited = L.featureGroup.subGroup(parentGroup, {});
 let vegetarian_friendly = L.featureGroup.subGroup(parentGroup, {});
+
 let subgroups = { vegan_only, vegetarian_only, vegan_friendly, vegan_limited, vegetarian_friendly };
 let map;
 
@@ -37,17 +38,7 @@ function veggiemap() {
     "<div class='legendRow' title='Place which offers also vegetarian food, but no vegan.'><div class='firstCell vegetarian_friendly'></div><div class='secondCell'>vegetarian friendly</div><div class='thirdCell' id='n_vegetarian_friendly'></div></div><br /><br /><div id='date'></div>" : vegetarian_friendly
   };
 
-  // Add marker groups to the map
-  vegan_only.addTo(map);
-  vegetarian_only.addTo(map);
-  vegan_friendly.addTo(map);
-  vegan_limited.addTo(map);
-  vegetarian_friendly.addTo(map);
-
   veggiemap_populate(parentGroup);
-
-  // Add the parent marker group to the map
-  parentGroup.addTo(map);
 
   // Enable the on-demand popup and tooltip calculation
   parentGroup.bindPopup(calculatePopup);
@@ -120,10 +111,7 @@ function veggiemap_populate(parentGroup) {
     .then(response => response.json())
     .then(data => geojsonToMarkerGroups(data))
     .then(markerGroups => {
-        map.removeLayer(parentGroup);
         Object.entries(subgroups).forEach(([key, subgroup]) => {
-            map.removeLayer(subgroup);
-            subgroup.clearLayers();
             // Bulk add all the markers from a markerGroup to a subgroup in one go
             // Source: https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/5
             subgroup.addLayer(L.layerGroup(markerGroups[key]));
