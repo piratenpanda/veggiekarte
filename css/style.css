@@ -49,7 +49,11 @@ h1 {
 }
 
 a {
-  color: #0078a8;
+  color: #006688;
+  text-decoration: none;
+}
+a:hover {
+  color: #003388;
 }
 
 /* Legend */
