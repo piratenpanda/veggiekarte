@@ -142,6 +142,12 @@ a:hover {
   border-color: transparent;
 }
 
+/* PopupTitle */
+.mapPopupTitle {
+  font-size: medium;
+  text-align: center;
+}
+
 /* Emojis and content in the popup in one line */
 .popupflex-container {
   display: flex;
