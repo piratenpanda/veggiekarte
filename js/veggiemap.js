@@ -117,6 +117,9 @@ function veggiemap_populate(parentGroup) {
         });
         // Reveal all the markers and clusters on the map in one go
         map.addLayer(parentGroup);
+
+        // Call the function to put the numbers into the legend
+        stat_populate();
     })
     .catch(error  => {console.log('Request failed', error);});
 }
@@ -203,6 +206,3 @@ function calculatePopup(layer) {
 
 // Main function to put the markers to the map
 veggiemap();
-
-// Call the function to put the numbers into the legend
-stat_populate();
