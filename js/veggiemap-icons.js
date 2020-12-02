@@ -1,15 +1,3 @@
-/* Definition of the function startsWith
-   (Only for Internet Explorer 11 and older,
-   other browsers already know this function by default.) */
-if (!String.prototype.startsWith) {
-  Object.defineProperty(String.prototype, 'startsWith', {
-    value: function(search, rawPos) {
-      let pos = rawPos > 0 ? rawPos|0 : 0;
-      return this.substring(pos, pos + search.length) === search;
-    }
-  });
-}
-
 /* Variables for the icon color */
 const white_icon_color = "-white.svg";
 const black_icon_color = "-black.svg";
