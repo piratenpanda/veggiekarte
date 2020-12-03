@@ -195,7 +195,7 @@ function calculatePopup(layer) {
     popupContent += "<a href='https://openstreetmap.org/"+eTyp+"/"+eId+"' target='_blank' rel='noopener noreferrer'> *</a></div><hr/>"; // OSM link
 
     // Adding cuisine information to popup
-    if(eCui!=undefined){popupContent += "<div class='popupflex-container'><div>👩‍🍳</div><div>" + eCui +"</div></div>"}
+    if(eCui!=undefined){popupContent += "<div class='popupflex-container'><div>👩‍🍳</div><div>" + eCui.replaceAll(";", ", ").replaceAll("_", " ") +"</div></div>"}
 
     // Address
     let eAddr = ""
