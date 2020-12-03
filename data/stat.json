@@ -23,6 +23,14 @@
    "n_vegan_only": 2119,
    "n_vegetarian_friendly": 14162,
    "n_vegetarian_only": 1526
+  },
+  {
+   "date": "2020-12-03",
+   "n_vegan_friendly": 10729,
+   "n_vegan_limited": 170,
+   "n_vegan_only": 2149,
+   "n_vegetarian_friendly": 14196,
+   "n_vegetarian_only": 1527
   }
  ]
 }
