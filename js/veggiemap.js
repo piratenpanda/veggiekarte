@@ -115,7 +115,7 @@ function onEachFeatureStat(data) {
 
 // Function to get the information from the places json file.
 function veggiemap_populate(parentGroup) {
-  const url = "data/places.json";
+  const url = "data/places.min.json";
   fetch(url)
   .then(response => response.json())
   .then(data => geojsonToMarkerGroups(data))

@@ -28,13 +28,15 @@ SERVERS = [
 HTTP = urllib3.PoolManager()
 
 # # constants for the output files
-TIMESTAMP = str(datetime.datetime.now())                     # the actual date and time
-DATE = datetime.datetime.now().strftime("%Y-%m-%d")          # the actual date
-DATA_DIR = os.path.dirname(os.path.abspath(__file__))        # get the path of the directory of this script
-VEGGIEPLACES_TEMPFILE = DATA_DIR + "/data/places_temp.json"  # the temp file to store the data from the overpass request
-VEGGIEPLACES_FILE = DATA_DIR + "/data/places.json"           # the data file which will be used for the map
-VEGGIESTAT_FILE = DATA_DIR + "/data/stat.json"               # the data file which will be used for the map
-VEGGIEPLACES_OLDFILE = DATA_DIR + "/data/places_old.json"    # previous version of the data file (helpful to examine changes)
+TIMESTAMP = str(datetime.datetime.now())                             # the actual date and time
+DATE = datetime.datetime.now().strftime("%Y-%m-%d")                  # the actual date
+DATA_DIR = os.path.dirname(os.path.abspath(__file__))                # get the path of the directory of this script
+VEGGIEPLACES_TEMPFILE = DATA_DIR + "/data/places_temp.json"          # the temp file to store the data from the overpass request
+VEGGIEPLACES_TEMPFILE_MIN = DATA_DIR + "/data/places_temp.min.json"  # the minimized temp file
+VEGGIEPLACES_FILE = DATA_DIR + "/data/places.json"                   # the data file which will be used for the map
+VEGGIEPLACES_FILE_MIN = DATA_DIR + "/data/places.min.json"           # the minimized data file which will be used for the map
+VEGGIESTAT_FILE = DATA_DIR + "/data/stat.json"                       # the statistics data file which will be used for the map
+VEGGIEPLACES_OLDFILE = DATA_DIR + "/data/places_old.json"            # previous version of the data file (helpful to examine changes)
 
 # variables to handle the json data
 places_data = {}
@@ -316,11 +318,13 @@ def write_data(data):
 
 def check_data():
     """Check the temp file and replace the old VEGGIEPLACES_FILE if it is ok."""
-    if os.path.isfile(VEGGIEPLACES_TEMPFILE):                    # check if the temp file exists
-        if os.path.getsize(VEGGIEPLACES_TEMPFILE) > 500:         # check if the temp file isn't to small (see issue #21)
+    if os.path.isfile(VEGGIEPLACES_TEMPFILE_MIN):                        # check if the temp file exists
+        if os.path.getsize(VEGGIEPLACES_TEMPFILE_MIN) > 500:             # check if the temp file isn't to small (see issue #21)
             print("rename " + VEGGIEPLACES_TEMPFILE + " to " + VEGGIEPLACES_FILE)
-            os.rename(VEGGIEPLACES_FILE, VEGGIEPLACES_OLDFILE)   # rename old file
-            os.rename(VEGGIEPLACES_TEMPFILE, VEGGIEPLACES_FILE)  # rename temp file to new file
+            os.rename(VEGGIEPLACES_FILE, VEGGIEPLACES_OLDFILE)           # rename old file
+            os.rename(VEGGIEPLACES_TEMPFILE, VEGGIEPLACES_FILE)          # rename temp file to new file
+            print("rename " + VEGGIEPLACES_TEMPFILE_MIN + " to " + VEGGIEPLACES_FILE_MIN)
+            os.rename(VEGGIEPLACES_TEMPFILE_MIN, VEGGIEPLACES_FILE_MIN)  # rename minimized temp file to new file
 
             # Write the new statistic file
             outfilestat = open(VEGGIESTAT_FILE, "w")
@@ -329,7 +333,7 @@ def check_data():
 
         else:
             print("temp file is to small!")
-            print(os.path.getsize(VEGGIEPLACES_TEMPFILE))
+            print(os.path.getsize(VEGGIEPLACES_TEMPFILE_MIN))
     else:
         print("temp file don't exists!")
 
@@ -342,9 +346,16 @@ def main():
     # Write data
     if osm_data is not None:
         write_data(osm_data)
+
+        # Write file in pretty format
         outfile = open(VEGGIEPLACES_TEMPFILE, "w")
         outfile.write(json.dumps(places_data, indent=1, sort_keys=True))
         outfile.close()
+
+        # Write file in minimized format
+        outfile_min = open(VEGGIEPLACES_TEMPFILE_MIN, "w")
+        outfile_min.write(json.dumps(places_data, indent=None, sort_keys=True, separators=(',', ':')))
+        outfile_min.close()
 
         check_data()
     else:
