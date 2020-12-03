@@ -31,12 +31,13 @@ HTTP = urllib3.PoolManager()
 TIMESTAMP = str(datetime.datetime.now())                             # the actual date and time
 DATE = datetime.datetime.now().strftime("%Y-%m-%d")                  # the actual date
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))                # get the path of the directory of this script
-VEGGIEPLACES_TEMPFILE = DATA_DIR + "/data/places_temp.json"          # the temp file to store the data from the overpass request
+VEGGIEPLACES_TEMPFILE = DATA_DIR + "/data/places_temp.json"          # the temp file to store the data
 VEGGIEPLACES_TEMPFILE_MIN = DATA_DIR + "/data/places_temp.min.json"  # the minimized temp file
 VEGGIEPLACES_FILE = DATA_DIR + "/data/places.json"                   # the data file which will be used for the map
 VEGGIEPLACES_FILE_MIN = DATA_DIR + "/data/places.min.json"           # the minimized data file which will be used for the map
 VEGGIESTAT_FILE = DATA_DIR + "/data/stat.json"                       # the statistics data file which will be used for the map
 VEGGIEPLACES_OLDFILE = DATA_DIR + "/data/places_old.json"            # previous version of the data file (helpful to examine changes)
+OVERPASS_FILE = DATA_DIR + "/data/overpass.json"                     # the raw overpass output file (useful for later use)
 
 # variables to handle the json data
 places_data = {}
@@ -149,6 +150,11 @@ def get_data_osm():
         # Check the status of the request
         if osm_request.status == 200:
             print("Received answer successfully.")
+
+            # Store the raw output in a file (for any later use)
+            with open(OVERPASS_FILE, "wb") as overpass_file:
+                overpass_file.write(osm_request.data)
+
             result = json.loads(osm_request.data.decode("utf-8"))
         elif osm_request.status == 400:
             print("HTTP error code ", osm_request.status, ": Bad Request")
@@ -341,7 +347,10 @@ def check_data():
 def main():
     """Call the functions to get and write the osm data."""
     # Get data
-    osm_data = get_data_osm()
+    if len(sys.argv) < 2:
+        osm_data = get_data_osm()
+    else:
+        osm_data = json.load(open(sys.argv[1]))
 
     # Write data
     if osm_data is not None:
