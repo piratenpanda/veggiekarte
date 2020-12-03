@@ -44,6 +44,13 @@ function veggiemap() {
   parentGroup.bindPopup(calculatePopup);
   parentGroup.bindTooltip(calculateTooltip);
 
+  // Close the tooltip when opening the popup
+  parentGroup.on("click", function(e){
+    if(parentGroup.isPopupOpen()){
+      parentGroup.closeTooltip();
+    }
+  })
+
   // Add hash to the url
   let hash = new L.Hash(map);
 
