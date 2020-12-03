@@ -8,8 +8,8 @@ let vegetarian_only = L.featureGroup.subGroup(parentGroup, {});
 let vegan_friendly = L.featureGroup.subGroup(parentGroup, {});
 let vegan_limited = L.featureGroup.subGroup(parentGroup, {});
 let vegetarian_friendly = L.featureGroup.subGroup(parentGroup, {});
-
 let subgroups = { vegan_only, vegetarian_only, vegan_friendly, vegan_limited, vegetarian_friendly };
+
 let map;
 
 
@@ -169,7 +169,7 @@ function calculateTooltip(layer) {
 
 // Calculate popup content for a given marker layer
 function calculatePopup(layer) {
-    // Get the Information
+    // Get the information
     let feature = layer.feature;
     let eId  = feature.properties._id;
     let eLatLon = [feature.geometry.coordinates[1],feature.geometry.coordinates[0]];
@@ -183,6 +183,8 @@ function calculatePopup(layer) {
     let eEma = feature.properties.contact_email;
     let ePho = feature.properties.contact_phone;
     let eWeb = feature.properties.contact_website;
+    let eFac = feature.properties.contact_facebook;
+    let eIns = feature.properties.contact_instagram;
     let eCui = feature.properties.cuisine;
     let eIco = feature.properties.icon;
     let eOpe = feature.properties.opening_hours;
@@ -211,6 +213,8 @@ function calculatePopup(layer) {
     if(ePho!=undefined){popupContent += "<div class='popupflex-container'><div>☎️</div><div><a href='tel:" + ePho + "' target='_blank' rel='noopener noreferrer'>" + ePho + "</a></div></div>"}
     if(eEma!=undefined){popupContent += "<div class='popupflex-container'><div>📧</div><div><a href='mailto:" + eEma + "' target='_blank' rel='noopener noreferrer'>" + eEma + "</a></div></div>"}
     if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href='" + eWeb + "' target='_blank' rel='noopener noreferrer'>" + eWeb.replace("https://", "") + "</a></div></div>"}
+    if(eFac!=undefined){popupContent += "<div class='popupflex-container'><div>🇫</div><div><a href='" + eFac + "' target='_blank' rel='noopener noreferrer'>" + decodeURI(eFac).replace("https://", "") + "</a></div></div>"}
+    if(eIns!=undefined){popupContent += "<div class='popupflex-container'><div>📸</div><div><a href='" + eIns + "' target='_blank' rel='noopener noreferrer'>" + eIns.replace("https://", "") + "</a></div></div>"}
 
     return popupContent;
 }
