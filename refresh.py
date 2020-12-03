@@ -7,6 +7,7 @@ vegetarian = * from OpenStreetMap and fill them in a file.
 import os         # for handling files
 import time       # for sleep
 import json       # read and write json
+import gzip       # for compressing the json file
 import sys        # to check the python version
 import datetime   # for the timestamp
 import urllib3    # for the HTTP GET request
@@ -33,8 +34,10 @@ DATE = datetime.datetime.now().strftime("%Y-%m-%d")                  # the actua
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))                # get the path of the directory of this script
 VEGGIEPLACES_TEMPFILE = DATA_DIR + "/data/places_temp.json"          # the temp file to store the data
 VEGGIEPLACES_TEMPFILE_MIN = DATA_DIR + "/data/places_temp.min.json"  # the minimized temp file
+VEGGIEPLACES_TEMPFILE_GZIP = DATA_DIR + "/data/places_temp.min.json.gz"  # the gzipped temp file
 VEGGIEPLACES_FILE = DATA_DIR + "/data/places.json"                   # the data file which will be used for the map
 VEGGIEPLACES_FILE_MIN = DATA_DIR + "/data/places.min.json"           # the minimized data file which will be used for the map
+VEGGIEPLACES_FILE_GZIP = DATA_DIR + "/data/places.min.json.gz"       # the gzipped data file which will be used for the map
 VEGGIESTAT_FILE = DATA_DIR + "/data/stat.json"                       # the statistics data file which will be used for the map
 VEGGIEPLACES_OLDFILE = DATA_DIR + "/data/places_old.json"            # previous version of the data file (helpful to examine changes)
 OVERPASS_FILE = DATA_DIR + "/data/overpass.json"                     # the raw overpass output file (useful for later use)
@@ -324,13 +327,15 @@ def write_data(data):
 
 def check_data():
     """Check the temp file and replace the old VEGGIEPLACES_FILE if it is ok."""
-    if os.path.isfile(VEGGIEPLACES_TEMPFILE_MIN):                        # check if the temp file exists
-        if os.path.getsize(VEGGIEPLACES_TEMPFILE_MIN) > 500:             # check if the temp file isn't to small (see issue #21)
+    if os.path.isfile(VEGGIEPLACES_TEMPFILE_GZIP):                        # check if the temp file exists
+        if os.path.getsize(VEGGIEPLACES_TEMPFILE_GZIP) > 500:             # check if the temp file isn't to small (see issue #21)
             print("rename " + VEGGIEPLACES_TEMPFILE + " to " + VEGGIEPLACES_FILE)
             os.rename(VEGGIEPLACES_FILE, VEGGIEPLACES_OLDFILE)           # rename old file
             os.rename(VEGGIEPLACES_TEMPFILE, VEGGIEPLACES_FILE)          # rename temp file to new file
             print("rename " + VEGGIEPLACES_TEMPFILE_MIN + " to " + VEGGIEPLACES_FILE_MIN)
             os.rename(VEGGIEPLACES_TEMPFILE_MIN, VEGGIEPLACES_FILE_MIN)  # rename minimized temp file to new file
+            print("rename " + VEGGIEPLACES_TEMPFILE_GZIP + " to " + VEGGIEPLACES_FILE_GZIP)
+            os.rename(VEGGIEPLACES_TEMPFILE_GZIP, VEGGIEPLACES_FILE_GZIP)  # rename minimized temp file to new file
 
             # Write the new statistic file
             outfilestat = open(VEGGIESTAT_FILE, "w")
@@ -365,6 +370,10 @@ def main():
         outfile_min = open(VEGGIEPLACES_TEMPFILE_MIN, "w")
         outfile_min.write(json.dumps(places_data, indent=None, sort_keys=True, separators=(',', ':')))
         outfile_min.close()
+
+        # Write file in gzipped format
+        with gzip.open(VEGGIEPLACES_TEMPFILE_GZIP, "wt", encoding="UTF-8") as outfile_gzip:
+            outfile_gzip.write(json.dumps(places_data, indent=None, sort_keys=True, separators=(',', ':')))
 
         check_data()
     else:
