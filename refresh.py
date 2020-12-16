@@ -328,7 +328,7 @@ def write_data(data):
 def check_data():
     """Check the temp file and replace the old VEGGIEPLACES_FILE if it is ok."""
     if os.path.isfile(VEGGIEPLACES_TEMPFILE_GZIP):                        # check if the temp file exists
-        if os.path.getsize(VEGGIEPLACES_TEMPFILE_GZIP) > 500:             # check if the temp file isn't to small (see issue #21)
+        if os.path.getsize(VEGGIEPLACES_TEMPFILE_GZIP) > 500:             # check if the temp file isn't too small (see issue #21)
             print("rename " + VEGGIEPLACES_TEMPFILE + " to " + VEGGIEPLACES_FILE)
             os.rename(VEGGIEPLACES_FILE, VEGGIEPLACES_OLDFILE)           # rename old file
             os.rename(VEGGIEPLACES_TEMPFILE, VEGGIEPLACES_FILE)          # rename temp file to new file
@@ -343,7 +343,7 @@ def check_data():
             outfilestat.close()
 
         else:
-            print("New gzip temp file is to small!")
+            print("New gzip temp file is too small!")
             print(os.path.getsize(VEGGIEPLACES_TEMPFILE_GZIP))
     else:
         print("temp file don't exists!")
