@@ -118,7 +118,7 @@ function veggiemap_populate(parentGroup) {
   const url = "data/places.min.json";
   fetch(url)
   .then(response => response.json())
-  .then(data => geojsonToMarkerGroups(data))
+  .then(geojson => geojsonToMarkerGroups(geojson.features))
   .then(markerGroups => {
     Object.entries(subgroups).forEach(([key, subgroup]) => {
       // Bulk add all the markers from a markerGroup to a subgroup in one go
@@ -136,18 +136,18 @@ function veggiemap_populate(parentGroup) {
 }
 
 // Process the places GeoJSON into the groups of markers
-function geojsonToMarkerGroups(data) {
+function geojsonToMarkerGroups(features) {
     const groups = {};
-    data.features.forEach(feature => {
+    features.forEach(feature => {
         const eCat = feature.properties.category;
         if (!groups[eCat]) groups[eCat] = [];
-        groups[eCat].push(onEachFeature(feature));
+        groups[eCat].push(getMarker(feature));
     });
     return groups;
 }
 
-// Function to handle the places data.
-function onEachFeature(feature) {
+// Function to get the marker.
+function getMarker(feature) {
     let eLatLon = [feature.geometry.coordinates[1],feature.geometry.coordinates[0]];
     let eSym = feature.properties.symbol;
     let eNam = feature.properties.name;
