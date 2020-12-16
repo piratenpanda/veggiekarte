@@ -343,8 +343,8 @@ def check_data():
             outfilestat.close()
 
         else:
-            print("temp file is to small!")
-            print(os.path.getsize(VEGGIEPLACES_TEMPFILE_MIN))
+            print("New gzip temp file is to small!")
+            print(os.path.getsize(VEGGIEPLACES_TEMPFILE_GZIP))
     else:
         print("temp file don't exists!")
 
@@ -355,6 +355,7 @@ def main():
     if len(sys.argv) < 2:
         osm_data = get_data_osm()
     else:
+        # For testing without new osm requests
         osm_data = json.load(open(sys.argv[1]))
 
     # Write data
