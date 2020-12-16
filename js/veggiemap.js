@@ -82,6 +82,9 @@ function veggiemap() {
 
   // Add layer control button
   L.control.layers(null, overlays).addTo(map);
+
+  // Add scale control
+  L.control.scale().addTo(map);
 }
 
 // Function to toogle the visibility of the Info box.
