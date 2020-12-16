@@ -43,6 +43,13 @@ body {
   padding: 10px;
   border-radius: 10px;
 }
+/* Info box: Scrollable for small devices. */
+@media screen and (max-height: 812px) {
+  #information {
+    max-height: 95%;
+    overflow-y: scroll;
+  }
+}
 
 h1 {
   font-size: 14pt;
