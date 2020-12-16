@@ -412,7 +412,7 @@ var leafletControlGeocoder = (function (L) {
         serviceUrl: 'https://geocoder.api.here.com/6.2/',
         app_id: '',
         app_code: '',
-        reverseGeocodeProxRadius: null
+        apiKey: ''
       };
       L.Util.setOptions(this, options);
       if (options.apiKey) throw Error('apiKey is not supported, use app_id/app_code instead!');
@@ -471,12 +471,94 @@ var leafletControlGeocoder = (function (L) {
     return HERE;
   }();
   /**
+   * Implementation of the new [HERE Geocoder API](https://developer.here.com/documentation/geocoding-search-api/api-reference-swagger.html)
+   */
+
+  var HEREv2 = /*#__PURE__*/function () {
+    function HEREv2(options) {
+      this.options = {
+        serviceUrl: 'https://geocode.search.hereapi.com/v1',
+        apiKey: '',
+        app_id: '',
+        app_code: ''
+      };
+      L.Util.setOptions(this, options);
+    }
+
+    var _proto2 = HEREv2.prototype;
+
+    _proto2.geocode = function geocode(query, cb, context) {
+      var params = geocodingParams(this.options, {
+        q: query,
+        apiKey: this.options.apiKey
+      });
+
+      if (!params.at && !params["in"]) {
+        throw Error('at / in parameters not found. Please define coordinates (at=latitude,longitude) or other (in) in your geocodingQueryParams.');
+      }
+
+      this.getJSON(this.options.serviceUrl + '/discover', params, cb, context);
+    };
+
+    _proto2.reverse = function reverse(location, scale, cb, context) {
+      var _proxRadius = this.options.reverseGeocodeProxRadius ? this.options.reverseGeocodeProxRadius : null;
+
+      var proxRadius = _proxRadius ? ',' + encodeURIComponent(_proxRadius) : '';
+      var params = reverseParams(this.options, {
+        at: encodeURIComponent(location.lat) + ',' + encodeURIComponent(location.lng),
+        apiKey: this.options.apiKey
+      });
+
+      if (proxRadius) {
+        params.limit = proxRadius;
+      }
+
+      this.getJSON(this.options.serviceUrl + '/revgeocode', params, cb, context);
+    };
+
+    _proto2.getJSON = function getJSON$1(url, params, cb, context) {
+      getJSON(url, params, function (data) {
+        var results = [];
+
+        if (data.items && data.items.length) {
+          for (var i = 0; i <= data.items.length - 1; i++) {
+            var item = data.items[i];
+            var latLng = L.latLng(item.position.lat, item.position.lng);
+            var bbox = void 0;
+
+            if (item.mapView) {
+              bbox = L.latLngBounds(L.latLng(item.mapView.south, item.mapView.west), L.latLng(item.mapView.north, item.mapView.east));
+            } else {
+              // Using only position when not provided
+              bbox = L.latLngBounds(L.latLng(item.position.lat, item.position.lng), L.latLng(item.position.lat, item.position.lng));
+            }
+
+            results[i] = {
+              name: item.address.label,
+              properties: item.address,
+              bbox: bbox,
+              center: latLng
+            };
+          }
+        }
+
+        cb.call(context, results);
+      });
+    };
+
+    return HEREv2;
+  }();
+  /**
    * [Class factory method](https://leafletjs.com/reference.html#class-class-factories) for {@link HERE}
    * @param options the options
    */
 
   function here(options) {
-    return new HERE(options);
+    if (options.apiKey) {
+      return new HEREv2(options);
+    } else {
+      return new HERE(options);
+    }
   }
 
   /**
@@ -1393,6 +1475,7 @@ var leafletControlGeocoder = (function (L) {
     Google: Google,
     google: google,
     HERE: HERE,
+    HEREv2: HEREv2,
     here: here,
     parseLatLng: parseLatLng,
     LatLng: LatLng,
