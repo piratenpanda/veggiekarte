@@ -267,15 +267,15 @@ def write_data(data):
         if "addr:country" in tags:
             place_obj["properties"]["addr_country"] = tags.get("addr:country", "")
         if "contact:website" in tags:
-            place_obj["properties"]["contact_website"] = tags.get("contact:website", "")
+            place_obj["properties"]["contact_website"] = tags.get("contact:website", "").rstrip("/")
         elif "website" in tags:
-            place_obj["properties"]["contact_website"] = tags.get("website", "")
+            place_obj["properties"]["contact_website"] = tags.get("website", "").rstrip("/")
         if "contact:facebook" in tags:
-            place_obj["properties"]["contact_facebook"] = tags.get("contact:facebook", "")
+            place_obj["properties"]["contact_facebook"] = tags.get("contact:facebook", "").rstrip("/")
         elif "facebook" in tags:
-            place_obj["properties"]["contact_facebook"] = tags.get("facebook", "")
+            place_obj["properties"]["contact_facebook"] = tags.get("facebook", "").rstrip("/")
         if "contact:instagram" in tags:
-            place_obj["properties"]["contact_instagram"] = tags.get("contact:instagram", "")
+            place_obj["properties"]["contact_instagram"] = tags.get("contact:instagram", "").rstrip("/")
         if "contact:email" in tags:
             place_obj["properties"]["contact_email"] = tags.get("contact:email", "")
         elif "email" in tags:
