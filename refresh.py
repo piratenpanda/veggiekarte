@@ -133,11 +133,13 @@ def get_data_osm():
     overpass_query = '?data=[out:json];('
     # # Collect the vegan nodes and ways
     overpass_query += 'node["diet:vegan"~"yes|only|limited"];'\
-                      'way["diet:vegan"~"yes|only|limited"];'
+                      'way["diet:vegan"~"yes|only|limited"];'\
+                      'relation["diet:vegan"~"yes|only|limited"];'
     # # Collect the vegetarian nodes and ways
     overpass_query += 'node["diet:vegetarian"~"yes|only"];'\
-                      'way["diet:vegetarian"~"yes|only"];'
-    # # End of the query and use "out center" to reduce the geometry of ways to a single coordinate
+                      'way["diet:vegetarian"~"yes|only"];'\
+                      'relation["diet:vegetarian"~"yes|only|limited"];'
+    # # End of the query and use "out center" to reduce the geometry of ways and relations to a single coordinate
     overpass_query += ');out+center;'
 
     # Sending a request to one server after another until one gives a valid answer or
@@ -211,7 +213,7 @@ def write_data(data):
             lat = osm_element.get("lat", None)
             lon = osm_element.get("lon", None)
 
-        elif element_type == "way":
+        elif element_type == "way" or element_type == "relation":
             center_coordinates = osm_element.get("center", None)  # get the coordinates from the center of the object
             lat = center_coordinates.get("lat", None)
             lon = center_coordinates.get("lon", None)
