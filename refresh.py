@@ -229,13 +229,18 @@ def write_data(data):
         place_obj["properties"]["icon"] = icon[0]
         place_obj["properties"]["symbol"] = icon[1]
 
+        # Get a name
         if "name" in tags:
             name = tags["name"]
-            # # Double quotes could escape code, so we have to replace them:
-            name = name.replace('"', '”')
         else:
-            # # If there is no name given from osm, we build one.
-            name = "%s %s" % (element_type, element_id)
+            # If there is no name, take the english if exists
+            if "name:en" in tags:
+                name = tags["name:en"]
+            else:
+                # If there is no name given from osm, we build one
+                name = "%s %s" % (element_type, element_id)
+        # Double quotes could escape code, so we have to replace them:
+        name = name.replace('"', '”')
         place_obj["properties"]["name"] = name
 
         # Give the object a category
