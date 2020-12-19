@@ -105,6 +105,12 @@ function toggleInfo() {
     }
 }
 
+// Function to hide the spinner.
+function hideSpinner() {
+  let element = document.getElementById('spinner');
+  element.style.display = "none";
+}
+
 // Function to put the numbers of markers into the legend.
 //   The numbers are calculated using the refresh.py script and stored in the places.json file.
 function stat_populate() {
@@ -140,6 +146,9 @@ function veggiemap_populate(parentGroup) {
 
     // Call the function to put the numbers into the legend
     stat_populate();
+
+    // Hide spinner
+    hideSpinner();
   })
   .catch(error  => {console.log('Request failed', error);});
 }

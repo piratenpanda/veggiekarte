@@ -173,6 +173,12 @@ a:hover {
   display: inline-block;
 }
 
+/* Spinner shown while loading the markers */
+#spinner {
+  margin: auto;
+  padding: 7px;
+  display: block;
+}
 
 /* * Locatecontrol * */
 /* Marker Icon */
@@ -197,7 +203,9 @@ a:hover {
   margin-top: 4px;
   display: inline-block;
   border-radius: 50%;
-  border: solid 4px #c0c0c0;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #c0c0c0;
   border-top-color: #434343;
   animation: 1.5s linear infinite spinner;
 }
