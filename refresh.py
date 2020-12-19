@@ -269,6 +269,10 @@ def write_data(data):
                 place_obj["properties"]["addr_street"] += " " + tags.get("addr:housenumber", "")
         if "addr:city" in tags:
             place_obj["properties"]["addr_city"] = tags.get("addr:city", "")
+        else:
+            if "addr:suburb" in tags:
+                # In some regions (e.g. in USA and Australia) they often tag suburbs instead of city
+                place_obj["properties"]["addr_city"] = tags.get("addr:suburb", "")
         if "addr:postcode" in tags:
             place_obj["properties"]["addr_postcode"] = tags.get("addr:postcode", "")
         if "addr:country" in tags:
