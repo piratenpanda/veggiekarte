@@ -26,8 +26,12 @@ function veggiemap() {
     layers: [tileOSM],
     center: [51.43, 17.58],
     zoom: 4,
-    worldCopyJump: true
+    worldCopyJump: true,
+    zoomControl: false
   });
+
+  // Add zoom control
+  L.control.zoom({position:'topright'}).addTo(map);
 
   // Define overlays (each marker group gets a layer) + add legend to the description
   let overlays = {
@@ -55,15 +59,16 @@ function veggiemap() {
   let hash = new L.Hash(map);
 
   // Add info button
-  L.easyButton(
+  let infoButton = L.easyButton(
     '<div class="info-button"></div>',
     function(btn, map){
     toggleInfo();
   }, 'Information').addTo(map);
+  infoButton.setPosition('topright');
 
   // Add button for search places
   L.Control.geocoder({
-    placeholder: 'Nach Ortsnamen suchen...',
+    placeholder: 'Nach Ortsnamen suchen…',
     errorMessage: 'Nichts gefunden.'
   }).addTo(map);
 
@@ -77,11 +82,15 @@ function veggiemap() {
       metersUnit: "Meter",
       popup: "Du befindest dich maximal {distance} {unit} entfernt von diesem Punkt."
     },
-    locateOptions: {maxZoom: 16}
+    locateOptions: {maxZoom: 16},
+    position:'topright'
   }).addTo(map);
 
   // Add layer control button
   L.control.layers(null, overlays).addTo(map);
+
+  // Add scale control
+  L.control.scale().addTo(map);
 }
 
 // Function to toogle the visibility of the Info box.
@@ -94,6 +103,12 @@ function toggleInfo() {
     else {
       element.style.display = "none";
     }
+}
+
+// Function to hide the spinner.
+function hideSpinner() {
+  let element = document.getElementById('spinner');
+  element.style.display = "none";
 }
 
 // Function to put the numbers of markers into the legend.
@@ -131,6 +146,9 @@ function veggiemap_populate(parentGroup) {
 
     // Call the function to put the numbers into the legend
     stat_populate();
+
+    // Hide spinner
+    hideSpinner();
   })
   .catch(error  => {console.log('Request failed', error);});
 }
