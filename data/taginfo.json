@@ -1,0 +1,148 @@
+{
+  "data_format": 1,
+  "data_specification_url": "https://wiki.openstreetmap.org/wiki/Taginfo/Projects",
+  "data_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/data/taginfo.json",
+  "project": {
+    "name": "Veggiekarte",
+    "description": "A map to find vegetarian and vegan places in your area",
+    "project_url": "https://www.veggiekarte.de",
+    "doc_url": "https://github.com/piratenpanda/veggiekarte",
+    "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/favicon/favicon-16x16.png",
+    "contact_name": "piratenpanda",
+    "contact_email": "https://github.com/piratenpanda"
+  },
+  "tags": [
+    {
+      "key": "diet:vegan",
+      "description": "🟢 Used to create markers on a map"
+    },
+    {
+      "key": "diet:vegetarian",
+      "description": "⚪ Used to create markers on a map"
+    },
+    {
+      "key": "cuisine",
+      "description": "👩‍🍳 Emoji and value displayed in popup"
+    },
+    {
+      "key": "cuisine",
+      "value": "pizza",
+      "description": "🍕 Displayed as an icon in marker and as an emoji in tooltip and popup",
+      "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/third-party/icons/maki/restaurant-pizza-black.svg"
+    },
+    {
+      "key": "amenity",
+      "value": "bar",
+      "description": "🍸 Displayed as an icon in marker and as an emoji in tooltip and popup",
+      "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/third-party/icons/openstreetmap-carto/bar-black.svg"
+    },
+    {
+      "key": "amenity",
+      "value": "cafe",
+      "description": "☕ Displayed as an icon in marker and as an emoji in tooltip and popup",
+      "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/third-party/icons/openstreetmap-carto/cafe-black.svg"
+    },
+    {
+      "key": "amenity",
+      "value": "fast_food",
+      "description": "🍔 Displayed as an icon in marker and as an emoji in tooltip and popup",
+      "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/third-party/icons/openstreetmap-carto/fast_food-black.svg"
+    },
+    {
+      "key": "amenity",
+      "value": "ice_cream",
+      "description": "🍨 Displayed as an icon in marker and as an emoji in tooltip and popup",
+      "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/third-party/icons/openstreetmap-carto/ice_cream-black.svg"
+    },
+    {
+      "key": "amenity",
+      "value": "pub",
+      "description": "🍻 Displayed as an icon in marker and as an emoji in tooltip and popup",
+      "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/third-party/icons/openstreetmap-carto/pub-black.svg"
+    },
+    {
+      "key": "amenity",
+      "value": "restaurant",
+      "description": "🍴 Displayed as an icon in marker and as an emoji in tooltip and popup",
+      "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/third-party/icons/openstreetmap-carto/restaurant-black.svg"
+    },
+    {
+      "key": "shop",
+      "value": "bakery",
+      "description": "🥨 Displayed as an icon in marker and as an emoji in tooltip and popup",
+      "icon_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/third-party/icons/openstreetmap-carto/bakery-black.svg"
+    },
+    {
+      "key": "opening_hours:covid19",
+      "description": "🕖 Value and emoji displayed in popup"
+    },
+    {
+      "key": "opening_hours",
+      "description": "🕖 Value and emoji displayed in popup if ‘opening_hours:covid19’ tag is not present"
+    },
+    {
+      "key": "contact:email",
+      "description": "📧 Value and emoji displayed in popup"
+    },
+    {
+      "key": "email",
+      "description": "📧 Value and emoji displayed in popup if ‘contact:email’ tag is not present"
+    },
+    {
+      "key": "contact:facebook",
+      "description": "🇫 Value and emoji displayed in popup"
+    },
+    {
+      "key": "facebook",
+      "description": "🇫 Value and emoji displayed in popup if ‘contact:facebook’ tag is not present"
+    },
+    {
+      "key": "contact:instagram",
+      "description": "📸 Value and emoji displayed in popup"
+    },
+    {
+      "key": "instagram",
+      "description": "📸 Value and emoji displayed in popup if ‘contact:instagram’ tag is not present"
+    },
+    {
+      "key": "contact:phone",
+      "description": "☎️ Value and emoji displayed in popup"
+    },
+    {
+      "key": "phone",
+      "description": "☎️ Value and emoji displayed in popup if ‘contact:phone’ tag is not present"
+    },
+    {
+      "key": "contact:website",
+      "description": "🌐 Value and emoji displayed in popup"
+    },
+    {
+      "key": "website",
+      "description": "🌐 Value and emoji displayed in popup"
+    },
+    {
+      "key": "addr:housenumber",
+      "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "addr:street",
+      "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "addr:city",
+      "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "addr:postcode",
+      "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "addr:country",
+      "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "name",
+      "description": "Displayed in tooltip and in popup"
+    }
+  ]
+}
