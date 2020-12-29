@@ -1,6 +1,5 @@
 {
   "data_format": 1,
-  "data_specification_url": "https://wiki.openstreetmap.org/wiki/Taginfo/Projects",
   "data_url": "https://raw.githubusercontent.com/piratenpanda/veggiekarte/master/data/taginfo.json",
   "project": {
     "name": "Veggiekarte",
