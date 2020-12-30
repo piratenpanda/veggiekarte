@@ -14,10 +14,27 @@
   "tags": [
     {
       "key": "diet:vegan",
+      "value": "yes",
+      "description": "🟢 Used to create markers on a map"
+    },
+    {
+      "key": "diet:vegan",
+      "value": "only",
+      "description": "🟢 Used to create markers on a map"
+    },
+    {
+      "key": "diet:vegan",
+      "value": "limited",
       "description": "🟢 Used to create markers on a map"
     },
     {
       "key": "diet:vegetarian",
+      "value": "yes",
+      "description": "⚪ Used to create markers on a map"
+    },
+    {
+      "key": "diet:vegetarian",
+      "value": "only",
       "description": "⚪ Used to create markers on a map"
     },
     {
