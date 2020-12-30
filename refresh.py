@@ -131,14 +131,10 @@ def get_data_osm():
     # Preparing the string for the Overpass request
     # Define export format
     overpass_query = '?data=[out:json];('
-    # # Collect the vegan nodes and ways
-    overpass_query += 'node["diet:vegan"~"yes|only|limited"];'\
-                      'way["diet:vegan"~"yes|only|limited"];'\
-                      'relation["diet:vegan"~"yes|only|limited"];'
-    # # Collect the vegetarian nodes and ways
-    overpass_query += 'node["diet:vegetarian"~"yes|only"];'\
-                      'way["diet:vegetarian"~"yes|only"];'\
-                      'relation["diet:vegetarian"~"yes|only|limited"];'
+    # # Collect the vegan nodes, ways and relations
+    overpass_query += 'nwr["diet:vegan"~"yes|only|limited"];'
+    # # Collect the vegetarian nodes, ways and relations
+    overpass_query += 'nwr["diet:vegetarian"~"yes|only"];'
     # # End of the query and use "out center" to reduce the geometry of ways and relations to a single coordinate
     overpass_query += ');out+center;'
 
