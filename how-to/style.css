@@ -3,9 +3,27 @@ body {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: none;
   border-collapse: collapse;
   padding: 10px;
+}
+
+th {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    text-align: left;
+}
+
+td {
+  padding-right: 30px;
+}
+
+tr {
+  border-bottom: 1px solid black;
+}
+
+tr:last-of-type {
+    border-bottom: 2px solid black;
 }
 
 code {
@@ -27,3 +45,5 @@ code {
   width: 80%;
   margin-left: 25px;
 }
+
+
