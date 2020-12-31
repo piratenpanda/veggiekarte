@@ -79,7 +79,7 @@ ICON_MAPPING = {
     "leisure:sports_centre": ["sports", "🤼"],
     "leisure:stadium": ["maki_stadium", "🏟️"],
     "shop:alcohol": ["alcohol", "🍷"],
-    "shop:bakery": ["bakery", "🥯"],
+    "shop:bakery": ["bakery", "🥨"],
     "shop:beauty": ["beauty", "💇"],
     "shop:bicycle": ["bicycle", "🚲"],
     "shop:books": ["library", "📚"],
