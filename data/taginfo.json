@@ -134,7 +134,7 @@
     },
     {
       "key": "website",
-      "description": "🌐 Value and emoji displayed in popup"
+      "description": "🌐 Value and emoji displayed in popup if ‘contact:website’ tag is not present"
     },
     {
       "key": "addr:housenumber",
@@ -147,6 +147,10 @@
     {
       "key": "addr:city",
       "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "addr:suburb",
+      "description": "📍 Value and emoji displayed in popup if ‘addr:city’ tag is not present"
     },
     {
       "key": "addr:postcode",
