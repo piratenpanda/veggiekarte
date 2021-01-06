@@ -1,0 +1,55 @@
+﻿{
+  "en": {
+    "translation": {
+      "__comment__": "English localization",
+      "texts": {
+        "will open soon": ", but will open soon",
+        "will close soon": ", but will close soon",
+        "more_info": "More information",
+        "content-welcome-heading": "Welcome",
+        "content-welcome-text": "On veggiekarte.de you can find all vegan and vegetarian restaurants, ice cream parlors, cafés etc. registered in OpenStreetMap. Simply use the search field to search for your place or your street. All green icons are locations with vegan options. Icons that are not green offer vegetarian but not vegan options.",
+        "content-osm-heading": "About OpenStreetMap",
+        "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> is a free world map and works similarly to Wikipedia. Everyone can participate and enter information. This means that the map is always up to date and full of useful information. Anyone who has suggestions for improvement or finds errors in the map can simply enter them or improve them.",
+        "content-contribute-heading": "Contribute information",
+        "content-contribute-text": "If you yourself know restaurants, cafes, ice cream parlors or food kiosks that are not yet on the map, or run one yourself, then you can simply add it yourself. To do this, you have to add the 'diet: vegan' or 'diet: vegetarian' tag at your location in OpenStreetMap. Instructions are available <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>here</a>.",
+        "content-further-heading": "Further",
+        "content-further-text": "Veggiekarte is updated automatically every hour. You can find the code on <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.",
+        "i18n_vegan_only": "vegan only",
+        "i18n_vegan_only_title": "Place which offers only vegan food.",
+        "i18n_vegetarian_only": "vegetarian only + vegan",
+        "i18n_vegetarian_only_title": "Place which offers only vegetarian and vegan food.",
+        "i18n_vegan_friendly": "vegan friendly",
+        "i18n_vegan_friendly_title": "Place which offers also vegan food.",
+        "i18n_vegan_limited": "vegan limited",
+        "i18n_vegan_limited_title": "Place with limited vegan offer (usually that means, you have to ask for it).",
+        "i18n_vegetarian_friendly": "vegetarian friendly",
+        "i18n_vegetarian_friendly_title": "Place which offers also vegetarian food, but no vegan."
+      },
+      "words": {
+        "open": "open",
+        "unknown": "unknown",
+        "closed": "closed",
+        "public_holiday": "holiday"
+      },
+      "leaflet": {
+        "L-control-geocoder": {
+          "title": "Search",
+          "placeholder": "Search…",
+          "error_message": "Nothing found."
+        },
+        "L-control-infoButton": {
+          "title": "Information about this site"
+        },
+        "L-control-locate": {
+          "where_am_i": "Show me where I am!",
+          "meter": "meters",
+          "distance": "You are within {distance} {unit} from this point."
+        },
+        "L-control-zoom": {
+          "zoom_in": "zoom in",
+          "zoom_out": "zoom out"
+        }
+      }
+    }
+  }
+}

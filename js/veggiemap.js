@@ -1,6 +1,16 @@
 // The "use strict" directive helps to write cleaner code.
 "use strict";
 
+
+/* Definition (polyfill) for the function replaceAll
+   for older browser versions (before 2020)
+   Can be removed after some years. */
+if (!String.prototype.replaceAll) {
+    String.prototype.replaceAll = function (old_str, new_str){
+        return this.replace(new RegExp(old_str, 'g'), new_str);
+    };
+}
+
 // Define marker groups
 let parentGroup = L.markerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 20});
 let vegan_only = L.featureGroup.subGroup(parentGroup, {});
@@ -11,6 +21,9 @@ let vegetarian_friendly = L.featureGroup.subGroup(parentGroup, {});
 let subgroups = { vegan_only, vegetarian_only, vegan_friendly, vegan_limited, vegetarian_friendly };
 
 let map;
+let locate_control;
+let layerContol;
+let languageControl;
 
 
 function veggiemap() {
@@ -24,8 +37,8 @@ function veggiemap() {
   // Map
   map = L.map("map", {
     layers: [tileOSM],
-    center: [51.43, 17.58],
-    zoom: 4,
+    center: [20, 17],
+    zoom: 3,
     worldCopyJump: true,
     zoomControl: false
   });
@@ -35,11 +48,11 @@ function veggiemap() {
 
   // Define overlays (each marker group gets a layer) + add legend to the description
   let overlays = {
-    "<div class='legendRow' title='Place which offers only vegan food.'><div class='firstCell vegan_only'></div><div class='secondCell'>vegan only</div><div class='thirdCell' id='n_vegan_only'></div></div>" : vegan_only,
-    "<div class='legendRow' title='Place which offers only vegetarian and vegan food.'><div class='firstCell vegetarian_only'></div><div class='secondCell'>vegetarian only + vegan</div><div class='thirdCell' id='n_vegetarian_only'></div></div>" : vegetarian_only,
-    "<div class='legendRow' title='Place which offers also vegan food.'><div class='firstCell vegan_friendly'></div><div class='secondCell'>vegan friendly</div><div class='thirdCell' id='n_vegan_friendly'></div></div>" : vegan_friendly,
-    "<div class='legendRow' title='Place with limited vegan offer (usualy that means, you have to ask for it).'><div class='firstCell vegan_limited'></div><div class='secondCell'>vegan limited</div><div class='thirdCell' id='n_vegan_limited'></div></div>" : vegan_limited,
-    "<div class='legendRow' title='Place which offers also vegetarian food, but no vegan.'><div class='firstCell vegetarian_friendly'></div><div class='secondCell'>vegetarian friendly</div><div class='thirdCell' id='n_vegetarian_friendly'></div></div><br /><br /><div id='date'></div>" : vegetarian_friendly
+    "<div class='legendRow'><div class='firstCell vegan_only'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegan_only'></div></div>" : vegan_only,
+    "<div class='legendRow'><div class='firstCell vegetarian_only'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegetarian_only'></div></div>" : vegetarian_only,
+    "<div class='legendRow'><div class='firstCell vegan_friendly'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegan_friendly'></div></div>" : vegan_friendly,
+    "<div class='legendRow'><div class='firstCell vegan_limited'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegan_limited'></div></div>" : vegan_limited,
+    "<div class='legendRow'><div class='firstCell vegetarian_friendly'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegetarian_friendly'></div></div><br /><br /><div id='date'></div>" : vegetarian_friendly
   };
 
   veggiemap_populate(parentGroup);
@@ -61,37 +74,99 @@ function veggiemap() {
   // Add info button
   let infoButton = L.easyButton(
     '<div class="info-button"></div>',
-    function(btn, map){
-    toggleInfo();
-  }, 'Information').addTo(map);
+    function(btn, map){toggleInfo()}
+  ).addTo(map);
   infoButton.setPosition('topright');
 
   // Add button for search places
-  L.Control.geocoder({
-    placeholder: 'Nach Ortsnamen suchen…',
-    errorMessage: 'Nichts gefunden.'
-  }).addTo(map);
+  L.Control.geocoder().addTo(map);
 
   // Add button to search own position
-  L.control.locate({
+  locate_control = L.control.locate({
     icon: 'locate_icon',
     iconLoading: 'loading_icon',
     showCompass: true,
-    strings: {
-      title: "Standort ermitteln",
-      metersUnit: "Meter",
-      popup: "Du befindest dich maximal {distance} {unit} entfernt von diesem Punkt."
-    },
     locateOptions: {maxZoom: 16},
     position:'topright'
   }).addTo(map);
 
   // Add layer control button
-  L.control.layers(null, overlays).addTo(map);
+  layerContol = L.control.layers(null, overlays);
+  layerContol.addTo(map);
+
+  // Add language control button
+  languageControl = L.languageSelector({
+      languages: [
+          L.langObject('de', 'Deutsch',   './third-party/leaflet-languageselector/images/de.svg'),
+          L.langObject('en', 'English',   './third-party/leaflet-languageselector/images/en.svg'),
+          L.langObject('eo', 'Esperanto', './third-party/leaflet-languageselector/images/eo.svg'),
+          L.langObject('fi', 'Suomi',     './third-party/leaflet-languageselector/images/fi.svg'),
+          L.langObject('fr', 'Français',  './third-party/leaflet-languageselector/images/fr.svg')
+      ],
+      callback: changeLanguage,
+      vertical: false,
+      button: true
+  });
+  languageControl.addTo(map);
 
   // Add scale control
   L.control.scale().addTo(map);
 }
+
+
+/**
+ * Add or replace the language parameter of the URL and reload the page.
+ * @param String id of the language
+ */
+function changeLanguage(selectedLanguage) {
+  window.location.href = updateURLParameter(window.location.href, 'lang', selectedLanguage);
+}
+
+/**
+ * Add or replace a parameter (with value) in the given URL.
+ * @param String url the URL
+ * @param String param the parameter
+ * @param String paramVal the value of the parameter
+ * @return String the changed URL
+ */
+function updateURLParameter(url, param, paramVal) {
+  let theAnchor = null;
+  let newAdditionalURL = "";
+  let tempArray = url.split("?");
+  let baseURL = tempArray[0];
+  let additionalURL = tempArray[1];
+  let temp = "";
+
+  if (additionalURL) {
+    let tmpAnchor = additionalURL.split("#");
+    let theParams = tmpAnchor[0];
+    theAnchor = tmpAnchor[1];
+    if (theAnchor) {
+      additionalURL = theParams;
+    }
+
+    tempArray = additionalURL.split("&");
+
+    for (let i = 0; i < tempArray.length; i++) {
+      if (tempArray[i].split('=')[0] != param) {
+        newAdditionalURL += temp + tempArray[i];
+        temp = "&";
+      }
+    }
+  } else {
+    let tmpAnchor = baseURL.split("#");
+    let theParams = tmpAnchor[0];
+    theAnchor = tmpAnchor[1];
+
+    if (theParams) {
+      baseURL = theParams;
+    }
+  }
+  let rows_txt = temp + "" + param + "=" + paramVal;
+  return baseURL + "?" + newAdditionalURL + rows_txt;
+}
+
+
 
 // Function to toogle the visibility of the Info box.
 function toggleInfo() {
@@ -105,11 +180,13 @@ function toggleInfo() {
     }
 }
 
+
 // Function to hide the spinner.
 function hideSpinner() {
   let element = document.getElementById('spinner');
   element.style.display = "none";
 }
+
 
 // Function to put the numbers of markers into the legend.
 //   The numbers are calculated using the refresh.py script and stored in the places.json file.
@@ -149,6 +226,9 @@ function veggiemap_populate(parentGroup) {
 
     // Hide spinner
     hideSpinner();
+    
+    // Update translations
+    updateContent();
   })
   .catch(error  => {console.log('Request failed', error);});
 }
@@ -226,8 +306,44 @@ function calculatePopup(layer) {
     // Adding address information to popup
     if(eAddr!=""){popupContent += "<div class='popupflex-container'><div>📍</div><div>" + eAddr +"</div></div>"}
 
+    // Adding opening hours to popup
+    if(eOpe!=undefined){
+      // Country: Germany
+      let country_code = 'de';
+      // State: Sachsen-Anhalt
+      let state = 'st';
+      // Get browser language for the warnings and the prettifier
+      let locale = userLanguage; // userLanguage is defined in i18n.js
+
+      //Create opening_hours object
+          let oh = new opening_hours(eOpe, {
+          'lat':eLatLon[0],'lon':[0], 'address': {'country_code':country_code, 'state':state}},
+          {'locale':locale});
+      let prettified_value = oh.prettifyValue({conf: {'locale':locale, 'rule_sep_string': '<br />', 'print_semicolon': false, 'sep_one_day_between': ', '}});
+      prettified_value = prettified_value.replaceAll(',', ', ').replaceAll('PH', i18next.t('words.public_holiday'));
+      // Find out the open state
+      let open_state = '';
+      let open_state_emoji = '';
+      if(oh.getState()){
+        open_state = i18next.t('words.open');
+        open_state_emoji = 'open';
+        if(!oh.getFutureState()){
+          open_state += i18next.t('texts.will close soon');
+          open_state_emoji = 'closes_soon';
+        }
+      } else {
+        open_state = i18next.t('words.closed');
+        open_state_emoji = 'closed';
+        if(oh.getFutureState()){
+          open_state += i18next.t('texts.will open soon');
+          open_state_emoji = 'opens_soon';
+        }
+      }
+      // Append opening hours to the popup
+      popupContent += "<div class='popupflex-container'><div>🕖</div><div><span class='open_state_circle " + open_state_emoji + "'></span>" + open_state + "<br />" + prettified_value + "</div></div>";
+    }
+
     // Adding addidtional information to popup
-    if(eOpe!=undefined){popupContent += "<div class='popupflex-container'><div>🕖</div><div>" + eOpe +"</div></div>"}
     if(ePho!=undefined){popupContent += "<div class='popupflex-container'><div>☎️</div><div><a href='tel:" + ePho + "' target='_blank' rel='noopener noreferrer'>" + ePho + "</a></div></div>"}
     if(eEma!=undefined){popupContent += "<div class='popupflex-container'><div>📧</div><div><a href='mailto:" + eEma + "' target='_blank' rel='noopener noreferrer'>" + eEma + "</a></div></div>"}
     if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href='" + eWeb + "' target='_blank' rel='noopener noreferrer'>" + eWeb.replace("https://", "") + "</a></div></div>"}
@@ -235,6 +351,16 @@ function calculatePopup(layer) {
     if(eIns!=undefined){popupContent += "<div class='popupflex-container'><div>📸</div><div><a href='" + eIns + "' target='_blank' rel='noopener noreferrer'>" + eIns.replace("https://", "") + "</a></div></div>"}
 
     return popupContent;
+}
+
+
+// Adding function for opening_hours objects to check if place will be open after n minutes (60 minutes as default)
+if (!opening_hours.prototype.getFutureState) {
+  opening_hours.prototype.getFutureState = function(minutes = 60) {
+    let nowPlusHours = new Date();
+    nowPlusHours.setUTCMinutes(nowPlusHours.getUTCMinutes()+minutes);
+    return this.getState(nowPlusHours);
+  };
 }
 
 // Main function

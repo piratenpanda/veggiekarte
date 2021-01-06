@@ -1,0 +1,55 @@
+﻿{
+  "fr": {
+    "translation": {
+      "__comment__": "Frensh localization",
+      "texts": {
+        "will open soon": ", mais ouvrira bientôt",
+        "will close soon": ", mais fermera bientôt.",
+        "more_info": "Plus d'info",
+        "content-welcome-heading": "Bienvenue",
+        "content-welcome-text": "Sur veggiekarte.de vous pouvez trouver tous les restaurants végétaliens et végétariens, glaciers, cafés, etc. enregistrés dans OpenStreetMap. Utilisez simplement le champ de recherche pour rechercher votre lieu ou votre rue. Toutes les icônes vertes sont des emplacements avec des options végétaliennes. Les icônes qui ne sont pas vertes offrent des options végétariennes mais pas végétaliennes.",
+        "content-osm-heading": "Via OpenStreetMap",
+        "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> est une carte du monde gratuite et fonctionne de la même manière que Wikipedia. Tout le monde peut participer et saisir des informations. Cela signifie que la carte est toujours à jour et pleine d'informations utiles. Quiconque a des suggestions d'amélioration ou trouve des erreurs dans la carte peut simplement les saisir ou les améliorer.",
+        "content-contribute-heading": "Contribuer des informations",
+        "content-contribute-text": "Si vous connaissez vous-même des restaurants, des cafés, des glaciers ou des plats à emporter qui ne figurent pas encore au menu, ou si vous en gérez un vous-même, vous pouvez simplement l'ajouter vous-même. Pour ce faire, vous devez ajouter la balise «régime: végétalien» ou «régime: végétarien» à votre emplacement dans OpenStreetMap. Les instructions sont disponibles <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>ici</a>.",
+        "content-further-heading": "Autres",
+        "content-further-text": "Le menu végétarien est mis à jour automatiquement toutes les heures. Vous pouvez trouver le code sur <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.",
+        "i18n_vegan_only": "tout est végétalien",
+        "i18n_vegan_only_title": "Lieu avec uniquement des offres végétaliennes.",
+        "i18n_vegetarian_only": "seulement végétarien et végétalien",
+        "i18n_vegetarian_only_title": "Lieu avec uniquement des offres végétariennes et végétaliennes.",
+        "i18n_vegan_friendly": "convient aux végétaliens",
+        "i18n_vegan_friendly_title": "Endroit qui propose également des offres végétaliennes.",
+        "i18n_vegan_limited": "végétalien limité",
+        "i18n_vegan_limited_title": "Lieu avec une offre vegan limitée (cela signifie généralement que vous devez le demander et ce n'est pas clairement indiqué sur le menu).",
+        "i18n_vegetarian_friendly": "convient aux végétariens",
+        "i18n_vegetarian_friendly_title": "Place avec un végétarien, mais pas d'offre végétalienne."
+      },
+      "words": {
+        "open": "ouvert",
+        "unknown": "indéterminé",
+        "closed": "fermé",
+        "public_holiday": "jour férié"
+      },
+      "leaflet": {
+        "L-control-geocoder": {
+          "title": "Chercher",
+          "placeholder": "Rechercher des noms de lieux…",
+          "error_message": "Rien n'a été trouvé."
+        },
+        "L-control-infoButton": {
+          "title": "Informations sur cette page"
+        },
+        "L-control-locate": {
+          "where_am_i": "Déterminer l'emplacement",
+          "meter": "mètre",
+          "distance": "Vous êtes au plus {distance} {unit} de ce point."
+        },
+        "L-control-zoom": {
+          "zoom_in": "zoom avant",
+          "zoom_out": "zoom arrière"
+        }
+      }
+    }
+  }
+}

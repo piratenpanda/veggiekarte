@@ -1,0 +1,55 @@
+﻿{
+  "de": {
+    "translation": {
+      "__comment__": "German localization",
+      "texts": {
+        "will open soon": ", aber wird bald öffnen",
+        "will close soon": ", aber wird bald schließen",
+        "more_info": "Mehr Infos",
+        "content-welcome-heading": "Willkommen",
+        "content-welcome-text": "<p>Auf der Karte findest du die in OpenStreetMap in Halle, im Saalekreis und in Leipzig eingetragenen veganen und vegetarischen Restaurants, Eisdielen, Cafés etc. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen. Alle grünen Icons sind Lokalitäten in denen es vegane Optionen gibt. Icons die nicht grün sind, bieten vegetarische aber keine veganen Optionen an.</p>",
+        "content-osm-heading": "Über OpenStreetMap",
+        "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> ist eine freie Weltkarte und funktioniert so ähnlich wie Wikipedia. Jeder kann mitmachen und Informationen eintragen. Dadurch ist die Karte immer aktuell und voll von nützlichen Informationen. Wer Verbesserungsvorschläge hat oder Fehler in der Karte findet, kann diese einfach selbst eintragen oder verbessern.",
+        "content-contribute-heading": "Informationen beitragen",
+        "content-contribute-text": "Wenn du selbst Restaurants, Cafés, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst hinzufügen. Dazu musst du den 'diet:vegan'- oder 'diet:vegetarian'-Tag bei deiner Location in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>hier</a>.",
+        "content-further-heading": "Sonstiges",
+        "content-further-text": "Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findest du auf <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.",
+        "i18n_vegan_only": "alles vegan",
+        "i18n_vegan_only_title": "Ort mit nur veganen Angeboten.",
+        "i18n_vegetarian_only": "nur vegetarisch und vegan",
+        "i18n_vegetarian_only_title": "Ort mit nur vegetarischen und veganen Angeboten.",
+        "i18n_vegan_friendly": "vegan-freundlich",
+        "i18n_vegan_friendly_title": "Ort der auch vegane Angebote hat.",
+        "i18n_vegan_limited": "eingeschränkt vegan",
+        "i18n_vegan_limited_title": "Ort mit eingeschränktem veganen Angebot (in der Regel heißt das, dass du danach fragen musst und es nicht eindeutig aus der Karte hervorgeht).",
+        "i18n_vegetarian_friendly": "vegetarisch-freundlich",
+        "i18n_vegetarian_friendly_title": "Ort mit vegetarischem, aber keinem veganen Angebot."
+      },
+      "words": {
+        "open": "geöffnet",
+        "unknown": "unbekannt",
+        "closed": "geschlossen",
+        "public_holiday": "Feiertag"
+      },
+      "leaflet": {
+        "L-control-geocoder": {
+          "title": "Suche",
+          "placeholder": "Nach Ortsnamen suchen…",
+          "error_message": "Nichts gefunden."
+        },
+        "L-control-infoButton": {
+          "title": "Informationen über diese Seite"
+        },
+        "L-control-locate": {
+          "where_am_i": "Standort ermitteln",
+          "meter": "Meter",
+          "distance": "Du befindest dich maximal {distance} {unit} entfernt von diesem Punkt."
+        },
+        "L-control-zoom": {
+          "zoom_in": "hineinzoomen",
+          "zoom_out": "herauszoomen"
+        }
+      }
+    }
+  }
+}

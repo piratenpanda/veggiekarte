@@ -1,0 +1,55 @@
+{
+  "fi": {
+    "translation": {
+      "__comment__": "Finnish localization",
+      "texts": {
+        "will open soon": ", mutta avataan pian",
+        "will close soon": ", mutta sulkeutuu pian",
+        "more_info": "Lisää tietoa",
+        "content-welcome-heading": "Tervetuloa",
+        "content-welcome-text": "Sivustolta veggiekarte.de löydät kaikki vegaani- ja kasvisravintolat, jäätelöbaarit, kahvilat jne. Jotka on rekisteröity OpenStreetMapiin. Käytä vain hakukenttää etsiäksesi paikkasi tai katusi. Kaikki vihreät kuvakkeet ovat vegaanivaihtoehtoja. Kuvakkeet, jotka eivät ole vihreitä, tarjoavat kasvisvaihtoehtoja, mutta eivät vegaanisia vaihtoehtoja.",
+        "content-osm-heading": "Tietoja OpenStreetMap",
+        "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> on ilmainen maailmankartta ja toimii samalla tavalla kuin Wikipedia. Kaikki voivat osallistua ja syöttää tietoja. Tämä tarkoittaa, että kartta on aina ajan tasalla ja täynnä hyödyllisiä tietoja. Jokainen, jolla on parannusehdotuksia tai löytää virheitä kartalta, voi yksinkertaisesti kirjoittaa ne tai parantaa niitä.",
+        "content-contribute-heading": "Anna tietoja",
+        "content-contribute-text": "Jos tiedät itse ravintoloita, kahviloita, jäätelöbaareja tai noutoruokia, jotka eivät vielä ole valikossa, tai pidät itse itseäsi, voit lisätä sen itse. Tätä varten sinun on lisättävä 'ruokavalio: vegaani' tai 'ruokavalio: kasvissyöjä' -tunniste sijaintisi alueelle OpenStreetMapiin. Ohjeet ovat saatavilla <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>täältä</a>.",
+        "content-further-heading": "Edelleen",
+        "content-further-text": "Veggiekarte päivitetään automaattisesti joka tunti. Löydät koodin <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.",
+        "i18n_vegan_only": "vain vegaani",
+        "i18n_vegan_only_title": "Paikka, joka tarjoaa vain vegaaniruokaa.",
+        "i18n_vegetarian_only": "vain kasvissyöjä + vegaani",
+        "i18n_vegetarian_only_title": "Paikka, joka tarjoaa vain kasvis- ja vegaaniruokaa.",
+        "i18n_vegan_friendly": "vegaani ystävällinen",
+        "i18n_vegan_friendly_title": "Paikka, joka tarjoaa myös vegaaniruokaa.",
+        "i18n_vegan_limited": "vegaani rajoitettu",
+        "i18n_vegan_limited_title": "Paikka, jossa on rajoitettu vegaaninen tarjous (yleensä se tarkoittaa, että sinun on pyydettävä sitä).",
+        "i18n_vegetarian_friendly": "kasvissyöjäystävällinen",
+        "i18n_vegetarian_friendly_title": "Paikka, joka tarjoaa myös kasvisruokaa, mutta ei vegaania."
+      },
+      "words": {
+        "open": "avata",
+        "unknown": "tuntematon",
+        "closed": "suljettu",
+        "public_holiday": "yleinen vapaapäivä"
+      },
+      "leaflet": {
+        "L-control-geocoder": {
+          "title": "Etsi",
+          "placeholder": "Etsi paikannimiä…",
+          "error_message": "Mitään ei löytynyt."
+        },
+        "L-control-infoButton": {
+          "title": "Tietoja tästä sivustosta"
+        },
+        "L-control-locate": {
+          "where_am_i": "Näytä minulle missä olen!",
+          "meter": "metriä",
+          "distance": "Olet sisällä {distance} {unit} tästä pisteestä."
+        },
+        "L-control-zoom": {
+          "zoom_in": "lähennä",
+          "zoom_out": "loitonna"
+        }
+      }
+    }
+  }
+}
