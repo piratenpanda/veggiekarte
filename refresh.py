@@ -283,6 +283,8 @@ def write_data(data):
             place_obj["properties"]["contact_facebook"] = tags.get("facebook", "").rstrip("/")
         if "contact:instagram" in tags:
             place_obj["properties"]["contact_instagram"] = tags.get("contact:instagram", "").rstrip("/")
+        elif "instagram" in tags:
+            place_obj["properties"]["contact_instagram"] = tags.get("instagram", "").rstrip("/")
         if "contact:email" in tags:
             place_obj["properties"]["contact_email"] = tags.get("contact:email", "")
         elif "email" in tags:
