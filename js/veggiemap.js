@@ -306,8 +306,44 @@ function calculatePopup(layer) {
     // Adding address information to popup
     if(eAddr!=""){popupContent += "<div class='popupflex-container'><div>📍</div><div>" + eAddr +"</div></div>"}
 
+    // Adding opening hours to popup
+    if(eOpe!=undefined){
+      // Country: Germany
+      let country_code = 'de';
+      // State: Sachsen-Anhalt
+      let state = 'st';
+      // Get browser language for the warnings and the prettifier
+      let locale = userLanguage; // userLanguage is defined in i18n.js
+
+      //Create opening_hours object
+          let oh = new opening_hours(eOpe, {
+          'lat':eLatLon[0],'lon':[0], 'address': {'country_code':country_code, 'state':state}},
+          {'locale':locale});
+      let prettified_value = oh.prettifyValue({conf: {'locale':locale, 'rule_sep_string': '<br />', 'print_semicolon': false, 'sep_one_day_between': ', '}});
+      prettified_value = prettified_value.replaceAll(',', ', ').replaceAll('PH', i18next.t('words.public_holiday'));
+      // Find out the open state
+      let open_state = '';
+      let open_state_emoji = '';
+      if(oh.getState()){
+        open_state = i18next.t('words.open');
+        open_state_emoji = 'open';
+        if(!oh.getFutureState()){
+          open_state += i18next.t('texts.will close soon');
+          open_state_emoji = 'closes_soon';
+        }
+      } else {
+        open_state = i18next.t('words.closed');
+        open_state_emoji = 'closed';
+        if(oh.getFutureState()){
+          open_state += i18next.t('texts.will open soon');
+          open_state_emoji = 'opens_soon';
+        }
+      }
+      // Append opening hours to the popup
+      popupContent += "<div class='popupflex-container'><div>🕖</div><div><span class='open_state_circle " + open_state_emoji + "'></span>" + open_state + "<br />" + prettified_value + "</div></div>";
+    }
+
     // Adding addidtional information to popup
-    if(eOpe!=undefined){popupContent += "<div class='popupflex-container'><div>🕖</div><div>" + eOpe +"</div></div>"}
     if(ePho!=undefined){popupContent += "<div class='popupflex-container'><div>☎️</div><div><a href='tel:" + ePho + "' target='_blank' rel='noopener noreferrer'>" + ePho + "</a></div></div>"}
     if(eEma!=undefined){popupContent += "<div class='popupflex-container'><div>📧</div><div><a href='mailto:" + eEma + "' target='_blank' rel='noopener noreferrer'>" + eEma + "</a></div></div>"}
     if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href='" + eWeb + "' target='_blank' rel='noopener noreferrer'>" + eWeb.replace("https://", "") + "</a></div></div>"}
@@ -315,6 +351,16 @@ function calculatePopup(layer) {
     if(eIns!=undefined){popupContent += "<div class='popupflex-container'><div>📸</div><div><a href='" + eIns + "' target='_blank' rel='noopener noreferrer'>" + eIns.replace("https://", "") + "</a></div></div>"}
 
     return popupContent;
+}
+
+
+// Adding function for opening_hours objects to check if place will be open after n minutes (60 minutes as default)
+if (!opening_hours.prototype.getFutureState) {
+  opening_hours.prototype.getFutureState = function(minutes = 60) {
+    let nowPlusHours = new Date();
+    nowPlusHours.setUTCMinutes(nowPlusHours.getUTCMinutes()+minutes);
+    return this.getState(nowPlusHours);
+  };
 }
 
 // Main function

@@ -45,6 +45,7 @@ This is an overview of the third-party software and data we use. Many thanks to 
 |[leaflet.languageselector](https://github.com/buche/leaflet-languageselector) |CC0 [*](https://github.com/buche/leaflet-languageselector/blob/master/LICENSE) | 1.1.1 | A control to switch between languages. |
 |[leaflet.locatecontrol](https://github.com/domoritz/leaflet-locatecontrol/) |MIT [*](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE) |0.72 |A control to locate the position of the user. |
 |[leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster/) |MIT [*](https://github.com/Leaflet/Leaflet.markercluster/blob/master/MIT-LICENCE.txt) |1.4.1 |Marker Clustering plugin. |
+|[opening_hours.js](https://github.com/opening-hours/opening_hours.js) |GPL 3 [*](https://github.com/opening-hours/opening_hours.js/blob/master/LICENSE) |2021-01-01 |Library to parse and process the opening_hours tag from OpenStreetMap data. |
 |[OpenStreeMap](https://www.openstreetmap.org) |CC BY-SA [*](https://www.openstreetmap.org/copyright) | |There we get the data of the places. We also show the markers on an OpenStreeMap map.  |
 |icons from [OpenStreetMap Carto](https://github.com/gravitystorm/openstreetmap-carto) |CC0 [*](https://github.com/gravitystorm/openstreetmap-carto/blob/master/LICENSE.txt) | |Default marker icons |
 |icons from [Maki](https://labs.mapbox.com/maki-icons/) |CC0 | |Fallback marker icons |
