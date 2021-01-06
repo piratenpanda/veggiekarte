@@ -192,6 +192,10 @@ def write_data(data):
     # Adding list object which will contain all place objects
     places_data["features"] = []
 
+    # Variables to print progress in the console
+    osm_element_index = 0
+    osm_elements_number = len(data["elements"])
+
     # Go through every osm element and put the information into a new places element.
     for osm_element in data["elements"]:
 
@@ -238,6 +242,11 @@ def write_data(data):
         # Double quotes could escape code, so we have to replace them:
         name = name.replace('"', '”')
         place_obj["properties"]["name"] = name
+
+        # Print progress
+        osm_element_index += 1
+        print(osm_element_index, ' / ', osm_elements_number, '\t', end='\r')
+
 
         # Give the object a category
         if tags.get("diet:vegan", "") == "only":
@@ -307,6 +316,9 @@ def write_data(data):
             place_obj["properties"]["shop"] = tags["shop"]
 
         places_data["features"].append(place_obj)
+
+    # Print number of elements
+    print(osm_elements_number, ' elements')
 
     # Collect the statistic data in an object and add it to the places object
     stat_obj = {"date": DATE,

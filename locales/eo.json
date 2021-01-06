@@ -1,0 +1,55 @@
+﻿{
+  "eo": {
+    "translation": {
+      "__comment__": "Esperanto localization",
+      "texts": {
+        "will open soon": ", sed baldaŭ malfermiĝos",
+        "will close soon": ", sed baldaŭ fermiĝos",
+        "more_info": "Pliaj informoj",
+        "content-welcome-heading": "Bonvenon",
+        "content-welcome-text": "En veggiekarte.de vi povas trovi ĉiujn veganajn kaj vegetarajn restoraciojn, glaciaĵejojn, kafejojn ktp. registritajn en OpenStreetMap. Simple uzu la serĉkampon por serĉi vian lokon aŭ vian straton. Ĉiuj verdaj ikonoj estas lokoj kun veganaj ofertoj. Ikonoj neverdaj ofertas vegetarajn sed ne veganajn ofertoj.",
+        "content-osm-heading": "Pri OpenStreetMap",
+        "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> estas senpaga mondmapo kaj funkcias simile al Vikipedio. Ĉiu povas partopreni kaj enigi informojn. Tio signifas, ke la mapo estas ĉiam aktuala kaj plena de utilaj informoj. Ĉiu, kiu havas sugestojn pri plibonigo aŭ trovas erarojn en la mapo, povas simple enigi ilin aŭ plibonigi ilin.",
+        "content-contribute-heading": "Kontribui informojn",
+        "content-contribute-text": "Se vi scias pri restoracioj, kafejoj, glaciaĵejoj aŭ manĝejetoj, kiuj ankoraŭ ne estas en la mapo, aŭ mem posedas unu, tiam vi povas simple aldoni ĝin mem. Por fari tion, vi devas aldoni la etikedon 'dieto: vegano' aŭ 'dieto: vegetara' ĉe via loko en OpenStreetMap. Instrukcioj haveblas <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>ĉi tie</a>.",
+        "content-further-heading": "Plue",
+        "content-further-text": "Veggiekarte estas ĝisdatigita aŭtomate ĉiun horon. Vi povas trovi la kodon ĉe <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.",
+        "i18n_vegan_only": "tute vegana",
+        "i18n_vegan_only_title": "Loko, kiu ofertas nur veganan manĝaĵon.",
+        "i18n_vegetarian_only": "nur vegetara + vegana",
+        "i18n_vegetarian_only_title": "Loko, kiu ofertas nur vegetaran kaj veganan manĝaĵon.",
+        "i18n_vegan_friendly": "vegan-taŭga",
+        "i18n_vegan_friendly_title": "Loko, kiu ofertas ankaŭ veganajn manĝaĵojn.",
+        "i18n_vegan_limited": "vegana limigite",
+        "i18n_vegan_limited_title": "Loko kun limigita vegana oferto (kutime tio signifas, ke vi devas peti ĝin).",
+        "i18n_vegetarian_friendly": "vegetaran-taŭga",
+        "i18n_vegetarian_friendly_title": "Loko, kiu ofertas ankaŭ vegetaran manĝaĵon, sed neniu vegana."
+      },
+      "words": {
+        "open": "malfermita",
+        "unknown": "nekonata",
+        "closed": "fermita",
+        "public_holiday": "festotago"
+      },
+      "leaflet": {
+        "L-control-geocoder": {
+          "title": "Serĉo",
+          "placeholder": "Serĉi loknomojn…",
+          "error_message": "Nenio trovita."
+        },
+        "L-control-infoButton": {
+          "title": "Informoj pri ĉi tiu retejo"
+        },
+        "L-control-locate": {
+          "where_am_i": "Montru al mi, kie mi estas!",
+          "meter": "metroj",
+          "distance": "Vi estas ene de {distance} {unit} de ĉi tiu punkto."
+        },
+        "L-control-zoom": {
+          "zoom_in": "zomi",
+          "zoom_out": "malzomi"
+        }
+      }
+    }
+  }
+}
