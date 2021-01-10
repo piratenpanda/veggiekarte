@@ -13,7 +13,7 @@
         "content-contribute-heading": "Contribute information",
         "content-contribute-text": "If you yourself know restaurants, cafes, ice cream parlors or food kiosks that are not yet on the map, or run one yourself, then you can simply add it yourself. To do this, you have to add the 'diet: vegan' or 'diet: vegetarian' tag at your location in OpenStreetMap. Instructions are available <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>here</a>.",
         "content-further-heading": "Further",
-        "content-further-text": "Veggiekarte is updated automatically every hour. You can find the code on <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.",
+        "content-further-text": "Veggiekarte is updated automatically every hour. You can find the code on <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>. And as a little gimmick we also have a little diagram <a href='data_chart.html'>here</a>.",
         "i18n_vegan_only": "vegan only",
         "i18n_vegan_only_title": "Place which offers only vegan food.",
         "i18n_vegetarian_only": "vegetarian only + vegan",

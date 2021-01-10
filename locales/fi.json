@@ -13,7 +13,7 @@
         "content-contribute-heading": "Anna tietoja",
         "content-contribute-text": "Jos tiedät itse ravintoloita, kahviloita, jäätelöbaareja tai noutoruokia, jotka eivät vielä ole valikossa, tai pidät itse itseäsi, voit lisätä sen itse. Tätä varten sinun on lisättävä 'ruokavalio: vegaani' tai 'ruokavalio: kasvissyöjä' -tunniste sijaintisi alueelle OpenStreetMapiin. Ohjeet ovat saatavilla <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>täältä</a>.",
         "content-further-heading": "Edelleen",
-        "content-further-text": "Veggiekarte päivitetään automaattisesti joka tunti. Löydät koodin <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.",
+        "content-further-text": "Veggiekarte päivitetään automaattisesti joka tunti. Löydät koodin <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>. Ja pienenä temppuna meillä on myös pieni kaavio <a href='data_chart.html'>täällä</a>.",
         "i18n_vegan_only": "vain vegaani",
         "i18n_vegan_only_title": "Paikka, joka tarjoaa vain vegaaniruokaa.",
         "i18n_vegetarian_only": "vain kasvissyöjä + vegaani",
