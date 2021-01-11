@@ -13,7 +13,7 @@
         "content-contribute-heading": "Informationen beitragen",
         "content-contribute-text": "Wenn du selbst Restaurants, Cafés, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst hinzufügen. Dazu musst du den 'diet:vegan'- oder 'diet:vegetarian'-Tag bei deiner Location in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>hier</a>.",
         "content-further-heading": "Sonstiges",
-        "content-further-text": "Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findest du auf <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.",
+        "content-further-text": "Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findest du auf <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>. Und als kleine Spielerei haben wir auch ein kleines Diagramm <a href='data_chart.html'>hier</a>.",
         "i18n_vegan_only": "alles vegan",
         "i18n_vegan_only_title": "Ort mit nur veganen Angeboten.",
         "i18n_vegetarian_only": "nur vegetarisch und vegan",
