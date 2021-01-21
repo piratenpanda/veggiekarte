@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
-With this module we get the POIs with the tags vegan = * and
-vegetarian = * from OpenStreetMap and fill them in a file.
+With this module we get the POIs with the tags diet:vegan = * and
+diet:vegetarian = * from OpenStreetMap and fill them in a file.
 """
 
 import os         # for handling files
