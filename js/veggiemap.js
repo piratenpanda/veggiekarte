@@ -22,7 +22,7 @@ let subgroups = { vegan_only, vegetarian_only, vegan_friendly, vegan_limited, ve
 
 let map;
 let locate_control;
-let layerContol;
+let layerControl;
 let languageControl;
 
 
@@ -91,8 +91,8 @@ function veggiemap() {
   }).addTo(map);
 
   // Add layer control button
-  layerContol = L.control.layers(null, overlays);
-  layerContol.addTo(map);
+  layerControl = L.control.layers(null, overlays);
+  layerControl.addTo(map);
 
   // Add language control button
   languageControl = L.languageSelector({
