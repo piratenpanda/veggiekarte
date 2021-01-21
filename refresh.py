@@ -271,39 +271,39 @@ def write_data(data):
         if "cuisine" in tags:
             place_obj["properties"]["cuisine"] = tags["cuisine"]
         if "addr:street" in tags:
-            place_obj["properties"]["addr_street"] = tags.get("addr:street", "")
+            place_obj["properties"]["addr_street"] = tags["addr:street"]
             if "addr:housenumber" in tags:
-                place_obj["properties"]["addr_street"] += " " + tags.get("addr:housenumber", "")
+                place_obj["properties"]["addr_street"] += " " + tags["addr:housenumber"]
         if "addr:city" in tags:
-            place_obj["properties"]["addr_city"] = tags.get("addr:city", "")
+            place_obj["properties"]["addr_city"] = tags["addr:city"]
         else:
             if "addr:suburb" in tags:
                 # In some regions (e.g. in USA and Australia) they often tag suburbs instead of city
-                place_obj["properties"]["addr_city"] = tags.get("addr:suburb", "")
+                place_obj["properties"]["addr_city"] = tags["addr:suburb"]
         if "addr:postcode" in tags:
-            place_obj["properties"]["addr_postcode"] = tags.get("addr:postcode", "")
+            place_obj["properties"]["addr_postcode"] = tags["addr:postcode"]
         if "addr:country" in tags:
-            place_obj["properties"]["addr_country"] = tags.get("addr:country", "")
+            place_obj["properties"]["addr_country"] = tags["addr:country"]
         if "contact:website" in tags:
-            place_obj["properties"]["contact_website"] = tags.get("contact:website", "").rstrip("/")
+            place_obj["properties"]["contact_website"] = tags["contact:website"].rstrip("/")
         elif "website" in tags:
-            place_obj["properties"]["contact_website"] = tags.get("website", "").rstrip("/")
+            place_obj["properties"]["contact_website"] = tags["website"].rstrip("/")
         if "contact:facebook" in tags:
-            place_obj["properties"]["contact_facebook"] = tags.get("contact:facebook", "").rstrip("/")
+            place_obj["properties"]["contact_facebook"] = tags["contact:facebook"].rstrip("/")
         elif "facebook" in tags:
-            place_obj["properties"]["contact_facebook"] = tags.get("facebook", "").rstrip("/")
+            place_obj["properties"]["contact_facebook"] = tags["facebook"].rstrip("/")
         if "contact:instagram" in tags:
-            place_obj["properties"]["contact_instagram"] = tags.get("contact:instagram", "").rstrip("/")
+            place_obj["properties"]["contact_instagram"] = tags["contact:instagram"].rstrip("/")
         elif "instagram" in tags:
-            place_obj["properties"]["contact_instagram"] = tags.get("instagram", "").rstrip("/")
+            place_obj["properties"]["contact_instagram"] = tags["instagram"].rstrip("/")
         if "contact:email" in tags:
-            place_obj["properties"]["contact_email"] = tags.get("contact:email", "")
+            place_obj["properties"]["contact_email"] = tags["contact:email"]
         elif "email" in tags:
-            place_obj["properties"]["contact_email"] = tags.get("email", "")
+            place_obj["properties"]["contact_email"] = tags["email"]
         if "contact:phone" in tags:
-            place_obj["properties"]["contact_phone"] = tags.get("contact:phone", "")
+            place_obj["properties"]["contact_phone"] = tags["contact:phone"]
         elif "phone" in tags:
-            place_obj["properties"]["contact_phone"] = tags.get("phone", "")
+            place_obj["properties"]["contact_phone"] = tags["phone"]
         if "opening_hours:covid19" in tags and tags["opening_hours:covid19"] != "same" and tags["opening_hours:covid19"] != "restricted":
             # Replacing line breaks with spaces (Usually there should be no line breaks,
             # but if they do appear, they break the structure of the places.json).
