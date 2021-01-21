@@ -236,6 +236,8 @@ def write_data(data):
             # If there is no name, take the english if exists
             if "name:en" in tags:
                 name = tags["name:en"]
+            elif tags.get("amenity", "") == "vending_machine":
+                  name = "vending machine"
             else:
                 # If there is no name given from osm, we build one
                 name = "%s %s" % (element_type, element_id)
