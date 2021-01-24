@@ -245,10 +245,10 @@ function veggiemap_populate(parentGroup) {
 
 // Process the places GeoJSON into the groups of markers
 function geojsonToMarkerGroups(geojson) {
-    const date = geojson._timestamp.split(" ")[0];
-    const groups = {};
+    let date = geojson._timestamp.split(" ")[0];
+    let groups = {};
     geojson.features.forEach(feature => {
-        const eCat = feature.properties.category;
+        let eCat = feature.properties.category;
         if (!groups[eCat]) groups[eCat] = [];
         groups[eCat].push(getMarker(feature));
     });
