@@ -22,7 +22,7 @@ let subgroups = { vegan_only, vegetarian_only, vegan_friendly, vegan_limited, ve
 
 let map;
 let locate_control;
-let layerContol;
+let layerControl;
 let languageControl;
 
 
@@ -52,7 +52,7 @@ function veggiemap() {
     "<div class='legendRow'><div class='firstCell vegetarian_only'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegetarian_only'></div></div>" : vegetarian_only,
     "<div class='legendRow'><div class='firstCell vegan_friendly'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegan_friendly'></div></div>" : vegan_friendly,
     "<div class='legendRow'><div class='firstCell vegan_limited'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegan_limited'></div></div>" : vegan_limited,
-    "<div class='legendRow'><div class='firstCell vegetarian_friendly'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegetarian_friendly'></div></div><br /><br /><div id='date'></div>" : vegetarian_friendly
+    "<div class='legendRow'><div class='firstCell vegetarian_friendly'></div><div class='secondCell'></div><div class='thirdCell' id='n_vegetarian_friendly'></div></div>" : vegetarian_friendly
   };
 
   veggiemap_populate(parentGroup);
@@ -91,8 +91,8 @@ function veggiemap() {
   }).addTo(map);
 
   // Add layer control button
-  layerContol = L.control.layers(null, overlays);
-  layerContol.addTo(map);
+  layerControl = L.control.layers(null, overlays);
+  layerControl.addTo(map);
 
   // Add language control button
   languageControl = L.languageSelector({
@@ -188,30 +188,40 @@ function hideSpinner() {
 }
 
 
-// Function to put the numbers of markers into the legend.
-//   The numbers are calculated using the refresh.py script and stored in the places.json file.
-function stat_populate() {
-  const url = "data/stat.json";
-  fetch(url)
-  .then(response => response.json())
-  .then(data => onEachFeatureStat(data))
-  .catch(error  => {console.log('Request failed', error);});
+/**
+* Function to detect the number of markers for each category and
+* add them to the Layer Control.
+*
+* @param {object} markerGroups The marker groups.
+* @param {string} date The date when the data was queried.
+*/
+function stat_populate(markerGroups, date) {
+  // Get all categories
+  let markerGroupCategories = Object.keys(markerGroups);
+  // Go through the list of categories
+  for (let i = 0; i < markerGroupCategories.length; i++) {
+    // Get the name
+    let categoryName = markerGroupCategories[i];
+    // Get the number of the markers
+    let markerNumber = markerGroups[categoryName].length;
+    // Add the number to the category entry in the Layer Control
+    document.getElementById("n_" + categoryName).innerHTML = "(" + markerNumber + ")";
+  }
+  // Add the date to the Layer Control
+  let lastEntry = document.getElementById("n_vegetarian_friendly").parentNode.parentNode;
+  lastEntry.innerHTML += "<br /><div>("+date+")</div>";
 }
 
-function onEachFeatureStat(data) {
-  for (let category in data.stat[data.stat.length -1]){
-    let number_of_elements = data.stat[data.stat.length -1][category];
-    document.getElementById(category).innerHTML = "(" + number_of_elements + ")";
-  }
-}
 
 // Function to get the information from the places json file.
 function veggiemap_populate(parentGroup) {
   const url = "data/places.min.json";
   fetch(url)
   .then(response => response.json())
-  .then(geojson => geojsonToMarkerGroups(geojson.features))
-  .then(markerGroups => {
+  .then(geojson => geojsonToMarkerGroups(geojson))
+  .then(markerGroupsAndDate => {
+    let markerGroups = markerGroupsAndDate[0];
+    let date = markerGroupsAndDate[1];
     Object.entries(subgroups).forEach(([key, subgroup]) => {
       // Bulk add all the markers from a markerGroup to a subgroup in one go
       // Source: https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/5
@@ -222,7 +232,7 @@ function veggiemap_populate(parentGroup) {
     map.addLayer(parentGroup);
 
     // Call the function to put the numbers into the legend
-    stat_populate();
+    stat_populate(markerGroups, date);
 
     // Hide spinner
     hideSpinner();
@@ -234,15 +244,17 @@ function veggiemap_populate(parentGroup) {
 }
 
 // Process the places GeoJSON into the groups of markers
-function geojsonToMarkerGroups(features) {
-    const groups = {};
-    features.forEach(feature => {
-        const eCat = feature.properties.category;
+function geojsonToMarkerGroups(geojson) {
+    let date = geojson._timestamp.split(" ")[0];
+    let groups = {};
+    geojson.features.forEach(feature => {
+        let eCat = feature.properties.category;
         if (!groups[eCat]) groups[eCat] = [];
         groups[eCat].push(getMarker(feature));
     });
-    return groups;
+    return [groups, date];
 }
+
 
 // Function to get the marker.
 function getMarker(feature) {
