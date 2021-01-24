@@ -30,7 +30,7 @@ HTTP = urllib3.PoolManager()
 
 # # constants for the output files
 TIMESTAMP = str(datetime.datetime.now())                             # the actual date and time
-DATE = datetime.datetime.now().strftime("%Y-%m-%d")                  # the actual date
+DATE = str(datetime.date.today())                                    # the actual date
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))                # get the path of the directory of this script
 VEGGIEPLACES_TEMPFILE = DATA_DIR + "/data/places_temp.json"          # the temp file to store the data
 VEGGIEPLACES_TEMPFILE_MIN = DATA_DIR + "/data/places_temp.min.json"  # the minimized temp file
