@@ -7,7 +7,6 @@ diet:vegetarian = * from OpenStreetMap and fill them in a file.
 import os         # for handling files
 import time       # for sleep
 import json       # read and write json
-import gzip       # for compressing the json file
 import sys        # to check the python version
 import datetime   # for the timestamp
 import urllib3    # for the HTTP GET request
@@ -350,15 +349,13 @@ def write_data(data):
 
 def check_data():
     """Check the temp file and replace the old VEGGIEPLACES_FILE if it is ok."""
-    if os.path.isfile(VEGGIEPLACES_TEMPFILE_GZIP):                        # check if the temp file exists
+    if os.path.isfile(VEGGIEPLACES_TEMPFILE_MIN):                        # check if the temp file exists
         if os.path.getsize(VEGGIEPLACES_TEMPFILE_GZIP) > 500:             # check if the temp file isn't too small (see issue #21)
             print("rename " + VEGGIEPLACES_TEMPFILE + " to " + VEGGIEPLACES_FILE)
             os.rename(VEGGIEPLACES_FILE, VEGGIEPLACES_OLDFILE)           # rename old file
             os.rename(VEGGIEPLACES_TEMPFILE, VEGGIEPLACES_FILE)          # rename temp file to new file
             print("rename " + VEGGIEPLACES_TEMPFILE_MIN + " to " + VEGGIEPLACES_FILE_MIN)
             os.rename(VEGGIEPLACES_TEMPFILE_MIN, VEGGIEPLACES_FILE_MIN)  # rename minimized temp file to new file
-            print("rename " + VEGGIEPLACES_TEMPFILE_GZIP + " to " + VEGGIEPLACES_FILE_GZIP)
-            os.rename(VEGGIEPLACES_TEMPFILE_GZIP, VEGGIEPLACES_FILE_GZIP)  # rename minimized temp file to new file
 
             # Write the new statistic file
             outfilestat = open(VEGGIESTAT_FILE, "w")
@@ -366,8 +363,8 @@ def check_data():
             outfilestat.close()
 
         else:
-            print("New gzip temp file is too small!")
-            print(os.path.getsize(VEGGIEPLACES_TEMPFILE_GZIP))
+            print("New temp file is too small!")
+            print(os.path.getsize(VEGGIEPLACES_TEMPFILE_MIN))
     else:
         print("temp file don't exists!")
 
