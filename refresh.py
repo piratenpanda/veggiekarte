@@ -3,12 +3,12 @@
 With this module we get the POIs with the tags diet:vegan = * and
 diet:vegetarian = * from OpenStreetMap and fill them in a file.
 """
-import datetime          # for the timestamp
-import json              # read and write json
-import sys               # to check the python version
-import time              # for sleep
-import urllib3           # for the HTTP GET request
-from pathlib import Path # for handling files
+import datetime           # for the timestamp
+import json               # read and write json
+import sys                # to check the python version
+import time               # for sleep
+import urllib3            # for the HTTP GET request
+from pathlib import Path  # for handling files
 
 assert sys.version_info >= (3, 0)
 
@@ -29,8 +29,8 @@ HTTP = urllib3.PoolManager()
 # # constants for the output files
 TIMESTAMP = str(datetime.datetime.now())                       # the actual date and time
 DATE = str(datetime.date.today())                              # the actual date
-DATA_DIR = Path('./data/')                                     # get the path of the directory of this script
-VEGGIEPLACES_TEMPFILE = DATA_DIR / 'places_temp.json'          # the temp file to store the data
+DATA_DIR = Path("./data/")                                     # get the path of the directory of this script
+VEGGIEPLACES_TEMPFILE = DATA_DIR / "places_temp.json"          # the temp file to store the data
 VEGGIEPLACES_TEMPFILE_MIN = DATA_DIR / "places_temp.min.json"  # the minimized temp file
 VEGGIEPLACES_FILE = DATA_DIR / "places.json"                   # the data file which will be used for the map
 VEGGIEPLACES_FILE_MIN = DATA_DIR / "places.min.json"           # the minimized data file which will be used for the map
@@ -126,13 +126,13 @@ def get_osm_data():
 
     # Preparing the string for the Overpass request
     # Define export format
-    overpass_query = '?data=[out:json];('
+    overpass_query = "?data=[out:json];("
     # # Collect the vegan nodes, ways and relations
-    overpass_query += 'nwr["diet:vegan"~"yes|only|limited"];'
+    overpass_query += "nwr['diet:vegan'~'yes|only|limited'];"
     # # Collect the vegetarian nodes, ways and relations
-    overpass_query += 'nwr["diet:vegetarian"~"yes|only"];'
+    overpass_query += "nwr['diet:vegetarian'~'yes|only'];"
     # # End of the query and use "out center" to reduce the geometry of ways and relations to a single coordinate
-    overpass_query += ');out+center;'
+    overpass_query += ");out+center;"
 
     # Sending a request to one server after another until one gives a valid answer or
     # the end of the server list is reached.
@@ -243,8 +243,7 @@ def write_data(data):
 
         # Print progress
         osm_element_index += 1
-        print(osm_element_index, ' / ', osm_elements_number, '\t', end='\r')
-
+        print(osm_element_index, " / ", osm_elements_number, "\t", end="\r")
 
         # Give the object a category
         if tags.get("diet:vegan", "") == "only":
@@ -316,15 +315,17 @@ def write_data(data):
         places_data["features"].append(place_obj)
 
     # Print number of elements
-    print(osm_elements_number, ' elements')
+    print(osm_elements_number, " elements")
 
     # Collect the statistic data in an object and add it to the places object
-    stat_obj = {"date": DATE,
-                "n_vegan_only": n_vegan_only,
-                "n_vegetarian_only": n_vegetarian_only,
-                "n_vegan_friendly": n_vegan_friendly,
-                "n_vegan_limited": n_vegan_limited,
-                "n_vegetarian_friendly": n_vegetarian_friendly}
+    stat_obj = {
+        "date": DATE,
+        "n_vegan_only": n_vegan_only,
+        "n_vegetarian_only": n_vegetarian_only,
+        "n_vegan_friendly": n_vegan_friendly,
+        "n_vegan_limited": n_vegan_limited,
+        "n_vegetarian_friendly": n_vegetarian_friendly,
+    }
 
     # Open statistic data file
     with VEGGIESTAT_FILE.open() as json_file:
@@ -385,7 +386,7 @@ def main():
 
         # Write file in minimized format
         VEGGIEPLACES_TEMPFILE_MIN.touch()
-        VEGGIEPLACES_TEMPFILE_MIN.write_text(json.dumps(places_data, indent=None, sort_keys=True, separators=(',', ':')))
+        VEGGIEPLACES_TEMPFILE_MIN.write_text(json.dumps(places_data, indent=None, sort_keys=True, separators=(",", ":")))
 
         check_data()
     else:
