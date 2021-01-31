@@ -371,7 +371,8 @@ def main():
     if len(sys.argv) < 2:
         osm_data = get_osm_data()
     else:
-        # For testing without new osm requests
+        # For testing without new OSM requests
+        # Example: 'python3 refresh.py ./data/overpass.json'
         osm_data = json.load(open(sys.argv[1]))
 
     # Write data
