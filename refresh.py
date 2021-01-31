@@ -3,13 +3,12 @@
 With this module we get the POIs with the tags diet:vegan = * and
 diet:vegetarian = * from OpenStreetMap and fill them in a file.
 """
-
-import os         # for handling files
-import time       # for sleep
-import json       # read and write json
-import sys        # to check the python version
-import datetime   # for the timestamp
-import urllib3    # for the HTTP GET request
+import datetime          # for the timestamp
+import json              # read and write json
+import sys               # to check the python version
+import time              # for sleep
+import urllib3           # for the HTTP GET request
+from pathlib import Path # for handling files
 
 assert sys.version_info >= (3, 0)
 
@@ -28,18 +27,16 @@ SERVERS = [
 HTTP = urllib3.PoolManager()
 
 # # constants for the output files
-TIMESTAMP = str(datetime.datetime.now())                             # the actual date and time
-DATE = str(datetime.date.today())                                    # the actual date
-DATA_DIR = os.path.dirname(os.path.abspath(__file__))                # get the path of the directory of this script
-VEGGIEPLACES_TEMPFILE = DATA_DIR + "/data/places_temp.json"          # the temp file to store the data
-VEGGIEPLACES_TEMPFILE_MIN = DATA_DIR + "/data/places_temp.min.json"  # the minimized temp file
-VEGGIEPLACES_TEMPFILE_GZIP = DATA_DIR + "/data/places_temp.min.json.gz"  # the gzipped temp file
-VEGGIEPLACES_FILE = DATA_DIR + "/data/places.json"                   # the data file which will be used for the map
-VEGGIEPLACES_FILE_MIN = DATA_DIR + "/data/places.min.json"           # the minimized data file which will be used for the map
-VEGGIEPLACES_FILE_GZIP = DATA_DIR + "/data/places.min.json.gz"       # the gzipped data file which will be used for the map
-VEGGIESTAT_FILE = DATA_DIR + "/data/stat.json"                       # the statistics data file which will be used for the map
-VEGGIEPLACES_OLDFILE = DATA_DIR + "/data/places_old.json"            # previous version of the data file (helpful to examine changes)
-OVERPASS_FILE = DATA_DIR + "/data/overpass.json"                     # the raw overpass output file (useful for later use)
+TIMESTAMP = str(datetime.datetime.now())                       # the actual date and time
+DATE = str(datetime.date.today())                              # the actual date
+DATA_DIR = Path('./data/')                                     # get the path of the directory of this script
+VEGGIEPLACES_TEMPFILE = DATA_DIR / 'places_temp.json'          # the temp file to store the data
+VEGGIEPLACES_TEMPFILE_MIN = DATA_DIR / "places_temp.min.json"  # the minimized temp file
+VEGGIEPLACES_FILE = DATA_DIR / "places.json"                   # the data file which will be used for the map
+VEGGIEPLACES_FILE_MIN = DATA_DIR / "places.min.json"           # the minimized data file which will be used for the map
+VEGGIESTAT_FILE = DATA_DIR / "stat.json"                       # the statistics data file which will be used for the map
+VEGGIEPLACES_OLDFILE = DATA_DIR / "places_old.json"            # previous version of the data file (helpful to examine changes)
+OVERPASS_FILE = DATA_DIR / "overpass.json"                     # the raw overpass output file (useful for later use)
 
 # variables to handle the json data
 places_data = {}
@@ -152,8 +149,8 @@ def get_osm_data():
             print("Received answer successfully.")
 
             # Store the raw output in a file (for any later use)
-            with open(OVERPASS_FILE, "wb") as overpass_file:
-                overpass_file.write(osm_request.data)
+            OVERPASS_FILE.touch()
+            OVERPASS_FILE.write_bytes(osm_request.data)
 
             result = json.loads(osm_request.data.decode("utf-8"))
         elif osm_request.status == 400:
@@ -236,7 +233,7 @@ def write_data(data):
             if "name:en" in tags:
                 name = tags["name:en"]
             elif tags.get("amenity", "") == "vending_machine":
-                  name = "vending machine"
+                name = "vending machine"
             else:
                 # If there is no name given from osm, we build one
                 name = "%s %s" % (element_type, element_id)
@@ -330,7 +327,7 @@ def write_data(data):
                 "n_vegetarian_friendly": n_vegetarian_friendly}
 
     # Open statistic data file
-    with open(VEGGIESTAT_FILE) as json_file:
+    with VEGGIESTAT_FILE.open() as json_file:
 
         # Get previous statistic data
         previous_stat_data = json.load(json_file)
@@ -349,22 +346,21 @@ def write_data(data):
 
 def check_data():
     """Check the temp file and replace the old VEGGIEPLACES_FILE if it is ok."""
-    if os.path.isfile(VEGGIEPLACES_TEMPFILE_MIN):                        # check if the temp file exists
-        if os.path.getsize(VEGGIEPLACES_TEMPFILE_GZIP) > 500:             # check if the temp file isn't too small (see issue #21)
-            print("rename " + VEGGIEPLACES_TEMPFILE + " to " + VEGGIEPLACES_FILE)
-            os.rename(VEGGIEPLACES_FILE, VEGGIEPLACES_OLDFILE)           # rename old file
-            os.rename(VEGGIEPLACES_TEMPFILE, VEGGIEPLACES_FILE)          # rename temp file to new file
-            print("rename " + VEGGIEPLACES_TEMPFILE_MIN + " to " + VEGGIEPLACES_FILE_MIN)
-            os.rename(VEGGIEPLACES_TEMPFILE_MIN, VEGGIEPLACES_FILE_MIN)  # rename minimized temp file to new file
+    if VEGGIEPLACES_TEMPFILE_MIN.exists():                             # check if the temp file exists
+        if VEGGIEPLACES_TEMPFILE_MIN.stat().st_size > 500:             # check if the temp file isn't too small (see issue #21)
+            print("rename " + str(VEGGIEPLACES_TEMPFILE) + " to " + str(VEGGIEPLACES_FILE))
+            VEGGIEPLACES_FILE.rename(VEGGIEPLACES_OLDFILE)             # rename old file
+            VEGGIEPLACES_TEMPFILE.rename(VEGGIEPLACES_FILE)            # rename temp file to new file
+            print("rename " + str(VEGGIEPLACES_TEMPFILE_MIN) + " to " + str(VEGGIEPLACES_FILE_MIN))
+            VEGGIEPLACES_TEMPFILE_MIN.rename(VEGGIEPLACES_FILE_MIN)    # rename minimized temp file to new file
 
             # Write the new statistic file
-            outfilestat = open(VEGGIESTAT_FILE, "w")
-            outfilestat.write(json.dumps(stat_data, indent=1, sort_keys=True))
-            outfilestat.close()
+            VEGGIESTAT_FILE.touch()
+            VEGGIESTAT_FILE.write_text(json.dumps(stat_data, indent=1, sort_keys=True))
 
         else:
-            print("New temp file is too small!")
-            print(os.path.getsize(VEGGIEPLACES_TEMPFILE_MIN))
+            print("New temp file is too small! - ")
+            print(VEGGIEPLACES_TEMPFILE_MIN.stat().st_size)
     else:
         print("temp file don't exists!")
 
@@ -383,18 +379,12 @@ def main():
         write_data(osm_data)
 
         # Write file in pretty format
-        outfile = open(VEGGIEPLACES_TEMPFILE, "w")
-        outfile.write(json.dumps(places_data, indent=1, sort_keys=True))
-        outfile.close()
+        VEGGIEPLACES_TEMPFILE.touch()
+        VEGGIEPLACES_TEMPFILE.write_text(json.dumps(places_data, indent=1, sort_keys=True))
 
         # Write file in minimized format
-        outfile_min = open(VEGGIEPLACES_TEMPFILE_MIN, "w")
-        outfile_min.write(json.dumps(places_data, indent=None, sort_keys=True, separators=(',', ':')))
-        outfile_min.close()
-
-        # Write file in gzipped format
-        with gzip.open(VEGGIEPLACES_TEMPFILE_GZIP, "wt", encoding="UTF-8") as outfile_gzip:
-            outfile_gzip.write(json.dumps(places_data, indent=None, sort_keys=True, separators=(',', ':')))
+        VEGGIEPLACES_TEMPFILE_MIN.touch()
+        VEGGIEPLACES_TEMPFILE_MIN.write_text(json.dumps(places_data, indent=None, sort_keys=True, separators=(',', ':')))
 
         check_data()
     else:
