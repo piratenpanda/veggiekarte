@@ -29,7 +29,8 @@
         "open": "malfermita",
         "unknown": "nekonata",
         "closed": "fermita",
-        "public_holiday": "festotago"
+        "public_holiday": "festotago",
+        "school_holidays": "ferioj"
       },
       "leaflet": {
         "L-control-geocoder": {

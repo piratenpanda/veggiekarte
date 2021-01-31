@@ -29,7 +29,8 @@
         "open": "open",
         "unknown": "unknown",
         "closed": "closed",
-        "public_holiday": "holiday"
+        "public_holiday": "holiday",
+        "school_holidays": "school holidays"
       },
       "leaflet": {
         "L-control-geocoder": {

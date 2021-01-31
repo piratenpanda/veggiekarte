@@ -29,7 +29,8 @@
         "open": "avata",
         "unknown": "tuntematon",
         "closed": "suljettu",
-        "public_holiday": "yleinen vapaapäivä"
+        "public_holiday": "yleinen vapaapäivä",
+        "school_holidays": "koululomat"
       },
       "leaflet": {
         "L-control-geocoder": {

@@ -7,7 +7,7 @@
         "will close soon": ", aber wird bald schließen",
         "more_info": "Mehr Infos",
         "content-welcome-heading": "Willkommen",
-        "content-welcome-text": "<p>Auf der Karte findest du die in OpenStreetMap in Halle, im Saalekreis und in Leipzig eingetragenen veganen und vegetarischen Restaurants, Eisdielen, Cafés etc. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen. Alle grünen Icons sind Lokalitäten in denen es vegane Optionen gibt. Icons die nicht grün sind, bieten vegetarische aber keine veganen Optionen an.</p>",
+        "content-welcome-text": "<p>Auf der Veggiekarte findest du alle in OpenStreetMap eingetragenen veganen und vegetarischen Restaurants, Eisdielen, Cafés etc. Benutze einfach das Suchfeld um nach deinem Ort oder deiner Straße zu suchen. Alle grünen Icons sind Lokalitäten in denen es vegane Optionen gibt. Icons die nicht grün sind, bieten vegetarische aber keine veganen Optionen an.</p>",
         "content-osm-heading": "Über OpenStreetMap",
         "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> ist eine freie Weltkarte und funktioniert so ähnlich wie Wikipedia. Jeder kann mitmachen und Informationen eintragen. Dadurch ist die Karte immer aktuell und voll von nützlichen Informationen. Wer Verbesserungsvorschläge hat oder Fehler in der Karte findet, kann diese einfach selbst eintragen oder verbessern.",
         "content-contribute-heading": "Informationen beitragen",
@@ -29,7 +29,8 @@
         "open": "geöffnet",
         "unknown": "unbekannt",
         "closed": "geschlossen",
-        "public_holiday": "Feiertag"
+        "public_holiday": "Feiertag",
+        "school_holidays": "Ferien"
       },
       "leaflet": {
         "L-control-geocoder": {
