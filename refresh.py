@@ -121,7 +121,7 @@ def determine_icon(tags):
     return icon
 
 
-def get_data_osm():
+def get_osm_data():
     """Get the data from OSM."""
     # Initialize variables
     server = 0
@@ -373,7 +373,7 @@ def main():
     """Call the functions to get and write the osm data."""
     # Get data
     if len(sys.argv) < 2:
-        osm_data = get_data_osm()
+        osm_data = get_osm_data()
     else:
         # For testing without new osm requests
         osm_data = json.load(open(sys.argv[1]))
