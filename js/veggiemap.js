@@ -323,16 +323,16 @@ function calculatePopup(layer) {
       // Country: Germany
       let country_code = 'de';
       // State: Sachsen-Anhalt
-      let state = 'st';
+      let state = 'Sachsen-Anhalt';
       // Get browser language for the warnings and the prettifier
       let locale = userLanguage; // userLanguage is defined in i18n.js
 
       //Create opening_hours object
           let oh = new opening_hours(eOpe, {
-          'lat':eLatLon[0],'lon':[0], 'address': {'country_code':country_code, 'state':state}},
+          'address': {'country_code':country_code, 'state':state}},
           {'locale':locale});
       let prettified_value = oh.prettifyValue({conf: {'locale':locale, 'rule_sep_string': '<br />', 'print_semicolon': false, 'sep_one_day_between': ', '}});
-      prettified_value = prettified_value.replaceAll(',', ', ').replaceAll('PH', i18next.t('words.public_holiday'));
+      prettified_value = prettified_value.replaceAll(',', ', ').replaceAll('PH', i18next.t('words.public_holiday')).replaceAll('SH', i18next.t('words.school_holidays'));
       // Find out the open state
       let open_state = '';
       let open_state_emoji = '';
