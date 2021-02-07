@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 """
 With this module we get the POIs with the tags diet:vegan = * and
 diet:vegetarian = * from OpenStreetMap and fill them in a file.
