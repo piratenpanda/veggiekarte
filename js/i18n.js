@@ -6,7 +6,7 @@ const languages = {
   de: 'Deutsch',
   en: 'English',
   eo: 'Esperanto',
-  fi: 'Suomi',
+  fi: 'suomi',
   fr: 'Français'
 };
 
