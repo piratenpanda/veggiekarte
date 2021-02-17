@@ -439,6 +439,38 @@
    "n_vegan_only": 2345,
    "n_vegetarian_friendly": 17859,
    "n_vegetarian_only": 1575
+  },
+  {
+   "date": "2021-02-01",
+   "n_vegan_friendly": 11245,
+   "n_vegan_limited": 175,
+   "n_vegan_only": 2345,
+   "n_vegetarian_friendly": 17860,
+   "n_vegetarian_only": 1575
+  },
+  {
+   "date": "2021-02-07",
+   "n_vegan_friendly": 11284,
+   "n_vegan_limited": 175,
+   "n_vegan_only": 2354,
+   "n_vegetarian_friendly": 17941,
+   "n_vegetarian_only": 1580
+  },
+  {
+   "date": "2021-02-13",
+   "n_vegan_friendly": 11330,
+   "n_vegan_limited": 175,
+   "n_vegan_only": 2357,
+   "n_vegetarian_friendly": 17995,
+   "n_vegetarian_only": 1580
+  },
+  {
+   "date": "2021-02-17",
+   "n_vegan_friendly": 11362,
+   "n_vegan_limited": 175,
+   "n_vegan_only": 2358,
+   "n_vegetarian_friendly": 18054,
+   "n_vegetarian_only": 1580
   }
  ]
 }
