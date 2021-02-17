@@ -97,6 +97,8 @@ function updateContent() {
   document.getElementById('content-osm-text').innerHTML = i18next.t('texts.content-osm-text');
   document.getElementById('content-contribute-heading').innerText = i18next.t('texts.content-contribute-heading');
   document.getElementById('content-contribute-text').innerHTML = i18next.t('texts.content-contribute-text');
+  document.getElementById('content-reviews-heading').innerText = i18next.t('texts.content-reviews-heading');
+  document.getElementById('content-reviews-text').innerHTML = i18next.t('texts.content-reviews-text');
   document.getElementById('content-further-heading').innerText = i18next.t('texts.content-further-heading');
   document.getElementById('content-further-text').innerHTML = i18next.t('texts.content-further-text');
 

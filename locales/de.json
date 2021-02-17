@@ -12,6 +12,8 @@
         "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> ist eine freie Weltkarte und funktioniert so ähnlich wie Wikipedia. Jeder kann mitmachen und Informationen eintragen. Dadurch ist die Karte immer aktuell und voll von nützlichen Informationen. Wer Verbesserungsvorschläge hat oder Fehler in der Karte findet, kann diese einfach selbst eintragen oder verbessern.",
         "content-contribute-heading": "Informationen beitragen",
         "content-contribute-text": "Wenn du selbst Restaurants, Cafés, Eisdielen oder Imbissbuden kennst, die noch nicht in der Karte auftauchen, oder selbst eins betreibst, dann kannst du es einfach selbst hinzufügen. Dazu musst du den 'diet:vegan'- oder 'diet:vegetarian'-Tag bei deiner Location in OpenStreetMap hinzufügen. Eine Anleitung dazu gibt es <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>hier</a>.",
+        "content-reviews-heading": "Rezensionen",
+        "content-reviews-text": "<a href='https://lib.reviews/' target='_blank' rel='noopener noreferrer'>lib.rewiews</a> ist eine freie und offene Plattform, um alles mögliche zu rezensieren. Falls es dort eine Rezension zu einem Ort gibt, zeigen wir einen Link dazu an.",
         "content-further-heading": "Sonstiges",
         "content-further-text": "Die Veggiekarte aktualisiert sich automatisch jede Stunde. Den Code findest du auf <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>. Und als kleine Spielerei haben wir auch ein kleines Diagramm <a href='data_chart.html'>hier</a>.",
         "i18n_vegan_only": "alles vegan",
@@ -30,6 +32,7 @@
         "unknown": "unbekannt",
         "closed": "geschlossen",
         "public_holiday": "Feiertag",
+        "review": "Rezension",
         "school_holidays": "Ferien"
       },
       "leaflet": {

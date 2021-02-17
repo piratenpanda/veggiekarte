@@ -20,6 +20,7 @@ There are several ways to get involved:
 2. Report issues
 3. Help to translate (take [locales/en.json](locales/en.json) as template)
 4. Participate in development
+5. Write reviews for places on [https://lib.reviews/](lib.reviews)
 
 ## Keys
 
