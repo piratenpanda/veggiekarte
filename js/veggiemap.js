@@ -372,7 +372,14 @@ function calculatePopup(layer) {
     }
 
     // Adding addidtional information to popup
-    if(ePho!=undefined){popupContent += "<div class='popupflex-container'><div>☎️</div><div><a href='tel:" + ePho + "' target='_blank' rel='noopener noreferrer'>" + ePho + "</a></div></div>"}
+    if(ePho!=undefined){
+      // Split the value for the case that there are more then one phone number
+      ePho = ePho.split(";");
+      popupContent += "<div class='popupflex-container'><div>☎️</div><div><a href='tel:" + ePho[0] + "' target='_blank' rel='noopener noreferrer'>" + ePho[0] + "</a></div></div>";
+        if(ePho[1]!=undefined){
+          popupContent += "<div class='popupflex-container'><div></div><div><a href='tel:" + ePho[1] + "' target='_blank' rel='noopener noreferrer'>" + ePho[1] + "</a></div></div>";
+        }
+    }
     if(eEma!=undefined){popupContent += "<div class='popupflex-container'><div>📧</div><div><a href='mailto:" + eEma + "' target='_blank' rel='noopener noreferrer'>" + eEma + "</a></div></div>"}
     if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href='" + eWeb + "' target='_blank' rel='noopener noreferrer'>" + eWeb.replace("https://", "") + "</a></div></div>"}
     if(eFac!=undefined){popupContent += "<div class='popupflex-container'><div>🇫</div><div><a href='" + eFac + "' target='_blank' rel='noopener noreferrer'>" + decodeURI(eFac).replace("https://", "") + "</a></div></div>"}
