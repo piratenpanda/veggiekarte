@@ -13,7 +13,7 @@
         "content-contribute-heading": "Osallistu tiedonkeruuseen",
         "content-contribute-text": "Jos tiedät tai pidät itse ravintolaa, kahvilaa, jäätelöbaaria tai ruokakojua, joka ei vielä ole kartalla, voit lisätä sen itse. Tätä varten sinun tulee OpenStreetMapissa merkitä paikka tunnisteella 'diet:vegan' tai 'diet:vegetarian' (\"Erityisruokavaliot\"). Opastus on <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>täällä</a>.",
         "content-review-heading": "Arvostelu",
-        "content-review-text": "<a href='https://lib.reviews/' target='_blank' rel='noopener noreferrer'>lib.rewiews</a> on ilmainen ja avoin foorumi kaiken tarkastelemiseen. Jos siellä on arvostelu paikasta, näytämme linkin siihen.",
+        "content-review-text": "<a href='https://lib.reviews/' target='_blank' rel='noopener noreferrer'>lib.reviews</a> on ilmainen ja avoin foorumi kaiken tarkastelemiseen. Jos siellä on arvostelu paikasta, näytämme linkin siihen.",
         "content-further-heading": "Lisäksi",
         "content-further-text": "Veggiekarte.de päivittyy automaattisesti tunnin välein. Lähdekoodi on saatavilla <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHubista</a>. Ja pikku temppuna meillä on myös pikkuinen diagrammi <a href='data_chart.html'>täällä</a>.",
         "i18n_vegan_only": "kaikki vegaanista",
