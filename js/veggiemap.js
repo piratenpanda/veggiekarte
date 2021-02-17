@@ -277,6 +277,22 @@ function calculateTooltip(layer) {
     return eSym + " " + eNam;
 }
 
+
+/**
+ * Check if there is an entry for a place (feature) on https://lib.reviews/.
+ * @param  {Object} feature
+ */
+function addLibReview(feature) {
+  const url = 'https://lib.reviews/api/thing?url=https://www.openstreetmap.org/' + feature.properties._type + '/' + feature.properties._id;
+  fetch(url)
+  .then(response => response.json())
+  .then(data => document.getElementById('libreviews').innerHTML = '<div class="popupflex-container"><div>📓</div><div><a href="https://lib.reviews/' + data.thing.urlID + '" target="_blank" rel="noopener noreferrer">' + i18next.t('words.review') + '</a></div>')
+  .catch(error => {
+    console.log("There is no review of this place or lib.reviews isn't available.");
+  });
+}
+
+
 // Calculate popup content for a given marker layer
 function calculatePopup(layer) {
     // Get the information
@@ -361,6 +377,10 @@ function calculatePopup(layer) {
     if(eWeb!=undefined){popupContent += "<div class='popupflex-container'><div>🌐</div><div><a href='" + eWeb + "' target='_blank' rel='noopener noreferrer'>" + eWeb.replace("https://", "") + "</a></div></div>"}
     if(eFac!=undefined){popupContent += "<div class='popupflex-container'><div>🇫</div><div><a href='" + eFac + "' target='_blank' rel='noopener noreferrer'>" + decodeURI(eFac).replace("https://", "") + "</a></div></div>"}
     if(eIns!=undefined){popupContent += "<div class='popupflex-container'><div>📸</div><div><a href='" + eIns + "' target='_blank' rel='noopener noreferrer'>" + eIns.replace("https://", "") + "</a></div></div>"}
+
+    // Add review entry from lib.reviews if exists
+    popupContent += "<div id='libreviews'></div>";
+    addLibReview(feature);
 
     return popupContent;
 }

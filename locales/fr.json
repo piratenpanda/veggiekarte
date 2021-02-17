@@ -12,6 +12,8 @@
         "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> est une carte du monde gratuite et fonctionne de la même manière que Wikipedia. Tout le monde peut participer et saisir des informations. Cela signifie que la carte est toujours à jour et pleine d'informations utiles. Quiconque a des suggestions d'amélioration ou trouve des erreurs dans la carte peut simplement les saisir ou les améliorer.",
         "content-contribute-heading": "Contribuer des informations",
         "content-contribute-text": "Si vous connaissez vous-même des restaurants, des cafés, des glaciers ou des plats à emporter qui ne figurent pas encore au menu, ou si vous en gérez un vous-même, vous pouvez simplement l'ajouter vous-même. Pour ce faire, vous devez ajouter la balise «régime: végétalien» ou «régime: végétarien» à votre emplacement dans OpenStreetMap. Les instructions sont disponibles <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>ici</a>.",
+        "content-reviews-heading": "Critiques",
+        "content-reviews-text": "<a href='https://lib.reviews/' target='_blank' rel='noopener noreferrer'>lib.rewiews</a> est une plate-forme gratuite et ouverte pour revoir n'importe quoi. S'il y a un avis sur un lieu là-bas, nous afficherons un lien vers celui-ci.",
         "content-further-heading": "Autres",
         "content-further-text": "Le menu végétarien est mis à jour automatiquement toutes les heures. Vous pouvez trouver le code sur <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>. Et comme petit gadget, nous avons également un petit diagramme <a href='data_chart.html'>ici</a>.",
         "i18n_vegan_only": "tout est végétalien",
@@ -30,6 +32,7 @@
         "unknown": "indéterminé",
         "closed": "fermé",
         "public_holiday": "jour férié",
+        "review": "critiques",
         "school_holidays": "vacances scolaires"
       },
       "leaflet": {
