@@ -320,35 +320,7 @@ def write_data(data):
         places_data["features"].append(place_obj)
 
     # Print number of elements
-    print(osm_elements_number, " elements")
-
-    # Collect the statistic data in an object and add it to the places object
-    stat_obj = {
-        "date": DATE,
-        "n_vegan_only": n_vegan_only,
-        "n_vegetarian_only": n_vegetarian_only,
-        "n_vegan_friendly": n_vegan_friendly,
-        "n_vegan_limited": n_vegan_limited,
-        "n_vegetarian_friendly": n_vegetarian_friendly,
-    }
-
-    # Open statistic data file
-    with VEGGIESTAT_FILE.open() as json_file:
-
-        # Get previous statistic data
-        previous_stat_data = json.load(json_file)
-        stat_data["stat"] = previous_stat_data["stat"]
-
-        # Get date from the last entry
-        last_date = stat_data["stat"][-1]["date"]
-
-        # Ensure that there is only one entry each day
-        if DATE == last_date:
-            stat_data["stat"].pop(-1)
-
-        # Append the new data
-        stat_data["stat"].append(stat_obj)
-
+    print(osm_elements_number, " elements") 
 
 def check_data():
     """Check the temp file and replace the old VEGGIEPLACES_FILE if it is ok."""
