@@ -29,7 +29,7 @@ for key, filter_expression in FILTERS.items():
         "filter": filter_expression,
         "showMetadata": "true",
         "bboxes": "-180,-90,180,90",
-        "time": "//P1D",
+        "time": "2011-02-01//P1D",
     })
     response = json.loads(request.data.decode("utf-8"))
     for datapoint in response.get("result"):
