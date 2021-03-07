@@ -44,7 +44,6 @@ VEGGIEPLACES_OLDFILE = DATA_DIR / "places_old.json"            # previous versio
 OVERPASS_FILE = DATA_DIR / "overpass.json"                     # the raw overpass output file (useful for later use)
 
 # variables to handle the json data
-places_data = {}
 stat_data = {}
 
 # icon mapping
@@ -178,6 +177,9 @@ def get_osm_data():
 
 def write_data(data):
     """Write the data in a temp file."""
+
+    places_data = {}
+
     # Initialize variables to count the markers
     n_vegan_only = 0
     n_vegetarian_only = 0
@@ -320,7 +322,10 @@ def write_data(data):
         places_data["features"].append(place_obj)
 
     # Print number of elements
-    print(osm_elements_number, " elements") 
+    print(osm_elements_number, " elements")
+
+    return places_data
+
 
 def check_data():
     """Check the temp file and replace the old VEGGIEPLACES_FILE if it is ok."""
@@ -357,7 +362,7 @@ def main():
 
     # Write data
     if osm_data is not None:
-        write_data(osm_data)
+        places_data = write_data(osm_data)
 
         # Write file in pretty format
         VEGGIEPLACES_TEMPFILE.touch()
