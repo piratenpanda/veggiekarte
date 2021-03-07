@@ -40,14 +40,17 @@ for key, filter_expression in FILTERS.items():
     	
     else:
     	print("No data received, skipping")
-    
-with open("data/stat.json", "wt") as stat_file:
-	json.dump(
-	{
-	"stat": sorted(stat_data.values(), key=lambda x:x.get("date"))
-	},
-	stat_file,
-	indent=1,
-	sort_keys=True,
-	)
-print("Done!")	
+
+if len(stat_data) > 0:    
+	with open("data/stat.json", "wt") as stat_file:
+		json.dump(
+		{
+		"stat": sorted(stat_data.values(), key=lambda x:x.get("date"))
+		},
+		stat_file,
+		indent=1,
+		sort_keys=True,
+		)
+	print("Done writing stat file!")	
+else:
+	print("No data received! Not writing stat file")
