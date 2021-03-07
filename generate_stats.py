@@ -38,14 +38,14 @@ for key, filter_expression in FILTERS.items():
 
 if stat_data is not None:
 	with open("data/stat.json", "wt") as stat_file:
-    	json.dump(
+    		json.dump(
         	{
             	"stat": sorted(stat_data.values(), key=lambda x:x.get("date"))
         	},
         	stat_file,
         	indent=1,
         	sort_keys=True,
-    	)
+    		)	
 	print("Writing data/stat.json done.")
 else:
 	print("No new data received, keeping old file")
