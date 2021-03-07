@@ -74,14 +74,13 @@ function getLanguageRecources(userLanguage, init) {
 
 
 function initTranslate() {
-  if (!initialized) {
+  if (!i18next.isInitialized) {
     i18next.init({
       lng: userLanguage,
       fallbackLng: fallbackLanguage,
       debug: false,
       resources: languageRecources
     });
-  initialized = true;
   }
   
   updateContent();
@@ -128,7 +127,6 @@ function updateContent() {
 
 
 let languageRecources = {};
-let initialized = false;
 let fallbackLanguage = "en";
 let userLanguage = getUserLanguage();
 
