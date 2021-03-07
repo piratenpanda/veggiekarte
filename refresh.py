@@ -206,21 +206,17 @@ def write_data(data):
         element_type = osm_element["type"]
         tags = osm_element.get("tags", {})
 
-        place_obj = {}
-        place_obj["type"] = "Feature"
-        place_obj["properties"] = {}
+        place_obj = {"type": "Feature", "properties": {}}
         place_obj["properties"]["_id"] = element_id
         place_obj["properties"]["_type"] = element_type
 
         if element_type == "node":
             lat = osm_element.get("lat", None)
             lon = osm_element.get("lon", None)
-
         elif element_type == "way" or element_type == "relation":
             center_coordinates = osm_element.get("center", None)  # get the coordinates from the center of the object
             lat = center_coordinates.get("lat", None)
             lon = center_coordinates.get("lon", None)
-
         else:
             continue
 
