@@ -22,18 +22,18 @@ function getUserLanguage () {
   let urlLanguage = urlParameters.get('lang');
 
   if (urlLanguage != undefined) {
-    console.log("Language from URL: " + urlLanguage);
+    console.info("Language from URL: " + urlLanguage);
     language = urlLanguage;
   } else {
     // Get language from browser
     let browserLanguage = navigator.language.split("-")[0];
-    console.log("Browser language: " + browserLanguage);
+    console.info("Browser language: " + browserLanguage);
     language = browserLanguage;
   }
 
   // Check if we support the taken language
   if (!Object.keys(languages).includes(language)) {
-    console.log("This Website is not translated to language with language code '" + language + "'. Help to translate it!");
+    console.warn("This Website is not translated to language with language code '" + language + "'. Help to translate it!");
     language = "en";
   }
 
@@ -48,7 +48,7 @@ function getLanguageRecources(userLanguage, init) {
   if (response.ok) {
     return response.json();
   } else {
-    console.log("error");
+    console.error("error");
     throw new Error(response.statusText);
   }
   
@@ -67,7 +67,7 @@ function getLanguageRecources(userLanguage, init) {
   
   })
   .catch(function (err) {
-    console.log(err);
+    console.error(err);
   });
 
 }
