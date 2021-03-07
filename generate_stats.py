@@ -36,18 +36,18 @@ for key, filter_expression in FILTERS.items():
     if response.get("result") is not None:    
     	for datapoint in response.get("result"):
         	date = datapoint.get("timestamp").split("T")[0]
-        	stat_data.setdefault(date, {"date": date})[key] = int(datapoint.get("value"))
-        	
-    	with open("data/stat.json", "wt") as stat_file:
-    		json.dump(
-    		{
-    		"stat": sorted(stat_data.values(), key=lambda x:x.get("date"))
-    		},
-    		stat_file,
-    		indent=1,
-    		sort_keys=True,
-    		)	
-    	print("Writing data/stat.json done.")
+        	stat_data.setdefault(date, {"date": date})[key] = int(datapoint.get("value"))  	
+    	
     else:
-    	print("No new data received, keeping old file")
+    	print("No data received, skipping")
     
+with open("data/stat.json", "wt") as stat_file:
+	json.dump(
+	{
+	"stat": sorted(stat_data.values(), key=lambda x:x.get("date"))
+	},
+	stat_file,
+	indent=1,
+	sort_keys=True,
+	)
+print("Done!")	
