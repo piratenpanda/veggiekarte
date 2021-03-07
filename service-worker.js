@@ -1,6 +1,6 @@
 let CACHE_NAME = 'veggiekarte';
 
-console.log(CACHE_NAME);
+console.info(CACHE_NAME);
 
 // List of files to cache here.
 const FILES_TO_CACHE = [

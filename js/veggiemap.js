@@ -228,6 +228,7 @@ function veggiemap_populate(parentGroup) {
       subgroup.addLayer(L.layerGroup(markerGroups[key]));
       map.addLayer(subgroup);
     });
+
     // Reveal all the markers and clusters on the map in one go
     map.addLayer(parentGroup);
 
@@ -240,7 +241,7 @@ function veggiemap_populate(parentGroup) {
     // Update translations
     updateContent();
   })
-  .catch(error  => {console.log('Request failed', error);});
+  .catch(error  => {console.error('Request failed', error);});
 }
 
 // Process the places GeoJSON into the groups of markers
@@ -288,7 +289,7 @@ function addLibReview(feature) {
   .then(response => response.json())
   .then(data => document.getElementById('libreviews').innerHTML = '<div class="popupflex-container"><div>📓</div><div><a href="https://lib.reviews/' + data.thing.urlID + '" target="_blank" rel="noopener noreferrer">' + i18next.t('words.review') + '</a></div>')
   .catch(error => {
-    console.log("There is no review of this place or lib.reviews isn't available.");
+    console.info("There is no review of this place or lib.reviews isn't available.");
   });
 }
 
@@ -344,7 +345,7 @@ function calculatePopup(layer) {
       let locale = userLanguage; // userLanguage is defined in i18n.js
 
       //Create opening_hours object
-          let oh = new opening_hours(eOpe, {
+      let oh = new opening_hours(eOpe, {
           'address': {'country_code':country_code, 'state':state}},
           {'locale':locale});
       let prettified_value = oh.prettifyValue({conf: {'locale':locale, 'rule_sep_string': '<br />', 'print_semicolon': false, 'sep_one_day_between': ', '}});
