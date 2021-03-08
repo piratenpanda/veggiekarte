@@ -5,6 +5,8 @@
 
 This script fetches the daily counts of venues by category from the
 Ohsome API and saves them as the file data/stat.json.
+
+Currently runs weekly and is supported by half-hourly updates via refresh.py
 """
 
 import json
