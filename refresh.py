@@ -39,8 +39,12 @@ VEGGIEPLACES_TEMPFILE_GZIP = DATA_DIR / "places_temp.min.json.gz"  # the gzipped
 VEGGIEPLACES_FILE = DATA_DIR / "places.json"                   # the data file which will be used for the map
 VEGGIEPLACES_FILE_MIN = DATA_DIR / "places.min.json"           # the minimized data file which will be used for the map
 VEGGIEPLACES_FILE_GZIP = DATA_DIR / "places.min.json.gz"       # the gzipped data file which will be used for the map
+VEGGIESTAT_FILE = DATA_DIR / "stat.json"                       # the statistics data file which will be used for the map
 VEGGIEPLACES_OLDFILE = DATA_DIR / "places_old.json"            # previous version of the data file (helpful to examine changes)
 OVERPASS_FILE = DATA_DIR / "overpass.json"                     # the raw overpass output file (useful for later use)
+
+# variables to handle the json data
+stat_data = {}
 
 # icon mapping
 # (the first element of the array is for the icon in the marker, the second is an emoji and it is used in the title)
@@ -316,6 +320,34 @@ def write_data(data):
 
     # Print number of elements
     print(osm_elements_number, " elements")
+    
+    
+    # Collect the statistic data in an object and add it to the places object
+    stat_obj = {
+        "date": DATE,
+        "n_vegan_only": n_vegan_only,
+        "n_vegetarian_only": n_vegetarian_only,
+        "n_vegan_friendly": n_vegan_friendly,
+        "n_vegan_limited": n_vegan_limited,
+        "n_vegetarian_friendly": n_vegetarian_friendly,
+    }
+
+    # Open statistic data file
+    with VEGGIESTAT_FILE.open() as json_file:
+
+        # Get previous statistic data
+        previous_stat_data = json.load(json_file)
+        stat_data["stat"] = previous_stat_data["stat"]
+
+        # Get date from the last entry
+        last_date = stat_data["stat"][-1]["date"]
+
+        # Ensure that there is only one entry each day
+        if DATE == last_date:
+            stat_data["stat"].pop(-1)
+
+        # Append the new data
+        stat_data["stat"].append(stat_obj)
 
     return places_data
 
@@ -331,6 +363,10 @@ def check_data():
             VEGGIEPLACES_TEMPFILE_MIN.rename(VEGGIEPLACES_FILE_MIN)    # rename minimized temp file to new file
             print("rename " + str(VEGGIEPLACES_TEMPFILE_GZIP) + " to " + str(VEGGIEPLACES_FILE_GZIP))
             VEGGIEPLACES_TEMPFILE_GZIP.rename(VEGGIEPLACES_FILE_GZIP)    # rename gzip temp file to new file
+            
+            # Write the new statistic file
+            VEGGIESTAT_FILE.touch()
+            VEGGIESTAT_FILE.write_text(json.dumps(stat_data, indent=1, sort_keys=True))
 
         else:
             print("New gzip file is too small! - ")
