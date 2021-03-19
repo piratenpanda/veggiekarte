@@ -227,7 +227,7 @@ var leafletControlGeocoder = (function (L) {
 
     _proto.reverse = function reverse(location, scale, cb, context) {
       var params = reverseParams(this.options, {
-        location: encodeURIComponent(location.lng) + ',' + encodeURIComponent(location.lat),
+        location: location.lng + ',' + location.lat,
         distance: 100,
         f: 'json'
       });
@@ -368,7 +368,7 @@ var leafletControlGeocoder = (function (L) {
     _proto.reverse = function reverse(location, scale, cb, context) {
       var params = reverseParams(this.options, {
         key: this.options.apiKey,
-        latlng: encodeURIComponent(location.lat) + ',' + encodeURIComponent(location.lng)
+        latlng: location.lat + ',' + location.lng
       });
       getJSON(this.options.serviceUrl, params, function (data) {
         var results = [];
@@ -412,7 +412,8 @@ var leafletControlGeocoder = (function (L) {
         serviceUrl: 'https://geocoder.api.here.com/6.2/',
         app_id: '',
         app_code: '',
-        apiKey: ''
+        apiKey: '',
+        maxResults: 5
       };
       L.Util.setOptions(this, options);
       if (options.apiKey) throw Error('apiKey is not supported, use app_id/app_code instead!');
@@ -426,22 +427,27 @@ var leafletControlGeocoder = (function (L) {
         gen: 9,
         app_id: this.options.app_id,
         app_code: this.options.app_code,
-        jsonattributes: 1
+        jsonattributes: 1,
+        maxresults: this.options.maxResults
       });
       this.getJSON(this.options.serviceUrl + 'geocode.json', params, cb, context);
     };
 
     _proto.reverse = function reverse(location, scale, cb, context) {
-      var _proxRadius = this.options.reverseGeocodeProxRadius ? this.options.reverseGeocodeProxRadius : null;
+      var prox = location.lat + ',' + location.lng;
 
-      var proxRadius = _proxRadius ? ',' + encodeURIComponent(_proxRadius) : '';
+      if (this.options.reverseGeocodeProxRadius) {
+        prox += ',' + this.options.reverseGeocodeProxRadius;
+      }
+
       var params = reverseParams(this.options, {
-        prox: encodeURIComponent(location.lat) + ',' + encodeURIComponent(location.lng) + proxRadius,
+        prox: prox,
         mode: 'retrieveAddresses',
         app_id: this.options.app_id,
         app_code: this.options.app_code,
         gen: 9,
-        jsonattributes: 1
+        jsonattributes: 1,
+        maxresults: this.options.maxResults
       });
       this.getJSON(this.options.serviceUrl + 'reversegeocode.json', params, cb, context);
     };
@@ -480,7 +486,8 @@ var leafletControlGeocoder = (function (L) {
         serviceUrl: 'https://geocode.search.hereapi.com/v1',
         apiKey: '',
         app_id: '',
-        app_code: ''
+        app_code: '',
+        maxResults: 10
       };
       L.Util.setOptions(this, options);
     }
@@ -490,7 +497,8 @@ var leafletControlGeocoder = (function (L) {
     _proto2.geocode = function geocode(query, cb, context) {
       var params = geocodingParams(this.options, {
         q: query,
-        apiKey: this.options.apiKey
+        apiKey: this.options.apiKey,
+        limit: this.options.maxResults
       });
 
       if (!params.at && !params["in"]) {
@@ -501,18 +509,11 @@ var leafletControlGeocoder = (function (L) {
     };
 
     _proto2.reverse = function reverse(location, scale, cb, context) {
-      var _proxRadius = this.options.reverseGeocodeProxRadius ? this.options.reverseGeocodeProxRadius : null;
-
-      var proxRadius = _proxRadius ? ',' + encodeURIComponent(_proxRadius) : '';
       var params = reverseParams(this.options, {
-        at: encodeURIComponent(location.lat) + ',' + encodeURIComponent(location.lng),
+        at: location.lat + ',' + location.lng,
+        limit: this.options.reverseGeocodeProxRadius,
         apiKey: this.options.apiKey
       });
-
-      if (proxRadius) {
-        params.limit = proxRadius;
-      }
-
       this.getJSON(this.options.serviceUrl + '/revgeocode', params, cb, context);
     };
 
@@ -572,24 +573,24 @@ var leafletControlGeocoder = (function (L) {
 
     if (match = query.match(/^([NS])\s*(\d{1,3}(?:\.\d*)?)\W*([EW])\s*(\d{1,3}(?:\.\d*)?)$/)) {
       // [NSEW] decimal degrees
-      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * parseFloat(match[2]), (/E/i.test(match[3]) ? 1 : -1) * parseFloat(match[4]));
+      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * +match[2], (/E/i.test(match[3]) ? 1 : -1) * +match[4]);
     } else if (match = query.match(/^(\d{1,3}(?:\.\d*)?)\s*([NS])\W*(\d{1,3}(?:\.\d*)?)\s*([EW])$/)) {
       // decimal degrees [NSEW]
-      return L.latLng((/N/i.test(match[2]) ? 1 : -1) * parseFloat(match[1]), (/E/i.test(match[4]) ? 1 : -1) * parseFloat(match[3]));
+      return L.latLng((/N/i.test(match[2]) ? 1 : -1) * +match[1], (/E/i.test(match[4]) ? 1 : -1) * +match[3]);
     } else if (match = query.match(/^([NS])\s*(\d{1,3})°?\s*(\d{1,3}(?:\.\d*)?)?['′]?\W*([EW])\s*(\d{1,3})°?\s*(\d{1,3}(?:\.\d*)?)?['′]?$/)) {
       // [NSEW] degrees, decimal minutes
-      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * (parseFloat(match[2]) + parseFloat(match[3]) / 60), (/E/i.test(match[4]) ? 1 : -1) * (parseFloat(match[5]) + parseFloat(match[6]) / 60));
+      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * (+match[2] + +match[3] / 60), (/E/i.test(match[4]) ? 1 : -1) * (+match[5] + +match[6] / 60));
     } else if (match = query.match(/^(\d{1,3})°?\s*(\d{1,3}(?:\.\d*)?)?['′]?\s*([NS])\W*(\d{1,3})°?\s*(\d{1,3}(?:\.\d*)?)?['′]?\s*([EW])$/)) {
       // degrees, decimal minutes [NSEW]
-      return L.latLng((/N/i.test(match[3]) ? 1 : -1) * (parseFloat(match[1]) + parseFloat(match[2]) / 60), (/E/i.test(match[6]) ? 1 : -1) * (parseFloat(match[4]) + parseFloat(match[5]) / 60));
+      return L.latLng((/N/i.test(match[3]) ? 1 : -1) * (+match[1] + +match[2] / 60), (/E/i.test(match[6]) ? 1 : -1) * (+match[4] + +match[5] / 60));
     } else if (match = query.match(/^([NS])\s*(\d{1,3})°?\s*(\d{1,2})['′]?\s*(\d{1,3}(?:\.\d*)?)?["″]?\W*([EW])\s*(\d{1,3})°?\s*(\d{1,2})['′]?\s*(\d{1,3}(?:\.\d*)?)?["″]?$/)) {
       // [NSEW] degrees, minutes, decimal seconds
-      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * (parseFloat(match[2]) + parseFloat(match[3]) / 60 + parseFloat(match[4]) / 3600), (/E/i.test(match[5]) ? 1 : -1) * (parseFloat(match[6]) + parseFloat(match[7]) / 60 + parseFloat(match[8]) / 3600));
+      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * (+match[2] + +match[3] / 60 + +match[4] / 3600), (/E/i.test(match[5]) ? 1 : -1) * (+match[6] + +match[7] / 60 + +match[8] / 3600));
     } else if (match = query.match(/^(\d{1,3})°?\s*(\d{1,2})['′]?\s*(\d{1,3}(?:\.\d*)?)?["″]\s*([NS])\W*(\d{1,3})°?\s*(\d{1,2})['′]?\s*(\d{1,3}(?:\.\d*)?)?["″]?\s*([EW])$/)) {
       // degrees, minutes, decimal seconds [NSEW]
-      return L.latLng((/N/i.test(match[4]) ? 1 : -1) * (parseFloat(match[1]) + parseFloat(match[2]) / 60 + parseFloat(match[3]) / 3600), (/E/i.test(match[8]) ? 1 : -1) * (parseFloat(match[5]) + parseFloat(match[6]) / 60 + parseFloat(match[7]) / 3600));
+      return L.latLng((/N/i.test(match[4]) ? 1 : -1) * (+match[1] + +match[2] / 60 + +match[3] / 3600), (/E/i.test(match[8]) ? 1 : -1) * (+match[5] + +match[6] / 60 + +match[7] / 3600));
     } else if (match = query.match(/^\s*([+-]?\d+(?:\.\d*)?)\s*[\s,]\s*([+-]?\d+(?:\.\d*)?)\s*$/)) {
-      return L.latLng(parseFloat(match[1]), parseFloat(match[2]));
+      return L.latLng(+match[1], +match[2]);
     }
   }
   /**
@@ -711,10 +712,11 @@ var leafletControlGeocoder = (function (L) {
     _proto.reverse = function reverse(location, scale, cb, context) {
       var _this2 = this;
 
+      var url = this.options.serviceUrl + location.lng + ',' + location.lat + '.json';
       var param = reverseParams(this.options, {
         access_token: this.options.apiKey
       });
-      getJSON(this.options.serviceUrl + encodeURIComponent(location.lng) + ',' + encodeURIComponent(location.lat) + '.json', param, function (data) {
+      getJSON(url, param, function (data) {
         var results = [];
 
         if (data.features && data.features.length) {
@@ -975,7 +977,7 @@ var leafletControlGeocoder = (function (L) {
           var bbox = data[i].boundingbox;
 
           for (var j = 0; j < 4; j++) {
-            bbox[j] = parseFloat(bbox[j]);
+            bbox[j] = +bbox[j];
           }
 
           results[i] = {
@@ -1689,8 +1691,8 @@ var leafletControlGeocoder = (function (L) {
      */
     ;
 
-    _proto.markGeocode = function markGeocode(result) {
-      result = result.geocode || result;
+    _proto.markGeocode = function markGeocode(event) {
+      var result = event.geocode;
 
       this._map.fitBounds(result.bbox);
 
@@ -1715,10 +1717,12 @@ var leafletControlGeocoder = (function (L) {
 
       var cb = function cb(results) {
         if (requestCount === _this3._requestCount) {
-          _this3.fire(suggest ? 'finishsuggest' : 'finishgeocode', {
+          var _event = {
             input: value,
             results: results
-          });
+          };
+
+          _this3.fire(suggest ? 'finishsuggest' : 'finishgeocode', _event);
 
           _this3._geocodeResult(results, suggest);
         }
@@ -1730,9 +1734,10 @@ var leafletControlGeocoder = (function (L) {
         this._clearResults();
       }
 
-      this.fire(suggest ? 'startsuggest' : 'startgeocode', {
+      var event = {
         input: value
-      });
+      };
+      this.fire(suggest ? 'startsuggest' : 'startgeocode', event);
 
       if (suggest) {
         this.options.geocoder.suggest(value, cb);
@@ -1741,10 +1746,11 @@ var leafletControlGeocoder = (function (L) {
       }
     };
 
-    _proto._geocodeResultSelected = function _geocodeResultSelected(result) {
-      this.fire('markgeocode', {
-        geocode: result
-      });
+    _proto._geocodeResultSelected = function _geocodeResultSelected(geocode) {
+      var event = {
+        geocode: geocode
+      };
+      this.fire('markgeocode', event);
     };
 
     _proto._toggle = function _toggle() {
