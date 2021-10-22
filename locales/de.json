@@ -36,6 +36,10 @@
         "school_holidays": "Ferien"
       },
       "leaflet": {
+        "L-control-fullscreen": {
+          "fullscreen": "Vollbild",
+          "exitFullscreen": "Vollbild verlassen"
+        },
         "L-control-geocoder": {
           "title": "Suche",
           "placeholder": "Nach Ortsnamen suchen…",

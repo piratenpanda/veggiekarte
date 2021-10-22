@@ -36,6 +36,10 @@
         "school_holidays": "vacances scolaires"
       },
       "leaflet": {
+        "L-control-fullscreen": {
+          "fullscreen": "Plein écran",
+          "exitFullscreen": "Quitter le plein écran"
+        },
         "L-control-geocoder": {
           "title": "Chercher",
           "placeholder": "Rechercher des noms de lieux…",

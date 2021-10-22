@@ -36,6 +36,10 @@
         "school_holidays": "school holidays"
       },
       "leaflet": {
+        "L-control-fullscreen": {
+          "fullscreen": "Fullscreen",
+          "exitFullscreen": "Exit fullscreen"
+        },
         "L-control-geocoder": {
           "title": "Search",
           "placeholder": "Search…",

@@ -36,6 +36,10 @@
         "school_holidays": "ferioj"
       },
       "leaflet": {
+        "L-control-fullscreen": {
+          "fullscreen": "Tutekrana reĝimo",
+          "exitFullscreen": "Eliri tutekranan reĝimon"
+        },
         "L-control-geocoder": {
           "title": "Serĉo",
           "placeholder": "Serĉi loknomojn…",

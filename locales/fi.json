@@ -36,6 +36,10 @@
         "school_holidays": "lomakaudet"
       },
       "leaflet": {
+        "L-control-fullscreen": {
+          "fullscreen": "koko näyttö",
+          "exitFullscreen": "poistua koko näytön tilasta"
+        },
         "L-control-geocoder": {
           "title": "Haku",
           "placeholder": "Etsi paikannimellä…",
