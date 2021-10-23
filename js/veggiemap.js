@@ -22,6 +22,7 @@ let subgroups = { vegan_only, vegetarian_only, vegan_friendly, vegan_limited, ve
 
 let map;
 let locate_control;
+let fullscreenControl;
 let layerControl;
 let languageControl;
 
@@ -71,6 +72,12 @@ function veggiemap() {
   // Add hash to the url
   let hash = new L.Hash(map);
 
+  // Add fullscreen control button
+  fullscreenControl = new L.Control.Fullscreen({
+    position: 'topright',
+  });
+  fullscreenControl.addTo(map);
+
   // Add info button
   let infoButton = L.easyButton(
     '<div class="info-button"></div>',
@@ -90,10 +97,6 @@ function veggiemap() {
     position:'topright'
   }).addTo(map);
 
-  // Add layer control button
-  layerControl = L.control.layers(null, overlays);
-  layerControl.addTo(map);
-
   // Add language control button
   languageControl = L.languageSelector({
       languages: [
@@ -108,6 +111,10 @@ function veggiemap() {
       button: true
   });
   languageControl.addTo(map);
+
+  // Add layer control button
+  layerControl = L.control.layers(null, overlays);
+  layerControl.addTo(map);
 
   // Add scale control
   L.control.scale().addTo(map);

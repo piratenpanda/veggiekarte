@@ -111,7 +111,12 @@ function updateContent() {
   document.getElementsByClassName('leaflet-control-locate')[0].firstChild.title = i18next.t('leaflet.L-control-locate.where_am_i');
   locate_control.options.strings.metersUnit = i18next.t('leaflet.L-control-locate.meter');
   locate_control.options.strings.popup = i18next.t('leaflet.L-control-locate.distance');
-  
+
+  // Fullscreen control
+  fullscreenControl.link.title = i18next.t('leaflet.L-control-fullscreen.fullscreen');
+  fullscreenControl.options.title.true = i18next.t('leaflet.L-control-fullscreen.exitFullscreen');
+  fullscreenControl.options.title.false = i18next.t('leaflet.L-control-fullscreen.fullscreen');
+
   // Layercontrol
   document.getElementsByClassName('secondCell')[0].innerText = i18next.t('texts.i18n_vegan_only');
   document.getElementsByClassName('legendRow')[0].parentElement.parentElement.title = i18next.t('texts.i18n_vegan_only_title');
