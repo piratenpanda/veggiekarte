@@ -126,6 +126,9 @@ function updateContent() {
   document.getElementsByClassName('legendRow')[3].parentElement.parentElement.title = i18next.t('texts.i18n_vegan_limited_title');
   document.getElementsByClassName('secondCell')[4].innerText = i18next.t('texts.i18n_vegetarian_friendly');
   document.getElementsByClassName('legendRow')[4].parentElement.parentElement.title = i18next.t('texts.i18n_vegetarian_friendly_title');
+
+  // Set HTML lang attribut
+  document.body.parentElement.lang = i18next.language;
 }
 
 
