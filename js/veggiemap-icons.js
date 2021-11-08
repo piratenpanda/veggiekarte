@@ -3,7 +3,7 @@ const white_icon_color = "-white.svg";
 const black_icon_color = "-black.svg";
 
 /* Function to get the icon depending from the symbol and the category */
-function getIcon(symbol, category) {
+export function getIcon(symbol, category) {
   if (category == "vegan_only") {
     var icon_color = white_icon_color;
   } else if (category == "vegetarian_only") {
