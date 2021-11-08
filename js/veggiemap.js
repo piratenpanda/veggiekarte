@@ -100,11 +100,11 @@ function veggiemap() {
   // Add language control button
   languageControl = L.languageSelector({
       languages: [
-          L.langObject('de', 'de - Deutsch',   './third-party/leaflet-languageselector/images/de.svg'),
-          L.langObject('en', 'en - English',   './third-party/leaflet-languageselector/images/en.svg'),
-          L.langObject('eo', 'eo - Esperanto', './third-party/leaflet-languageselector/images/eo.svg'),
-          L.langObject('fi', 'fi - suomi',     './third-party/leaflet-languageselector/images/fi.svg'),
-          L.langObject('fr', 'fr - Français',  './third-party/leaflet-languageselector/images/fr.svg')
+          L.langObject('de', 'de - Deutsch',   './third-party/leaflet.languageselector/images/de.svg'),
+          L.langObject('en', 'en - English',   './third-party/leaflet.languageselector/images/en.svg'),
+          L.langObject('eo', 'eo - Esperanto', './third-party/leaflet.languageselector/images/eo.svg'),
+          L.langObject('fi', 'fi - suomi',     './third-party/leaflet.languageselector/images/fi.svg'),
+          L.langObject('fr', 'fr - Français',  './third-party/leaflet.languageselector/images/fr.svg')
       ],
       callback: changeLanguage,
       vertical: false,
