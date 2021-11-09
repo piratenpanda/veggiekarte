@@ -36,10 +36,10 @@ L.LanguageSelector = L.Control.extend({
     this._map = map;
     if (this.options.button) {
       L.DomUtil.addClass(this._container, buttonClassName);
-	  L.DomEvent.on(this._container, 'mouseup', this._openSelector, this);
-	  
-	  // Add listener to the map to close the button on click on the map
-	  L.DomEvent.addListener(this._map, 'click', function (e) {
+      L.DomEvent.on(this._container, 'mouseup', this._openSelector, this);
+
+      // Add listener to the map to close the button on click on the map
+      L.DomEvent.addListener(this._map, 'click', function(e) {
         let languageButtonDisabled = document.getElementsByClassName(buttonDisabledClassName)[0];
         if (languageButtonDisabled != undefined) {
           languageButtonDisabled.classList.remove(buttonDisabledClassName);
@@ -52,7 +52,7 @@ L.LanguageSelector = L.Control.extend({
 
   onRemove: function(map) {
     if (this.options.button) {
-     L.DomEvent.off(this._container, 'mouseup', this._openSelector, this);
+      L.DomEvent.off(this._container, 'mouseup', this._openSelector, this);
     }
     this._container.style.display = 'none';
     this._map = null;
@@ -86,6 +86,10 @@ L.LanguageSelector = L.Control.extend({
       if (this.options.hideSelected && this.options.initialLanguage && this.options.initialLanguage == lang.id) {
         langDiv.style.display = 'none';
       }
+      if (this.options.initialLanguage == lang.id) {
+        langDiv.style.backgroundColor = '#0005';
+        langDiv.style.pointerEvents = 'none';
+      }
       this._buttons.push(langDiv);
     }
   },
@@ -98,7 +102,7 @@ L.LanguageSelector = L.Control.extend({
     let inst = elem._langselinstance;
     let lang = elem.id.substr(0, 17) == 'languageselector_' ? elem.id.substr(17) : null;
 
-    // hide language button
+    // Hide language button
     if (inst.options.hideSelected) {
       for (let i = 0; i < inst._buttons.length; i++) {
         let b = inst._buttons[i];
@@ -107,6 +111,18 @@ L.LanguageSelector = L.Control.extend({
         } else {
           b.style.display = 'block';
         }
+      }
+    }
+
+    // Mark initial language button
+    for (let i = 0; i < inst._buttons.length; i++) {
+      let b = inst._buttons[i];
+      if (b.id == elem.id) {
+        b.style.backgroundColor = '#0005';
+        b.style.pointerEvents = 'none';
+      } else {
+        b.style.background = '';
+        b.style.pointerEvents = '';
       }
     }
 
@@ -123,7 +139,7 @@ L.LanguageSelector = L.Control.extend({
   _openSelector: function(e) {
     if (this._isButton()) {
       L.DomUtil.removeClass(this._container, buttonClassName);
-	  L.DomUtil.addClass(this._container, buttonDisabledClassName);
+      L.DomUtil.addClass(this._container, buttonDisabledClassName);
     }
   }
 

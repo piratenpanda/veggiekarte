@@ -320,8 +320,7 @@ def write_data(data):
 
     # Print number of elements
     print(osm_elements_number, " elements")
-    
-    
+
     # Collect the statistic data in an object and add it to the places object
     stat_obj = {
         "date": DATE,
@@ -363,13 +362,13 @@ def check_data():
             VEGGIEPLACES_TEMPFILE_MIN.rename(VEGGIEPLACES_FILE_MIN)    # rename minimized temp file to new file
             print("rename " + str(VEGGIEPLACES_TEMPFILE_GZIP) + " to " + str(VEGGIEPLACES_FILE_GZIP))
             VEGGIEPLACES_TEMPFILE_GZIP.rename(VEGGIEPLACES_FILE_GZIP)    # rename gzip temp file to new file
-            
+
             # Write the new statistic file
             VEGGIESTAT_FILE.touch()
             VEGGIESTAT_FILE.write_text(json.dumps(stat_data, indent=1, sort_keys=True))
 
         else:
-            print("New gzip file is too small! - ")
+            print("New gzip temp file is too small!")
             print(VEGGIEPLACES_TEMPFILE_GZIP.stat().st_size)
     else:
         print("temp file don't exists!")
@@ -403,7 +402,7 @@ def main():
 
         check_data()
     else:
-        print("A problem has occurred. The old VEGGIE_MAP was not replaced!")
+        print("A problem has occurred. The old data file was not replaced!")
 
 
 main()

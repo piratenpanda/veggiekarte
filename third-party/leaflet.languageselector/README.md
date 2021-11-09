@@ -1,4 +1,4 @@
-# leaflet-languageselector
+# Leaflet.LanguageSelector
 
 A language selector for Leaflet based maps
 
@@ -8,13 +8,17 @@ Feel free to flattr me if you like it: [![alttext](http://api.flattr.com/button/
 [Leaflet](http://leafletjs.com/) is an open-source JavaScript library for online maps. Leaflet-languageselector is an extension for Leaflet based maps to add a language selector to the map. Languages can be represented by text or image. The words or images can be aligned horizontally or vertically. When a language is clicked a callback function is called. Doing the language change is then up to the caller.
 
 ## Demo
-An example map using this library (and others) can be seen here: https://ahorn.lima-city.de/owm/
+A demo page with different configurations you can find at [/demo/demo.html](/demo/demo.html).
+
+Maps using this library (and others) can be seen here:
+- https://ahorn.lima-city.de/owm/ [(GitHub)](https://github.com/buche/leaflet-openweathermap)
+- https://www.veggiekarte.de [(GitHub)](https://github.com/piratenpanda/veggiekarte)
 
 ## License
 
 This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
 
-## Using leaflet-languageselector
+## Using Leaflet.LanguageSelector
 
 First, you have to define the languages. Second, you have to initialise the language selector. Third, you have to provide a callback function which reacts according to the changed language. Don't forget to include leaflet-languageselector.js and leaflet-languageselector.css in your website.
 
@@ -49,10 +53,11 @@ L.control.layers(baseMaps).addTo(map);
 // Now the interesting stuff, the new languageselector:
 map.addControl(L.languageSelector({
   languages: new Array(
-    L.langObject('en', 'English', 'en.png'),
-    L.langObject('de', 'Deutsch', 'de.png'),
-    L.langObject('fr', 'Français', 'fr.png'),
-    L.langObject('ru', 'Русский', 'ru.png')
+    L.langObject('en', 'English', 'en.svg'),
+    L.langObject('eo', 'Esperanto', 'eo.svg'),
+    L.langObject('de', 'Deutsch', 'de.svg'),
+    L.langObject('fr', 'Français', 'fr.svg'),
+    L.langObject('ru', 'Русский', 'ru.svg')
   ),
   callback: changeLanguage
 }));
@@ -63,11 +68,11 @@ Some *options* are available to configure the behaviour of the language selector
 
 * *languages*: Array ( **new Array()** ) array of at least one Object with language information. See below for details.
 * *callback*: Function ( **null** ) callback function with one string parameter, the id of the language
-* *title*: String ( **null** ) optional title of the control
-* *vertical*: Boolean ( **false** ) if *true* renders the languages vertically instead of horizontally
-* *hideSelected*: Boolean ( **false** ) if *true* hides the language currently used
-* *initialLanguage*: String ( **null** ) only needed when *hideSelected=true*. Tell us what language is used by your website initially, before the language selector is initialized, so we can hide this language item
-* *position*: String ( **'topright'** ) Position of this control. Available are standard positions of Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
+* *title*: String ( **null** ) optional: Title of the control
+* *vertical*: Boolean ( **false** ) optional: If *true* renders the languages vertically instead of horizontally
+* *hideSelected*: Boolean ( **false** ) optional: If *true* hides the language currently used
+* *initialLanguage*: String ( **null** ) optional: Indicate the initial language of your page. It will be marked (when *hideSelected=true*) or hidden (when *hideSelected=true*) at the start.
+* *position*: String ( **'topright'** ) optional: Position of this control. Available are standard positions of Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
 
 ## How to define languages and how to define what will be displayed
 
@@ -75,8 +80,8 @@ Languages are added as an array of language objects. Please create them using th
 
 If you provide an image, the image will be displayed as a symbol for the language. The name or id is the tooltip of the image. If you don't provide an image but a name, the name will be used. If you provide neither an image nor a name the id will be used.
 
-* *L.langObject('en','English','en.png')* - using image en.png with tooltip 'English'
-* *L.langObject('en',null,'en.png')* - using image en.png with tooltip 'en'
+* *L.langObject('en','English','en.svg')* - using image en.svg with tooltip 'English'
+* *L.langObject('en',null,'en.svg')* - using image en.svg with tooltip 'en'
 * *L.langObject('en','English')* - using text 'English'
 * *L.langObject('en')* - using text 'en'
 

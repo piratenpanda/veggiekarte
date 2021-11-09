@@ -1,8 +1,8 @@
 {
-  "name": "leaflet-languageselector",
-  "version": "1.1.1",
+  "name": "leaflet.languageselector",
+  "version": "1.2.0",
   "description": "A language selector for Leaflet based maps",
-  "main": "leaflet-languageselector.js",
+  "main": "leaflet.languageselector.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/buche/leaflet-languageselector.git"
