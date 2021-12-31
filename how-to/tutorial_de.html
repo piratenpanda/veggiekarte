@@ -1,85 +1,125 @@
 <!DOCTYPE html>
 <html lang="de">
 
-  <head>
-    <title>Informationen zur Veggiekarte hinzufügen</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
-  </head>
+<head>
+  <title>Informationen zur Veggiekarte hinzufügen</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  <body>
-    <div id="main">
-      <h1>Wie kann ich mein Lieblingscafé oder -restaurant eintragen?</h1>
-      <h2>Vorwort</h2>
-      <div class="section">Für die Veggiekarte nutzen wir Daten von OpenStreetMap. Das hat viele Vorteile, zum Beispiel, dass jede*r mitmachen kann und Informationen hinzufügen oder korrigieren kann. Und wenn du für die Veggiekarte neue Einträge machst, profitieren nicht nur die Nutzer*innen unsere Seite davon, sondern auch die vieler anderer OpenStreetMap-Anwendungen.</div>
-      <h2>1. Voraussetzung</h2>
-      <div class="section">
-        <p>Solltest du noch kein OpenStreetMap-Konto haben, kannst du dir <a href="https://www.openstreetmap.org/user/new" target="_blank" rel="noopener noreferrer">auf dieser Seite</a> ganz einfach eins anlegen.</p>
-      </div>
-      <h2>2. Bearbeiten</h2>
-      <div class="section">
-        <p>Nachdem du dich bei OpenStreetMap angemeldet hast, gehe auf der OpenStreetMap-Webseite an den Ort wo sich das Café/Restaurant befindet und klicke auf den grünen "Bearbeiten"-Button links oben. Das bringt dich in den Editor, der direkt im Browser läuft. Wenn du noch nie editiert hast, solltest du dir vielleicht die dort angebotene Einleitung ansehen, sonst klicke auf "Jetzt bearbeiten".</p>
-        <p>Jetzt gibt es zwei Fälle:</p>
-      </div>
-      <h3>2.1. Das Café/Restaurant befindet sich schon in der Datenbank</h3>
-      <div class="section">
-        <p>Das erkennst du daran, dass es bereits auf der Karte (als Punkt oder Fläche) angezeigt wird.</p>
-        <p>Klicke auf das entsprechende Objekt auf der Karte, das das Café/Restaurant symbolisiert. Im linken Teil solltest du dann einen blauen Menüpunk mit dem Titel "Eigenschaften (x)" sehen, klappe diesen auf. Mit dem großen Pluszeichen kannst du nun neue Eigenschaften zum Objekt hinzufügen. Im linken Bereich der neuen Zeile trägt man den sogannten Schlüssel ein und im rechten den Wert.</p>
-        <p>Die wichtigsten Schlüssel sind für uns <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:diet:vegan">diet:vegan</a></code> und <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:diet:vegetarian">diet:vegetarian</a></code>. An diesen Schlüsseln wird ausgemacht, ob eine Lokalität auf der Veggiekarte dargestellt wird oder nicht. Hier eine Übersicht der Werte die für uns relevant sind:</p>
-        <table>
-          <tr>
-            <th>Schlüssel</th>
-            <th>Wert</th>
-            <th>Beschreibung</th>
-          </tr>
-          <tr>
-            <td rowspan="3">diet:vegan</td>
-            <td>only</td>
-            <td>für Lokalitäten, deren Angebot komplett vegan ist</td>
-          </tr>
-          <tr>
-            <td>yes</td>
-            <td>für Lokalitäten, die auch vegane Angebote haben</td>
-          </tr>
-          <tr>
-            <td>limited</td>
-            <td>für Lokalitäten, die zwar vegane Angebote haben, aber dies nicht offensichtlich kennzeichnen</td>
-          </tr>
-          <tr>
-            <td rowspan="2">diet:vegetarian</td>
-            <td>only</td>
-            <td>für komplett vegetarische Lokalitäten</td>
-          </tr>
-          <tr>
-            <td>yes</td>
-            <td>für Lokalitäten, die auch vegetarische Angebote haben</td>
-          </tr>
-        </table>
-        <p>Nachdem du Einträge gemacht hast, musst du nur noch oben auf "speichern" klicken und schon ist alles fertig. Das war gar nicht so schwer, oder?</p>
-        <p>Innerhalb einer Stunde sollten deine Änderungen auch auf der Veggiekarte zu sehen sein. Vielen Dank!</p>
-      </div>
-      <h3>2.2. Das Café/Restaurant befindet sich noch nicht in der Datenbank</h3>
-      <div class="section">
-        <p>Es wird also noch nicht auf der Karte angezeigt.</p>
-        <p>Im Vergleich zu Punkt 2.1. sind noch ein paar kleine Vorarbeiten notwendig.</p>
-        <p>Wähle oben im Editormenü "Punkt" aus und klicke anschließend auf den Ort in der Karte, wo sich das Café/Restaurant befindet. Wähle dann in der Auswahl links um was es sich handelt. 'Café' oder 'Restaurant' gibt es schon als Auswahl. Fülle auf jeden Fall den Namen aus und am Besten auch noch die Adresse aus. Dann kannst du wie in Punkt 2.1. weiter verfahren.</p>
-      </div>
-      <h2>3. Darüber hinaus</h2>
-      <div class="section">
-        <p>Weitere Schlüssel, die als Zusatzinformationen auf der Veggiekarte angezeigt werden, kannst du natürlich auch gern ergänzen:</p>
-        <ul>
-          <li><code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:cuisine">cuisine</a></code> Art der angebotenen Speisen</li>
-          <li><code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:addr">addr:*</a></code> Adresse</li>
-          <li><code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:opening_hours">opening_hours</a></code> Öffnungszeiten</li>
-          <li><code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:phone</a></code> Telefonnummer (im internationalen Format)</li>
-          <li><code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:email</a></code> E-Mail-Adresse</li>
-          <li><code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:website</a></code> Website</li>
-          <li><code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:facebook</a></code> Facebook-Seite</li>
-          <li><code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:instagram</a></code> Instagram-Seite</li>
-        </ul>
-        <p>Und vielleicht möchtest du sogar noch mehr auf der Karte verbessern, die Möglichkeiten sind sehr vielfälig. Eine Übersicht über gängige Tags bietet auch das <a href="https://wiki.openstreetmap.org/wiki/DE:Map_Features" target="_blank" rel="noopener noreferrer">OpenStreetMap-Wiki</a>. Ein deutsches Forum gibt es <a href="https://forum.openstreetmap.org/viewforum.php?id=14" target="_blank" rel="noopener noreferrer">auch</a>.</p>
-      </div>
+<body>
+  <div id="main">
+    <h1>Wie kann ich mein Lieblingscafé oder -restaurant eintragen?</h1>
+    <h2>Vorwort</h2>
+    <div class="section">Für die Veggiekarte nutzen wir Daten von OpenStreetMap. Das hat viele Vorteile, zum Beispiel,
+      dass jede*r mitmachen kann und Informationen hinzufügen oder korrigieren kann. Und wenn du für die Veggiekarte
+      neue Einträge machst, profitieren nicht nur die Nutzer*innen unsere Seite davon, sondern auch die vieler anderer
+      OpenStreetMap-Anwendungen.</div>
+    <h2>1. Voraussetzung</h2>
+    <div class="section">
+      <p>Solltest du noch kein OpenStreetMap-Konto haben, kannst du dir <a href="https://www.openstreetmap.org/user/new"
+          target="_blank" rel="noopener noreferrer">auf dieser Seite</a> ganz einfach eins anlegen.</p>
     </div>
-  </body>
+    <h2>2. Bearbeiten</h2>
+    <div class="section">
+      <p>Nachdem du dich bei OpenStreetMap angemeldet hast, gehe auf der OpenStreetMap-Webseite an den Ort wo sich das
+        Café/Restaurant befindet und klicke auf den grünen "Bearbeiten"-Button links oben. Das bringt dich in den
+        Editor, der direkt im Browser läuft. Wenn du noch nie editiert hast, solltest du dir vielleicht die dort
+        angebotene Einleitung ansehen, sonst klicke auf "Jetzt bearbeiten".</p>
+      <p>Jetzt gibt es zwei Fälle:</p>
+    </div>
+    <h3>2.1. Das Café/Restaurant befindet sich schon in der Datenbank</h3>
+    <div class="section">
+      <p>Das erkennst du daran, dass es bereits auf der Karte (als Punkt oder Fläche) angezeigt wird.</p>
+      <p>Klicke auf das entsprechende Objekt auf der Karte, das das Café/Restaurant symbolisiert. Im linken Teil
+        solltest du dann einen blauen Menüpunk mit dem Titel "Eigenschaften (x)" sehen, klappe diesen auf. Mit dem
+        großen Pluszeichen kannst du nun neue Eigenschaften zum Objekt hinzufügen. Im linken Bereich der neuen Zeile
+        trägt man den sogannten Schlüssel ein und im rechten den Wert.</p>
+      <p>Die wichtigsten Schlüssel sind für uns
+        <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:diet:vegan">diet:vegan</a></code>
+        und
+        <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:diet:vegetarian">diet:vegetarian</a></code>.
+        An diesen Schlüsseln wird ausgemacht, ob eine Lokalität auf der Veggiekarte dargestellt wird oder nicht. Hier
+        eine Übersicht der Werte die für uns relevant sind:</p>
+      <table>
+        <tr>
+          <th>Schlüssel</th>
+          <th>Wert</th>
+          <th>Beschreibung</th>
+        </tr>
+        <tr>
+          <td rowspan="3">diet:vegan</td>
+          <td>only</td>
+          <td>für Lokalitäten, deren Angebot komplett vegan ist</td>
+        </tr>
+        <tr>
+          <td>yes</td>
+          <td>für Lokalitäten, die auch vegane Angebote haben</td>
+        </tr>
+        <tr>
+          <td>limited</td>
+          <td>für Lokalitäten, die zwar vegane Angebote haben, aber dies nicht offensichtlich kennzeichnen</td>
+        </tr>
+        <tr>
+          <td rowspan="2">diet:vegetarian</td>
+          <td>only</td>
+          <td>für komplett vegetarische Lokalitäten</td>
+        </tr>
+        <tr>
+          <td>yes</td>
+          <td>für Lokalitäten, die auch vegetarische Angebote haben</td>
+        </tr>
+      </table>
+      <p>Nachdem du Einträge gemacht hast, musst du nur noch oben auf "speichern" klicken und schon ist alles fertig.
+        Das war gar nicht so schwer, oder?</p>
+      <p>Innerhalb einer Stunde sollten deine Änderungen auch auf der Veggiekarte zu sehen sein. Vielen Dank!</p>
+    </div>
+    <h3>2.2. Das Café/Restaurant befindet sich noch nicht in der Datenbank</h3>
+    <div class="section">
+      <p>Es wird also noch nicht auf der Karte angezeigt.</p>
+      <p>Im Vergleich zu Punkt 2.1. sind noch ein paar kleine Vorarbeiten notwendig.</p>
+      <p>Wähle oben im Editormenü "Punkt" aus und klicke anschließend auf den Ort in der Karte, wo sich das
+        Café/Restaurant befindet. Wähle dann in der Auswahl links um was es sich handelt. 'Café' oder 'Restaurant' gibt
+        es schon als Auswahl. Fülle auf jeden Fall den Namen aus und am Besten auch noch die Adresse aus. Dann kannst du
+        wie in Punkt 2.1. weiter verfahren.</p>
+    </div>
+    <h2>3. Darüber hinaus</h2>
+    <div class="section">
+      <p>Weitere Schlüssel, die als Zusatzinformationen auf der Veggiekarte angezeigt werden, kannst du natürlich auch
+        gern ergänzen:</p>
+      <ul>
+        <li>
+          <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:cuisine">cuisine</a></code>
+          Art der angebotenen Speisen</li>
+        <li>
+          <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:addr">addr:*</a></code>
+          Adresse</li>
+        <li>
+          <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:opening_hours">opening_hours</a></code>
+          Öffnungszeiten</li>
+        <li>
+          <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:phone</a></code>
+          Telefonnummer (im internationalen Format)</li>
+        <li>
+          <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:email</a></code>
+          E-Mail-Adresse</li>
+        <li>
+          <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:website</a></code>
+          Website</li>
+        <li>
+          <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:facebook</a></code>
+          Facebook-Seite</li>
+        <li>
+          <code><a target="_blank" rel="noopener noreferrer" href="https://wiki.openstreetmap.org/wiki/DE:Key:contact">contact:instagram</a></code>
+          Instagram-Seite</li>
+      </ul>
+      <p>Und vielleicht möchtest du sogar noch mehr auf der Karte verbessern, die Möglichkeiten sind sehr vielfälig.
+        Eine Übersicht über gängige Tags bietet auch das <a href="https://wiki.openstreetmap.org/wiki/DE:Map_Features"
+          target="_blank" rel="noopener noreferrer">OpenStreetMap-Wiki</a>. Ein deutsches Forum gibt es <a
+          href="https://forum.openstreetmap.org/viewforum.php?id=14" target="_blank" rel="noopener noreferrer">auch</a>.
+      </p>
+    </div>
+  </div>
+</body>
 
 </html>

@@ -235,7 +235,7 @@ def write_data(data):
             # If there is no name, take the english if exists
             if "name:en" in tags:
                 name = tags["name:en"]
-            # If it is a vending machine, name it "vending machine"            
+            # If it is a vending machine, name it "vending machine"
             elif tags.get("amenity", "") == "vending_machine":
                 name = "vending machine"
             else:

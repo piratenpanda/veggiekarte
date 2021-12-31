@@ -14,6 +14,7 @@ You can use it in any modern browser or install it as an app (as an [PWA](https:
 ## Get involved
 
 There are several ways to get involved:
+
 1. Improve the data on OpenStreetMap
    1. Add missing places
    2. Add and correct information (like opening hours) of places
@@ -29,7 +30,8 @@ The most important keys for us are [diet: vegan](https://wiki.openstreetmap.org/
 You can find an overview of which other keys we use at [Taginfo](https://taginfo.openstreetmap.org/projects/veggiekarte#tags).
 
 ## Website
-* www.veggiekarte.de
+
+- www.veggiekarte.de
 
 ## Third-party software and data
 
