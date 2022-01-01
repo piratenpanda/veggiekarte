@@ -122,14 +122,10 @@ a:hover {
 }
 
 /* Layer button: Adjust the size to the other buttons. */
-.leaflet-control-layers-toggle {
-  width: 26px !important;
-  height: 26px !important;
-  background-size: 80%;
-}
 .leaflet-touch .leaflet-control-layers-toggle {
-  width: 30px !important;
-  height: 30px !important;
+  width: 30px;
+  height: 30px;
+  background-size: 80%;
 }
 
 /* Tooltip: Mimic Firefox's tooltip style */
