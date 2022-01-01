@@ -18,7 +18,8 @@ body {
   height: 25px;
   line-height: 25px;
   text-align: center;
-  float: right;
+  position: absolute;
+  right: 15px;
 }
 #close:hover {
   cursor: pointer;
