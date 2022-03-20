@@ -1,4 +1,27 @@
-var leafletControlGeocoder = (function (L) {
+var leafletControlGeocoder = (function (exports, L) {
+
+  function _interopNamespace(e) {
+    if (e && e.__esModule) return e;
+    var n = Object.create(null);
+    if (e) {
+      Object.keys(e).forEach(function (k) {
+        if (k !== 'default') {
+          var d = Object.getOwnPropertyDescriptor(e, k);
+          Object.defineProperty(n, k, d.get ? d : {
+            enumerable: true,
+            get: function () {
+              return e[k];
+            }
+          });
+        }
+      });
+    }
+    n['default'] = e;
+    return n;
+  }
+
+  var L__namespace = /*#__PURE__*/_interopNamespace(L);
+
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
     subClass.prototype.constructor = subClass;
@@ -18,14 +41,14 @@ var leafletControlGeocoder = (function (L) {
    */
 
   function geocodingParams(options, params) {
-    return L.Util.extend(params, options.geocodingQueryParams);
+    return L__namespace.Util.extend(params, options.geocodingQueryParams);
   }
   /**
    * @internal
    */
 
   function reverseParams(options, params) {
-    return L.Util.extend(params, options.reverseQueryParams);
+    return L__namespace.Util.extend(params, options.reverseQueryParams);
   }
 
   /**
@@ -94,7 +117,7 @@ var leafletControlGeocoder = (function (L) {
   function jsonp(url, params, callback, context, jsonpParam) {
     var callbackId = '_l_geocoder_' + lastCallbackId++;
     params[jsonpParam || 'callback'] = callbackId;
-    window[callbackId] = L.Util.bind(callback, context);
+    window[callbackId] = L__namespace.Util.bind(callback, context);
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = url + getParamString(params);
@@ -187,7 +210,7 @@ var leafletControlGeocoder = (function (L) {
         serviceUrl: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer',
         apiKey: ''
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = ArcGis.prototype;
@@ -207,8 +230,8 @@ var leafletControlGeocoder = (function (L) {
         if (data.candidates && data.candidates.length) {
           for (var i = 0; i <= data.candidates.length - 1; i++) {
             var loc = data.candidates[i];
-            var latLng = L.latLng(loc.location.y, loc.location.x);
-            var latLngBounds = L.latLngBounds(L.latLng(loc.extent.ymax, loc.extent.xmax), L.latLng(loc.extent.ymin, loc.extent.xmin));
+            var latLng = L__namespace.latLng(loc.location.y, loc.location.x);
+            var latLngBounds = L__namespace.latLngBounds(L__namespace.latLng(loc.extent.ymax, loc.extent.xmax), L__namespace.latLng(loc.extent.ymin, loc.extent.xmin));
             results[i] = {
               name: loc.address,
               bbox: latLngBounds,
@@ -235,8 +258,8 @@ var leafletControlGeocoder = (function (L) {
         var result = [];
 
         if (data && !data.error) {
-          var center = L.latLng(data.location.y, data.location.x);
-          var bbox = L.latLngBounds(center, center);
+          var center = L__namespace.latLng(data.location.y, data.location.x);
+          var bbox = L__namespace.latLngBounds(center, center);
           result.push({
             name: data.address.Match_addr,
             center: center,
@@ -268,7 +291,7 @@ var leafletControlGeocoder = (function (L) {
       this.options = {
         serviceUrl: 'https://dev.virtualearth.net/REST/v1/Locations'
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = Bing.prototype;
@@ -287,8 +310,8 @@ var leafletControlGeocoder = (function (L) {
                 bbox = resource.bbox;
             results[i] = {
               name: resource.name,
-              bbox: L.latLngBounds([bbox[0], bbox[1]], [bbox[2], bbox[3]]),
-              center: L.latLng(resource.point.coordinates)
+              bbox: L__namespace.latLngBounds([bbox[0], bbox[1]], [bbox[2], bbox[3]]),
+              center: L__namespace.latLng(resource.point.coordinates)
             };
           }
         }
@@ -309,8 +332,8 @@ var leafletControlGeocoder = (function (L) {
               bbox = resource.bbox;
           results[i] = {
             name: resource.name,
-            bbox: L.latLngBounds([bbox[0], bbox[1]], [bbox[2], bbox[3]]),
-            center: L.latLng(resource.point.coordinates)
+            bbox: L__namespace.latLngBounds([bbox[0], bbox[1]], [bbox[2], bbox[3]]),
+            center: L__namespace.latLng(resource.point.coordinates)
           };
         }
 
@@ -334,7 +357,7 @@ var leafletControlGeocoder = (function (L) {
       this.options = {
         serviceUrl: 'https://maps.googleapis.com/maps/api/geocode/json'
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = Google.prototype;
@@ -350,8 +373,8 @@ var leafletControlGeocoder = (function (L) {
         if (data.results && data.results.length) {
           for (var i = 0; i <= data.results.length - 1; i++) {
             var loc = data.results[i];
-            var latLng = L.latLng(loc.geometry.location);
-            var latLngBounds = L.latLngBounds(L.latLng(loc.geometry.viewport.northeast), L.latLng(loc.geometry.viewport.southwest));
+            var latLng = L__namespace.latLng(loc.geometry.location);
+            var latLngBounds = L__namespace.latLngBounds(L__namespace.latLng(loc.geometry.viewport.northeast), L__namespace.latLng(loc.geometry.viewport.southwest));
             results[i] = {
               name: loc.formatted_address,
               bbox: latLngBounds,
@@ -376,8 +399,8 @@ var leafletControlGeocoder = (function (L) {
         if (data.results && data.results.length) {
           for (var i = 0; i <= data.results.length - 1; i++) {
             var loc = data.results[i];
-            var center = L.latLng(loc.geometry.location);
-            var bbox = L.latLngBounds(L.latLng(loc.geometry.viewport.northeast), L.latLng(loc.geometry.viewport.southwest));
+            var center = L__namespace.latLng(loc.geometry.location);
+            var bbox = L__namespace.latLngBounds(L__namespace.latLng(loc.geometry.viewport.northeast), L__namespace.latLng(loc.geometry.viewport.southwest));
             results[i] = {
               name: loc.formatted_address,
               bbox: bbox,
@@ -415,7 +438,7 @@ var leafletControlGeocoder = (function (L) {
         apiKey: '',
         maxResults: 5
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
       if (options.apiKey) throw Error('apiKey is not supported, use app_id/app_code instead!');
     }
 
@@ -459,8 +482,8 @@ var leafletControlGeocoder = (function (L) {
         if (data.response.view && data.response.view.length) {
           for (var i = 0; i <= data.response.view[0].result.length - 1; i++) {
             var loc = data.response.view[0].result[i].location;
-            var center = L.latLng(loc.displayPosition.latitude, loc.displayPosition.longitude);
-            var bbox = L.latLngBounds(L.latLng(loc.mapView.topLeft.latitude, loc.mapView.topLeft.longitude), L.latLng(loc.mapView.bottomRight.latitude, loc.mapView.bottomRight.longitude));
+            var center = L__namespace.latLng(loc.displayPosition.latitude, loc.displayPosition.longitude);
+            var bbox = L__namespace.latLngBounds(L__namespace.latLng(loc.mapView.topLeft.latitude, loc.mapView.topLeft.longitude), L__namespace.latLng(loc.mapView.bottomRight.latitude, loc.mapView.bottomRight.longitude));
             results[i] = {
               name: loc.address.label,
               properties: loc.address,
@@ -489,7 +512,7 @@ var leafletControlGeocoder = (function (L) {
         app_code: '',
         maxResults: 10
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto2 = HEREv2.prototype;
@@ -524,14 +547,14 @@ var leafletControlGeocoder = (function (L) {
         if (data.items && data.items.length) {
           for (var i = 0; i <= data.items.length - 1; i++) {
             var item = data.items[i];
-            var latLng = L.latLng(item.position.lat, item.position.lng);
+            var latLng = L__namespace.latLng(item.position.lat, item.position.lng);
             var bbox = void 0;
 
             if (item.mapView) {
-              bbox = L.latLngBounds(L.latLng(item.mapView.south, item.mapView.west), L.latLng(item.mapView.north, item.mapView.east));
+              bbox = L__namespace.latLngBounds(L__namespace.latLng(item.mapView.south, item.mapView.west), L__namespace.latLng(item.mapView.north, item.mapView.east));
             } else {
               // Using only position when not provided
-              bbox = L.latLngBounds(L.latLng(item.position.lat, item.position.lng), L.latLng(item.position.lat, item.position.lng));
+              bbox = L__namespace.latLngBounds(L__namespace.latLng(item.position.lat, item.position.lng), L__namespace.latLng(item.position.lat, item.position.lng));
             }
 
             results[i] = {
@@ -573,24 +596,24 @@ var leafletControlGeocoder = (function (L) {
 
     if (match = query.match(/^([NS])\s*(\d{1,3}(?:\.\d*)?)\W*([EW])\s*(\d{1,3}(?:\.\d*)?)$/)) {
       // [NSEW] decimal degrees
-      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * +match[2], (/E/i.test(match[3]) ? 1 : -1) * +match[4]);
+      return L__namespace.latLng((/N/i.test(match[1]) ? 1 : -1) * +match[2], (/E/i.test(match[3]) ? 1 : -1) * +match[4]);
     } else if (match = query.match(/^(\d{1,3}(?:\.\d*)?)\s*([NS])\W*(\d{1,3}(?:\.\d*)?)\s*([EW])$/)) {
       // decimal degrees [NSEW]
-      return L.latLng((/N/i.test(match[2]) ? 1 : -1) * +match[1], (/E/i.test(match[4]) ? 1 : -1) * +match[3]);
+      return L__namespace.latLng((/N/i.test(match[2]) ? 1 : -1) * +match[1], (/E/i.test(match[4]) ? 1 : -1) * +match[3]);
     } else if (match = query.match(/^([NS])\s*(\d{1,3})°?\s*(\d{1,3}(?:\.\d*)?)?['′]?\W*([EW])\s*(\d{1,3})°?\s*(\d{1,3}(?:\.\d*)?)?['′]?$/)) {
       // [NSEW] degrees, decimal minutes
-      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * (+match[2] + +match[3] / 60), (/E/i.test(match[4]) ? 1 : -1) * (+match[5] + +match[6] / 60));
+      return L__namespace.latLng((/N/i.test(match[1]) ? 1 : -1) * (+match[2] + +match[3] / 60), (/E/i.test(match[4]) ? 1 : -1) * (+match[5] + +match[6] / 60));
     } else if (match = query.match(/^(\d{1,3})°?\s*(\d{1,3}(?:\.\d*)?)?['′]?\s*([NS])\W*(\d{1,3})°?\s*(\d{1,3}(?:\.\d*)?)?['′]?\s*([EW])$/)) {
       // degrees, decimal minutes [NSEW]
-      return L.latLng((/N/i.test(match[3]) ? 1 : -1) * (+match[1] + +match[2] / 60), (/E/i.test(match[6]) ? 1 : -1) * (+match[4] + +match[5] / 60));
+      return L__namespace.latLng((/N/i.test(match[3]) ? 1 : -1) * (+match[1] + +match[2] / 60), (/E/i.test(match[6]) ? 1 : -1) * (+match[4] + +match[5] / 60));
     } else if (match = query.match(/^([NS])\s*(\d{1,3})°?\s*(\d{1,2})['′]?\s*(\d{1,3}(?:\.\d*)?)?["″]?\W*([EW])\s*(\d{1,3})°?\s*(\d{1,2})['′]?\s*(\d{1,3}(?:\.\d*)?)?["″]?$/)) {
       // [NSEW] degrees, minutes, decimal seconds
-      return L.latLng((/N/i.test(match[1]) ? 1 : -1) * (+match[2] + +match[3] / 60 + +match[4] / 3600), (/E/i.test(match[5]) ? 1 : -1) * (+match[6] + +match[7] / 60 + +match[8] / 3600));
+      return L__namespace.latLng((/N/i.test(match[1]) ? 1 : -1) * (+match[2] + +match[3] / 60 + +match[4] / 3600), (/E/i.test(match[5]) ? 1 : -1) * (+match[6] + +match[7] / 60 + +match[8] / 3600));
     } else if (match = query.match(/^(\d{1,3})°?\s*(\d{1,2})['′]?\s*(\d{1,3}(?:\.\d*)?)?["″]\s*([NS])\W*(\d{1,3})°?\s*(\d{1,2})['′]?\s*(\d{1,3}(?:\.\d*)?)?["″]?\s*([EW])$/)) {
       // degrees, minutes, decimal seconds [NSEW]
-      return L.latLng((/N/i.test(match[4]) ? 1 : -1) * (+match[1] + +match[2] / 60 + +match[3] / 3600), (/E/i.test(match[8]) ? 1 : -1) * (+match[5] + +match[6] / 60 + +match[7] / 3600));
+      return L__namespace.latLng((/N/i.test(match[4]) ? 1 : -1) * (+match[1] + +match[2] / 60 + +match[3] / 3600), (/E/i.test(match[8]) ? 1 : -1) * (+match[5] + +match[6] / 60 + +match[7] / 3600));
     } else if (match = query.match(/^\s*([+-]?\d+(?:\.\d*)?)\s*[\s,]\s*([+-]?\d+(?:\.\d*)?)\s*$/)) {
-      return L.latLng(+match[1], +match[2]);
+      return L__namespace.latLng(+match[1], +match[2]);
     }
   }
   /**
@@ -603,7 +626,7 @@ var leafletControlGeocoder = (function (L) {
         next: undefined,
         sizeInMeters: 10000
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = LatLng.prototype;
@@ -643,7 +666,7 @@ var leafletControlGeocoder = (function (L) {
       this.options = {
         serviceUrl: 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = Mapbox.prototype;
@@ -683,13 +706,13 @@ var leafletControlGeocoder = (function (L) {
         if (data.features && data.features.length) {
           for (var i = 0; i <= data.features.length - 1; i++) {
             var loc = data.features[i];
-            var center = L.latLng(loc.center.reverse());
+            var center = L__namespace.latLng(loc.center.reverse());
             var bbox = void 0;
 
             if (loc.bbox) {
-              bbox = L.latLngBounds(L.latLng(loc.bbox.slice(0, 2).reverse()), L.latLng(loc.bbox.slice(2, 4).reverse()));
+              bbox = L__namespace.latLngBounds(L__namespace.latLng(loc.bbox.slice(0, 2).reverse()), L__namespace.latLng(loc.bbox.slice(2, 4).reverse()));
             } else {
-              bbox = L.latLngBounds(center, center);
+              bbox = L__namespace.latLngBounds(center, center);
             }
 
             results[i] = {
@@ -722,13 +745,13 @@ var leafletControlGeocoder = (function (L) {
         if (data.features && data.features.length) {
           for (var i = 0; i <= data.features.length - 1; i++) {
             var loc = data.features[i];
-            var center = L.latLng(loc.center.reverse());
+            var center = L__namespace.latLng(loc.center.reverse());
             var bbox = void 0;
 
             if (loc.bbox) {
-              bbox = L.latLngBounds(L.latLng(loc.bbox.slice(0, 2).reverse()), L.latLng(loc.bbox.slice(2, 4).reverse()));
+              bbox = L__namespace.latLngBounds(L__namespace.latLng(loc.bbox.slice(0, 2).reverse()), L__namespace.latLng(loc.bbox.slice(2, 4).reverse()));
             } else {
-              bbox = L.latLngBounds(center, center);
+              bbox = L__namespace.latLngBounds(center, center);
             }
 
             results[i] = {
@@ -764,7 +787,7 @@ var leafletControlGeocoder = (function (L) {
       this.options = {
         serviceUrl: 'https://www.mapquestapi.com/geocoding/v1'
       };
-      L.Util.setOptions(this, options); // MapQuest seems to provide URI encoded API keys,
+      L__namespace.Util.setOptions(this, options); // MapQuest seems to provide URI encoded API keys,
       // so to avoid encoding them twice, we decode them here
 
       this.options.apiKey = decodeURIComponent(this.options.apiKey);
@@ -785,16 +808,16 @@ var leafletControlGeocoder = (function (L) {
         limit: 5,
         outFormat: 'json'
       });
-      getJSON(this.options.serviceUrl + '/address', params, L.Util.bind(function (data) {
+      getJSON(this.options.serviceUrl + '/address', params, L__namespace.Util.bind(function (data) {
         var results = [];
 
         if (data.results && data.results[0].locations) {
           for (var i = data.results[0].locations.length - 1; i >= 0; i--) {
             var loc = data.results[0].locations[i];
-            var center = L.latLng(loc.latLng);
+            var center = L__namespace.latLng(loc.latLng);
             results[i] = {
               name: this._formatName(loc.street, loc.adminArea4, loc.adminArea3, loc.adminArea1),
-              bbox: L.latLngBounds(center, center),
+              bbox: L__namespace.latLngBounds(center, center),
               center: center
             };
           }
@@ -810,16 +833,16 @@ var leafletControlGeocoder = (function (L) {
         location: location.lat + ',' + location.lng,
         outputFormat: 'json'
       });
-      getJSON(this.options.serviceUrl + '/reverse', params, L.Util.bind(function (data) {
+      getJSON(this.options.serviceUrl + '/reverse', params, L__namespace.Util.bind(function (data) {
         var results = [];
 
         if (data.results && data.results[0].locations) {
           for (var i = data.results[0].locations.length - 1; i >= 0; i--) {
             var loc = data.results[0].locations[i];
-            var center = L.latLng(loc.latLng);
+            var center = L__namespace.latLng(loc.latLng);
             results[i] = {
               name: this._formatName(loc.street, loc.adminArea4, loc.adminArea3, loc.adminArea1),
-              bbox: L.latLngBounds(center, center),
+              bbox: L__namespace.latLngBounds(center, center),
               center: center
             };
           }
@@ -851,7 +874,7 @@ var leafletControlGeocoder = (function (L) {
         apiKey: undefined,
         serviceUrl: 'https://neutrinoapi.com/'
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     } // https://www.neutrinoapi.com/api/geocode-address/
 
 
@@ -869,8 +892,8 @@ var leafletControlGeocoder = (function (L) {
 
         if (data.locations) {
           data.geometry = data.locations[0];
-          var center = L.latLng(data.geometry['latitude'], data.geometry['longitude']);
-          var bbox = L.latLngBounds(center, center);
+          var center = L__namespace.latLng(data.geometry['latitude'], data.geometry['longitude']);
+          var bbox = L__namespace.latLngBounds(center, center);
           results[0] = {
             name: data.geometry.address,
             bbox: bbox,
@@ -898,8 +921,8 @@ var leafletControlGeocoder = (function (L) {
         var results = [];
 
         if (data.status.status == 200 && data.found) {
-          var center = L.latLng(location.lat, location.lng);
-          var bbox = L.latLngBounds(center, center);
+          var center = L__namespace.latLng(location.lat, location.lng);
+          var bbox = L__namespace.latLngBounds(center, center);
           results[0] = {
             name: data.address,
             bbox: bbox,
@@ -956,7 +979,7 @@ var leafletControlGeocoder = (function (L) {
           return template(parts.join('<br/>'), address);
         }
       };
-      L.Util.setOptions(this, options || {});
+      L__namespace.Util.setOptions(this, options || {});
     }
 
     var _proto = Nominatim.prototype;
@@ -984,8 +1007,8 @@ var leafletControlGeocoder = (function (L) {
             icon: data[i].icon,
             name: data[i].display_name,
             html: _this.options.htmlTemplate ? _this.options.htmlTemplate(data[i]) : undefined,
-            bbox: L.latLngBounds([bbox[0], bbox[2]], [bbox[1], bbox[3]]),
-            center: L.latLng(data[i].lat, data[i].lon),
+            bbox: L__namespace.latLngBounds([bbox[0], bbox[2]], [bbox[1], bbox[3]]),
+            center: L__namespace.latLng(data[i].lat, data[i].lon),
             properties: data[i]
           };
         }
@@ -1008,8 +1031,8 @@ var leafletControlGeocoder = (function (L) {
         var result = [];
 
         if (data && data.lat && data.lon) {
-          var center = L.latLng(data.lat, data.lon);
-          var bbox = L.latLngBounds(center, center);
+          var center = L__namespace.latLng(data.lat, data.lon);
+          var bbox = L__namespace.latLngBounds(center, center);
           result.push({
             name: data.display_name,
             html: _this2.options.htmlTemplate ? _this2.options.htmlTemplate(data) : undefined,
@@ -1040,7 +1063,7 @@ var leafletControlGeocoder = (function (L) {
 
   var OpenLocationCode = /*#__PURE__*/function () {
     function OpenLocationCode(options) {
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = OpenLocationCode.prototype;
@@ -1050,8 +1073,8 @@ var leafletControlGeocoder = (function (L) {
         var decoded = this.options.OpenLocationCode.decode(query);
         var result = {
           name: query,
-          center: L.latLng(decoded.latitudeCenter, decoded.longitudeCenter),
-          bbox: L.latLngBounds(L.latLng(decoded.latitudeLo, decoded.longitudeLo), L.latLng(decoded.latitudeHi, decoded.longitudeHi))
+          center: L__namespace.latLng(decoded.latitudeCenter, decoded.longitudeCenter),
+          bbox: L__namespace.latLngBounds(L__namespace.latLng(decoded.latitudeLo, decoded.longitudeLo), L__namespace.latLng(decoded.latitudeHi, decoded.longitudeHi))
         };
         cb.call(context, [result]);
       } catch (e) {
@@ -1066,8 +1089,8 @@ var leafletControlGeocoder = (function (L) {
         var code = this.options.OpenLocationCode.encode(location.lat, location.lng, this.options.codeLength);
         var result = {
           name: code,
-          center: L.latLng(location.lat, location.lng),
-          bbox: L.latLngBounds(L.latLng(location.lat, location.lng), L.latLng(location.lat, location.lng))
+          center: L__namespace.latLng(location.lat, location.lng),
+          bbox: L__namespace.latLngBounds(L__namespace.latLng(location.lat, location.lng), L__namespace.latLng(location.lat, location.lng))
         };
         cb.call(context, [result]);
       } catch (e) {
@@ -1097,7 +1120,7 @@ var leafletControlGeocoder = (function (L) {
       this.options = {
         serviceUrl: 'https://api.opencagedata.com/geocode/v1/json'
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = OpenCage.prototype;
@@ -1113,13 +1136,13 @@ var leafletControlGeocoder = (function (L) {
         if (data.results && data.results.length) {
           for (var i = 0; i < data.results.length; i++) {
             var loc = data.results[i];
-            var center = L.latLng(loc.geometry);
+            var center = L__namespace.latLng(loc.geometry);
             var bbox = void 0;
 
             if (loc.annotations && loc.annotations.bounds) {
-              bbox = L.latLngBounds(L.latLng(loc.annotations.bounds.northeast), L.latLng(loc.annotations.bounds.southwest));
+              bbox = L__namespace.latLngBounds(L__namespace.latLng(loc.annotations.bounds.northeast), L__namespace.latLng(loc.annotations.bounds.southwest));
             } else {
-              bbox = L.latLngBounds(center, center);
+              bbox = L__namespace.latLngBounds(center, center);
             }
 
             results.push({
@@ -1149,13 +1172,13 @@ var leafletControlGeocoder = (function (L) {
         if (data.results && data.results.length) {
           for (var i = 0; i < data.results.length; i++) {
             var loc = data.results[i];
-            var center = L.latLng(loc.geometry);
+            var center = L__namespace.latLng(loc.geometry);
             var bbox = void 0;
 
             if (loc.annotations && loc.annotations.bounds) {
-              bbox = L.latLngBounds(L.latLng(loc.annotations.bounds.northeast), L.latLng(loc.annotations.bounds.southwest));
+              bbox = L__namespace.latLngBounds(L__namespace.latLng(loc.annotations.bounds.northeast), L__namespace.latLng(loc.annotations.bounds.southwest));
             } else {
-              bbox = L.latLngBounds(center, center);
+              bbox = L__namespace.latLngBounds(center, center);
             }
 
             results.push({
@@ -1186,7 +1209,7 @@ var leafletControlGeocoder = (function (L) {
         serviceUrl: 'https://api.geocode.earth/v1'
       };
       this._lastSuggest = 0;
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = Pelias.prototype;
@@ -1233,9 +1256,9 @@ var leafletControlGeocoder = (function (L) {
 
     _proto._parseResults = function _parseResults(data, bboxname) {
       var results = [];
-      L.geoJSON(data, {
+      L__namespace.geoJSON(data, {
         pointToLayer: function pointToLayer(feature, latlng) {
-          return L.circleMarker(latlng);
+          return L__namespace.circleMarker(latlng);
         },
         onEachFeature: function onEachFeature(feature, layer) {
           var result = {};
@@ -1247,10 +1270,10 @@ var leafletControlGeocoder = (function (L) {
             center = bbox.getCenter();
           } else if (layer.feature.bbox) {
             center = layer.getLatLng();
-            bbox = L.latLngBounds(L.GeoJSON.coordsToLatLng(layer.feature.bbox.slice(0, 2)), L.GeoJSON.coordsToLatLng(layer.feature.bbox.slice(2, 4)));
+            bbox = L__namespace.latLngBounds(L__namespace.GeoJSON.coordsToLatLng(layer.feature.bbox.slice(0, 2)), L__namespace.GeoJSON.coordsToLatLng(layer.feature.bbox.slice(2, 4)));
           } else {
             center = layer.getLatLng();
-            bbox = L.latLngBounds(center, center);
+            bbox = L__namespace.latLngBounds(center, center);
           }
 
           result.name = layer.feature.properties.label;
@@ -1295,7 +1318,7 @@ var leafletControlGeocoder = (function (L) {
     _inheritsLoose(Openrouteservice, _Pelias);
 
     function Openrouteservice(options) {
-      return _Pelias.call(this, L.Util.extend({
+      return _Pelias.call(this, L__namespace.Util.extend({
         serviceUrl: 'https://api.openrouteservice.org/geocode'
       }, options)) || this;
     }
@@ -1322,7 +1345,7 @@ var leafletControlGeocoder = (function (L) {
         reverseUrl: 'https://photon.komoot.io/reverse/',
         nameProperties: ['name', 'street', 'suburb', 'hamlet', 'town', 'city', 'state', 'country']
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = Photon.prototype;
@@ -1331,7 +1354,7 @@ var leafletControlGeocoder = (function (L) {
       var params = geocodingParams(this.options, {
         q: query
       });
-      getJSON(this.options.serviceUrl, params, L.Util.bind(function (data) {
+      getJSON(this.options.serviceUrl, params, L__namespace.Util.bind(function (data) {
         cb.call(context, this._decodeFeatures(data));
       }, this));
     };
@@ -1345,7 +1368,7 @@ var leafletControlGeocoder = (function (L) {
         lat: latLng.lat,
         lon: latLng.lng
       });
-      getJSON(this.options.reverseUrl, params, L.Util.bind(function (data) {
+      getJSON(this.options.reverseUrl, params, L__namespace.Util.bind(function (data) {
         cb.call(context, this._decodeFeatures(data));
       }, this));
     };
@@ -1357,9 +1380,9 @@ var leafletControlGeocoder = (function (L) {
         for (var i = 0; i < data.features.length; i++) {
           var f = data.features[i];
           var c = f.geometry.coordinates;
-          var center = L.latLng(c[1], c[0]);
+          var center = L__namespace.latLng(c[1], c[0]);
           var extent = f.properties.extent;
-          var bbox = extent ? L.latLngBounds([extent[1], extent[0]], [extent[3], extent[2]]) : L.latLngBounds(center, center);
+          var bbox = extent ? L__namespace.latLngBounds([extent[1], extent[0]], [extent[3], extent[2]]) : L__namespace.latLngBounds(center, center);
           results.push({
             name: this._decodeFeatureName(f),
             html: this.options.htmlTemplate ? this.options.htmlTemplate(f) : undefined,
@@ -1401,7 +1424,7 @@ var leafletControlGeocoder = (function (L) {
       this.options = {
         serviceUrl: 'https://api.what3words.com/v2/'
       };
-      L.Util.setOptions(this, options);
+      L__namespace.Util.setOptions(this, options);
     }
 
     var _proto = What3Words.prototype;
@@ -1415,8 +1438,8 @@ var leafletControlGeocoder = (function (L) {
         var results = [];
 
         if (data.geometry) {
-          var latLng = L.latLng(data.geometry['lat'], data.geometry['lng']);
-          var latLngBounds = L.latLngBounds(latLng, latLng);
+          var latLng = L__namespace.latLng(data.geometry['lat'], data.geometry['lng']);
+          var latLngBounds = L__namespace.latLngBounds(latLng, latLng);
           results[0] = {
             name: data.words,
             bbox: latLngBounds,
@@ -1440,8 +1463,8 @@ var leafletControlGeocoder = (function (L) {
         var results = [];
 
         if (data.status.status == 200) {
-          var center = L.latLng(data.geometry['lat'], data.geometry['lng']);
-          var bbox = L.latLngBounds(center, center);
+          var center = L__namespace.latLng(data.geometry['lat'], data.geometry['lng']);
+          var bbox = L__namespace.latLngBounds(center, center);
           results[0] = {
             name: data.words,
             bbox: bbox,
@@ -1463,8 +1486,6 @@ var leafletControlGeocoder = (function (L) {
   function what3words(options) {
     return new What3Words(options);
   }
-
-
 
   var geocoders = {
     __proto__: null,
@@ -1518,8 +1539,8 @@ var leafletControlGeocoder = (function (L) {
   function EventedControl() {// empty
   };
 
-  L.Util.extend(EventedControl.prototype, L.Control.prototype);
-  L.Util.extend(EventedControl.prototype, L.Evented.prototype);
+  L__namespace.Util.extend(EventedControl.prototype, L__namespace.Control.prototype);
+  L__namespace.Util.extend(EventedControl.prototype, L__namespace.Evented.prototype);
   /**
    * This is the geocoder control. It works like any other [Leaflet control](https://leafletjs.com/reference.html#control), and is added to the map.
    */
@@ -1551,7 +1572,7 @@ var leafletControlGeocoder = (function (L) {
         defaultMarkGeocode: true
       };
       _this._requestCount = 0;
-      L.Util.setOptions(_assertThisInitialized(_this), options);
+      L__namespace.Util.setOptions(_assertThisInitialized(_this), options);
 
       if (!_this.options.geocoder) {
         _this.options.geocoder = new Nominatim();
@@ -1563,11 +1584,11 @@ var leafletControlGeocoder = (function (L) {
     var _proto = GeocoderControl.prototype;
 
     _proto.addThrobberClass = function addThrobberClass() {
-      L.DomUtil.addClass(this._container, 'leaflet-control-geocoder-throbber');
+      L__namespace.DomUtil.addClass(this._container, 'leaflet-control-geocoder-throbber');
     };
 
     _proto.removeThrobberClass = function removeThrobberClass() {
-      L.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-throbber');
+      L__namespace.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-throbber');
     }
     /**
      * Returns the container DOM element for the control and add listeners on relevant map events.
@@ -1580,30 +1601,30 @@ var leafletControlGeocoder = (function (L) {
       var _this2 = this;
 
       var className = 'leaflet-control-geocoder';
-      var container = L.DomUtil.create('div', className + ' leaflet-bar');
-      var icon = L.DomUtil.create('button', className + '-icon', container);
-      var form = this._form = L.DomUtil.create('div', className + '-form', container);
+      var container = L__namespace.DomUtil.create('div', className + ' leaflet-bar');
+      var icon = L__namespace.DomUtil.create('button', className + '-icon', container);
+      var form = this._form = L__namespace.DomUtil.create('div', className + '-form', container);
       this._map = map;
       this._container = container;
       icon.innerHTML = '&nbsp;';
       icon.type = 'button';
       icon.setAttribute('aria-label', this.options.iconLabel);
-      var input = this._input = L.DomUtil.create('input', '', form);
+      var input = this._input = L__namespace.DomUtil.create('input', '', form);
       input.type = 'text';
       input.value = this.options.query;
       input.placeholder = this.options.placeholder;
-      L.DomEvent.disableClickPropagation(input);
-      this._errorElement = L.DomUtil.create('div', className + '-form-no-error', container);
+      L__namespace.DomEvent.disableClickPropagation(input);
+      this._errorElement = L__namespace.DomUtil.create('div', className + '-form-no-error', container);
       this._errorElement.innerHTML = this.options.errorMessage;
-      this._alts = L.DomUtil.create('ul', className + '-alternatives leaflet-control-geocoder-alternatives-minimized', container);
-      L.DomEvent.disableClickPropagation(this._alts);
-      L.DomEvent.addListener(input, 'keydown', this._keydown, this);
+      this._alts = L__namespace.DomUtil.create('ul', className + '-alternatives leaflet-control-geocoder-alternatives-minimized', container);
+      L__namespace.DomEvent.disableClickPropagation(this._alts);
+      L__namespace.DomEvent.addListener(input, 'keydown', this._keydown, this);
 
       if (this.options.geocoder.suggest) {
-        L.DomEvent.addListener(input, 'input', this._change, this);
+        L__namespace.DomEvent.addListener(input, 'input', this._change, this);
       }
 
-      L.DomEvent.addListener(input, 'blur', function () {
+      L__namespace.DomEvent.addListener(input, 'blur', function () {
         if (_this2.options.collapsed && !_this2._preventBlurCollapse) {
           _this2._collapse();
         }
@@ -1613,13 +1634,13 @@ var leafletControlGeocoder = (function (L) {
 
       if (this.options.collapsed) {
         if (this.options.expand === 'click') {
-          L.DomEvent.addListener(container, 'click', function (e) {
+          L__namespace.DomEvent.addListener(container, 'click', function (e) {
             if (e.button === 0 && e.detail !== 2) {
               _this2._toggle();
             }
           });
         } else if (this.options.expand === 'touch') {
-          L.DomEvent.addListener(container, L.Browser.touch ? 'touchstart mousedown' : 'mousedown', function (e) {
+          L__namespace.DomEvent.addListener(container, L__namespace.Browser.touch ? 'touchstart mousedown' : 'mousedown', function (e) {
             _this2._toggle();
 
             e.preventDefault(); // mobile: clicking focuses the icon, so UI expands and immediately collapses
@@ -1627,20 +1648,20 @@ var leafletControlGeocoder = (function (L) {
             e.stopPropagation();
           }, this);
         } else {
-          L.DomEvent.addListener(container, 'mouseover', this._expand, this);
-          L.DomEvent.addListener(container, 'mouseout', this._collapse, this);
+          L__namespace.DomEvent.addListener(container, 'mouseover', this._expand, this);
+          L__namespace.DomEvent.addListener(container, 'mouseout', this._collapse, this);
 
           this._map.on('movestart', this._collapse, this);
         }
       } else {
         this._expand();
 
-        if (L.Browser.touch) {
-          L.DomEvent.addListener(container, 'touchstart', function () {
+        if (L__namespace.Browser.touch) {
+          L__namespace.DomEvent.addListener(container, 'touchstart', function () {
             return _this2._geocode();
           });
         } else {
-          L.DomEvent.addListener(container, 'click', function () {
+          L__namespace.DomEvent.addListener(container, 'click', function () {
             return _this2._geocode();
           });
         }
@@ -1654,7 +1675,7 @@ var leafletControlGeocoder = (function (L) {
       this.on('finishgeocode', this.removeThrobberClass, this);
       this.on('startsuggest', this.addThrobberClass, this);
       this.on('finishsuggest', this.removeThrobberClass, this);
-      L.DomEvent.disableClickPropagation(container);
+      L__namespace.DomEvent.disableClickPropagation(container);
       return container;
     }
     /**
@@ -1674,15 +1695,15 @@ var leafletControlGeocoder = (function (L) {
       } else if (results.length > 0) {
         this._alts.innerHTML = '';
         this._results = results;
-        L.DomUtil.removeClass(this._alts, 'leaflet-control-geocoder-alternatives-minimized');
-        L.DomUtil.addClass(this._container, 'leaflet-control-geocoder-options-open');
+        L__namespace.DomUtil.removeClass(this._alts, 'leaflet-control-geocoder-alternatives-minimized');
+        L__namespace.DomUtil.addClass(this._container, 'leaflet-control-geocoder-options-open');
 
         for (var i = 0; i < results.length; i++) {
           this._alts.appendChild(this._createAlt(results[i], i));
         }
       } else {
-        L.DomUtil.addClass(this._container, 'leaflet-control-geocoder-options-error');
-        L.DomUtil.addClass(this._errorElement, 'leaflet-control-geocoder-error');
+        L__namespace.DomUtil.addClass(this._container, 'leaflet-control-geocoder-options-error');
+        L__namespace.DomUtil.addClass(this._errorElement, 'leaflet-control-geocoder-error');
       }
     }
     /**
@@ -1700,7 +1721,7 @@ var leafletControlGeocoder = (function (L) {
         this._map.removeLayer(this._geocodeMarker);
       }
 
-      this._geocodeMarker = new L.Marker(result.center).bindPopup(result.html || result.name).addTo(this._map).openPopup();
+      this._geocodeMarker = new L__namespace.Marker(result.center).bindPopup(result.html || result.name).addTo(this._map).openPopup();
       return this;
     };
 
@@ -1754,7 +1775,7 @@ var leafletControlGeocoder = (function (L) {
     };
 
     _proto._toggle = function _toggle() {
-      if (L.DomUtil.hasClass(this._container, 'leaflet-control-geocoder-expanded')) {
+      if (L__namespace.DomUtil.hasClass(this._container, 'leaflet-control-geocoder-expanded')) {
         this._collapse();
       } else {
         this._expand();
@@ -1762,7 +1783,7 @@ var leafletControlGeocoder = (function (L) {
     };
 
     _proto._expand = function _expand() {
-      L.DomUtil.addClass(this._container, 'leaflet-control-geocoder-expanded');
+      L__namespace.DomUtil.addClass(this._container, 'leaflet-control-geocoder-expanded');
 
       this._input.select();
 
@@ -1770,11 +1791,11 @@ var leafletControlGeocoder = (function (L) {
     };
 
     _proto._collapse = function _collapse() {
-      L.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-expanded');
-      L.DomUtil.addClass(this._alts, 'leaflet-control-geocoder-alternatives-minimized');
-      L.DomUtil.removeClass(this._errorElement, 'leaflet-control-geocoder-error');
-      L.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-options-open');
-      L.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-options-error');
+      L__namespace.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-expanded');
+      L__namespace.DomUtil.addClass(this._alts, 'leaflet-control-geocoder-alternatives-minimized');
+      L__namespace.DomUtil.removeClass(this._errorElement, 'leaflet-control-geocoder-error');
+      L__namespace.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-options-open');
+      L__namespace.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-options-error');
 
       this._input.blur(); // mobile: keyboard shouldn't stay expanded
 
@@ -1783,19 +1804,19 @@ var leafletControlGeocoder = (function (L) {
     };
 
     _proto._clearResults = function _clearResults() {
-      L.DomUtil.addClass(this._alts, 'leaflet-control-geocoder-alternatives-minimized');
+      L__namespace.DomUtil.addClass(this._alts, 'leaflet-control-geocoder-alternatives-minimized');
       this._selection = null;
-      L.DomUtil.removeClass(this._errorElement, 'leaflet-control-geocoder-error');
-      L.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-options-open');
-      L.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-options-error');
+      L__namespace.DomUtil.removeClass(this._errorElement, 'leaflet-control-geocoder-error');
+      L__namespace.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-options-open');
+      L__namespace.DomUtil.removeClass(this._container, 'leaflet-control-geocoder-options-error');
     };
 
     _proto._createAlt = function _createAlt(result, index) {
       var _this4 = this;
 
-      var li = L.DomUtil.create('li', ''),
-          a = L.DomUtil.create('a', '', li),
-          icon = this.options.showResultIcons && result.icon ? L.DomUtil.create('img', '', a) : null,
+      var li = L__namespace.DomUtil.create('li', ''),
+          a = L__namespace.DomUtil.create('a', '', li),
+          icon = this.options.showResultIcons && result.icon ? L__namespace.DomUtil.create('img', '', a) : null,
           text = result.html ? undefined : document.createTextNode(result.name),
           mouseDownHandler = function mouseDownHandler(e) {
         // In some browsers, a click will fire on the map if the control is
@@ -1804,11 +1825,11 @@ var leafletControlGeocoder = (function (L) {
         // control. Messy, but this is the workaround I could come up with
         // for #142.
         _this4._preventBlurCollapse = true;
-        L.DomEvent.stop(e);
+        L__namespace.DomEvent.stop(e);
 
         _this4._geocodeResultSelected(result);
 
-        L.DomEvent.on(li, 'click touchend', function () {
+        L__namespace.DomEvent.on(li, 'click touchend', function () {
           if (_this4.options.collapsed) {
             _this4._collapse();
           } else {
@@ -1832,7 +1853,7 @@ var leafletControlGeocoder = (function (L) {
       // before the click can fire.
 
 
-      L.DomEvent.addListener(li, 'mousedown touchstart', mouseDownHandler, this);
+      L__namespace.DomEvent.addListener(li, 'mousedown touchstart', mouseDownHandler, this);
       return li;
     };
 
@@ -1841,7 +1862,7 @@ var leafletControlGeocoder = (function (L) {
 
       var select = function select(dir) {
         if (_this5._selection) {
-          L.DomUtil.removeClass(_this5._selection, 'leaflet-control-geocoder-selected');
+          L__namespace.DomUtil.removeClass(_this5._selection, 'leaflet-control-geocoder-selected');
           _this5._selection = _this5._selection[dir > 0 ? 'nextSibling' : 'previousSibling'];
         }
 
@@ -1850,7 +1871,7 @@ var leafletControlGeocoder = (function (L) {
         }
 
         if (_this5._selection) {
-          L.DomUtil.addClass(_this5._selection, 'leaflet-control-geocoder-selected');
+          L__namespace.DomUtil.addClass(_this5._selection, 'leaflet-control-geocoder-selected');
         }
       };
 
@@ -1893,7 +1914,7 @@ var leafletControlGeocoder = (function (L) {
           return;
       }
 
-      L.DomEvent.preventDefault(e);
+      L__namespace.DomEvent.preventDefault(e);
     };
 
     _proto._change = function _change() {
@@ -1933,13 +1954,18 @@ var leafletControlGeocoder = (function (L) {
    * Copyright (c) 2018 Per Liedman
    * All rights reserved.
    */
-  L.Util.extend(GeocoderControl, geocoders);
-  L.Util.extend(L.Control, {
+  L__namespace.Util.extend(GeocoderControl, geocoders);
+  L__namespace.Util.extend(L__namespace.Control, {
     Geocoder: GeocoderControl,
     geocoder: geocoder
   });
 
-  return GeocoderControl;
+  exports.Geocoder = GeocoderControl;
+  exports.default = GeocoderControl;
+  exports.geocoder = geocoder;
+  exports.geocoders = geocoders;
 
-}(L));
+  return exports;
+
+}({}, L));
 //# sourceMappingURL=Control.Geocoder.js.map
