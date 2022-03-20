@@ -18,7 +18,7 @@ assert sys.version_info >= (3, 0)
 
 # # server list (from: https://wiki.openstreetmap.org/wiki/Overpass_API)
 SERVERS = [
-    "https://lz4.overpass-api.de/api/interpreter",
+    "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
     "https://z.overpass-api.de/api/interpreter",
     "http://api.openstreetmap.fr/api/interpreter",
