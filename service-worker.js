@@ -4,8 +4,8 @@ console.info(CACHE_NAME);
 
 // List of files to cache here.
 const FILES_TO_CACHE = [
- 'index.html',
- 'data/places.min.json'
+  'index.html',
+  'data/places.min.json'
 ];
 
 
@@ -27,14 +27,14 @@ self.addEventListener('fetch', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         return cache.match(event.request)
-         .then(response => {
-           var fetchPromise = fetch(event.request)
-             .then(networkResponse => {
-               cache.put(event.request, networkResponse.clone());
-             return networkResponse;
-           })
-        return response || fetchPromise;
+          .then(response => {
+            var fetchPromise = fetch(event.request)
+              .then(networkResponse => {
+                cache.put(event.request, networkResponse.clone());
+                return networkResponse;
+              })
+            return response || fetchPromise;
+          })
       })
-    })
   );
 });

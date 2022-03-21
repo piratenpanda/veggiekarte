@@ -1,10 +1,18 @@
 {
   "name": "i18next",
-  "version": "21.3.3",
+  "version": "21.6.14",
   "description": "i18next internationalization framework",
   "main": "./dist/cjs/i18next.js",
   "module": "./dist/esm/i18next.js",
   "types": "./index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/esm/i18next.js",
+      "require": "./dist/cjs/i18next.js",
+      "types": "./index.d.ts"
+    }
+  },
   "keywords": [
     "i18next",
     "internationalization",
@@ -21,19 +29,32 @@
     "type": "git",
     "url": "https://github.com/i18next/i18next.git"
   },
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://locize.com"
+    },
+    {
+      "type": "individual",
+      "url": "https://locize.com/i18next.html"
+    },
+    {
+      "type": "individual",
+      "url": "https://www.i18next.com/how-to/faq#i18next-is-awesome.-how-can-i-support-the-project"
+    }
+  ],
   "dependencies": {
-    "@babel/runtime": "^7.12.0"
+    "@babel/runtime": "^7.17.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.1",
-    "@babel/plugin-proposal-async-generator-functions": "^7.2.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
-    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-proposal-async-generator-functions": "^7.16.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.0",
     "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/register": "^7.16.0",
     "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
@@ -57,7 +78,7 @@
     "i18next-http-backend": "^1.3.1",
     "i18next-localstorage-cache": "1.1.1",
     "i18next-sprintf-postprocessor": "0.2.2",
-    "karma": "6.3.4",
+    "karma": "6.3.17",
     "karma-browserify": "8.1.0",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "3.1.0",
@@ -89,9 +110,10 @@
     "test:typescript:noninterop": "tslint --project tsconfig.nonEsModuleInterop.json",
     "tdd": "karma start karma.conf.js",
     "tdd:compat": "karma start karma.backward.conf.js",
-    "build": "rimraf dist && rollup -c && cpy \"./dist/umd/*.js\" ./",
+    "build": "rimraf dist && rollup -c && echo '{\"type\":\"module\"}' > dist/esm/package.json  && cpy \"./dist/umd/*.js\" ./",
+    "fix_dist_package": "node -e 'console.log(`{\"type\":\"module\",\"version\":\"${process.env.npm_package_version}\"}`)' > dist/esm/package.json",
     "preversion": "npm run test && npm run build && git push",
-    "postversion": "git push && git push --tags && npm run release",
+    "postversion": "npm run fix_dist_package && git push && git push --tags && npm run release",
     "prettier": "prettier --write \"{,**/}*.{ts,tsx,js,json,md}\"",
     "prepare": "husky install",
     "release": "gh-release"

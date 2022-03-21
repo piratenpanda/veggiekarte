@@ -80,7 +80,7 @@ function addLanguageRecources(language) {
         updateContent();
       } else {
         // Merge new data per spread operator
-        languageRecources = {...languageRecources, ...data };
+        languageRecources = { ...languageRecources, ...data };
 
 
         if (language != fallbackLanguage) {
@@ -91,7 +91,7 @@ function addLanguageRecources(language) {
         }
       }
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.error(err);
     });
 }
@@ -186,7 +186,7 @@ function updateContent() {
   document.fullscreenControl.options.title.true = i18next.t('leaflet.L-control-fullscreen.exitFullscreen');
   document.fullscreenControl.options.title.false = i18next.t('leaflet.L-control-fullscreen.fullscreen');
 
-  // Layercontrol
+  // Layer control
   document.getElementsByClassName('secondCell')[0].innerText = i18next.t('texts.i18n_vegan_only');
   document.getElementsByClassName('legendRow')[0].parentElement.parentElement.title = i18next.t('texts.i18n_vegan_only_title');
   document.getElementsByClassName('secondCell')[1].innerText = i18next.t('texts.i18n_vegetarian_only');

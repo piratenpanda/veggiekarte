@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 """
 With this module we get the POIs with the tags diet:vegan = * and
@@ -19,7 +18,7 @@ assert sys.version_info >= (3, 0)
 
 # # server list (from: https://wiki.openstreetmap.org/wiki/Overpass_API)
 SERVERS = [
-    "https://lz4.overpass-api.de/api/interpreter",
+    "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
     "https://z.overpass-api.de/api/interpreter",
     "http://api.openstreetmap.fr/api/interpreter",
@@ -235,7 +234,7 @@ def write_data(data):
             # If there is no name, take the english if exists
             if "name:en" in tags:
                 name = tags["name:en"]
-            # If it is a vending machine, name it "vending machine"            
+            # If it is a vending machine, name it "vending machine"
             elif tags.get("amenity", "") == "vending_machine":
                 name = "vending machine"
             else:
@@ -390,11 +389,11 @@ def main():
 
         # Write file in pretty format
         VEGGIEPLACES_TEMPFILE.touch()
-        VEGGIEPLACES_TEMPFILE.write_text(json.dumps(places_data, indent=1, sort_keys=True))
+        VEGGIEPLACES_TEMPFILE.write_text(json.dumps(places_data, indent=1, sort_keys=True, ensure_ascii=False))
 
         # Write file in minimized format
         VEGGIEPLACES_TEMPFILE_MIN.touch()
-        VEGGIEPLACES_TEMPFILE_MIN.write_text(json.dumps(places_data, indent=None, sort_keys=True, separators=(",", ":")))
+        VEGGIEPLACES_TEMPFILE_MIN.write_text(json.dumps(places_data, indent=None, sort_keys=True, separators=(",", ":"), ensure_ascii=False))
 
         # Write file in gzipped format
         with gzip.open(VEGGIEPLACES_TEMPFILE_GZIP, "wt", encoding="UTF-8") as outfile_gzip:

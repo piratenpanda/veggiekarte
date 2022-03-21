@@ -25,10 +25,10 @@ export function getIcon(symbol, category) {
   }
 
   return L.icon({
-    iconUrl:     icon_path + symbol + icon_color,
-    iconSize:    [18, 18],
-    iconAnchor:  [11, 18],
+    iconUrl: icon_path + symbol + icon_color,
+    iconSize: [18, 18],
+    iconAnchor: [11, 18],
     popupAnchor: [0, -18],
-    className:   "marker " + category
+    className: "marker " + category
   });
 }

@@ -8,7 +8,7 @@ import { setUserLanguage, getUserLanguage, addLanguageRecources } from "./i18n.j
    for older browser versions (before 2020)
    Can be removed after some years. */
 if (!String.prototype.replaceAll) {
-  String.prototype.replaceAll = function(old_str, new_str) {
+  String.prototype.replaceAll = function (old_str, new_str) {
     return this.replace(new RegExp(old_str, 'g'), new_str);
   };
 }
@@ -63,7 +63,7 @@ function veggiemap() {
   parentGroup.bindTooltip(calculateTooltip);
 
   // Close the tooltip when opening the popup
-  parentGroup.on("click", function(e) {
+  parentGroup.on("click", function () {
     if (parentGroup.isPopupOpen()) {
       parentGroup.closeTooltip();
     }
@@ -81,7 +81,7 @@ function veggiemap() {
   // Add info button
   let infoButton = L.easyButton(
     '<div class="info-button"></div>',
-    function(btn, map) { toggleInfo() }
+    function () { toggleInfo() }
   ).addTo(map);
   infoButton.setPosition('topright');
 
@@ -101,11 +101,11 @@ function veggiemap() {
   // Add language control button
   languageControl = L.languageSelector({
     languages: [
-      L.langObject('de', 'de - Deutsch',   './third-party/leaflet.languageselector/images/de.svg'),
-      L.langObject('en', 'en - English',   './third-party/leaflet.languageselector/images/en.svg'),
+      L.langObject('de', 'de - Deutsch', './third-party/leaflet.languageselector/images/de.svg'),
+      L.langObject('en', 'en - English', './third-party/leaflet.languageselector/images/en.svg'),
       L.langObject('eo', 'eo - Esperanto', './third-party/leaflet.languageselector/images/eo.svg'),
-      L.langObject('fi', 'fi - suomi',     './third-party/leaflet.languageselector/images/fi.svg'),
-      L.langObject('fr', 'fr - Français',  './third-party/leaflet.languageselector/images/fr.svg')
+      L.langObject('fi', 'fi - suomi', './third-party/leaflet.languageselector/images/fi.svg'),
+      L.langObject('fr', 'fr - Français', './third-party/leaflet.languageselector/images/fr.svg')
     ],
     callback: setUserLanguage,
     initialLanguage: getUserLanguage(),
@@ -214,8 +214,6 @@ function geojsonToMarkerGroups(geojson) {
 // Function to get the marker.
 function getMarker(feature) {
   let eLatLon = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
-  let eSym = feature.properties.symbol;
-  let eNam = feature.properties.name;
   let eIco = feature.properties.icon;
   let eCat = feature.properties.category;
 
@@ -242,7 +240,7 @@ function addLibReview(feature) {
   fetch(url)
     .then(response => response.json())
     .then(data => document.getElementById('libreviews').innerHTML = '<div class="popupflex-container"><div>📓</div><div><a href="https://lib.reviews/' + data.thing.urlID + '" target="_blank" rel="noopener noreferrer">' + i18next.t('words.review') + '</a></div>')
-    .catch(error => {
+    .catch(() => {
       console.info("There is no review of this place or lib.reviews isn't available.");
     });
 }
@@ -252,27 +250,26 @@ function addLibReview(feature) {
 function calculatePopup(layer) {
   // Get the information
   let feature = layer.feature;
-  let eId  = feature.properties._id;
-  let eLatLon = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
+  let eId = feature.properties._id;
   let eNam = feature.properties.name;
   let eTyp = feature.properties._type;
   let eCit = feature.properties.addr_city;
   let eCou = feature.properties.addr_country;
   let ePos = feature.properties.addr_postcode;
   let eStr = feature.properties.addr_street;
-  let eCat = feature.properties.category;
   let eEma = feature.properties.contact_email;
   let ePho = feature.properties.contact_phone;
   let eWeb = feature.properties.contact_website;
   let eFac = feature.properties.contact_facebook;
   let eIns = feature.properties.contact_instagram;
   let eCui = feature.properties.cuisine;
-  let eIco = feature.properties.icon;
   let eOpe = feature.properties.opening_hours;
   let eSym = feature.properties.symbol;
 
   /*** Building the popup content ***/
   let popupContent = "<div class='mapPopupTitle'>" + eSym + " " + eNam; // Symbol and name
+
+  // OSM link for popup
   let osmUrl = "https://openstreetmap.org/" + eTyp + "/" + eId;
   popupContent += "<a href='" + osmUrl + "' target='_blank' rel='noopener noreferrer'> *</a></div><hr/>"; // OSM link
 
@@ -351,7 +348,7 @@ function calculatePopup(layer) {
 
 // Adding function for opening_hours objects to check if place will be open after n minutes (60 minutes as default)
 if (!opening_hours.prototype.getFutureState) {
-  opening_hours.prototype.getFutureState = function(minutes = 60) {
+  opening_hours.prototype.getFutureState = function (minutes = 60) {
     let nowPlusHours = new Date();
     nowPlusHours.setUTCMinutes(nowPlusHours.getUTCMinutes() + minutes);
     return this.getState(nowPlusHours);

@@ -94,7 +94,7 @@
     },
     {
       "key": "opening_hours",
-      "description": "🕖 Value and emoji displayed in popup if ‘opening_hours:covid19’ tag is not present"
+      "description": "🕖 Value and emoji displayed in popup if 'opening_hours:covid19' tag is not present"
     },
     {
       "key": "contact:email",
@@ -102,7 +102,7 @@
     },
     {
       "key": "email",
-      "description": "📧 Value and emoji displayed in popup if ‘contact:email’ tag is not present"
+      "description": "📧 Value and emoji displayed in popup if 'contact:email' tag is not present"
     },
     {
       "key": "contact:facebook",
@@ -110,7 +110,7 @@
     },
     {
       "key": "facebook",
-      "description": "🇫 Value and emoji displayed in popup if ‘contact:facebook’ tag is not present"
+      "description": "🇫 Value and emoji displayed in popup if 'contact:facebook' tag is not present"
     },
     {
       "key": "contact:instagram",
@@ -118,7 +118,7 @@
     },
     {
       "key": "instagram",
-      "description": "📸 Value and emoji displayed in popup if ‘contact:instagram’ tag is not present"
+      "description": "📸 Value and emoji displayed in popup if 'contact:instagram' tag is not present"
     },
     {
       "key": "contact:phone",
@@ -126,7 +126,7 @@
     },
     {
       "key": "phone",
-      "description": "☎️ Value and emoji displayed in popup if ‘contact:phone’ tag is not present"
+      "description": "☎️ Value and emoji displayed in popup if 'contact:phone' tag is not present"
     },
     {
       "key": "contact:website",
@@ -134,7 +134,7 @@
     },
     {
       "key": "website",
-      "description": "🌐 Value and emoji displayed in popup if ‘contact:website’ tag is not present"
+      "description": "🌐 Value and emoji displayed in popup if 'contact:website' tag is not present"
     },
     {
       "key": "addr:housenumber",
@@ -150,7 +150,7 @@
     },
     {
       "key": "addr:suburb",
-      "description": "📍 Value and emoji displayed in popup if ‘addr:city’ tag is not present"
+      "description": "📍 Value and emoji displayed in popup if 'addr:city' tag is not present"
     },
     {
       "key": "addr:postcode",
