@@ -39,7 +39,7 @@ body {
   background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 10px DimGray;
   color: #111;
-  z-index: 7;
+  z-index: 9999;
   line-height: 150%;
   padding: 10px;
   border-radius: 10px;
