@@ -41,7 +41,7 @@ This is an overview of the third-party software and data we use. Many thanks to 
 |---    |---    |---    |---    |
 |[chart.js](https://github.com/chartjs/Chart.js) |MIT [*](https://github.com/chartjs/Chart.js/blob/master/LICENSE.md) |3.7.1 |JavaScript library to creat charts. We use this in the `data_chart.html`. |
 |[i18next](https://github.com/i18next/i18next) |MIT [*](https://github.com/i18next/i18next/blob/master/LICENSE) |21.6.14 |JavaScript internationalization framework. |
-|[leaflet](https://github.com/Leaflet/Leaflet/) |BSD-2-Clause [*](https://github.com/Leaflet/Leaflet/blob/master/LICENSE) |1.8.0-beta |JavaScript library to create interactive maps. |
+|[leaflet](https://github.com/Leaflet/Leaflet/) |BSD-2-Clause [*](https://github.com/Leaflet/Leaflet/blob/master/LICENSE) |1.8.0 |JavaScript library to create interactive maps. |
 |[leaflet.control.geocoder](https://github.com/perliedman/leaflet-control-geocoder/) |BSD-2-Clause [*](https://github.com/perliedman/leaflet-control-geocoder/blob/master/LICENSE) |2.4.0 |A control to locate places. The button with the magnifier 🔍. |
 |[leaflet.easybutton](https://github.com/CliffCloud/Leaflet.EasyButton) |MIT [*](https://github.com/CliffCloud/Leaflet.EasyButton/blob/master/LICENSE) |2.4.0 |Adding buttons. We are using it for the info button. |
 |[leaflet.featuregroup.subgroup](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup) |BSD-2-Clause [*](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/blob/master/LICENSE) |1.0.2 |Dynamically add/remove groups of markers. |
