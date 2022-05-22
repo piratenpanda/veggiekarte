@@ -73,8 +73,9 @@ function veggiemap() {
   let hash = new L.Hash(map);
 
   // Add fullscreen control button
-  document.fullscreenControl = new L.Control.Fullscreen({
+  document.fullscreenControl = new L.control.fullscreen({
     position: 'topright',
+    fullscreenElement: map._container.parentNode
   });
   document.fullscreenControl.addTo(map);
 

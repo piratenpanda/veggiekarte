@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="third-party/leaflet.control.geocoder/Control.Geocoder.css" />
   <link rel="stylesheet" href="third-party/leaflet.locatecontrol/L.Control.Locate.min.css" />
   <link rel="stylesheet" href="third-party/leaflet.easybutton/easy-button.css" />
-  <link rel="stylesheet" href="third-party/leaflet.fullscreen/leaflet.fullscreen.css" />
+  <link rel="stylesheet" href="third-party/leaflet.fullscreen/Control.FullScreen.css" />
   <link rel="stylesheet" href="third-party/leaflet.languageselector/leaflet.languageselector.css" />
 
   <!-- Own style -->
@@ -35,25 +35,27 @@
 </head>
 
 <body>
-  <!-- Info box -->
-  <div id="information">
-    <div id="close" onclick="toggleInfo()">✖</div>
-    <div id="spinner" class="loading_icon"></div>
-    <div id="content">
-      <h1 id="content-welcome-heading"></h1>
-      <p id="content-welcome-text"></p>
-      <h1 id="content-osm-heading"></h1>
-      <p id="content-osm-text"></p>
-      <h1 id="content-contribute-heading"></h1>
-      <p id="content-contribute-text"></p>
-      <h1 id="content-reviews-heading"></h1>
-      <p id="content-reviews-text"></p>
-      <h1 id="content-further-heading"></h1>
-      <p id="content-further-text"></p>
+  <div>
+    <!-- Info box -->
+    <div id="information">
+      <div id="close" onclick="toggleInfo()">✖</div>
+      <div id="spinner" class="loading_icon"></div>
+      <div id="content">
+        <h1 id="content-welcome-heading"></h1>
+        <p id="content-welcome-text"></p>
+        <h1 id="content-osm-heading"></h1>
+        <p id="content-osm-text"></p>
+        <h1 id="content-contribute-heading"></h1>
+        <p id="content-contribute-text"></p>
+        <h1 id="content-reviews-heading"></h1>
+        <p id="content-reviews-text"></p>
+        <h1 id="content-further-heading"></h1>
+        <p id="content-further-text"></p>
+      </div>
     </div>
+    <!-- Map -->
+    <div id="map"></div>
   </div>
-  <!-- Map -->
-  <div id="map"></div>
 
   <!-- Content if scripts are disabled or not supported. -->
   <noscript>
@@ -70,7 +72,7 @@
   <script src="third-party/leaflet.locatecontrol/L.Control.Locate.min.js"></script>
   <script src="third-party/leaflet.easybutton/easy-button.js"></script>
   <script src="third-party/leaflet.featuregroup.subgroup/leaflet.featuregroup.subgroup.js"></script>
-  <script src="third-party/leaflet.fullscreen/Leaflet.fullscreen.min.js"></script>
+  <script src="third-party/leaflet.fullscreen/Control.FullScreen.js"></script>
   <script src="third-party/i18next/i18next.min.js"></script>
   <script src="third-party/opening_hours/opening_hours+deps.min.js"></script>
   <script src="third-party/leaflet.languageselector/leaflet.languageselector.js"></script>

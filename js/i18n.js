@@ -183,8 +183,8 @@ function updateContent() {
 
   // Fullscreen control
   document.fullscreenControl.link.title = i18next.t('leaflet.L-control-fullscreen.fullscreen');
-  document.fullscreenControl.options.title.true = i18next.t('leaflet.L-control-fullscreen.exitFullscreen');
-  document.fullscreenControl.options.title.false = i18next.t('leaflet.L-control-fullscreen.fullscreen');
+  document.fullscreenControl.options.title = i18next.t('leaflet.L-control-fullscreen.fullscreen');
+  document.fullscreenControl.options.titleCancel = i18next.t('leaflet.L-control-fullscreen.exitFullscreen');
 
   // Layer control
   document.getElementsByClassName('secondCell')[0].innerText = i18next.t('texts.i18n_vegan_only');
