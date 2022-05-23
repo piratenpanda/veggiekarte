@@ -129,7 +129,7 @@ def get_osm_data():
 
     # Preparing the string for the Overpass request
     # Define export format
-    overpass_query = "?data=[out:json];("
+    overpass_query = "?data=[out:json][timeout:900];("
     # # Collect the vegan nodes, ways and relations
     overpass_query += "nwr['diet:vegan'~'yes|only|limited'];"
     # # Collect the vegetarian nodes, ways and relations
