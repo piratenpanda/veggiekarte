@@ -36,8 +36,8 @@ body {
   right: 0;
   top: 10px;
   width: 70%;
-  background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 10px DimGray;
+  background-color: rgba(255, 255, 255, 85%);
+  box-shadow: 0 0 10px dimgray;
   color: #111;
   z-index: 9999;
   line-height: 150%;
@@ -88,10 +88,10 @@ a:hover {
   border-style: solid;
   border-width: 2px;
   padding: 2px;
-  box-shadow: 4px 4px 4px DimGray;
+  box-shadow: 4px 4px 4px dimgray;
 }
 .marker:hover {
-  border-color: NavajoWhite;
+  border-color: navajowhite;
   padding: 3px;
 }
 
@@ -110,11 +110,11 @@ a:hover {
 }
 .vegan_limited {
   background: #aaffaa;
-  border-color: SeaGreen;
+  border-color: seagreen;
 }
 .vegetarian_friendly {
   background: #fefefe;
-  border-color: DarkGreen;
+  border-color: darkgreen;
 }
 
 /* Layer button: Adjust the size to the other buttons. */
@@ -126,7 +126,7 @@ a:hover {
 
 /* Tooltip: Mimic Firefox's tooltip style */
 .leaflet-tooltip {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 85%);
   color: #fff;
   padding: 1em;
   border: none;
