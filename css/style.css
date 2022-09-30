@@ -105,11 +105,11 @@ a:hover {
   border-color: #118811;
 }
 .vegan_friendly {
-  background: #00BC00;
-  border-color: #00BC00;
+  background: #00bc00;
+  border-color: #00bc00;
 }
 .vegan_limited {
-  background: #AAFFAA;
+  background: #aaffaa;
   border-color: SeaGreen;
 }
 .vegetarian_friendly {
@@ -186,8 +186,12 @@ a:hover {
 }
 /* Loading Icon */
 @keyframes spinner {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .loading_icon {
   width: 12px;
