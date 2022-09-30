@@ -1,6 +1,3 @@
-// The "use strict" directive helps to write cleaner code.
-"use strict";
-
 import { getIcon } from "./veggiemap-icons.js"
 import { setUserLanguage, getUserLanguage, addLanguageRecources } from "./i18n.js"
 

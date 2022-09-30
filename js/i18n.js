@@ -1,6 +1,3 @@
-// The "use strict" directive helps to write cleaner code.
-"use strict";
-
 // Declare module variables
 let userLanguage;
 let fallbackLanguage = "en";
