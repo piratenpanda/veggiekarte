@@ -437,7 +437,7 @@ function calculatePopup(layer) {
 
 // Adding function for opening_hours objects to check if place will be open after n minutes (60 minutes as default)
 if (!opening_hours.prototype.getFutureState) {
-  opening_hours.prototype.getFutureState = (minutes = 60) => {
+  opening_hours.prototype.getFutureState = function (minutes = 60) {
     const nowPlusHours = new Date();
     nowPlusHours.setUTCMinutes(nowPlusHours.getUTCMinutes() + minutes);
     return this.getState(nowPlusHours);
