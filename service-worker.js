@@ -1,4 +1,4 @@
-let CACHE_NAME = "veggiekarte";
+const CACHE_NAME = "veggiekarte";
 
 console.info(CACHE_NAME);
 
@@ -23,7 +23,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.match(event.request).then((response) => {
-        var fetchPromise = fetch(event.request).then((networkResponse) => {
+        const fetchPromise = fetch(event.request).then((networkResponse) => {
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
         });
