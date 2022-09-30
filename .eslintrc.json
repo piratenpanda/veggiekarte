@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "extends": ["airbnb-base", "plugin:json/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "root": true,
+  "rules": {
+    "no-console": "off",
+    "default-case": "off",
+    "global-require": "off",
+    "prefer-destructuring": "off",
+    "prettier/prettier": "error",
+    "import/extensions": "off",
+    "import/no-dynamic-require": "off",
+    "import/no-unresolved": "off",
+    "no-underscore-dangle": "off",
+    "no-use-before-define": ["error", { "functions": false }]
+  }
+}
