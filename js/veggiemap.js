@@ -69,11 +69,6 @@ function veggiemap() {
       vegetarianFriendly
   };
 
-  veggiemapPopulate(parentGroup);
-
-  // Enable the on-demand popup and tooltip calculation
-  parentGroup.bindPopup(calculatePopup);
-  parentGroup.bindTooltip(calculateTooltip);
 
   // Close the tooltip when opening the popup
   parentGroup.on("click", () => {
@@ -81,6 +76,8 @@ function veggiemap() {
       parentGroup.closeTooltip();
     }
   });
+
+  veggiemapPopulate(parentGroup);
 
   // Add hash to the url
   const hash = new L.Hash(map);
@@ -221,6 +218,12 @@ function veggiemapPopulate(parentGroupVar) {
 
       // Call the function to put the numbers into the legend
       statPopulate(markerGroups, date);
+
+      // Enable the on-demand popup and tooltip calculation
+      parentGroup.eachLayer((layer) => {
+        layer.bindPopup(calculatePopup);
+        layer.bindTooltip(calculateTooltip);
+      });
 
       // Hide spinner
       hideSpinner();
