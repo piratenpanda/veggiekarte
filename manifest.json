@@ -2,7 +2,8 @@
   "name": "Veggiekarte",
   "short_name": "Veggiekarte",
   "start_url": "./index.html",
-  "icons": [{
+  "icons": [
+    {
       "src": "favicon/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"

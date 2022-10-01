@@ -2,16 +2,18 @@ body {
   line-height: 1.5;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: none;
   border-collapse: collapse;
   padding: 10px;
 }
 
 th {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    text-align: left;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  text-align: left;
 }
 
 td {
@@ -23,15 +25,15 @@ tr {
 }
 
 tr:last-of-type {
-    border-bottom: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 code {
-  padding: .1em .3em;
+  padding: 0.1em 0.3em;
   border: 1px solid #ccc;
   border-radius: 2px;
   background-color: #eee;
-  font-family: Consolas,"Liberation Mono",Courier,monospace;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
 }
 
 #main {

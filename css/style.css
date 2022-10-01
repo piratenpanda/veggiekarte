@@ -36,8 +36,8 @@ body {
   right: 0;
   top: 10px;
   width: 70%;
-  background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 10px DimGray;
+  background-color: rgba(255, 255, 255, 85%);
+  box-shadow: 0 0 10px dimgray;
   color: #111;
   z-index: 9999;
   line-height: 150%;
@@ -88,10 +88,10 @@ a:hover {
   border-style: solid;
   border-width: 2px;
   padding: 2px;
-  box-shadow: 4px 4px 4px DimGray;
+  box-shadow: 4px 4px 4px dimgray;
 }
 .marker:hover {
-  border-color: NavajoWhite;
+  border-color: navajowhite;
   padding: 3px;
 }
 
@@ -105,16 +105,16 @@ a:hover {
   border-color: #118811;
 }
 .vegan_friendly {
-  background: #00BC00;
-  border-color: #00BC00;
+  background: #00bc00;
+  border-color: #00bc00;
 }
 .vegan_limited {
-  background: #AAFFAA;
-  border-color: SeaGreen;
+  background: #aaffaa;
+  border-color: seagreen;
 }
 .vegetarian_friendly {
   background: #fefefe;
-  border-color: DarkGreen;
+  border-color: darkgreen;
 }
 
 /* Layer button: Adjust the size to the other buttons. */
@@ -126,7 +126,7 @@ a:hover {
 
 /* Tooltip: Mimic Firefox's tooltip style */
 .leaflet-tooltip {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 85%);
   color: #fff;
   padding: 1em;
   border: none;
@@ -186,8 +186,12 @@ a:hover {
 }
 /* Loading Icon */
 @keyframes spinner {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .loading_icon {
   width: 12px;
