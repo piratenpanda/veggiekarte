@@ -5,7 +5,6 @@ const whiteIconColor = "-white.svg";
 const blackIconColor = "-black.svg";
 
 /* Function to get the icon depending from the symbol and the category */
-// eslint-disable-next-line import/prefer-default-export
 export function getIcon(symbol, category) {
   let iconColor;
   if (category === "vegan_only") {
@@ -24,6 +23,7 @@ export function getIcon(symbol, category) {
   let iconPath;
   if (symbol.startsWith("maki_")) {
     iconPath = "third-party/icons/maki/";
+    // eslint-disable-next-line no-param-reassign
     symbol = symbol.replace("maki_", "");
   } else {
     iconPath = "third-party/icons/openstreetmap-carto/";

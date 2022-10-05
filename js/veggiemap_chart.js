@@ -1,5 +1,14 @@
 /* global Chart */
 
+// Global variables for the config
+const dateArray = [];
+const dataVeganFriendly = [];
+const dataVeganLimited = [];
+const dataVeganOnly = [];
+const dataVegetarianFriendly = [];
+const dataVegetarianOnly = [];
+let lastElementDate = new Date();
+
 // Load statisctics data and call funtion to handle the data
 function getStatistics() {
   const url = "data/stat.json";
@@ -91,14 +100,5 @@ function publishChart(config) {
   const ctx = document.getElementById("canvas").getContext("2d");
   window.myLine = new Chart(ctx, config);
 }
-
-// Global variables for the config
-let dateArray = [];
-let dataVeganFriendly = [];
-let dataVeganLimited = [];
-let dataVeganOnly = [];
-let dataVegetarianFriendly = [];
-let dataVegetarianOnly = [];
-let lastElementDate = new Date();
 
 getStatistics();
