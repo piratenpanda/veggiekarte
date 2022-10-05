@@ -20,7 +20,9 @@
     "import/extensions": "off",
     "import/no-dynamic-require": "off",
     "import/no-unresolved": "off",
+    "new-cap": "off",
+    "no-param-reassign": "off",
     "no-underscore-dangle": "off",
-    "no-use-before-define": ["error", { "functions": false }]
+    "no-use-before-define": "off"
   }
 }

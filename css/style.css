@@ -21,6 +21,7 @@ body {
   position: absolute;
   right: 15px;
 }
+
 #close:hover {
   cursor: pointer;
   transform: rotate(360deg);
@@ -36,7 +37,7 @@ body {
   right: 0;
   top: 10px;
   width: 70%;
-  background-color: rgba(255, 255, 255, 85%);
+  background-color: rgb(255 255 255 / 85%);
   box-shadow: 0 0 10px dimgray;
   color: #111;
   z-index: 9999;
@@ -52,32 +53,36 @@ h1 {
 }
 
 a {
-  color: #006688;
+  color: #068;
   text-decoration: none;
 }
+
 a:hover {
-  color: #003388;
+  color: #038;
 }
 
 /* Legend */
-.legendRow {
+.legend-row {
   display: table-cell;
   max-height: 15px;
   position: relative;
   top: -3px;
 }
-.firstCell {
+
+.first-cell {
   display: table-cell;
   width: 15px;
   border-radius: 5px;
   border: solid 1px #cdcdcddd;
   margin-right: 5px;
 }
-.secondCell {
+
+.second-cell {
   display: table-cell;
   padding-left: 5px;
 }
-.thirdCell {
+
+.third-cell {
   display: table-cell;
   padding-left: 10px;
 }
@@ -90,28 +95,38 @@ a:hover {
   padding: 2px;
   box-shadow: 4px 4px 4px dimgray;
 }
+
 .marker:hover {
   border-color: navajowhite;
   padding: 3px;
 }
 
 /* Categorie properties */
+/* stylelint-disable-next-line selector-class-pattern */
 .vegan_only {
-  background: #005500;
-  border-color: #117722;
+  background: #050;
+  border-color: #172;
 }
+
+/* stylelint-disable-next-line selector-class-pattern */
 .vegetarian_only {
-  background: #118811;
-  border-color: #118811;
+  background: #181;
+  border-color: #181;
 }
+
+/* stylelint-disable-next-line selector-class-pattern */
 .vegan_friendly {
   background: #00bc00;
   border-color: #00bc00;
 }
+
+/* stylelint-disable-next-line selector-class-pattern */
 .vegan_limited {
-  background: #aaffaa;
+  background: #afa;
   border-color: seagreen;
 }
+
+/* stylelint-disable-next-line selector-class-pattern */
 .vegetarian_friendly {
   background: #fefefe;
   border-color: darkgreen;
@@ -126,7 +141,7 @@ a:hover {
 
 /* Tooltip: Mimic Firefox's tooltip style */
 .leaflet-tooltip {
-  background: rgba(0, 0, 0, 85%);
+  background: rgb(0 0 0 / 85%);
   color: #fff;
   padding: 1em;
   border: none;
@@ -134,15 +149,15 @@ a:hover {
 }
 
 /* Tooltip: Hide the pointing triangle */
-.leaflet-tooltip-top:before,
-.leaflet-tooltip-bottom:before,
-.leaflet-tooltip-left:before,
-.leaflet-tooltip-right:before {
+.leaflet-tooltip-top::before,
+.leaflet-tooltip-bottom::before,
+.leaflet-tooltip-left::before,
+.leaflet-tooltip-right::before {
   border-color: transparent;
 }
 
 /* PopupTitle */
-.mapPopupTitle {
+.map-popup-title {
   font-size: medium;
   text-align: center;
 }
@@ -152,6 +167,7 @@ a:hover {
   display: flex;
   flex-wrap: nowrap;
 }
+
 .popupflex-container > div {
   min-width: 2em;
   padding-bottom: 7px;
@@ -173,27 +189,30 @@ a:hover {
 }
 
 /* * Locatecontrol * */
+
 /* Marker Icon */
-.locate_icon {
+.locate-icon {
   display: inline-block;
   width: 18px;
   height: 18px;
   margin-top: 5px;
   background-color: black;
   mask-size: cover;
-  -webkit-mask-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><path d="M 18,7.5 C 17.95833,3.1354462 14.5,0 11,0 7.5,0 3.9740383,2.6627432 4,7.5 4.0259617,12.337257 11,22 11,22 11,22 18.04167,11.864554 18,7.5 Z M 8.5,7 c 0,-3.333332 5,-3.333332 5,0 0,3.333332 -5,3.333332 -5,0 z" fill="black" /></svg>');
   mask-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><path d="M 18,7.5 C 17.95833,3.1354462 14.5,0 11,0 7.5,0 3.9740383,2.6627432 4,7.5 4.0259617,12.337257 11,22 11,22 11,22 18.04167,11.864554 18,7.5 Z M 8.5,7 c 0,-3.333332 5,-3.333332 5,0 0,3.333332 -5,3.333332 -5,0 z" fill="black" /></svg>');
 }
+
 /* Loading Icon */
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
-.loading_icon {
+
+.loading-icon {
   width: 12px;
   height: 12px;
   margin-top: 4px;
@@ -205,32 +224,38 @@ a:hover {
   border-top-color: #434343;
   animation: 1.5s linear infinite spinner;
 }
-/* Marker Icon: Color while following */
-.leaflet-control-locate.active.following a span {
-  background-color: #fc8428;
-}
+
 /* Marker Icon: Color while active */
 .leaflet-control-locate.active a span {
   background-color: #2074b6;
 }
 
+/* Marker Icon: Color while following */
+.leaflet-control-locate.active.following a span {
+  background-color: #fc8428;
+}
+
 /* Open state circles in the popup box */
-.open_state_circle {
+.open-state-circle {
   height: 0.8em;
   width: 0.8em;
   border-radius: 50%;
   display: inline-block;
   margin-right: 0.5em;
 }
+
 .open {
   background-color: green;
 }
-.opens_soon {
+
+.opens-soon {
   background-color: yellow;
 }
-.closes_soon {
+
+.closes-soon {
   background-color: orange;
 }
+
 .closed {
   background-color: red;
 }
@@ -239,6 +264,7 @@ a:hover {
 .leaflet-fade-anim .leaflet-tile {
   will-change: auto !important;
 }
+
 .leaflet-zoom-anim .leaflet-zoom-animated {
   will-change: auto !important;
 }

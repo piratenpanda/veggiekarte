@@ -1,3 +1,5 @@
+/* global Chart */
+
 // Load statisctics data and call funtion to handle the data
 function getStatistics() {
   const url = "data/stat.json";

@@ -1,8 +1,11 @@
+/* global L */
+
 /* Variables for the icon color */
 const whiteIconColor = "-white.svg";
 const blackIconColor = "-black.svg";
 
 /* Function to get the icon depending from the symbol and the category */
+// eslint-disable-next-line import/prefer-default-export
 export function getIcon(symbol, category) {
   let iconColor;
   if (category === "vegan_only") {
