@@ -57,3 +57,11 @@ This is an overview of the third-party software and data we use. Many thanks to 
 | icons from [OpenStreetMap Carto](https://github.com/gravitystorm/openstreetmap-carto)      | CC0 [\*](https://github.com/gravitystorm/openstreetmap-carto/blob/master/LICENSE.txt)                            |           | Default marker icons                                                                  |
 | icons from [Maki](https://labs.mapbox.com/maki-icons/)                                     | CC0                                                                                                              |           | Fallback marker icons                                                                 |
 | [veggiepenguin](https://openclipart.org/detail/189178/veggiepenguin)                       | CC0 [\*](https://openclipart.org/share)                                                                          |           | Favicon                                                                               |
+
+## For developers
+
+To produce a more consistent code we use node.js to prettify and lint the code. But node.js is not required to run Veggiekarte.
+
+To use the tests you have to run `npm install` once to install the required packages. The prerequisite is that you have node.js installed on your system.
+
+Then, to run the tests, run `npm run test`.
