@@ -10,6 +10,7 @@
   },
   "plugins": ["prettier"],
   "root": true,
+  "ignorePatterns": ["third-party/"],
   "rules": {
     "no-console": "off",
     "default-case": "off",
