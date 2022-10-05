@@ -1,9 +1,9 @@
 /* @preserve
- * Leaflet 1.9.1, a JS library for interactive maps. https://leafletjs.com
+ * Leaflet 1.9.2, a JS library for interactive maps. https://leafletjs.com
  * (c) 2010-2022 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
-var version = "1.9.1";
+var version = "1.9.2";
 
 /*
  * @namespace Util
@@ -1161,8 +1161,8 @@ Bounds.prototype = {
 	},
 
 
-	// @method equals(otherBounds: Bounds, maxMargin?: Number): Boolean
-	// Returns `true` if the rectangle is equivalent (within a small margin of error) to the given bounds. The margin of error can be overridden by setting `maxMargin` to a small number.
+	// @method equals(otherBounds: Bounds): Boolean
+	// Returns `true` if the rectangle is equivalent to the given bounds.
 	equals: function (bounds) {
 		if (!bounds) { return false; }
 
@@ -1902,8 +1902,8 @@ function pointsToPath(rings, closed) {
 			str += (j ? 'L' : 'M') + p.x + ' ' + p.y;
 		}
 
-		// closes the ring for polygons
-		str += closed ? 'z' : '';
+		// closes the ring for polygons; "x" is VML syntax
+		str += closed ? (Browser.svg ? 'z' : 'x') : '';
 	}
 
 	// SVG complains about empty path strings
@@ -2061,6 +2061,24 @@ var inlineSvg = !!svg$1 && (function () {
 	return (div.firstChild && div.firstChild.namespaceURI) === 'http://www.w3.org/2000/svg';
 })();
 
+// @property vml: Boolean
+// `true` if the browser supports [VML](https://en.wikipedia.org/wiki/Vector_Markup_Language).
+var vml = !svg$1 && (function () {
+	try {
+		var div = document.createElement('div');
+		div.innerHTML = '<v:shape adj="1"/>';
+
+		var shape = div.firstChild;
+		shape.style.behavior = 'url(#default#VML)';
+
+		return shape && (typeof shape.adj === 'object');
+
+	} catch (e) {
+		return false;
+	}
+}());
+
+
 // @property mac: Boolean; `true` when the browser is running in a Mac platform
 var mac = navigator.platform.indexOf('Mac') === 0;
 
@@ -2104,6 +2122,7 @@ var Browser = {
 	passiveEvents: passiveEvents,
 	canvas: canvas$1,
 	svg: svg$1,
+	vml: vml,
 	inlineSvg: inlineSvg,
 	mac: mac,
 	linux: linux
@@ -10412,7 +10431,8 @@ Layer.include({
 	// @method openPopup(latlng?: LatLng): this
 	// Opens the bound popup at the specified `latlng` or at the default popup anchor if no `latlng` is passed.
 	openPopup: function (latlng) {
-		if (this._popup && this._popup._prepareOpen(latlng)) {
+		if (this._popup && this._popup._prepareOpen(latlng || this._latlng)) {
+
 			// open the popup on the map
 			this._popup.openOn(this._map);
 		}
@@ -10872,15 +10892,21 @@ Layer.include({
 	},
 
 	_addFocusListenersOnLayer: function (layer) {
-		on(layer.getElement(), 'focus', function () {
-			this._tooltip._source = layer;
-			this.openTooltip();
-		}, this);
-		on(layer.getElement(), 'blur', this.closeTooltip, this);
+		var el = layer.getElement();
+		if (el) {
+			on(el, 'focus', function () {
+				this._tooltip._source = layer;
+				this.openTooltip();
+			}, this);
+			on(el, 'blur', this.closeTooltip, this);
+		}
 	},
 
 	_setAriaDescribedByOnLayer: function (layer) {
-		layer.getElement().setAttribute('aria-describedby', this._tooltip._container.id);
+		var el = layer.getElement();
+		if (el) {
+			el.setAttribute('aria-describedby', this._tooltip._container.id);
+		}
 	},
 
 
@@ -12924,7 +12950,148 @@ function canvas(options) {
 	return Browser.canvas ? new Canvas(options) : null;
 }
 
-var create = svgCreate;
+/*
+ * Thanks to Dmitry Baranovsky and his Raphael library for inspiration!
+ */
+
+
+var vmlCreate = (function () {
+	try {
+		document.namespaces.add('lvml', 'urn:schemas-microsoft-com:vml');
+		return function (name) {
+			return document.createElement('<lvml:' + name + ' class="lvml">');
+		};
+	} catch (e) {
+		// Do not return fn from catch block so `e` can be garbage collected
+		// See https://github.com/Leaflet/Leaflet/pull/7279
+	}
+	return function (name) {
+		return document.createElement('<' + name + ' xmlns="urn:schemas-microsoft.com:vml" class="lvml">');
+	};
+})();
+
+
+/*
+ * @class SVG
+ *
+ *
+ * VML was deprecated in 2012, which means VML functionality exists only for backwards compatibility
+ * with old versions of Internet Explorer.
+ */
+
+// mixin to redefine some SVG methods to handle VML syntax which is similar but with some differences
+var vmlMixin = {
+
+	_initContainer: function () {
+		this._container = create$1('div', 'leaflet-vml-container');
+	},
+
+	_update: function () {
+		if (this._map._animatingZoom) { return; }
+		Renderer.prototype._update.call(this);
+		this.fire('update');
+	},
+
+	_initPath: function (layer) {
+		var container = layer._container = vmlCreate('shape');
+
+		addClass(container, 'leaflet-vml-shape ' + (this.options.className || ''));
+
+		container.coordsize = '1 1';
+
+		layer._path = vmlCreate('path');
+		container.appendChild(layer._path);
+
+		this._updateStyle(layer);
+		this._layers[stamp(layer)] = layer;
+	},
+
+	_addPath: function (layer) {
+		var container = layer._container;
+		this._container.appendChild(container);
+
+		if (layer.options.interactive) {
+			layer.addInteractiveTarget(container);
+		}
+	},
+
+	_removePath: function (layer) {
+		var container = layer._container;
+		remove(container);
+		layer.removeInteractiveTarget(container);
+		delete this._layers[stamp(layer)];
+	},
+
+	_updateStyle: function (layer) {
+		var stroke = layer._stroke,
+		    fill = layer._fill,
+		    options = layer.options,
+		    container = layer._container;
+
+		container.stroked = !!options.stroke;
+		container.filled = !!options.fill;
+
+		if (options.stroke) {
+			if (!stroke) {
+				stroke = layer._stroke = vmlCreate('stroke');
+			}
+			container.appendChild(stroke);
+			stroke.weight = options.weight + 'px';
+			stroke.color = options.color;
+			stroke.opacity = options.opacity;
+
+			if (options.dashArray) {
+				stroke.dashStyle = isArray(options.dashArray) ?
+				    options.dashArray.join(' ') :
+				    options.dashArray.replace(/( *, *)/g, ' ');
+			} else {
+				stroke.dashStyle = '';
+			}
+			stroke.endcap = options.lineCap.replace('butt', 'flat');
+			stroke.joinstyle = options.lineJoin;
+
+		} else if (stroke) {
+			container.removeChild(stroke);
+			layer._stroke = null;
+		}
+
+		if (options.fill) {
+			if (!fill) {
+				fill = layer._fill = vmlCreate('fill');
+			}
+			container.appendChild(fill);
+			fill.color = options.fillColor || options.color;
+			fill.opacity = options.fillOpacity;
+
+		} else if (fill) {
+			container.removeChild(fill);
+			layer._fill = null;
+		}
+	},
+
+	_updateCircle: function (layer) {
+		var p = layer._point.round(),
+		    r = Math.round(layer._radius),
+		    r2 = Math.round(layer._radiusY || r);
+
+		this._setPath(layer, layer._empty() ? 'M0 0' :
+			'AL ' + p.x + ',' + p.y + ' ' + r + ',' + r2 + ' 0,' + (65535 * 360));
+	},
+
+	_setPath: function (layer, path) {
+		layer._path.v = path;
+	},
+
+	_bringToFront: function (layer) {
+		toFront(layer._container);
+	},
+
+	_bringToBack: function (layer) {
+		toBack(layer._container);
+	}
+};
+
+var create = Browser.vml ? vmlCreate : svgCreate;
 
 /*
  * @class SVG
@@ -12933,6 +13100,14 @@ var create = svgCreate;
  *
  * Allows vector layers to be displayed with [SVG](https://developer.mozilla.org/docs/Web/SVG).
  * Inherits `Renderer`.
+ *
+ * Due to [technical limitations](https://caniuse.com/svg), SVG is not
+ * available in all web browsers, notably Android 2.x and 3.x.
+ *
+ * Although SVG is not available on IE7 and IE8, these browsers support
+ * [VML](https://en.wikipedia.org/wiki/Vector_Markup_Language)
+ * (a now deprecated technology), and the SVG renderer will fall back to VML in
+ * this case.
  *
  * @example
  *
@@ -13104,11 +13279,15 @@ var SVG = Renderer.extend({
 	}
 });
 
+if (Browser.vml) {
+	SVG.include(vmlMixin);
+}
+
 // @namespace SVG
 // @factory L.svg(options?: Renderer options)
 // Creates a SVG renderer with the given options.
 function svg(options) {
-	return Browser.svg ? new SVG(options) : null;
+	return Browser.svg || Browser.vml ? new SVG(options) : null;
 }
 
 Map.include({
@@ -14133,108 +14312,5 @@ Map.ScrollWheelZoom = ScrollWheelZoom;
 Map.TapHold = TapHold;
 Map.TouchZoom = TouchZoom;
 
-var L$1 = {
-  __proto__: null,
-  version: version,
-  Control: Control,
-  control: control,
-  Class: Class,
-  Handler: Handler,
-  extend: extend,
-  bind: bind,
-  stamp: stamp,
-  setOptions: setOptions,
-  Browser: Browser,
-  Evented: Evented,
-  Mixin: Mixin,
-  Util: Util,
-  PosAnimation: PosAnimation,
-  Draggable: Draggable,
-  DomEvent: DomEvent,
-  DomUtil: DomUtil,
-  Point: Point,
-  point: toPoint,
-  Bounds: Bounds,
-  bounds: toBounds,
-  Transformation: Transformation,
-  transformation: toTransformation,
-  LineUtil: LineUtil,
-  PolyUtil: PolyUtil,
-  LatLng: LatLng,
-  latLng: toLatLng,
-  LatLngBounds: LatLngBounds,
-  latLngBounds: toLatLngBounds,
-  CRS: CRS,
-  Projection: index,
-  Layer: Layer,
-  LayerGroup: LayerGroup,
-  layerGroup: layerGroup,
-  FeatureGroup: FeatureGroup,
-  featureGroup: featureGroup,
-  ImageOverlay: ImageOverlay,
-  imageOverlay: imageOverlay,
-  VideoOverlay: VideoOverlay,
-  videoOverlay: videoOverlay,
-  SVGOverlay: SVGOverlay,
-  svgOverlay: svgOverlay,
-  DivOverlay: DivOverlay,
-  Popup: Popup,
-  popup: popup,
-  Tooltip: Tooltip,
-  tooltip: tooltip,
-  icon: icon,
-  DivIcon: DivIcon,
-  divIcon: divIcon,
-  Marker: Marker,
-  marker: marker,
-  Icon: Icon,
-  GridLayer: GridLayer,
-  gridLayer: gridLayer,
-  TileLayer: TileLayer,
-  tileLayer: tileLayer,
-  Renderer: Renderer,
-  Canvas: Canvas,
-  canvas: canvas,
-  Path: Path,
-  CircleMarker: CircleMarker,
-  circleMarker: circleMarker,
-  Circle: Circle,
-  circle: circle,
-  Polyline: Polyline,
-  polyline: polyline,
-  Polygon: Polygon,
-  polygon: polygon,
-  Rectangle: Rectangle,
-  rectangle: rectangle,
-  SVG: SVG,
-  svg: svg,
-  GeoJSON: GeoJSON,
-  geoJSON: geoJSON,
-  geoJson: geoJson,
-  Map: Map,
-  map: createMap
-};
-
-var globalL = extend(L$1, {noConflict: noConflict});
-
-var globalObject = getGlobalObject();
-var oldL = globalObject.L;
-
-globalObject.L = globalL;
-
-function noConflict() {
-	globalObject.L = oldL;
-	return globalL;
-}
-
-function getGlobalObject() {
-	if (typeof globalThis !== 'undefined') { return globalThis; }
-	if (typeof self !== 'undefined') { return self; }
-	if (typeof window !== 'undefined') { return window; }
-	if (typeof global !== 'undefined') { return global; }
-
-	throw new Error('Unable to locate global object.');
-}
-
-export { Bounds, Browser, CRS, Canvas, Circle, CircleMarker, Class, Control, DivIcon, DivOverlay, DomEvent, DomUtil, Draggable, Evented, FeatureGroup, GeoJSON, GridLayer, Handler, Icon, ImageOverlay, LatLng, LatLngBounds, Layer, LayerGroup, LineUtil, Map, Marker, Mixin, Path, Point, PolyUtil, Polygon, Polyline, Popup, PosAnimation, index as Projection, Rectangle, Renderer, SVG, SVGOverlay, TileLayer, Tooltip, Transformation, Util, VideoOverlay, bind, toBounds as bounds, canvas, circle, circleMarker, control, globalL as default, divIcon, extend, featureGroup, geoJSON, geoJson, gridLayer, icon, imageOverlay, toLatLng as latLng, toLatLngBounds as latLngBounds, layerGroup, createMap as map, marker, noConflict, toPoint as point, polygon, polyline, popup, rectangle, setOptions, stamp, svg, svgOverlay, tileLayer, tooltip, toTransformation as transformation, version, videoOverlay };
+export { Bounds, Browser, CRS, Canvas, Circle, CircleMarker, Class, Control, DivIcon, DivOverlay, DomEvent, DomUtil, Draggable, Evented, FeatureGroup, GeoJSON, GridLayer, Handler, Icon, ImageOverlay, LatLng, LatLngBounds, Layer, LayerGroup, LineUtil, Map, Marker, Mixin, Path, Point, PolyUtil, Polygon, Polyline, Popup, PosAnimation, index as Projection, Rectangle, Renderer, SVG, SVGOverlay, TileLayer, Tooltip, Transformation, Util, VideoOverlay, bind, toBounds as bounds, canvas, circle, circleMarker, control, divIcon, extend, featureGroup, geoJSON, geoJson, gridLayer, icon, imageOverlay, toLatLng as latLng, toLatLngBounds as latLngBounds, layerGroup, createMap as map, marker, toPoint as point, polygon, polyline, popup, rectangle, setOptions, stamp, svg, svgOverlay, tileLayer, tooltip, toTransformation as transformation, version, videoOverlay };
 //# sourceMappingURL=leaflet-src.esm.js.map
