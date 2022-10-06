@@ -1,3 +1,5 @@
+/* global L */
+
 /* Variables for the icon color */
 const whiteIconColor = "-white.svg";
 const blackIconColor = "-black.svg";
@@ -21,6 +23,7 @@ export function getIcon(symbol, category) {
   let iconPath;
   if (symbol.startsWith("maki_")) {
     iconPath = "third-party/icons/maki/";
+    // eslint-disable-next-line no-param-reassign
     symbol = symbol.replace("maki_", "");
   } else {
     iconPath = "third-party/icons/openstreetmap-carto/";
