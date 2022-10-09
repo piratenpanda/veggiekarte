@@ -46,7 +46,7 @@ OVERPASS_FILE = DATA_DIR / "overpass.json"                     # the raw overpas
 stat_data = {}
 
 # icon mapping
-# (the first element of the array is for the icon in the marker, the second is an emoji and it is used in the title)
+# (the first element of the array is for the icon in the marker, the second is an emoji which is used in the title)
 ICON_MAPPING = {
     # Intentionally not alphabetical order
     "cuisine:pizza": ["maki_restaurant-pizza", "🍕"],
@@ -105,7 +105,7 @@ ICON_MAPPING = {
 
 def determine_icon(tags):
     """Determine an icon for the marker."""
-    icon = ["maki_star-stroked", ""]   # Use this icon if there is no matching per ICON_MAPPING.
+    icon = ["maki_star-stroked", ""]  # Use this icon if there is no matching per ICON_MAPPING.
     for key_value in ICON_MAPPING:
         key, value = key_value.split(":")
         tag = tags.get(key)
@@ -198,12 +198,16 @@ def write_data(data):
     osm_element_index = 0
     osm_elements_number = len(data["elements"])
 
-    # Go through every osm element and put the information into a new places element.
+    # Go through every osm element and put the information into a new place's element.
     for osm_element in data["elements"]:
 
         element_id = osm_element["id"]
         element_type = osm_element["type"]
         tags = osm_element.get("tags", {})
+
+        # Discard element if it's disused
+        if "amenity" not in tags and "disused:amenity" in tags:
+            continue
 
         place_obj = {"type": "Feature", "properties": {}}
         place_obj["properties"]["_id"] = element_id
@@ -276,7 +280,7 @@ def write_data(data):
             place_obj["properties"]["addr_city"] = tags["addr:city"]
         else:
             if "addr:suburb" in tags:
-                # In some regions (e.g. in USA and Australia) they often tag suburbs instead of city
+                # In some regions (e.g. in the USA and Australia) they often tag suburbs instead of city
                 place_obj["properties"]["addr_city"] = tags["addr:suburb"]
         if "addr:postcode" in tags:
             place_obj["properties"]["addr_postcode"] = tags["addr:postcode"]
