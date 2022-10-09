@@ -386,7 +386,7 @@ def main():
     else:
         # For testing without new OSM requests
         # Example: 'python3 refresh.py ./data/overpass.json'
-        osm_data = json.load(open(sys.argv[1]))
+        osm_data = json.load(open(sys.argv[1], encoding="utf-8"))
 
     # Write data
     if osm_data is not None:
