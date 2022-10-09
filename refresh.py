@@ -244,7 +244,7 @@ def write_data(data):
                 name = "vending machine"
             else:
                 # If there is no name given from osm, we build one
-                name = "%s %s" % (element_type, element_id)
+                name = f"{element_type} {element_id}"
         # Double quotes could escape code, so we have to replace them:
         name = name.replace('"', '”')
         place_obj["properties"]["name"] = name
