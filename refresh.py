@@ -205,6 +205,10 @@ def write_data(data):
         element_type = osm_element["type"]
         tags = osm_element.get("tags", {})
 
+        # Discard element if it's disused
+        if "amenity" not in tags and "disused:amenity" in tags:
+            continue
+
         place_obj = {"type": "Feature", "properties": {}}
         place_obj["properties"]["_id"] = element_id
         place_obj["properties"]["_type"] = element_type
