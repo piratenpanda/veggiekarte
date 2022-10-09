@@ -107,7 +107,7 @@ ICON_MAPPING = {
 def determine_icon(tags):
     """Determine an icon for the marker."""
     icon = ["maki_star-stroked", ""]  # Use this icon if there is no matching per ICON_MAPPING.
-    for key_value in ICON_MAPPING:
+    for key_value, icon_array in ICON_MAPPING.items():
         key, value = key_value.split(":")
         tag = tags.get(key)
 
@@ -117,7 +117,7 @@ def determine_icon(tags):
         tag = tag.split(";")[0]
 
         if tag == value:
-            icon = ICON_MAPPING[key_value]
+            icon = icon_array
             break
     return icon
 
