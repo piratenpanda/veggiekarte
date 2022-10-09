@@ -4,13 +4,14 @@
 With this module we get the POIs with the tags diet:vegan = * and
 diet:vegetarian = * from OpenStreetMap and fill them in a file.
 """
+from pathlib import Path  # for handling files
+
 import datetime           # for the timestamp
 import gzip               # for compressing the json file
 import json               # read and write json
 import sys                # to check the python version
 import time               # for sleep
 import urllib3            # for the HTTP GET request
-from pathlib import Path  # for handling files
 
 assert sys.version_info >= (3, 0)
 
