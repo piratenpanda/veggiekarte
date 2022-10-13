@@ -79,6 +79,7 @@ function veggiemap() {
     }
   });
 
+  // Load the places and put them on the map
   veggiemapPopulate(parentGroup);
 
   // Add hash to the url
@@ -201,42 +202,49 @@ function statPopulate(markerGroups, date) {
 }
 
 // Function to get the information from the places json file.
-function veggiemapPopulate(parentGroupVar) {
-  const url = "data/places.min.json";
-  fetch(url)
-    .then((response) => response.json())
-    .then((geojson) => geojsonToMarkerGroups(geojson))
-    .then((markerGroupsAndDate) => {
-      const markerGroups = markerGroupsAndDate[0];
-      const date = markerGroupsAndDate[1];
-      Object.entries(subgroups).forEach(([key, subgroup]) => {
-        // Bulk add all the markers from a markerGroup to a subgroup in one go
-        // Source: https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/5
-        subgroup.addLayer(L.layerGroup(markerGroups[key]));
-        map.addLayer(subgroup);
-      });
+async function veggiemapPopulate(parentGroupVar) {
+  // Initiate translations (To have a text in the info box at the first start.)
+  addLanguageRecources(getUserLanguage());
 
-      // Reveal all the markers and clusters on the map in one go
-      map.addLayer(parentGroupVar);
+  const url = new URL("data/places.min.json", window.location.href);
+  const response = await fetch(url);
 
-      // Call the function to put the numbers into the legend
-      statPopulate(markerGroups, date);
+  if (response.status === 404) {
+    console.error(`Couldn't load data from ${url.href}.`);
+    return;
+  }
 
-      // Enable the on-demand popup and tooltip calculation
-      parentGroup.eachLayer((layer) => {
-        layer.bindPopup(calculatePopup);
-        layer.bindTooltip(calculateTooltip);
-      });
+  const geojson = await response.json();
+  const markerGroupsAndDate = geojsonToMarkerGroups(geojson);
+  const markerGroups = markerGroupsAndDate[0];
+  const date = markerGroupsAndDate[1];
 
-      // Hide spinner
-      hideSpinner();
+  Object.entries(subgroups).forEach(([key, subgroup]) => {
+    // Bulk add all the markers from a markerGroup to a subgroup in one go
+    // Source: https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup/issues/5
+    subgroup.addLayer(L.layerGroup(markerGroups[key]));
+    map.addLayer(subgroup);
+  });
 
-      // Initiate translations
-      addLanguageRecources(getUserLanguage());
-    })
-    .catch((error) => {
-      console.error("Request failed", error);
-    });
+  // Reveal all the markers and clusters on the map in one go
+  map.addLayer(parentGroupVar);
+
+  // Call the function to put the numbers into the legend
+  statPopulate(markerGroups, date);
+
+  // Enable the on-demand popup and tooltip calculation
+  parentGroup.eachLayer((layer) => {
+    layer.bindPopup(calculatePopup);
+    layer.bindTooltip(calculateTooltip);
+  });
+
+  // Hide spinner
+  hideSpinner();
+
+  // Second call of the translation
+  // The legend would not be translated without the second call.
+  // TODO: Figure out how to get by without the second call.
+  addLanguageRecources(getUserLanguage());
 }
 
 // Process the places GeoJSON into the groups of markers

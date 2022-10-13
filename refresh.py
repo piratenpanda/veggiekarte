@@ -4,13 +4,14 @@
 With this module we get the POIs with the tags diet:vegan = * and
 diet:vegetarian = * from OpenStreetMap and fill them in a file.
 """
+from pathlib import Path  # for handling files
+
 import datetime           # for the timestamp
 import gzip               # for compressing the json file
 import json               # read and write json
 import sys                # to check the python version
 import time               # for sleep
 import urllib3            # for the HTTP GET request
-from pathlib import Path  # for handling files
 
 assert sys.version_info >= (3, 0)
 
@@ -106,7 +107,7 @@ ICON_MAPPING = {
 def determine_icon(tags):
     """Determine an icon for the marker."""
     icon = ["maki_star-stroked", ""]  # Use this icon if there is no matching per ICON_MAPPING.
-    for key_value in ICON_MAPPING:
+    for key_value, icon_array in ICON_MAPPING.items():
         key, value = key_value.split(":")
         tag = tags.get(key)
 
@@ -116,7 +117,7 @@ def determine_icon(tags):
         tag = tag.split(";")[0]
 
         if tag == value:
-            icon = ICON_MAPPING[key_value]
+            icon = icon_array
             break
     return icon
 
@@ -243,7 +244,7 @@ def write_data(data):
                 name = "vending machine"
             else:
                 # If there is no name given from osm, we build one
-                name = "%s %s" % (element_type, element_id)
+                name = f"{element_type} {element_id}"
         # Double quotes could escape code, so we have to replace them:
         name = name.replace('"', '”')
         place_obj["properties"]["name"] = name
@@ -385,7 +386,7 @@ def main():
     else:
         # For testing without new OSM requests
         # Example: 'python3 refresh.py ./data/overpass.json'
-        osm_data = json.load(open(sys.argv[1]))
+        osm_data = json.load(open(sys.argv[1], encoding="utf-8"))
 
     # Write data
     if osm_data is not None:
