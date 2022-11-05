@@ -186,37 +186,8 @@ a:hover {
   margin: auto;
   padding: 7px;
   display: block;
-}
-
-/* * Locatecontrol * */
-
-/* Marker Icon */
-.locate-icon {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-top: 5px;
-  background-color: black;
-  mask-size: cover;
-  mask-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><path d="M 18,7.5 C 17.95833,3.1354462 14.5,0 11,0 7.5,0 3.9740383,2.6627432 4,7.5 4.0259617,12.337257 11,22 11,22 11,22 18.04167,11.864554 18,7.5 Z M 8.5,7 c 0,-3.333332 5,-3.333332 5,0 0,3.333332 -5,3.333332 -5,0 z" fill="black" /></svg>');
-}
-
-/* Loading Icon */
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.loading-icon {
   width: 12px;
   height: 12px;
-  margin-top: 4px;
-  display: inline-block;
   border-radius: 50%;
   border-width: 4px;
   border-style: solid;
@@ -225,14 +196,14 @@ a:hover {
   animation: 1.5s linear infinite spinner;
 }
 
-/* Marker Icon: Color while active */
-.leaflet-control-locate.active a span {
-  background-color: #2074b6;
-}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
 
-/* Marker Icon: Color while following */
-.leaflet-control-locate.active.following a span {
-  background-color: #fc8428;
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Open state circles in the popup box */
