@@ -104,8 +104,6 @@ function veggiemap() {
 
   // Add button to search own position
   document.locateControl = L.control.locate({
-    icon: "locate-icon",
-    iconLoading: "loading-icon",
     showCompass: true,
     locateOptions: { maxZoom: 16 },
     position: "topright"
