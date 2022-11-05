@@ -319,8 +319,8 @@ function calculatePopup(layer) {
   const eEma = feature.properties.contact_email;
   let ePho = feature.properties.contact_phone;
   const eWeb = feature.properties.contact_website;
-  const eFac = feature.properties.contact_facebook;
-  const eIns = feature.properties.contact_instagram;
+  let eFac = feature.properties.contact_facebook;
+  let eIns = feature.properties.contact_instagram;
   const eCui = feature.properties.cuisine;
   const eOpe = feature.properties.opening_hours;
   const eSym = feature.properties.symbol;
@@ -430,11 +430,17 @@ function calculatePopup(layer) {
     )}</a></div></div>`;
   }
   if (eFac !== undefined) {
+    if (!eFac.startsWith("http")) {
+      eFac = `https://www.facebook.com/${eFac}`;
+    }
     popupContent += `<div class='popupflex-container'><div>🇫</div><div><a href='${eFac}' target='_blank' rel='noopener noreferrer'>${decodeURI(
       eFac
     ).replace("https://", "")}</a></div></div>`;
   }
   if (eIns !== undefined) {
+    if (!eIns.startsWith("http")) {
+      eIns = `https://www.instagram.com/${eIns}`;
+    }
     popupContent += `<div class='popupflex-container'><div>📸</div><div><a href='${eIns}' target='_blank' rel='noopener noreferrer'>${eIns.replace(
       "https://",
       ""
