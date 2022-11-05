@@ -292,13 +292,21 @@ def write_data(data):
         elif "website" in tags:
             place_obj["properties"]["contact_website"] = tags["website"].rstrip("/")
         if "contact:facebook" in tags:
-            place_obj["properties"]["contact_facebook"] = tags["contact:facebook"].rstrip("/")
+            facebook = tags["contact:facebook"].rstrip("/")
+            facebook = facebook.lstrip("https://www.facebook.com/")
+            place_obj["properties"]["contact_facebook"] = facebook
         elif "facebook" in tags:
-            place_obj["properties"]["contact_facebook"] = tags["facebook"].rstrip("/")
+            facebook = tags["facebook"].rstrip("/")
+            facebook = facebook.lstrip("https://www.facebook.com/")
+            place_obj["properties"]["contact_facebook"] = facebook
         if "contact:instagram" in tags:
-            place_obj["properties"]["contact_instagram"] = tags["contact:instagram"].rstrip("/")
+            instagram = tags["contact:instagram"].rstrip("/")
+            instagram = instagram.lstrip("https://www.instagram.com/")
+            place_obj["properties"]["contact_instagram"] = instagram
         elif "instagram" in tags:
-            place_obj["properties"]["contact_instagram"] = tags["instagram"].rstrip("/")
+            instagram = tags["instagram"].rstrip("/")
+            instagram = instagram.lstrip("https://www.instagram.com/")
+            place_obj["properties"]["contact_instagram"] = instagram
         if "contact:email" in tags:
             place_obj["properties"]["contact_email"] = tags["contact:email"]
         elif "email" in tags:
