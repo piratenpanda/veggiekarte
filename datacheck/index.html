@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Veggiekarte - Data Check</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="A map to find vegetarian and vegan restaurants in your city." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- Favicon (build with https://realfavicongenerator.net) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#26ab44" />
+  <link rel="shortcut icon" href="../favicon/favicon.ico" />
+  <meta name="msapplication-TileColor" content="#26ab44" />
+  <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
+  <meta name="theme-color" content="#26ab44" />
+
+  <!-- Third party styles -->
+  <link rel="stylesheet" href="../third-party/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="../third-party/leaflet.markercluster/MarkerCluster.css" />
+  <link rel="stylesheet" href="../third-party/leaflet.markercluster/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="../third-party/leaflet.control.geocoder/Control.Geocoder.css" />
+  <link rel="stylesheet" href="../third-party/leaflet.locatecontrol/L.Control.Locate.min.css" />
+  <link rel="stylesheet" href="../third-party/leaflet.easybutton/easy-button.css" />
+
+  <!-- Own styles -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/datacheck.css" />
+</head>
+
+<body>
+  <!-- Map placeholder -->
+  <div id="map"></div>
+
+  <!-- Info box -->
+  <div id="information">
+    <div id="close" onclick="toggleInfo()">✖</div>
+    <div id="spinner"></div>
+    <div id="content">
+      <h1>Veggiekarte Data Check</h1>
+      <h2>About</h2>
+      <p>This page shows the result of different checks of the data of vegan and vegetarian locations from OpenStreetMap
+        (OSM).</p>
+      <p>We check inconsistencies, completeness, format of URIs, validation of email adresses, correct use of OSM tags,
+        etc.</p>
+      <p>So this map and <a href="datacheck_table.html" target="_blank">this table (it takes a few seconds to load)</a>
+        can help you to improve the data quality of the locations near you or even worldwide.</p>
+
+      <h2>Using</h2>
+      <p>If you are already used to edit OSM data, simply take a look at the information in the popup boxes.</p>
+      <p>If you are new to OSM, take a look at the <a href="https://wiki.openstreetmap.org/wiki/Beginners%27_guide"
+          target="_blank" rel="noopener noreferrer">Beginners' guide</a>.</p>
+      <p>Please be prudent when changing data at OSM.</p>
+      <p>It's possible that not every issue presented here is really a problem. Feel free to give us feedback about questionable entries.</p>
+      <p>Because some checks cause some traffic, they only take place once a day. So if you correct data, you won't see
+        a change here until tomorrow.</p>
+
+      <h2>Connect with others</h2>
+      <p>To connect with others you can use the chat <i>OSM Vegan</i> with <a href="https://matrix.org/clients/"
+          target="_blank" rel="noopener noreferrer">Matrix</a> (#osmvegan: matrix.org) or with Telegram (<a
+          href="https://t.me/osmvegan" target="_blank" rel="noopener noreferrer">t.me/osmvegan</a>). You are welcome to
+        ask questions there.</p>
+
+      <h2>Who will benefit if you help improve the data?</h2>
+      <p>We built this site mainly to improve the data for <a href="https://veggiekarte.de"
+          rel="noopener noreferrer">Veggiekarte</a>. But there are many more profiteurs. When you are improving the data
+        of OSM, all apps and their users will have an advantage and therefore also the operators of the veggie
+        locations.</p>
+    </div>
+  </div>
+
+  <!-- Content if scripts are disabled or not supported. -->
+  <noscript>
+    <p style="text-align:center">
+      ⚠️ This application requires JavaScript. ⚠️
+    </p>
+  </noscript>
+
+  <!-- Third party scripts -->
+  <script src="../third-party/leaflet/leaflet.js"></script>
+  <script src="../third-party/leaflet.markercluster/leaflet.markercluster.js"></script>
+  <script src="../third-party/leaflet.hash/leaflet-hash.js"></script>
+  <script src="../third-party/leaflet.control.geocoder/Control.Geocoder.min.js"></script>
+  <script src="../third-party/leaflet.locatecontrol/L.Control.Locate.min.js"></script>
+  <script src="../third-party/leaflet.easybutton/easy-button.js"></script>
+  <script src="../third-party/leaflet.featuregroup.subgroup/leaflet.featuregroup.subgroup.js"></script>
+
+  <!-- Own scripts -->
+  <script src="../js/datacheck.js"></script>
+
+</body>
+
+</html>

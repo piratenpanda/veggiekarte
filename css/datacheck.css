@@ -1,0 +1,21 @@
+/* Editor link centered */
+.map-editor-link {
+  text-align: center;
+}
+
+/* Issue rows with different colours */
+.popup-issue:nth-of-type(odd) {
+  background: #fee;
+}
+
+.popup-issue:nth-of-type(even) {
+  background: #fdd;
+}
+
+tr:nth-child(even) {
+  background: #ccc;
+}
+
+tr:nth-child(odd) {
+  background: #fff;
+}
