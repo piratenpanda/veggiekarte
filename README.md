@@ -20,6 +20,7 @@ There are several ways to get involved:
 1. Improve the data on OpenStreetMap
    1. Add missing places
    2. Add and correct information (like opening hours) of places
+   3. Check and fix issues on <https://veggiekarte.de/datacheck/>
 2. Report issues
 3. Help to translate (take [locales/en.json](locales/en.json) as template)
 4. Participate in development
