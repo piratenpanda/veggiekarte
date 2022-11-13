@@ -58,7 +58,8 @@ function veggiemapPopulate() {
 
           console.log(element);
           row.innerHTML += `<td>${index}</td>`;
-          row.innerHTML += `<td><a href="https://www.openstreetmap.org/${element.properties._type}/${element.properties._id}" target="_blank">show</a><br><a href="https://www.openstreetmap.org/edit?${element.properties._type}=${element.properties._id}" target="_blank">edit</a></td>`;
+          row.innerHTML += `<td><a href="https://www.openstreetmap.org/${element.properties._type}/${element.properties._id}" target="_blank">show</a><br>
+          <a href="https://www.openstreetmap.org/edit?${element.properties._type}=${element.properties._id}" target="_blank">edit</a></td>`;
           row.innerHTML += `<td>${element.properties.name}</td>`;
           row.innerHTML += `<td>${element.properties.issue_count}</td>`;
           row.innerHTML += `<td>${undef}</td>`;

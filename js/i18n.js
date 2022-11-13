@@ -36,9 +36,7 @@ function getUserLanguage() {
 
   if (userLanguage === undefined) {
     // Get language from URL
-    const urlParameters = new URLSearchParams(
-      document.location.search.substring(1)
-    );
+    const urlParameters = new URLSearchParams(document.location.search.substring(1));
     const urlLanguage = urlParameters.get("lang");
 
     if (urlLanguage !== undefined) {
@@ -53,9 +51,7 @@ function getUserLanguage() {
 
     // Check if we support the taken language
     if (!Object.keys(languages).includes(userLanguage)) {
-      console.warn(
-        `i18n: This Website is not translated to language with language code '${userLanguage}'. Help to translate it!`
-      );
+      console.warn(`i18n: This Website is not translated to language with language code '${userLanguage}'. Help to translate it!`);
       userLanguage = "en";
     }
   }
@@ -105,11 +101,7 @@ function initTranslate(language) {
 }
 
 i18next.on("languageChanged", () => {
-  window.history.replaceState(
-    {},
-    "",
-    updateURLParameter(window.location.href, "lang", i18next.language)
-  );
+  window.history.replaceState({}, "", updateURLParameter(window.location.href, "lang", i18next.language));
   updateContent();
 });
 
@@ -159,120 +151,45 @@ function updateURLParameter(url, param, paramVal) {
 
 function updateContent() {
   // Infobox
-  document.getElementById("content-welcome-heading").innerText = i18next.t(
-    "texts.content-welcome-heading"
-  );
-  document.getElementById("content-welcome-text").innerHTML = i18next.t(
-    "texts.content-welcome-text"
-  );
-  document.getElementById("content-osm-heading").innerText = i18next.t(
-    "texts.content-osm-heading"
-  );
-  document.getElementById("content-osm-text").innerHTML = i18next.t(
-    "texts.content-osm-text"
-  );
-  document.getElementById("content-contribute-heading").innerText = i18next.t(
-    "texts.content-contribute-heading"
-  );
-  document.getElementById("content-contribute-text").innerHTML = i18next.t(
-    "texts.content-contribute-text"
-  );
-  document.getElementById("content-reviews-heading").innerText = i18next.t(
-    "texts.content-reviews-heading"
-  );
-  document.getElementById("content-reviews-text").innerHTML = i18next.t(
-    "texts.content-reviews-text"
-  );
-  document.getElementById("content-further-heading").innerText = i18next.t(
-    "texts.content-further-heading"
-  );
-  document.getElementById("content-further-text").innerHTML = i18next.t(
-    "texts.content-further-text"
-  );
+  document.getElementById("content-welcome-heading").innerText = i18next.t("texts.content-welcome-heading");
+  document.getElementById("content-welcome-text").innerHTML = i18next.t("texts.content-welcome-text");
+  document.getElementById("content-osm-heading").innerText = i18next.t("texts.content-osm-heading");
+  document.getElementById("content-osm-text").innerHTML = i18next.t("texts.content-osm-text");
+  document.getElementById("content-contribute-heading").innerText = i18next.t("texts.content-contribute-heading");
+  document.getElementById("content-contribute-text").innerHTML = i18next.t("texts.content-contribute-text");
+  document.getElementById("content-reviews-heading").innerText = i18next.t("texts.content-reviews-heading");
+  document.getElementById("content-reviews-text").innerHTML = i18next.t("texts.content-reviews-text");
+  document.getElementById("content-further-heading").innerText = i18next.t("texts.content-further-heading");
+  document.getElementById("content-further-text").innerHTML = i18next.t("texts.content-further-text");
 
   // Controls
-  document.getElementsByClassName("leaflet-control-zoom-in")[0].title =
-    i18next.t("leaflet.L-control-zoom.zoom_in");
-  document.getElementsByClassName("leaflet-control-zoom-out")[0].title =
-    i18next.t("leaflet.L-control-zoom.zoom_out");
-  document.getElementsByClassName(
-    "info-button"
-  )[0].parentElement.parentElement.title = i18next.t(
-    "leaflet.L-control-infoButton.title"
-  );
-  document.getElementsByClassName("leaflet-control-geocoder")[0].title =
-    i18next.t("leaflet.L-control-geocoder.title");
-  document.getElementsByClassName(
-    "leaflet-control-geocoder-form"
-  )[0].firstChild.placeholder = i18next.t(
-    "leaflet.L-control-geocoder.placeholder"
-  );
-  document.getElementsByClassName(
-    "leaflet-control-geocoder-form-no-error"
-  )[0].innerText = i18next.t("leaflet.L-control-geocoder.error_message");
-  document.getElementsByClassName(
-    "leaflet-control-locate"
-  )[0].firstChild.title = i18next.t("leaflet.L-control-locate.where_am_i");
-  document.locateControl.options.strings.metersUnit = i18next.t(
-    "leaflet.L-control-locate.meter"
-  );
-  document.locateControl.options.strings.popup = i18next.t(
-    "leaflet.L-control-locate.distance"
-  );
+  document.getElementsByClassName("leaflet-control-zoom-in")[0].title = i18next.t("leaflet.L-control-zoom.zoom_in");
+  document.getElementsByClassName("leaflet-control-zoom-out")[0].title = i18next.t("leaflet.L-control-zoom.zoom_out");
+  document.getElementsByClassName("info-button")[0].parentElement.parentElement.title = i18next.t("leaflet.L-control-infoButton.title");
+  document.getElementsByClassName("leaflet-control-geocoder")[0].title = i18next.t("leaflet.L-control-geocoder.title");
+  document.getElementsByClassName("leaflet-control-geocoder-form")[0].firstChild.placeholder = i18next.t("leaflet.L-control-geocoder.placeholder");
+  document.getElementsByClassName("leaflet-control-geocoder-form-no-error")[0].innerText = i18next.t("leaflet.L-control-geocoder.error_message");
+  document.getElementsByClassName("leaflet-control-locate")[0].firstChild.title = i18next.t("leaflet.L-control-locate.where_am_i");
+  document.locateControl.options.strings.metersUnit = i18next.t("leaflet.L-control-locate.meter");
+  document.locateControl.options.strings.popup = i18next.t("leaflet.L-control-locate.distance");
 
   // Fullscreen control
-  document.fullscreenControl.link.title = i18next.t(
-    "leaflet.L-control-fullscreen.fullscreen"
-  );
-  document.fullscreenControl.options.title = i18next.t(
-    "leaflet.L-control-fullscreen.fullscreen"
-  );
-  document.fullscreenControl.options.titleCancel = i18next.t(
-    "leaflet.L-control-fullscreen.exitFullscreen"
-  );
+  document.fullscreenControl.link.title = i18next.t("leaflet.L-control-fullscreen.fullscreen");
+  document.fullscreenControl.options.title = i18next.t("leaflet.L-control-fullscreen.fullscreen");
+  document.fullscreenControl.options.titleCancel = i18next.t("leaflet.L-control-fullscreen.exitFullscreen");
 
   // Layer control
-  document.getElementsByClassName("second-cell")[0].innerText = i18next.t(
-    "texts.i18n_vegan_only"
-  );
-  document.getElementsByClassName(
-    "legend-row"
-  )[0].parentElement.parentElement.title = i18next.t(
-    "texts.i18n_vegan_only_title"
-  );
-  document.getElementsByClassName("second-cell")[1].innerText = i18next.t(
-    "texts.i18n_vegetarian_only"
-  );
-  document.getElementsByClassName(
-    "legend-row"
-  )[1].parentElement.parentElement.title = i18next.t(
-    "texts.i18n_vegetarian_only_title"
-  );
-  document.getElementsByClassName("second-cell")[2].innerText = i18next.t(
-    "texts.i18n_vegan_friendly"
-  );
-  document.getElementsByClassName(
-    "legend-row"
-  )[2].parentElement.parentElement.title = i18next.t(
-    "texts.i18n_vegan_friendly_title"
-  );
-  document.getElementsByClassName("second-cell")[3].innerText = i18next.t(
-    "texts.i18n_vegan_limited"
-  );
-  document.getElementsByClassName(
-    "legend-row"
-  )[3].parentElement.parentElement.title = i18next.t(
-    "texts.i18n_vegan_limited_title"
-  );
+  document.getElementsByClassName("second-cell")[0].innerText = i18next.t("texts.i18n_vegan_only");
+  document.getElementsByClassName("legend-row")[0].parentElement.parentElement.title = i18next.t("texts.i18n_vegan_only_title");
+  document.getElementsByClassName("second-cell")[1].innerText = i18next.t("texts.i18n_vegetarian_only");
+  document.getElementsByClassName("legend-row")[1].parentElement.parentElement.title = i18next.t("texts.i18n_vegetarian_only_title");
+  document.getElementsByClassName("second-cell")[2].innerText = i18next.t("texts.i18n_vegan_friendly");
+  document.getElementsByClassName("legend-row")[2].parentElement.parentElement.title = i18next.t("texts.i18n_vegan_friendly_title");
+  document.getElementsByClassName("second-cell")[3].innerText = i18next.t("texts.i18n_vegan_limited");
+  document.getElementsByClassName("legend-row")[3].parentElement.parentElement.title = i18next.t("texts.i18n_vegan_limited_title");
 
-  document.getElementsByClassName("second-cell")[4].innerText = i18next.t(
-    "texts.i18n_vegetarian_friendly"
-  );
-  document.getElementsByClassName(
-    "legend-row"
-  )[4].parentElement.parentElement.title = i18next.t(
-    "texts.i18n_vegetarian_friendly_title"
-  );
+  document.getElementsByClassName("second-cell")[4].innerText = i18next.t("texts.i18n_vegetarian_friendly");
+  document.getElementsByClassName("legend-row")[4].parentElement.parentElement.title = i18next.t("texts.i18n_vegetarian_friendly_title");
 
   // Set HTML lang attribut
   document.body.parentElement.lang = i18next.language;

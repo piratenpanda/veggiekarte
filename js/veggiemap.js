@@ -1,11 +1,7 @@
 /* global i18next, L, opening_hours */
 
 import { getIcon } from "./veggiemap-icons.js";
-import {
-  setUserLanguage,
-  getUserLanguage,
-  addLanguageRecources
-} from "./i18n.js";
+import { setUserLanguage, getUserLanguage, addLanguageRecources } from "./i18n.js";
 
 /* Definition (polyfill) for the function replaceAll
    for older browser versions (before 2020)
@@ -51,8 +47,7 @@ function veggiemap() {
   // TileLayer
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
-    attribution:
-      "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>"
+    attribution: "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>"
   }).addTo(map);
 
   // Add zoom control
@@ -60,14 +55,11 @@ function veggiemap() {
 
   // Define overlays (each marker group gets a layer) + add legend to the description
   const overlays = {
-    "<div class='legend-row'><div class='first-cell vegan_only'></div><div class='second-cell'></div><div class='third-cell' id='n_vegan_only'></div></div>":
-      veganOnly,
+    "<div class='legend-row'><div class='first-cell vegan_only'></div><div class='second-cell'></div><div class='third-cell' id='n_vegan_only'></div></div>": veganOnly,
     "<div class='legend-row'><div class='first-cell vegetarian_only'></div><div class='second-cell'></div><div class='third-cell' id='n_vegetarian_only'></div></div>":
       vegetarianOnly,
-    "<div class='legend-row'><div class='first-cell vegan_friendly'></div><div class='second-cell'></div><div class='third-cell' id='n_vegan_friendly'></div></div>":
-      veganFriendly,
-    "<div class='legend-row'><div class='first-cell vegan_limited'></div><div class='second-cell'></div><div class='third-cell' id='n_vegan_limited'></div></div>":
-      veganLimited,
+    "<div class='legend-row'><div class='first-cell vegan_friendly'></div><div class='second-cell'></div><div class='third-cell' id='n_vegan_friendly'></div></div>": veganFriendly,
+    "<div class='legend-row'><div class='first-cell vegan_limited'></div><div class='second-cell'></div><div class='third-cell' id='n_vegan_limited'></div></div>": veganLimited,
     "<div class='legend-row'><div class='first-cell vegetarian_friendly'></div><div class='second-cell'></div><div class='third-cell' id='n_vegetarian_friendly'></div></div>":
       vegetarianFriendly
   };
@@ -113,31 +105,11 @@ function veggiemap() {
   // Add language control button
   languageControl = L.languageSelector({
     languages: [
-      L.langObject(
-        "de",
-        "de - Deutsch",
-        "./third-party/leaflet.languageselector/images/de.svg"
-      ),
-      L.langObject(
-        "en",
-        "en - English",
-        "./third-party/leaflet.languageselector/images/en.svg"
-      ),
-      L.langObject(
-        "eo",
-        "eo - Esperanto",
-        "./third-party/leaflet.languageselector/images/eo.svg"
-      ),
-      L.langObject(
-        "fi",
-        "fi - suomi",
-        "./third-party/leaflet.languageselector/images/fi.svg"
-      ),
-      L.langObject(
-        "fr",
-        "fr - Français",
-        "./third-party/leaflet.languageselector/images/fr.svg"
-      )
+      L.langObject("de", "de - Deutsch", "./third-party/leaflet.languageselector/images/de.svg"),
+      L.langObject("en", "en - English", "./third-party/leaflet.languageselector/images/en.svg"),
+      L.langObject("eo", "eo - Esperanto", "./third-party/leaflet.languageselector/images/eo.svg"),
+      L.langObject("fi", "fi - suomi", "./third-party/leaflet.languageselector/images/fi.svg"),
+      L.langObject("fr", "fr - Français", "./third-party/leaflet.languageselector/images/fr.svg")
     ],
     callback: setUserLanguage,
     initialLanguage: getUserLanguage(),
@@ -189,13 +161,10 @@ function statPopulate(markerGroups, date) {
     // Get the number of the markers
     const markerNumber = markerGroups[categoryName].length;
     // Add the number to the category entry in the Layer Control
-    document.getElementById(
-      `n_${categoryName}`
-    ).innerHTML = `(${markerNumber})`;
+    document.getElementById(`n_${categoryName}`).innerHTML = `(${markerNumber})`;
   }
   // Add the date to the Layer Control
-  const lastEntry = document.getElementById("n_vegetarian_friendly").parentNode
-    .parentNode;
+  const lastEntry = document.getElementById("n_vegetarian_friendly").parentNode.parentNode;
   lastEntry.innerHTML += `<br /><div>(${date})</div>`;
 }
 
@@ -259,10 +228,7 @@ function geojsonToMarkerGroups(geojson) {
 
 // Function to get the marker.
 function getMarker(feature) {
-  const eLatLon = [
-    feature.geometry.coordinates[1],
-    feature.geometry.coordinates[0]
-  ];
+  const eLatLon = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
   const eIco = feature.properties.icon;
   const eCat = feature.properties.category;
 
@@ -290,18 +256,12 @@ function addLibReview(feature) {
     .then(
       // eslint-disable-next-line no-return-assign
       (data) =>
-        (document.getElementById(
-          "libreviews"
-        ).innerHTML = `<div class="popupflex-container"><div>📓</div><div><a href="https://lib.reviews/${
+        (document.getElementById("libreviews").innerHTML = `<div class="popupflex-container"><div>📓</div><div><a href="https://lib.reviews/${
           data.thing.urlID
-        }" target="_blank" rel="noopener noreferrer">${i18next.t(
-          "words.review"
-        )}</a></div>`)
+        }" target="_blank" rel="noopener noreferrer">${i18next.t("words.review")}</a></div>`)
     )
     .catch(() => {
-      console.info(
-        "There is no review of this place or lib.reviews isn't available."
-      );
+      console.info("There is no review of this place or lib.reviews isn't available.");
     });
 }
 
@@ -334,9 +294,7 @@ function calculatePopup(layer) {
 
   // Adding cuisine information to popup
   if (eCui !== undefined) {
-    popupContent += `<div class='popupflex-container'><div>👩‍🍳</div><div>${eCui
-      .replaceAll(";", ", ")
-      .replaceAll("_", " ")}</div></div>`;
+    popupContent += `<div class='popupflex-container'><div>👩‍🍳</div><div>${eCui.replaceAll(";", ", ").replaceAll("_", " ")}</div></div>`;
   }
 
   // Address
@@ -385,10 +343,7 @@ function calculatePopup(layer) {
         sep_one_day_between: ", "
       }
     });
-    prettifiedValue = prettifiedValue
-      .replaceAll(",", ", ")
-      .replaceAll("PH", i18next.t("words.public_holiday"))
-      .replaceAll("SH", i18next.t("words.school_holidays"));
+    prettifiedValue = prettifiedValue.replaceAll(",", ", ").replaceAll("PH", i18next.t("words.public_holiday")).replaceAll("SH", i18next.t("words.school_holidays"));
     // Find out the open state
     let openState = "";
     let openStateEmoji = "";
@@ -433,9 +388,10 @@ function calculatePopup(layer) {
     if (!eFac.startsWith("http")) {
       eFac = `https://www.facebook.com/${eFac}`;
     }
-    popupContent += `<div class='popupflex-container'><div>🇫</div><div><a href='${eFac}' target='_blank' rel='noopener noreferrer'>${decodeURI(
-      eFac
-    ).replace("https://", "")}</a></div></div>`;
+    popupContent += `<div class='popupflex-container'><div>🇫</div><div><a href='${eFac}' target='_blank' rel='noopener noreferrer'>${decodeURI(eFac).replace(
+      "https://",
+      ""
+    )}</a></div></div>`;
   }
   if (eIns !== undefined) {
     if (!eIns.startsWith("http")) {
