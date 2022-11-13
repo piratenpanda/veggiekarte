@@ -1,107 +1,103 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Veggiekarte.de - Hier findet man Vegetarisches und Veganes</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="A map to find vegetarian and vegan restaurants in your city." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-<head>
-  <title>Veggiekarte.de - Hier findet man Vegetarisches und Veganes</title>
-  <meta charset="utf-8" />
-  <meta name="description" content="A map to find vegetarian and vegan restaurants in your city." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Favicon (build with https://realfavicongenerator.net) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#26ab44" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#26ab44" />
+    <meta name="msapplication-config" content="favicon/browserconfig.xml" />
+    <meta name="theme-color" content="#26ab44" />
 
-  <!-- Favicon (build with https://realfavicongenerator.net) -->
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#26ab44" />
-  <link rel="shortcut icon" href="favicon/favicon.ico" />
-  <meta name="msapplication-TileColor" content="#26ab44" />
-  <meta name="msapplication-config" content="favicon/browserconfig.xml" />
-  <meta name="theme-color" content="#26ab44" />
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json" />
 
-  <!-- Manifest -->
-  <link rel="manifest" href="manifest.json" />
+    <!-- Third party styles -->
+    <link rel="stylesheet" href="third-party/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="third-party/leaflet.markercluster/MarkerCluster.css" />
+    <link rel="stylesheet" href="third-party/leaflet.markercluster/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="third-party/leaflet.control.geocoder/Control.Geocoder.css" />
+    <link rel="stylesheet" href="third-party/leaflet.locatecontrol/L.Control.Locate.min.css" />
+    <link rel="stylesheet" href="third-party/leaflet.easybutton/easy-button.css" />
+    <link rel="stylesheet" href="third-party/leaflet.fullscreen/Control.FullScreen.css" />
+    <link rel="stylesheet" href="third-party/leaflet.languageselector/leaflet.languageselector.css" />
 
-  <!-- Third party styles -->
-  <link rel="stylesheet" href="third-party/leaflet/leaflet.css" />
-  <link rel="stylesheet" href="third-party/leaflet.markercluster/MarkerCluster.css" />
-  <link rel="stylesheet" href="third-party/leaflet.markercluster/MarkerCluster.Default.css" />
-  <link rel="stylesheet" href="third-party/leaflet.control.geocoder/Control.Geocoder.css" />
-  <link rel="stylesheet" href="third-party/leaflet.locatecontrol/L.Control.Locate.min.css" />
-  <link rel="stylesheet" href="third-party/leaflet.easybutton/easy-button.css" />
-  <link rel="stylesheet" href="third-party/leaflet.fullscreen/Control.FullScreen.css" />
-  <link rel="stylesheet" href="third-party/leaflet.languageselector/leaflet.languageselector.css" />
+    <!-- Own style -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-  <!-- Own style -->
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<body>
-  <div>
-    <!-- Info box -->
-    <div id="information">
-      <div id="close" onclick="toggleInfo()">✖</div>
-      <div id="spinner"></div>
-      <div id="content">
-        <h1 id="content-welcome-heading"></h1>
-        <p id="content-welcome-text"></p>
-        <h1 id="content-osm-heading"></h1>
-        <p id="content-osm-text"></p>
-        <h1 id="content-contribute-heading"></h1>
-        <p id="content-contribute-text"></p>
-        <h1 id="content-reviews-heading"></h1>
-        <p id="content-reviews-text"></p>
-        <h1 id="content-further-heading"></h1>
-        <p id="content-further-text"></p>
+  <body>
+    <div>
+      <!-- Info box -->
+      <div id="information">
+        <div id="close" onclick="toggleInfo()">✖</div>
+        <div id="spinner"></div>
+        <div id="content">
+          <h1 id="content-welcome-heading"></h1>
+          <p id="content-welcome-text"></p>
+          <h1 id="content-osm-heading"></h1>
+          <p id="content-osm-text"></p>
+          <h1 id="content-contribute-heading"></h1>
+          <p id="content-contribute-text"></p>
+          <h1 id="content-reviews-heading"></h1>
+          <p id="content-reviews-text"></p>
+          <h1 id="content-further-heading"></h1>
+          <p id="content-further-text"></p>
+        </div>
       </div>
+      <!-- Map -->
+      <div id="map"></div>
     </div>
-    <!-- Map -->
-    <div id="map"></div>
-  </div>
 
-  <!-- Content if scripts are disabled or not supported. -->
-  <noscript>
-    <p style="text-align:center">
-      ⚠️ This application requires JavaScript. ⚠️
-    </p>
-  </noscript>
+    <!-- Content if scripts are disabled or not supported. -->
+    <noscript>
+      <p style="text-align: center">⚠️ This application requires JavaScript. ⚠️</p>
+    </noscript>
 
-  <!-- Third party scripts -->
-  <script src="third-party/leaflet/leaflet.js"></script>
-  <script src="third-party/leaflet.markercluster/leaflet.markercluster.js"></script>
-  <script src="third-party/leaflet.hash/leaflet-hash.js"></script>
-  <script src="third-party/leaflet.control.geocoder/Control.Geocoder.min.js"></script>
-  <script src="third-party/leaflet.locatecontrol/L.Control.Locate.min.js"></script>
-  <script src="third-party/leaflet.easybutton/easy-button.js"></script>
-  <script src="third-party/leaflet.featuregroup.subgroup/leaflet.featuregroup.subgroup.js"></script>
-  <script src="third-party/leaflet.fullscreen/Control.FullScreen.js"></script>
-  <script src="third-party/i18next/i18next.min.js"></script>
-  <script src="third-party/opening_hours/opening_hours+deps.min.js"></script>
-  <script src="third-party/leaflet.languageselector/leaflet.languageselector.js"></script>
+    <!-- Third party scripts -->
+    <script src="third-party/leaflet/leaflet.js"></script>
+    <script src="third-party/leaflet.markercluster/leaflet.markercluster.js"></script>
+    <script src="third-party/leaflet.hash/leaflet-hash.js"></script>
+    <script src="third-party/leaflet.control.geocoder/Control.Geocoder.min.js"></script>
+    <script src="third-party/leaflet.locatecontrol/L.Control.Locate.min.js"></script>
+    <script src="third-party/leaflet.easybutton/easy-button.js"></script>
+    <script src="third-party/leaflet.featuregroup.subgroup/leaflet.featuregroup.subgroup.js"></script>
+    <script src="third-party/leaflet.fullscreen/Control.FullScreen.js"></script>
+    <script src="third-party/i18next/i18next.min.js"></script>
+    <script src="third-party/opening_hours/opening_hours+deps.min.js"></script>
+    <script src="third-party/leaflet.languageselector/leaflet.languageselector.js"></script>
 
-  <!-- Own scripts -->
-  <script src="js/veggiemap.js" type="module"></script>
+    <!-- Own scripts -->
+    <script src="js/veggiemap.js" type="module"></script>
 
-  <!-- Service worker -->
-  <script>
-    // Check if service workers are supported
-    if ('serviceWorker' in navigator) {
-      if (navigator.serviceWorker.controller) {
-        console.log("[PWA Builder] active service worker found, no need to register");
-      } else {
-        // Use the window load event to keep the page load performant
-        window.addEventListener('load', () => {
-          // Register the service worker
-          navigator.serviceWorker.register('service-worker.js')
-            .then(registration => {
-              console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(err => {
-              console.error('Registration failed.', err);
-            });
-        });
+    <!-- Service worker -->
+    <script>
+      // Check if service workers are supported
+      if ("serviceWorker" in navigator) {
+        if (navigator.serviceWorker.controller) {
+          console.log("[PWA Builder] active service worker found, no need to register");
+        } else {
+          // Use the window load event to keep the page load performant
+          window.addEventListener("load", () => {
+            // Register the service worker
+            navigator.serviceWorker
+              .register("service-worker.js")
+              .then((registration) => {
+                console.log("Service Worker registered with scope:", registration.scope);
+              })
+              .catch((err) => {
+                console.error("Registration failed.", err);
+              });
+          });
+        }
       }
-    }
-  </script>
-
-</body>
-
+    </script>
+  </body>
 </html>
