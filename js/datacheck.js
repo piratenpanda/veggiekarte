@@ -35,8 +35,8 @@ function veggiemap() {
   // Map
   map = L.map("map", {
     layers: [tileOSM],
-    center: [51.42, 12.0],
-    zoom: 11,
+    center: [20, 17],
+    zoom: 3,
     worldCopyJump: true,
     zoomControl: false
   });
