@@ -277,6 +277,8 @@ def write_data(data):
             place_obj["properties"]["addr_street"] = tags["addr:street"]
             if "addr:housenumber" in tags:
                 place_obj["properties"]["addr_street"] += " " + tags["addr:housenumber"]
+        elif "addr:housename" in tags:
+            place_obj["properties"]["addr_street"] = tags["addr:housename"]
         if "addr:city" in tags:
             place_obj["properties"]["addr_city"] = tags["addr:city"]
         else:
@@ -393,7 +395,7 @@ def main():
         osm_data = get_osm_data()
     else:
         # For testing without new OSM requests
-        # Example: 'python3 refresh.py ./data/overpass.json'
+        # Example: 'python refresh.py ./data/overpass.json'
         osm_data = json.load(open(sys.argv[1], encoding="utf-8"))
 
     # Write data
