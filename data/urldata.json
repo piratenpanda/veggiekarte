@@ -379,6 +379,11 @@
   "isOk": false,
   "text": "HTTP response error - 404"
  },
+ "http://altsuesterfeld.de": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "Exception: ConnectionError"
+ },
  "http://atame-tapasbar.de": {
   "date": "2022-11-13",
   "isOk": true,
@@ -449,8 +454,18 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "http://cafeklatsch-wiesbaden.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://cafemoment.cz/": {
   "date": "2022-11-10",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://caferajonline.com/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -458,6 +473,11 @@
   "date": "2022-11-05",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "http://castelletto.at/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "http://cegielniabistro.com": {
   "date": "2022-11-10",
@@ -471,6 +491,11 @@
  },
  "http://deananddavid.de/": {
   "date": "2022-11-11",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://deewan.at/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -546,6 +571,11 @@
  },
  "http://haveli-hattingen.de/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://hempelsburger.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -669,6 +699,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "http://mr-borella.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://namasteholborn.com/": {
   "date": "2022-11-11",
   "isOk": true,
@@ -709,10 +744,20 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "http://phil.info": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://phoenixhof.at/": {
   "date": "2022-11-05",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "http://pizzeria-arbaillo.at": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "Exception: ConnectionError"
  },
  "http://plusminusnull-berlin.de/": {
   "date": "2022-11-06",
@@ -726,6 +771,11 @@
  },
  "http://reitparkmergenthau.de/restaurant/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://restauracia-viecha.sk/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -799,6 +849,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "http://theoldbar.com.ua": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "Exception: ConnectionError"
+ },
  "http://thesevensundays.de/": {
   "date": "2022-11-09",
   "isOk": true,
@@ -869,6 +924,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "http://www.alexandre-welt.de": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "Exception: ConnectionError"
+ },
  "http://www.alibaba-bern.ch/": {
   "date": "2022-10-15",
   "isOk": true,
@@ -899,6 +959,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "http://www.antalya-restaurant.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.antik-lokales.de": {
   "date": "2022-11-06",
   "isOk": true,
@@ -918,6 +983,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "Can't do full check: HTTP response: Forbidden - 403"
+ },
+ "http://www.baecker-peter.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "http://www.baeckerei-reinmuth.de": {
   "date": "2022-11-06",
@@ -954,6 +1024,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "http://www.bellino.at/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.belzepub.cz/": {
   "date": "2022-11-09",
   "isOk": true,
@@ -983,6 +1058,11 @@
   "date": "2022-10-15",
   "isOk": true,
   "text": "OK"
+ },
+ "http://www.biond.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "http://www.bistro-sundarban.de": {
   "date": "2022-10-15",
@@ -1016,6 +1096,11 @@
  },
  "http://www.brasserie-marburg.de/": {
   "date": "2022-11-10",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.brazil-erlangen.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1091,6 +1176,11 @@
  },
  "http://www.casa-dolid.de/": {
   "date": "2022-11-09",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.casa-piccola.at/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1204,6 +1294,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "http://www.duran.at": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.durum-kebab-haus.de/Standort-Rothehburger/standort-rothehburger.html": {
   "date": "2022-11-06",
   "isOk": true,
@@ -1241,6 +1336,11 @@
  },
  "http://www.espresso-ambulanz.de/": {
   "date": "2022-11-13",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.fahnenstube.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1296,6 +1396,16 @@
  },
  "http://www.gleis-6.de/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.global-wok.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.govindasvegetarianrestaurant.org": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1369,10 +1479,20 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "http://www.hisarfreshfood.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.hobbit-darmstadt.de": {
   "date": "2022-11-05",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "http://www.hofkneipe.at": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "http://www.hotelsonneandermatt.ch/": {
   "date": "2022-11-09",
@@ -1391,6 +1511,16 @@
  },
  "http://www.il-pomodore.de/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.ilkoep.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.ilkoep.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1534,6 +1664,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "http://www.lafaimdesharicots.fr": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.landgasthof-demharter.de": {
   "date": "2022-11-06",
   "isOk": true,
@@ -1563,6 +1698,11 @@
   "date": "2022-10-15",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "http://www.locanda-la-bottella.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "http://www.lukas-essen.de": {
   "date": "2022-11-06",
@@ -1706,6 +1846,11 @@
  },
  "http://www.northandsouth.at/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.nostalgia-beisotiris.de": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1879,6 +2024,11 @@
   "isOk": false,
   "text": "Exception: ConnectionError"
  },
+ "http://www.reneesplacerestaurant.com": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.restauracejakoby.cz/": {
   "date": "2022-11-10",
   "isOk": true,
@@ -1896,6 +2046,11 @@
  },
  "http://www.restaurant-erdton.de": {
   "date": "2022-11-12",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.restaurant-gandhi-braunschweig.de": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1924,6 +2079,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "http://www.restaurantnikita.at": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.restaurants\u00fcden.de/": {
   "date": "2022-11-05",
   "isOk": true,
@@ -1936,6 +2096,11 @@
  },
  "http://www.ristorante-da-davide.de/": {
   "date": "2022-11-13",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.ristorante-pino.de": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1956,6 +2121,11 @@
  },
  "http://www.royaltandoorireading.com/": {
   "date": "2022-11-12",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.ruffino.at": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -1986,6 +2156,11 @@
  },
  "http://www.sarcletti.de/": {
   "date": "2022-11-13",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.schaeffler-braeu.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -2049,6 +2224,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "http://www.standard-berlin.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.stehpizzeria-napoli.de": {
   "date": "2022-11-06",
   "isOk": true,
@@ -2086,6 +2266,11 @@
  },
  "http://www.subway-sandwiches.de/": {
   "date": "2022-11-13",
+  "isOk": false,
+  "text": "Exception: ReadTimeout"
+ },
+ "http://www.subway-sandwiches.de/index.php?id=572&mode=2&region=bay&store=38751": {
+  "date": "2022-11-14",
   "isOk": false,
   "text": "Exception: ReadTimeout"
  },
@@ -2169,6 +2354,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "http://www.thebangkokjam.com/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "http://www.thebluelegume.co.uk/": {
   "date": "2022-11-13",
   "isOk": true,
@@ -2184,8 +2374,18 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "http://www.tiamo.pl": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "Exception: ReadTimeout"
+ },
  "http://www.tiziano.at/": {
   "date": "2022-11-12",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.tommys-cafe.com/news-labege/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -2231,6 +2431,11 @@
  },
  "http://www.urbanides.at/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "http://www.vagabond.london/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -2369,6 +2574,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "https://altschwabing.com/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://amadeus.delivery": {
   "date": "2022-11-06",
   "isOk": true,
@@ -2388,6 +2598,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://asialoop.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://athen-braunschweig.de/": {
   "date": "2022-11-06",
@@ -2489,6 +2704,16 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://celona.de/mein-celona/details/cafe-bar-celona-essen": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://cercena.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://cheeseboardcollective.coop/": {
   "date": "2022-11-11",
   "isOk": true,
@@ -2543,6 +2768,11 @@
   "date": "2022-10-15",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://daskimchi.com/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://dasneuhausen.de/": {
   "date": "2022-11-12",
@@ -2639,6 +2869,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://eurekarestaurantgroup.com/blog/locations/mountain-view/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://facebook.com/CafeMuseumWeingarten": {
   "date": "2022-11-10",
   "isOk": true,
@@ -2674,6 +2909,11 @@
   "isOk": false,
   "text": "HTTP response error - 404"
  },
+ "https://flying-market.business.site/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://galeria-restaurant.de/fillialen-galeria-restaurant-halle-martkplatz-20/": {
   "date": "2022-10-15",
   "isOk": true,
@@ -2708,6 +2948,16 @@
   "date": "2022-11-13",
   "isOk": true,
   "text": "OK - 200"
+ },
+ "https://goldenerzwinger.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://gorillacoffee.co.uk/": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "Exception: ConnectionError"
  },
  "https://govindabudapest.business.site/": {
   "date": "2022-11-06",
@@ -2754,6 +3004,11 @@
   "isOk": true,
   "text": "OK"
  },
+ "https://happyrestaurants.com/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://harkinsbar.ie": {
   "date": "2022-11-10",
   "isOk": true,
@@ -2788,6 +3043,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://is.ua.es/es/servicio-infraestructuras-y-servicios/cafeterias/cafeteria-centro-comercial.html": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://jaipur-ka.de/": {
   "date": "2022-11-05",
@@ -2854,6 +3114,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://lafarolacafe.co.uk/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://lapiazza-haan.de": {
   "date": "2022-11-06",
   "isOk": true,
@@ -2869,8 +3134,18 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://lesamantsdumarche.fr/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://lina-doner.business.site/?utm_source=gmb&utm_medium=referral": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://locations.noahs.com/us/ca/berkeley/1883-solano-ave": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -3054,6 +3329,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://plastic2beans.com/blogs/stores/plastic2beans-popup-cafe-teamspace-showroom": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://plutzerbraeu.at/": {
   "date": "2022-11-06",
   "isOk": true,
@@ -3108,6 +3388,11 @@
   "date": "2022-11-06",
   "isOk": false,
   "text": "Exception: SSLError"
+ },
+ "https://restaurants.fiveguys.de/nordrhein-westfalen/an-der-rechtschule-3": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://restaurants.gbk.co.uk/oxford/oxford": {
   "date": "2022-11-06",
@@ -3233,6 +3518,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK - 200"
+ },
+ "https://skiplyn.com/customer/menu/Everest%20Kitchen/0dcb1c28-a5da-4d24-a72b-c2b9de81f177/0": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "Can't do full check: HTTP response: Forbidden - 403"
  },
  "https://sonnendeckhalle.wixsite.com/sonnendeckhalle/": {
   "date": "2022-10-15",
@@ -3394,6 +3684,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.ajantarestaurant.com/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.akarilondon.co.uk/": {
   "date": "2022-11-10",
   "isOk": true,
@@ -3409,8 +3704,18 @@
   "isOk": true,
   "text": "Can't do full check: HTTP response: Forbidden"
  },
+ "https://www.aliskebap.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.alter-wirt-thalkirchen.de/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.altewache-kassel.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -3514,6 +3819,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.baslerhof-bettingen.ch/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.bassanese-wuerzburg.de/": {
   "date": "2022-11-10",
   "isOk": true,
@@ -3561,6 +3871,11 @@
  },
  "https://www.bistro-de-la-cameleer.de": {
   "date": "2022-11-11",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.bjaelke-huset.dk/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -3619,6 +3934,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.bommeraner-apotheken.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.borsalino-ka.de/": {
   "date": "2022-11-05",
   "isOk": true,
@@ -3669,6 +3989,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.bualuangalbany.com/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.burgerking.de": {
   "date": "2022-11-12",
   "isOk": true,
@@ -3693,6 +4018,11 @@
   "date": "2022-10-15",
   "isOk": true,
   "text": "OK"
+ },
+ "https://www.cactustaqueria.com": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.cafe-bleu.de/": {
   "date": "2022-11-06",
@@ -3733,6 +4063,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK - 200"
+ },
+ "https://www.cafe-schubert.de/filiale-schwarzenbergstrasse/": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "HTTP response error - 404"
  },
  "https://www.cafe-silence.de/": {
   "date": "2022-11-12",
@@ -3869,6 +4204,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "https://www.dakashi.de/": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "Exception: ConnectTimeout"
+ },
  "https://www.dalianrestaurant.com/": {
   "date": "2022-11-11",
   "isOk": true,
@@ -3894,15 +4234,35 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.dennis.fi/": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "HTTP response error - 503"
+ },
  "https://www.denns-biomarkt.de/halle-leipziger-str-100/marktseite/": {
   "date": "2022-10-15",
   "isOk": true,
   "text": "OK"
  },
+ "https://www.der-genuss-rheinbach.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.der-genuss-rheinbach.de/#kontakt": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.dersim-tu.de/": {
   "date": "2022-11-06",
   "isOk": false,
   "text": "Exception: SSLError"
+ },
+ "https://www.diebausatzlokale.at/standorte/grammophon.html": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.diebergstation.de/": {
   "date": "2022-11-06",
@@ -3971,6 +4331,11 @@
  },
  "https://www.don-giovanni-leipzig.de/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.dongbeihu.fi": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -4164,6 +4529,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "https://www.facebook.com/Hempels-Burger-Erlangen-485219805558740/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.facebook.com/Himmel-Erde-HalleSaale-148488261909246/": {
   "date": "2022-10-15",
   "isOk": true,
@@ -4289,8 +4659,18 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "https://www.facebook.com/PizzaZacharys": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.facebook.com/PizzeriaLaTorreEppelheimHeidelberg": {
   "date": "2022-11-13",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.facebook.com/Re%C5%A1taur%C3%A1cia-Viecha-163926157055757": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -4323,6 +4703,11 @@
   "date": "2022-11-05",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://www.facebook.com/TommysDiner.France": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.facebook.com/Vanilla-der-Eisladen-121869997866052/timeline/": {
   "date": "2022-10-15",
@@ -4373,6 +4758,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://www.facebook.com/apothekeambodenborn": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.facebook.com/arenagrilldeutz/": {
   "date": "2022-11-06",
@@ -4551,6 +4941,11 @@
  },
  "https://www.facebook.com/kurhauskorsakow/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.facebook.com/latortita.leipzig": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -4839,6 +5234,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "https://www.froindlichst.com/hamburg/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.frommehelene.at/": {
   "date": "2022-11-13",
   "isOk": false,
@@ -4914,6 +5314,11 @@
   "isOk": false,
   "text": "HTTP response error - 404"
  },
+ "https://www.greeneking-pubs.co.uk/pubs/buckinghamshire/lakeside/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.gutshaus-stellshagen.de/restaurant-cafe": {
   "date": "2022-11-10",
   "isOk": true,
@@ -4938,6 +5343,11 @@
   "date": "2022-11-10",
   "isOk": false,
   "text": "Exception: SSLError"
+ },
+ "https://www.hanoifusion-muenchen.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.hardrockcafe.com/location/helsinki/": {
   "date": "2022-11-12",
@@ -5139,8 +5549,18 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.huebler-wien.at": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.humlegaardenskien.no": {
   "date": "2022-11-09",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.ich-bin-nichtschwimmer.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -5181,6 +5601,11 @@
  },
  "https://www.indiahaus.com/": {
   "date": "2022-11-06",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.indian-palace-md.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -5424,6 +5849,11 @@
   "isOk": true,
   "text": "Can't do full check: HTTP response: Too Many Requests - 429"
  },
+ "https://www.instagram.com/nosch.latortita": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.instagram.com/nudelnmachengluecklich/": {
   "date": "2022-10-15",
   "isOk": true,
@@ -5443,6 +5873,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://www.instagram.com/restauraciaviecha/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.instagram.com/restaurant_ronja/": {
   "date": "2022-11-06",
@@ -5499,6 +5934,11 @@
   "isOk": true,
   "text": "OK"
  },
+ "https://www.instagram.com/zacharyspizza": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.instagram.com/zappo_lyon": {
   "date": "2022-11-06",
   "isOk": true,
@@ -5513,6 +5953,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://www.jb.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.jdwetherspoon.com/pubs/all-pubs/england/berkshire/the-hope-tap-reading": {
   "date": "2022-10-15",
@@ -5679,6 +6124,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.la-tortita.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.labodegadarmstadt.com/": {
   "date": "2022-11-06",
   "isOk": false,
@@ -5758,6 +6208,11 @@
   "date": "2022-10-15",
   "isOk": true,
   "text": "OK"
+ },
+ "https://www.lilongpaderborn.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.linus-pizzaeck.de": {
   "date": "2022-11-06",
@@ -5899,6 +6354,11 @@
   "isOk": true,
   "text": "OK + 200"
  },
+ "https://www.mcdonalds.at/6020-herzog-friedrich-strasse-35": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "HTTP response error - 404"
+ },
  "https://www.mcdonalds.ch/": {
   "date": "2022-11-06",
   "isOk": true,
@@ -5923,6 +6383,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://www.mcdonalds.com/de/de-de/restaurant-suche.html/l/freising/bahnhofsplatz-4/1481": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.mcdonalds.com/de/de-de/restaurant-suche.html/l/kiel/holstenbrucke-3/137": {
   "date": "2022-11-06",
@@ -6039,6 +6504,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.myperios.com": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.namastenepal.de/nnc/": {
   "date": "2022-11-06",
   "isOk": false,
@@ -6134,6 +6604,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.onkel-dos.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.opazzo.nl/": {
   "date": "2022-11-06",
   "isOk": true,
@@ -6209,8 +6684,18 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.peshawar.fi/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.peterpane.de/gemuetliche-restaurants/restaurant-hamburg-turnhalle": {
   "date": "2022-11-09",
+  "isOk": false,
+  "text": "HTTP response error - 404"
+ },
+ "https://www.peterpane.de/gemuetliche-restaurants/restaurant-wien": {
+  "date": "2022-11-14",
   "isOk": false,
   "text": "HTTP response error - 404"
  },
@@ -6269,6 +6754,11 @@
   "isOk": true,
   "text": "OK"
  },
+ "https://www.pizzeria-da-enzo-essen.de/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.pizzeria-speckbrettle.de/": {
   "date": "2022-11-06",
   "isOk": true,
@@ -6318,6 +6808,11 @@
   "date": "2022-11-05",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://www.raflaamo.fi/imatra/rosso-imatra": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "HTTP response error - 404"
  },
  "https://www.ratsherrnlokal.de": {
   "date": "2022-11-10",
@@ -6609,6 +7104,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.skalnordicdining.co.uk/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.sommercafe-kladow.de/": {
   "date": "2022-11-10",
   "isOk": true,
@@ -6628,6 +7128,16 @@
   "date": "2022-11-13",
   "isOk": true,
   "text": "OK - 200"
+ },
+ "https://www.stadtcafe-muenchen.de/": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "HTTP response error - 503"
+ },
+ "https://www.stadtmauer-hannover.de/": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "Exception: SSLError"
  },
  "https://www.starbeeston.co.uk/": {
   "date": "2022-11-05",
@@ -6734,6 +7244,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.studentenwerk-marburg.de/essen-trinken/cafeterien-stadtmitte/cafe-leonardo-audi-max.html": {
+  "date": "2022-11-14",
+  "isOk": false,
+  "text": "HTTP response error - 404"
+ },
  "https://www.studentenwerk-marburg.de/essen-trinken/mensen/mensa-erlenring.html": {
   "date": "2022-11-13",
   "isOk": true,
@@ -6768,6 +7283,11 @@
   "date": "2022-11-12",
   "isOk": false,
   "text": "Exception: ReadTimeout"
+ },
+ "https://www.subway.fi/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://www.subway.fi/fi/ravintolat/nokia/nokia-valimaenkatu": {
   "date": "2022-11-11",
@@ -6914,6 +7434,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.tortilla.co.uk/locations/islington/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.trattoria-italia-jena.de/": {
   "date": "2022-11-06",
   "isOk": true,
@@ -6946,6 +7471,11 @@
  },
  "https://www.vaporetto-berlin.de/": {
   "date": "2022-11-13",
+  "isOk": true,
+  "text": "OK - 200"
+ },
+ "https://www.veedelsbotebybrauhausfuchsjagd.de/": {
+  "date": "2022-11-14",
   "isOk": true,
   "text": "OK - 200"
  },
@@ -7024,6 +7554,11 @@
   "isOk": true,
   "text": "OK"
  },
+ "https://www.wenzel-restaurant.de/standorte/wenzel-dresden-koenigstrasse/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.wirtshaus-stern.at": {
   "date": "2022-11-13",
   "isOk": true,
@@ -7074,6 +7609,11 @@
   "isOk": true,
   "text": "OK - 200"
  },
+ "https://www.zum-alten-lotsenhaus.de": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
+ },
  "https://www.zum-kreuz.de/": {
   "date": "2022-11-06",
   "isOk": true,
@@ -7098,6 +7638,11 @@
   "date": "2022-11-06",
   "isOk": true,
   "text": "OK + 200"
+ },
+ "https://zacharys.com/locations/berkeley/": {
+  "date": "2022-11-14",
+  "isOk": true,
+  "text": "OK - 200"
  },
  "https://zumtaenzelndenpony.de/": {
   "date": "2022-11-06",
@@ -8516,6 +9061,11 @@
  },
  "www.restaurant-ariana.ch": {
   "date": "2022-10-15",
+  "isOk": false,
+  "text": "No valid URL format"
+ },
+ "www.restaurant-burghof-hildburghausen.de": {
+  "date": "2022-11-14",
   "isOk": false,
   "text": "No valid URL format"
  },
