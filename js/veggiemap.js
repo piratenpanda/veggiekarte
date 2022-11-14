@@ -327,43 +327,49 @@ function calculatePopup(layer) {
     // Get browser language for the warnings and the prettifier
     const locale = getUserLanguage();
 
-    // Create opening_hours object
-    const oh = new opening_hours(
-      eOpe,
-      {
-        address: { country_code: countryCode, state }
-      },
-      { locale }
-    );
-    let prettifiedValue = oh.prettifyValue({
-      conf: {
-        locale,
-        rule_sep_string: "<br />",
-        print_semicolon: false,
-        sep_one_day_between: ", "
+    // try block to catch cases where the opening hour string isn't okay
+    try {
+      // Create opening_hours object
+      // eslint-disable-next-line new-cap
+      const oh = new opening_hours(
+        eOpe,
+        {
+          address: { country_code: countryCode, state }
+        },
+        { locale }
+      );
+      let prettifiedValue = oh.prettifyValue({
+        conf: {
+          locale,
+          rule_sep_string: "<br />",
+          print_semicolon: false,
+          sep_one_day_between: ", "
+        }
+      });
+      prettifiedValue = prettifiedValue.replaceAll(",", ", ").replaceAll("PH", i18next.t("words.public_holiday")).replaceAll("SH", i18next.t("words.school_holidays"));
+      // Find out the open state
+      let openState = "";
+      let openStateEmoji = "";
+      if (oh.getState()) {
+        openState = i18next.t("words.open");
+        openStateEmoji = "open";
+        if (!oh.getFutureState()) {
+          openState += i18next.t("texts.will close soon");
+          openStateEmoji = "closes-soon";
+        }
+      } else {
+        openState = i18next.t("words.closed");
+        openStateEmoji = "closed";
+        if (oh.getFutureState()) {
+          openState += i18next.t("texts.will open soon");
+          openStateEmoji = "opens-soon";
+        }
       }
-    });
-    prettifiedValue = prettifiedValue.replaceAll(",", ", ").replaceAll("PH", i18next.t("words.public_holiday")).replaceAll("SH", i18next.t("words.school_holidays"));
-    // Find out the open state
-    let openState = "";
-    let openStateEmoji = "";
-    if (oh.getState()) {
-      openState = i18next.t("words.open");
-      openStateEmoji = "open";
-      if (!oh.getFutureState()) {
-        openState += i18next.t("texts.will close soon");
-        openStateEmoji = "closes-soon";
-      }
-    } else {
-      openState = i18next.t("words.closed");
-      openStateEmoji = "closed";
-      if (oh.getFutureState()) {
-        openState += i18next.t("texts.will open soon");
-        openStateEmoji = "opens-soon";
-      }
+      // Append opening hours to the popup
+      popupContent += `<div class='popupflex-container'><div>🕖</div><div><span class='open-state-circle ${openStateEmoji}'></span>${openState}<br />${prettifiedValue}</div></div>`;
+    } catch (error) {
+      popupContent += `<div class='popupflex-container'><div>🕖</div><div>Error: ${error}</div></div>`;
     }
-    // Append opening hours to the popup
-    popupContent += `<div class='popupflex-container'><div>🕖</div><div><span class='open-state-circle ${openStateEmoji}'></span>${openState}<br />${prettifiedValue}</div></div>`;
   }
 
   // Adding addidtional information to popup
