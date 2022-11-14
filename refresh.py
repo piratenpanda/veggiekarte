@@ -277,6 +277,8 @@ def write_data(data):
             place_obj["properties"]["addr_street"] = tags["addr:street"]
             if "addr:housenumber" in tags:
                 place_obj["properties"]["addr_street"] += " " + tags["addr:housenumber"]
+        elif "addr:housename" in tags:
+            place_obj["properties"]["addr_street"] = tags["addr:housename"]
         if "addr:city" in tags:
             place_obj["properties"]["addr_city"] = tags["addr:city"]
         else:
@@ -293,19 +295,19 @@ def write_data(data):
             place_obj["properties"]["contact_website"] = tags["website"].rstrip("/")
         if "contact:facebook" in tags:
             facebook = tags["contact:facebook"].rstrip("/")
-            facebook = facebook.lstrip("https://www.facebook.com/")
+            facebook = facebook.replace("https://www.facebook.com/", "")
             place_obj["properties"]["contact_facebook"] = facebook
         elif "facebook" in tags:
             facebook = tags["facebook"].rstrip("/")
-            facebook = facebook.lstrip("https://www.facebook.com/")
+            facebook = facebook.replace("https://www.facebook.com/", "")
             place_obj["properties"]["contact_facebook"] = facebook
         if "contact:instagram" in tags:
             instagram = tags["contact:instagram"].rstrip("/")
-            instagram = instagram.lstrip("https://www.instagram.com/")
+            instagram = instagram.replace("https://www.instagram.com/", "")
             place_obj["properties"]["contact_instagram"] = instagram
         elif "instagram" in tags:
             instagram = tags["instagram"].rstrip("/")
-            instagram = instagram.lstrip("https://www.instagram.com/")
+            instagram = instagram.replace("https://www.instagram.com/", "")
             place_obj["properties"]["contact_instagram"] = instagram
         if "contact:email" in tags:
             place_obj["properties"]["contact_email"] = tags["contact:email"]
@@ -315,15 +317,18 @@ def write_data(data):
             place_obj["properties"]["contact_phone"] = tags["contact:phone"]
         elif "phone" in tags:
             place_obj["properties"]["contact_phone"] = tags["phone"]
+
+        opening_hours = None
         if "opening_hours:covid19" in tags and tags["opening_hours:covid19"] != "same" and tags["opening_hours:covid19"] != "restricted":
-            # Replacing line breaks with spaces (Usually there should be no line breaks,
-            # but if they do appear, they break the structure of the places.json).
-            opening_hours = tags["opening_hours:covid19"].replace("\n", "").replace("\r", "")
-            place_obj["properties"]["opening_hours"] = opening_hours
+            opening_hours = tags["opening_hours:covid19"]
+        elif "opening_hours:kitchen" in tags:
+            opening_hours = tags["opening_hours:kitchen"]
         elif "opening_hours" in tags:
+            opening_hours = tags["opening_hours"]
+        if opening_hours is not None:
             # Replacing line breaks with spaces (Usually there should be no line breaks,
             # but if they do appear, they break the structure of the places.json).
-            opening_hours = tags["opening_hours"].replace("\n", "").replace("\r", "")
+            opening_hours = opening_hours.replace("\n", "").replace("\r", "")
             place_obj["properties"]["opening_hours"] = opening_hours
         if "shop" in tags:
             place_obj["properties"]["shop"] = tags["shop"]
@@ -393,7 +398,7 @@ def main():
         osm_data = get_osm_data()
     else:
         # For testing without new OSM requests
-        # Example: 'python3 refresh.py ./data/overpass.json'
+        # Example: 'python refresh.py ./data/overpass.json'
         osm_data = json.load(open(sys.argv[1], encoding="utf-8"))
 
     # Write data

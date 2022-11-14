@@ -27,20 +27,16 @@ let map;
 
 function veggiemap() {
   // TileLayer
-  const tileOSM = L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {
-      attribution:
-        "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>",
-      maxZoom: 18
-    }
-  );
+  const tileOSM = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>",
+    maxZoom: 18
+  });
 
   // Map
   map = L.map("map", {
     layers: [tileOSM],
-    center: [51.42, 12.0],
-    zoom: 11,
+    center: [20, 17],
+    zoom: 3,
     worldCopyJump: true,
     zoomControl: false
   });
@@ -50,20 +46,13 @@ function veggiemap() {
 
   // Define overlays (each marker group gets a layer) + add legend to the description
   const overlays = {
-    "<div class='legend-row'><div class='second-cell'>1 issue</div><div class='third-cell' id='issue_count_1'></div></div>":
-      issueCount1,
-    "<div class='legend-row'><div class='second-cell'>2 issues</div><div class='third-cell' id='issue_count_2'></div></div>":
-      issueCount2,
-    "<div class='legend-row'><div class='second-cell'>3 issues</div><div class='third-cell' id='issue_count_3'></div></div>":
-      issueCount3,
-    "<div class='legend-row'><div class='second-cell'>4 issues</div><div class='third-cell' id='issue_count_4'></div></div>":
-      issueCount4,
-    "<div class='legend-row'><div class='second-cell'>5 issues</div><div class='third-cell' id='issue_count_5'></div></div>":
-      issueCount5,
-    "<div class='legend-row'><div class='second-cell'>6 issues</div><div class='third-cell' id='issue_count_6'></div></div>":
-      issueCount6,
-    "<div class='legend-row'><div class='second-cell'>more than 6</div><div class='third-cell' id='issue_count_many'></div></div>":
-      issueCountMany
+    "<div class='legend-row'><div class='second-cell'>1 issue</div><div class='third-cell' id='issue_count_1'></div></div>": issueCount1,
+    "<div class='legend-row'><div class='second-cell'>2 issues</div><div class='third-cell' id='issue_count_2'></div></div>": issueCount2,
+    "<div class='legend-row'><div class='second-cell'>3 issues</div><div class='third-cell' id='issue_count_3'></div></div>": issueCount3,
+    "<div class='legend-row'><div class='second-cell'>4 issues</div><div class='third-cell' id='issue_count_4'></div></div>": issueCount4,
+    "<div class='legend-row'><div class='second-cell'>5 issues</div><div class='third-cell' id='issue_count_5'></div></div>": issueCount5,
+    "<div class='legend-row'><div class='second-cell'>6 issues</div><div class='third-cell' id='issue_count_6'></div></div>": issueCount6,
+    "<div class='legend-row'><div class='second-cell'>more than 6</div><div class='third-cell' id='issue_count_many'></div></div>": issueCountMany
   };
 
   veggiemapPopulate(parentGroup);
@@ -138,8 +127,7 @@ function statPopulate(markerGroups, date) {
     document.getElementById(categoryName).innerHTML = `(${markerNumber})`;
   }
   // Add the date to the Layer Control
-  const lastEntry =
-    document.getElementById("issue_count_many").parentNode.parentNode;
+  const lastEntry = document.getElementById("issue_count_many").parentNode.parentNode;
   lastEntry.innerHTML += `<br /><div>(${date})</div>`;
 }
 
@@ -199,10 +187,7 @@ function geojsonToMarkerGroups(geojson) {
 
 // Function to get the marker.
 function getMarker(feature) {
-  const eLatLon = [
-    feature.geometry.coordinates[1],
-    feature.geometry.coordinates[0]
-  ];
+  const eLatLon = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
   const marker = L.marker(eLatLon);
   marker.feature = feature;
   return marker;
@@ -230,23 +215,19 @@ function calculatePopup(layer) {
 
   // Add undefined keys
   if (feature.properties.undefined !== undefined) {
-    feature.properties.undefined.forEach(
-      (key) =>
-        (popupContent += `<div class='popup-issue'>'${key}' is undefined</div>`)
-    );
+    feature.properties.undefined.forEach((key) => (popupContent += `<div class='popup-issue'>'${key}' is undefined</div>`));
   }
 
   // Add issues
   if (feature.properties.issues !== undefined) {
-    feature.properties.issues.forEach(
-      (issue) => (popupContent += `<div class='popup-issue'>${issue}</div>`)
-    );
+    feature.properties.issues.forEach((issue) => (popupContent += `<div class='popup-issue'>${issue}</div>`));
   }
 
   // OSM link to edit
   const osmShowUrl = `https://openstreetmap.org/${eTyp}/${eId}`;
   const osmEditUrl = `https://www.openstreetmap.org/edit?${eTyp}=${eId}`;
-  popupContent += `<hr/><div class='map-editor-link'><a href='${osmShowUrl}' target='_blank' rel='noopener noreferrer'>Show on OpenStreetMap</a><br><a href='${osmEditUrl}' target='_blank' rel='noopener noreferrer'>Edit on OpenStreetMap</a></div>`;
+  popupContent += `<hr/><div class='map-editor-link'><a href='${osmShowUrl}' target='_blank' rel='noopener noreferrer'>Show on OpenStreetMap</a><br>
+  <a href='${osmEditUrl}' target='_blank' rel='noopener noreferrer'>Edit on OpenStreetMap</a></div>`;
 
   return popupContent;
 }

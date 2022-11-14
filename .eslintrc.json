@@ -21,6 +21,7 @@
     "import/no-dynamic-require": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
+    "max-len": ["error", { "code": 180 }],
     "new-cap": "off",
     "no-param-reassign": "off",
     "no-underscore-dangle": "off",
