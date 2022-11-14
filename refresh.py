@@ -317,15 +317,18 @@ def write_data(data):
             place_obj["properties"]["contact_phone"] = tags["contact:phone"]
         elif "phone" in tags:
             place_obj["properties"]["contact_phone"] = tags["phone"]
+
+        opening_hours = None
         if "opening_hours:covid19" in tags and tags["opening_hours:covid19"] != "same" and tags["opening_hours:covid19"] != "restricted":
-            # Replacing line breaks with spaces (Usually there should be no line breaks,
-            # but if they do appear, they break the structure of the places.json).
-            opening_hours = tags["opening_hours:covid19"].replace("\n", "").replace("\r", "")
-            place_obj["properties"]["opening_hours"] = opening_hours
+            opening_hours = tags["opening_hours:covid19"]
+        elif "opening_hours:kitchen" in tags:
+            opening_hours = tags["opening_hours:kitchen"]
         elif "opening_hours" in tags:
+            opening_hours = tags["opening_hours"]
+        if opening_hours is not None:
             # Replacing line breaks with spaces (Usually there should be no line breaks,
             # but if they do appear, they break the structure of the places.json).
-            opening_hours = tags["opening_hours"].replace("\n", "").replace("\r", "")
+            opening_hours = opening_hours.replace("\n", "").replace("\r", "")
             place_obj["properties"]["opening_hours"] = opening_hours
         if "shop" in tags:
             place_obj["properties"]["shop"] = tags["shop"]
