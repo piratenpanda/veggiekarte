@@ -21,11 +21,8 @@ VEGGIEPLACES_CHECK_RESULT_FILE = "../data/check_results.json"   # check results
 # results of previous url checks
 URL_DATA_FILE = "../data/urldata.json"
 
-# variables to handle the json data
-url_data = {}
-
-# don't chack more than 50 url's (because it takes to much time)
-url_check_counter = 0
+# don't check more than 100 url's (because it takes to much time)
+MAX_URL_CHECKS = 100
 
 # headers for the htttp request
 headers = {
@@ -62,19 +59,17 @@ def is_url_ok(url):
      2. If not, check if the URL has a valid format.
      3. If so, check if the URL is reachable.
     """
-    global url_data
-    global url_check_counter
 
     result = {'date': DATE}
 
-    if url in url_data:
+    if url in proc.url_data:
         # URL has recently checked, so we save time to check again and take the last result.
-        result['isOk'] = url_data[url]['isOk']
-        result['text'] = url_data[url]['text']
+        result['isOk'] = proc.url_data[url]['isOk']
+        result['text'] = proc.url_data[url]['text']
     else:
         # URL not recently checked
         if is_url_format_valid(url):
-            if url_check_counter < 100:
+            if proc.counter < MAX_URL_CHECKS:
                 try:
                     # Try to reach the URL
                     response = requests.get(url, headers=headers, timeout=5)
@@ -102,7 +97,7 @@ def is_url_ok(url):
                         result['text'] = "HTTP response error"
                         print(url, ' ', response.status_code)
                     result['text'] = f"{result['text']} - {response.status_code}"
-                    url_check_counter += 1
+                    proc.counter += 1
             else:
                 result['isOk'] = True
                 result['text'] = "Not checked"
@@ -110,7 +105,7 @@ def is_url_ok(url):
             result['isOk'] = False
             result['text'] = "No valid URL format"
         if result['text'] != "Not checked":
-            url_data[url] = result
+            proc.url_data[url] = result
     return result
 
 
@@ -189,12 +184,13 @@ def check_data(data):
                         "cuisine")
 
             # Address
-            if "addr:street" not in tags:
-                place_check_obj["properties"]["undefined"].append(
-                    "addr:street")
-            if "addr:housenumber" not in tags:
-                place_check_obj["properties"]["undefined"].append(
-                    "addr:housenumber")
+            if "addr:housename" not in tags:
+                if "addr:street" not in tags:
+                    place_check_obj["properties"]["undefined"].append(
+                        "addr:street")
+                if "addr:housenumber" not in tags:
+                    place_check_obj["properties"]["undefined"].append(
+                        "addr:housenumber")
             if "addr:city" not in tags:
                 if "addr:suburb" not in tags:
                     place_check_obj["properties"]["undefined"].append(
@@ -231,14 +227,16 @@ def check_data(data):
                 if contact_facebook.startswith("http://"):
                     place_check_obj["properties"]["issues"].append(
                         "'contact:facebook' starts with 'http' instead of 'https'")
-                elif not contact_facebook.startswith("https://"):
+                elif contact_facebook.startswith("https://"):
+                    if contact_facebook.startswith("https://www.facebook.com/"):
+                        if is_url_ok(contact_facebook)['isOk'] is False:
+                            place_check_obj["properties"]["issues"].append("'contact:facebook' value not okay")
+                    else:
+                        place_check_obj["properties"]["issues"].append("'contact:facebook' should start with 'https://www.facebook.com/'")
+                else:
                     contact_facebook = f"https://www.facebook.com/{contact_facebook}"
-                    print(contact_facebook)
                     if is_url_ok(contact_facebook)['isOk'] is False:
                         place_check_obj["properties"]["issues"].append("'contact:facebook' value not okay")
-                elif is_url_ok(contact_facebook)['isOk'] is False:
-                    place_check_obj["properties"]["issues"].append(
-                        "'contact:facebook' URI invalid")
             if "facebook" in tags:
                 place_check_obj["properties"]["issues"].append(
                     "old tag: 'facebook' -> change to 'contact:facebook'")
@@ -249,17 +247,19 @@ def check_data(data):
                 if contact_instagram.startswith("http://"):
                     place_check_obj["properties"]["issues"].append(
                         "'contact:instagram' starts with 'http' instead of 'https'")
-                elif not contact_instagram.startswith("https://"):
+                elif contact_instagram.startswith("https://"):
+                    if contact_instagram.startswith("https://www.instagram.com/"):
+                        if is_url_ok(contact_instagram)['isOk'] is False:
+                            place_check_obj["properties"]["issues"].append("'contact:instagram' value not okay")
+                    else:
+                        place_check_obj["properties"]["issues"].append("'contact:instagram' should start with 'https://www.instagram.com/'")
+                else:
                     contact_instagram = f"https://www.instagram.com/{contact_instagram}"
-                    print(contact_instagram)
                     if is_url_ok(contact_instagram)['isOk'] is False:
                         place_check_obj["properties"]["issues"].append("'contact:instagram' value not okay")
-                elif is_url_ok(contact_instagram)['isOk'] is False:
-                    place_check_obj["properties"]["issues"].append(
-                        "'contact:instagram' URI invalid")
             if "instagram" in tags:
                 place_check_obj["properties"]["issues"].append(
-                    "old tag 'instagram'")
+                    "old tag 'instagram' -> change to 'contact:instagram'")
 
             # E-Mail
             if "contact:email" in tags:
@@ -279,14 +279,14 @@ def check_data(data):
             # Phone
             if "contact:phone" in tags:
                 contact_phone = tags.get("contact:phone", "")
-                if not contact_phone.startswith("+"):
+                if not contact_phone.startswith("+") or (contact_phone.count(" ") + contact_phone.count("-")) < 2:
                     place_check_obj["properties"]["issues"].append(
-                        "'contact:phone' has no international format like '+44 20 84527891'")
+                        "'contact:phone' does not conform to the international format (like '+44 99 123456789')")
             if "phone" in tags:
                 phone = tags.get("phone", "")
-                if not phone.startswith("+"):
+                if not phone.startswith("+") or (phone.count(" ") + phone.count("-")) < 2:
                     place_check_obj["properties"]["issues"].append(
-                        "'phone' has no international format like '+44 20 84527891'")
+                        "'phone' does not conform to the international format (like '+44 99 123456789')")
             if "contact:phone" in tags and "phone" in tags:
                 place_check_obj["properties"]["issues"].append(
                     "'phone' and 'contact:phone' defined -> remove one")
@@ -307,7 +307,7 @@ def check_data(data):
             # Disused
             if "disused" in "".join(tags):
                 place_check_obj["properties"]["issues"].append(
-                    "There is a 'disused' tag: Check whether this tag is correct. If so, please remove the diet tags.")
+                    "There is a 'disused' tag: Check whether this tag is correct. If so please remove the diet tags.")
 
             # fixme
             if "fixme" in tags:
@@ -330,23 +330,21 @@ def check_data(data):
 
 
 def main():
-    global url_data
-
     # Open url data file
     with open(URL_DATA_FILE, encoding="utf-8") as url_json_file:
 
         # Get previous url data
-        url_data = json.load(url_json_file)
+        proc.url_data = json.load(url_json_file)
 
-        key_list = list(url_data.keys())
+        key_list = list(proc.url_data.keys())
 
         for element in key_list:
             today = datetime.datetime.strptime(DATE, '%Y-%m-%d')
             url_data_date = datetime.datetime.strptime(
-                url_data[element]['date'], '%Y-%m-%d')
+                proc.url_data[element]['date'], '%Y-%m-%d')
             delta = today - url_data_date
             if delta.days > 50:
-                del(url_data[element])
+                del(proc.url_data[element])
 
     # Call the functions to get and write the osm data.
     osm_data = get_osm_data()
@@ -363,13 +361,19 @@ def main():
         print("A problem has occurred. osm_data is None")
 
     # Write data
-    if url_data is not None:
+    if proc.url_data is not None:
         # print(url_data)
         url_outfile = open(URL_DATA_FILE, "w", encoding="utf-8")
-        url_outfile.write(json.dumps(url_data, indent=1, sort_keys=True))
+        url_outfile.write(json.dumps(proc.url_data, indent=1, sort_keys=True))
         url_outfile.close()
     else:
         print("A problem has occurred. url_data is None")
 
+class Processor():
+    """Class container for processing stuff."""
+    counter = 0
+    url_data = {}
 
-main()
+if __name__ == '__main__':
+    proc = Processor()
+    main()
