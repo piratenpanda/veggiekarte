@@ -207,7 +207,7 @@ def write_data(data):
         tags = osm_element.get("tags", {})
 
         # Discard element if it's disused
-        if "amenity" not in tags and ("disused:amenity" or "was:amenity" in tags):
+        if "amenity" not in tags and ("disused:amenity" in tags or "was:amenity" in tags):
             continue
 
         place_obj = {"type": "Feature", "properties": {}}
