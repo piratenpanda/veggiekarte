@@ -284,7 +284,7 @@ def check_data(data):
                         "'contact:phone' does not conform to the international format (like '+44 99 123456789')")
             if "phone" in tags:
                 phone = tags.get("phone", "")
-                if not phone.startswith("+") or (phone.count(" ") + phone.count("-")) < 2:
+                if not phone.startswith("+") or (phone.count(" ") + phone.count("-")) < 1:
                     place_check_obj["properties"]["issues"].append(
                         "'phone' does not conform to the international format (like '+44 99 123456789')")
             if "contact:phone" in tags and "phone" in tags:
