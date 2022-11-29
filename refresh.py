@@ -293,6 +293,8 @@ def write_data(data):
             place_obj["properties"]["contact_website"] = tags["contact:website"].rstrip("/")
         elif "website" in tags:
             place_obj["properties"]["contact_website"] = tags["website"].rstrip("/")
+        elif "brand:website" in tags:
+            place_obj["properties"]["contact_website"] = tags["brand:website"].rstrip("/")
         if "contact:facebook" in tags:
             facebook = tags["contact:facebook"].rstrip("/")
             facebook = facebook.replace("https://www.facebook.com/", "")
