@@ -137,6 +137,10 @@
       "description": "🌐 Value and emoji displayed in popup if 'contact:website' tag is not present"
     },
     {
+      "key": "brand:website",
+      "description": "🌐 Value and emoji displayed in popup if 'contact:website' and 'website' tags are not present"
+    },
+    {
       "key": "addr:housenumber",
       "description": "📍 Value and emoji displayed in popup"
     },

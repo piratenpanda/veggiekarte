@@ -203,14 +203,14 @@ def check_data(data):
             website = 'undefined'
             if "contact:website" in tags:
                 website = tags.get("contact:website", "")
-                if is_url_ok(website)['isOk'] is False:
-                    place_check_obj["properties"]["issues"].append(
-                        "'contact:website' URI invalid")
+                check = is_url_ok(website)
+                if check['isOk'] is False:
+                    place_check_obj["properties"]["issues"].append(f"'contact:website' {check['text']}")
             if "website" in tags:
                 website = tags.get("website", "")
-                if is_url_ok(website)['isOk'] is False:
-                    place_check_obj["properties"]["issues"].append(
-                        "'website' URI invalid")
+                check = is_url_ok(website)
+                if check is False:
+                    place_check_obj["properties"]["issues"].append(f"'website' {check['text']}")
             if "facebook" in website:
                 place_check_obj["properties"]["issues"].append(
                     "'facebook' URI as website -> change to 'contact:facebook'")
@@ -229,14 +229,16 @@ def check_data(data):
                         "'contact:facebook' starts with 'http' instead of 'https'")
                 elif contact_facebook.startswith("https://"):
                     if contact_facebook.startswith("https://www.facebook.com/"):
-                        if is_url_ok(contact_facebook)['isOk'] is False:
-                            place_check_obj["properties"]["issues"].append("'contact:facebook' value not okay")
+                        check = is_url_ok(contact_facebook)
+                        if check['isOk'] is False:
+                            place_check_obj["properties"]["issues"].append(f"'contact:facebook' {check['text']}")
                     else:
                         place_check_obj["properties"]["issues"].append("'contact:facebook' should start with 'https://www.facebook.com/'")
                 else:
                     contact_facebook = f"https://www.facebook.com/{contact_facebook}"
-                    if is_url_ok(contact_facebook)['isOk'] is False:
-                        place_check_obj["properties"]["issues"].append("'contact:facebook' value not okay")
+                    check = is_url_ok(contact_facebook)
+                    if check['isOk'] is False:
+                        place_check_obj["properties"]["issues"].append(f"'contact:facebook' {check['text']}")
             if "facebook" in tags:
                 place_check_obj["properties"]["issues"].append(
                     "old tag: 'facebook' -> change to 'contact:facebook'")
@@ -249,14 +251,16 @@ def check_data(data):
                         "'contact:instagram' starts with 'http' instead of 'https'")
                 elif contact_instagram.startswith("https://"):
                     if contact_instagram.startswith("https://www.instagram.com/"):
-                        if is_url_ok(contact_instagram)['isOk'] is False:
-                            place_check_obj["properties"]["issues"].append("'contact:instagram' value not okay")
+                        check = is_url_ok(contact_instagram)
+                        if check['isOk'] is False:
+                            place_check_obj["properties"]["issues"].append(f"'contact:instagram' {check['text']}")
                     else:
                         place_check_obj["properties"]["issues"].append("'contact:instagram' should start with 'https://www.instagram.com/'")
                 else:
                     contact_instagram = f"https://www.instagram.com/{contact_instagram}"
-                    if is_url_ok(contact_instagram)['isOk'] is False:
-                        place_check_obj["properties"]["issues"].append("'contact:instagram' value not okay")
+                    check = is_url_ok(contact_instagram)
+                    if check['isOk'] is False:
+                        place_check_obj["properties"]["issues"].append(f"'contact:instagram' {check['text']}")
             if "instagram" in tags:
                 place_check_obj["properties"]["issues"].append(
                     "old tag 'instagram' -> change to 'contact:instagram'")
@@ -284,7 +288,7 @@ def check_data(data):
                         "'contact:phone' does not conform to the international format (like '+44 99 123456789')")
             if "phone" in tags:
                 phone = tags.get("phone", "")
-                if not phone.startswith("+") or (phone.count(" ") + phone.count("-")) < 2:
+                if not phone.startswith("+") or (phone.count(" ") + phone.count("-")) < 1:
                     place_check_obj["properties"]["issues"].append(
                         "'phone' does not conform to the international format (like '+44 99 123456789')")
             if "contact:phone" in tags and "phone" in tags:
