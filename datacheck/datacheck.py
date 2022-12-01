@@ -271,6 +271,7 @@ def check_data(data):
             elif "email" in tags:
                 email = tags.get("email", "")
             if "contact:email" in tags or "email" in tags:
+                email = email.split(";")[0] # Use only the first email address
                 try:
                     validate_email(email)
                 except EmailNotValidError as error:

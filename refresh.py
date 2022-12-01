@@ -312,9 +312,12 @@ def write_data(data):
             instagram = instagram.replace("https://www.instagram.com/", "")
             place_obj["properties"]["contact_instagram"] = instagram
         if "contact:email" in tags:
-            place_obj["properties"]["contact_email"] = tags["contact:email"]
+            email = tags["contact:email"]
         elif "email" in tags:
-            place_obj["properties"]["contact_email"] = tags["email"]
+            email = tags["email"]
+        if "contact:email" in tags or "email" in tags:
+            email = email.split(";")[0] # Use only the first email address
+            place_obj["properties"]["contact_email"] = email
         if "contact:phone" in tags:
             place_obj["properties"]["contact_phone"] = tags["contact:phone"]
         elif "phone" in tags:
