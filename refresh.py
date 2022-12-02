@@ -296,25 +296,30 @@ def write_data(data):
         elif "brand:website" in tags:
             place_obj["properties"]["contact_website"] = tags["brand:website"].rstrip("/")
         if "contact:facebook" in tags:
-            facebook = tags["contact:facebook"].rstrip("/")
-            facebook = facebook.replace("https://www.facebook.com/", "")
-            place_obj["properties"]["contact_facebook"] = facebook
+            facebook = tags["contact:facebook"]
         elif "facebook" in tags:
-            facebook = tags["facebook"].rstrip("/")
+            facebook = tags["facebook"]
+        if "contact:facebook" in tags or "facebook" in tags:
+            facebook = facebook.rstrip("/")
             facebook = facebook.replace("https://www.facebook.com/", "")
+            facebook = facebook.replace("https://facebook.com/", "")
             place_obj["properties"]["contact_facebook"] = facebook
         if "contact:instagram" in tags:
-            instagram = tags["contact:instagram"].rstrip("/")
-            instagram = instagram.replace("https://www.instagram.com/", "")
-            place_obj["properties"]["contact_instagram"] = instagram
+            instagram = tags["contact:instagram"]
         elif "instagram" in tags:
-            instagram = tags["instagram"].rstrip("/")
+            instagram = tags["instagram"]
+        if "contact:instagram" in tags or "instagram" in tags:
+            instagram = instagram.rstrip("/")
             instagram = instagram.replace("https://www.instagram.com/", "")
+            instagram = instagram.replace("https://instagram.com/", "")
             place_obj["properties"]["contact_instagram"] = instagram
         if "contact:email" in tags:
-            place_obj["properties"]["contact_email"] = tags["contact:email"]
+            email = tags["contact:email"]
         elif "email" in tags:
-            place_obj["properties"]["contact_email"] = tags["email"]
+            email = tags["email"]
+        if "contact:email" in tags or "email" in tags:
+            email = email.split(";")[0] # Use only the first email address
+            place_obj["properties"]["contact_email"] = email
         if "contact:phone" in tags:
             place_obj["properties"]["contact_phone"] = tags["contact:phone"]
         elif "phone" in tags:

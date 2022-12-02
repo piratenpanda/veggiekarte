@@ -228,7 +228,7 @@ def check_data(data):
                     place_check_obj["properties"]["issues"].append(
                         "'contact:facebook' starts with 'http' instead of 'https'")
                 elif contact_facebook.startswith("https://"):
-                    if contact_facebook.startswith("https://www.facebook.com/"):
+                    if contact_facebook.startswith("https://www.facebook.com/") or contact_facebook.startswith("https://facebook.com/"):
                         check = is_url_ok(contact_facebook)
                         if check['isOk'] is False:
                             place_check_obj["properties"]["issues"].append(f"'contact:facebook' {check['text']}")
@@ -250,7 +250,7 @@ def check_data(data):
                     place_check_obj["properties"]["issues"].append(
                         "'contact:instagram' starts with 'http' instead of 'https'")
                 elif contact_instagram.startswith("https://"):
-                    if contact_instagram.startswith("https://www.instagram.com/"):
+                    if contact_instagram.startswith("https://www.instagram.com/") or contact_instagram.startswith("https://instagram.com/"):
                         check = is_url_ok(contact_instagram)
                         if check['isOk'] is False:
                             place_check_obj["properties"]["issues"].append(f"'contact:instagram' {check['text']}")
@@ -271,6 +271,7 @@ def check_data(data):
             elif "email" in tags:
                 email = tags.get("email", "")
             if "contact:email" in tags or "email" in tags:
+                email = email.split(";")[0] # Use only the first email address
                 try:
                     validate_email(email)
                 except EmailNotValidError as error:
