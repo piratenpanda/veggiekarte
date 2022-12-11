@@ -342,6 +342,9 @@ def check_data(data):
             if place_check_obj["properties"]["issue_count"] > 0:
                 places_data_checks["features"].append(place_check_obj)
     print(osm_elements_number, ' elements.')
+
+    # Sort list by issue count
+    places_data_checks["features"] = sorted(places_data_checks["features"], key = lambda x : x["properties"]["issue_count"], reverse=True)
     return places_data_checks
 
 def check_phone_number(place_check_obj, tag_name, tags):
