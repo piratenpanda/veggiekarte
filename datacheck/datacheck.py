@@ -182,11 +182,13 @@ def check_data(data):
         if tags.get("diet:vegan", "") != "no":
             # Cuisine
             if "cuisine" not in tags and "shop" not in tags:
+                # Everything except cafeś and shops should have a cuisine tag
                 if tags.get("amenity", "") != "cafe" and tags.get("amenity", "") != "ice_cream" and tags.get("amenity", "") != "bar":
                     place_check_obj["properties"]["undefined"].append(
                         "cuisine")
 
             if "cuisine" in tags:
+                # The old values "vegan" and "vegetarian" should no longer be used
                 cuisine = tags["cuisine"]
                 if "vegan" in cuisine:
                     place_check_obj["properties"]["issues"].append("There is 'vegan' in the cuisine tag. Remove it and create a 'diet:vegan' tag if there is none.")
