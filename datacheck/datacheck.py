@@ -173,9 +173,16 @@ def check_data(data):
         if "diet:vegan" in tags:
             diet_vegan = tags.get("diet:vegan", "")
             place_check_obj["properties"]["diet_vegan"] = diet_vegan
+            # Check if "diet:vegan" has unusual values
             if diet_vegan != "only" and diet_vegan != "yes" and diet_vegan != "limited" and diet_vegan != "no":
                 place_check_obj["properties"]["issues"].append(
                     "'diet:vegan' has an unusual value: " + diet_vegan)
+            # If "diet:vegan" is "only", "diet:vegetarian" should not have another value.
+            elif "diet:vegetarian" in tags and diet_vegan == "only":
+                diet_vegetarian = tags.get("diet:vegetarian", "")
+                if diet_vegetarian != "only":
+                    place_check_obj["properties"]["issues"].append(
+                    "'diet:vegan' is 'only', then 'diet:vegetarian' should be too.")
         else:
             place_check_obj["properties"]["undefined"].append("diet:vegan")
 
