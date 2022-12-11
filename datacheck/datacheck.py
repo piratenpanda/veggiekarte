@@ -24,6 +24,9 @@ URL_DATA_FILE = "../data/urldata.json"
 # don't check more than 100 url's (because it takes to much time)
 MAX_URL_CHECKS = 100
 
+# don't check URLs that have already been tested within the last x days
+MIN_URL_CHECK_AGE = 50
+
 # headers for the htttp request
 headers = {
      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
@@ -348,7 +351,7 @@ def main():
             url_data_date = datetime.datetime.strptime(
                 proc.url_data[element]['date'], '%Y-%m-%d')
             delta = today - url_data_date
-            if delta.days > 50:
+            if delta.days > MIN_URL_CHECK_AGE:
                 del(proc.url_data[element])
 
     # Call the functions to get and write the osm data.
