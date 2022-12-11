@@ -186,6 +186,13 @@ def check_data(data):
                     place_check_obj["properties"]["undefined"].append(
                         "cuisine")
 
+            if "cuisine" in tags:
+                cuisine = tags["cuisine"]
+                if "vegan" in cuisine:
+                    place_check_obj["properties"]["issues"].append("There is 'vegan' in the cuisine tag. Remove it and create a 'diet:vegan' tag if there is none.")
+                if "vegetarian" in cuisine:
+                    place_check_obj["properties"]["issues"].append("There is 'vegetarian' in the cuisine tag. Remove it and create a 'diet:vegetarian' tag if there is none.")
+
             # Address
             if "addr:housename" not in tags:
                 if "addr:street" not in tags:
