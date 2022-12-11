@@ -6,7 +6,7 @@ With this module we check the OpenStreetMap data.
 import datetime  # for the timestamp
 import json  # read and write json
 from urllib.parse import urlparse
-
+import phonenumbers # to check phone numbers
 import requests  # to check if websites are reachable
 from email_validator import EmailNotValidError, validate_email
 
@@ -286,15 +286,11 @@ def check_data(data):
 
             # Phone
             if "contact:phone" in tags:
-                contact_phone = tags.get("contact:phone", "")
-                if not contact_phone.startswith("+") or (contact_phone.count(" ") + contact_phone.count("-")) < 2:
-                    place_check_obj["properties"]["issues"].append(
-                        "'contact:phone' does not conform to the international format (like '+44 99 123456789')")
+                tag_name = "contact:phone"
+                check_phone_number(place_check_obj, tag_name, tags)
             if "phone" in tags:
-                phone = tags.get("phone", "")
-                if not phone.startswith("+") or (phone.count(" ") + phone.count("-")) < 1:
-                    place_check_obj["properties"]["issues"].append(
-                        "'phone' does not conform to the international format (like '+44 99 123456789')")
+                tag_name = "phone"
+                check_phone_number(place_check_obj, tag_name, tags)
             if "contact:phone" in tags and "phone" in tags:
                 place_check_obj["properties"]["issues"].append(
                     "'phone' and 'contact:phone' defined -> remove one")
@@ -335,6 +331,38 @@ def check_data(data):
                 places_data_checks["features"].append(place_check_obj)
     print(osm_elements_number, ' elements.')
     return places_data_checks
+
+def check_phone_number(place_check_obj, tag_name, tags):
+    """ Validate phone numbers.
+
+    Args:
+        place_check_obj (object): Object to collect the results.
+        tag_name (string): Name of the tag that contains the phone number.
+        tags (object): All tags of a place.
+    """
+
+    # TODO: Also use parsing and formatting in refresh script.
+    phone_number = tags.get(tag_name, "")
+    phone_number = phone_number.split(";")[0] # Use only the first phone number
+    try:
+        parsed_number = phonenumbers.parse(phone_number, None)
+        if phonenumbers.is_valid_number(parsed_number):
+            phone_number_itute123_pattern = phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
+            phone_number_rfc3966_pattern = phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.RFC3966)
+            phone_number_rfc3966_pattern = phone_number_rfc3966_pattern.replace("tel:", "")
+            if (phone_number_itute123_pattern != phone_number) and (phone_number_rfc3966_pattern != phone_number):
+                if phone_number.startswith("+1"):
+                    place_check_obj["properties"]["issues"].append(
+                        f"'{tag_name}' does not conform to the RFC 3966 pattern. It's '{phone_number}' but it should be '{phone_number_rfc3966_pattern}'.")
+                else:
+                    place_check_obj["properties"]["issues"].append(
+                        f"'{tag_name}' does not conform to the ITU-T E.123 pattern. It's '{phone_number}' but it should be '{phone_number_itute123_pattern}'.")
+        else:
+            place_check_obj["properties"]["issues"].append(
+                    f"'{tag_name}': Validation of number '{phone_number}' failed. Is this number correct?.")
+    except Exception as error:
+        place_check_obj["properties"]["issues"].append(
+                    "'contact:phone' corresponds neither to the ITU-T E.123 pattern (like '+44 99 123456789') nor to the RFC 3966 pattern (like '+1-710-555-2333') - Error message: " + "".join(error.args))
 
 
 def main():
