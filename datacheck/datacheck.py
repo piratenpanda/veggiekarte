@@ -295,6 +295,9 @@ def check_data(data):
             if "contact:phone" in tags:
                 tag_name = "contact:phone"
                 check_phone_number(place_check_obj, tag_name, tags)
+            if "contact:mobile" in tags:
+                tag_name = "contact:mobile"
+                check_phone_number(place_check_obj, tag_name, tags)
             if "phone" in tags:
                 tag_name = "phone"
                 check_phone_number(place_check_obj, tag_name, tags)
