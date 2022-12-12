@@ -322,6 +322,8 @@ def write_data(data):
             place_obj["properties"]["contact_email"] = email
         if "contact:phone" in tags:
             place_obj["properties"]["contact_phone"] = tags["contact:phone"]
+        elif "contact:mobile" in tags:
+            place_obj["properties"]["contact_phone"] = tags["contact:mobile"]
         elif "phone" in tags:
             place_obj["properties"]["contact_phone"] = tags["phone"]
 
