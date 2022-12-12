@@ -384,7 +384,7 @@ def check_phone_number(place_check_obj, tag_name, tags):
                     f"'{tag_name}': Validation of number '{phone_number}' failed. Is this number correct?.")
     except Exception as error:
         place_check_obj["properties"]["issues"].append(
-                    "'contact:phone' corresponds neither to the ITU-T E.123 pattern (like '+44 99 123456789') nor to the RFC 3966 pattern (like '+1-710-555-2333') - Error message: " + "".join(error.args))
+                    f"'{tag_name}' corresponds neither to the ITU-T E.123 pattern (like '+44 99 123456789') nor to the RFC 3966 pattern (like '+1-710-555-2333') - Error message: " + "".join(error.args))
 
 
 def main():
