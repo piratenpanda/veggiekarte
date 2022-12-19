@@ -437,12 +437,15 @@ def check_phone_number(place_check_obj, tag_name, tags):
             phone_number_rfc3966_pattern = phonenumbers.format_number(
                 parsed_number, phonenumbers.PhoneNumberFormat.RFC3966
             )
+            phone_number_e164_pattern = phonenumbers.format_number(
+                parsed_number, phonenumbers.PhoneNumberFormat.E164
+            )
             phone_number_rfc3966_pattern = phone_number_rfc3966_pattern.replace(
                 "tel:", ""
             )
-            if (phone_number_itute123_pattern != phone_number) and (
-                phone_number_rfc3966_pattern != phone_number
-            ):
+            if (phone_number_itute123_pattern != phone_number and
+                phone_number_rfc3966_pattern != phone_number and
+                phone_number_e164_pattern != phone_number):
                 if phone_number.startswith("+1"):
                     place_check_obj["properties"]["issues"].append(
                         f"'{tag_name}' does not conform to the RFC 3966 pattern. It's '{phone_number}' but it should be '{phone_number_rfc3966_pattern}'."
