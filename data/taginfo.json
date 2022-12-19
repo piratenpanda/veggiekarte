@@ -149,12 +149,24 @@
       "description": "📍 Value and emoji displayed in popup"
     },
     {
+      "key": "contact:housenumber",
+      "description": "📍 Value and emoji displayed in popup if 'addr:housenumber' tag is not present"
+    },
+    {
       "key": "addr:street",
       "description": "📍 Value and emoji displayed in popup"
     },
     {
+      "key": "contact:street",
+      "description": "📍 Value and emoji displayed in popup if 'addr:street' tag is not present"
+    },
+    {
       "key": "addr:city",
       "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "contact:city",
+      "description": "📍 Value and emoji displayed in popup if 'addr:city' tag is not present"
     },
     {
       "key": "addr:suburb",
@@ -163,6 +175,10 @@
     {
       "key": "addr:postcode",
       "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "contact:postcode",
+      "description": "📍 Value and emoji displayed in popup if 'addr:postcode' tag is not present"
     },
     {
       "key": "addr:country",
