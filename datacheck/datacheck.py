@@ -193,7 +193,7 @@ def check_data(data):
                 diet_vegetarian = tags.get("diet:vegetarian", "")
                 if diet_vegetarian != "only":
                     place_check_obj["properties"]["issues"].append(
-                        "'diet:vegan' is 'only' then 'diet:vegetarian' is unneccessary or should be too 'only'."
+                        "'diet:vegan' is 'only' then 'diet:vegetarian' is unneccessary or should be 'only' too."
                     )
         else:
             place_check_obj["properties"]["undefined"].append("diet:vegan")
