@@ -125,8 +125,12 @@
       "description": "☎️ Value and emoji displayed in popup"
     },
     {
-      "key": "phone",
+      "key": "contact:mobile",
       "description": "☎️ Value and emoji displayed in popup if 'contact:phone' tag is not present"
+    },
+    {
+      "key": "phone",
+      "description": "☎️ Value and emoji displayed in popup if the tags 'contact:phone' or 'contact:mobile' are not present"
     },
     {
       "key": "contact:website",
@@ -138,7 +142,7 @@
     },
     {
       "key": "brand:website",
-      "description": "🌐 Value and emoji displayed in popup if 'contact:website' and 'website' tags are not present"
+      "description": "🌐 Value and emoji displayed in popup if the tags 'contact:website' or 'website' are not present"
     },
     {
       "key": "addr:housenumber",
