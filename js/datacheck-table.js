@@ -34,12 +34,13 @@ fetch(url)
         undef = undef.replaceAll(",", "<br>");
       }
 
-      let issues = element.properties.issues;
-      if (issues === undefined) {
-        issues = "-";
-      } else {
-        issues = issues.toString();
-        issues = issues.replaceAll(",", "<br>");
+      const issueArray = element.properties.issues;
+      let issueText = "";
+      if (issueArray !== undefined) {
+        // eslint-disable-next-line no-restricted-syntax, guard-for-in
+        for (const issue in issueArray) {
+          issueText += `${issueArray[issue]}<br>`;
+        }
       }
 
       row.innerHTML += `<td>${index}</td>`;
@@ -48,7 +49,7 @@ fetch(url)
       row.innerHTML += `<td>${element.properties.name}</td>`;
       row.innerHTML += `<td>${element.properties.issue_count}</td>`;
       row.innerHTML += `<td>${undef}</td>`;
-      row.innerHTML += `<td>${issues}</td>`;
+      row.innerHTML += `<td>${issueText}</td>`;
       table.appendChild(row);
     });
 
