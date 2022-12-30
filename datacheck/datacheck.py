@@ -446,13 +446,8 @@ def check_phone_number(place_check_obj, tag_name, tags):
             if (phone_number_itute123_pattern != phone_number and
                 phone_number_rfc3966_pattern != phone_number and
                 phone_number_e164_pattern != phone_number):
-                if phone_number.startswith("+1"):
                     place_check_obj["properties"]["issues"].append(
-                        f"'{tag_name}' does not conform to the RFC 3966 pattern. It's '{phone_number}' but it should be '{phone_number_rfc3966_pattern}'."
-                    )
-                else:
-                    place_check_obj["properties"]["issues"].append(
-                        f"'{tag_name}' does not conform to the ITU-T E.123 pattern. It's '{phone_number}' but it should be '{phone_number_itute123_pattern}'."
+                        f"'{tag_name}' does not conform to the ITU-T E.123, E.164 or RFC 3966 pattern. It's '{phone_number}' but '{phone_number_itute123_pattern}' (E.123) is recommended."
                     )
         else:
             place_check_obj["properties"]["issues"].append(
@@ -460,7 +455,7 @@ def check_phone_number(place_check_obj, tag_name, tags):
             )
     except Exception as error:
         place_check_obj["properties"]["issues"].append(
-            f"'{tag_name}' corresponds neither to the ITU-T E.123 pattern (like '+44 99 123456789') nor to the RFC 3966 pattern (like '+1-710-555-2333') - Error message: "
+            f"'{tag_name}' not corresponds to the ITU-T E.123, E.164 nor RFC 3966 pattern (like '+44 99 123456789', '+4499123456789' or '+44-99-123456789') - Error message: "
             + "".join(error.args)
         )
 
@@ -492,7 +487,7 @@ def main():
 
         # Write check result file in pretty format
         outfile = open(VEGGIEPLACES_CHECK_RESULT_FILE, "w", encoding="utf-8")
-        outfile.write(json.dumps(check_result, indent=1, sort_keys=True))
+        outfile.write(json.dumps(check_result, indent=1, sort_keys=True, ensure_ascii=False))
         outfile.close()
     else:
         print("A problem has occurred. osm_data is None")
