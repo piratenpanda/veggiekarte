@@ -125,8 +125,12 @@
       "description": "☎️ Value and emoji displayed in popup"
     },
     {
-      "key": "phone",
+      "key": "contact:mobile",
       "description": "☎️ Value and emoji displayed in popup if 'contact:phone' tag is not present"
+    },
+    {
+      "key": "phone",
+      "description": "☎️ Value and emoji displayed in popup if the tags 'contact:phone' or 'contact:mobile' are not present"
     },
     {
       "key": "contact:website",
@@ -138,19 +142,31 @@
     },
     {
       "key": "brand:website",
-      "description": "🌐 Value and emoji displayed in popup if 'contact:website' and 'website' tags are not present"
+      "description": "🌐 Value and emoji displayed in popup if the tags 'contact:website' or 'website' are not present"
     },
     {
       "key": "addr:housenumber",
       "description": "📍 Value and emoji displayed in popup"
     },
     {
+      "key": "contact:housenumber",
+      "description": "📍 Value and emoji displayed in popup if 'addr:housenumber' tag is not present"
+    },
+    {
       "key": "addr:street",
       "description": "📍 Value and emoji displayed in popup"
     },
     {
+      "key": "contact:street",
+      "description": "📍 Value and emoji displayed in popup if 'addr:street' tag is not present"
+    },
+    {
       "key": "addr:city",
       "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "contact:city",
+      "description": "📍 Value and emoji displayed in popup if 'addr:city' tag is not present"
     },
     {
       "key": "addr:suburb",
@@ -159,6 +175,10 @@
     {
       "key": "addr:postcode",
       "description": "📍 Value and emoji displayed in popup"
+    },
+    {
+      "key": "contact:postcode",
+      "description": "📍 Value and emoji displayed in popup if 'addr:postcode' tag is not present"
     },
     {
       "key": "addr:country",
