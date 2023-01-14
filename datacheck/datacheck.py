@@ -6,6 +6,7 @@ With this module we check the OpenStreetMap data.
 import datetime  # for the timestamp
 import json  # read and write json
 from urllib.parse import urlparse
+import pyopening_hours # to check opening_hours
 import phonenumbers  # to check phone numbers
 import requests  # to check if websites are reachable
 from email_validator import EmailNotValidError, validate_email
@@ -375,10 +376,29 @@ def check_data(data):
                 opening_hours = tags["opening_hours"]
             else:
                 place_check_obj["properties"]["undefined"].append("opening_hours")
-            if "\n" in opening_hours or "\r" in opening_hours:
-                place_check_obj["properties"]["issues"].append(
-                    "There is a line break in 'opening_hours' -> remove"
-                )
+            if opening_hours != "undefined":
+                if "\n" in opening_hours or "\r" in opening_hours:
+                    place_check_obj["properties"]["issues"].append(
+                        "There is a line break in 'opening_hours' -> remove"
+                    )
+                if "SH" not in opening_hours:
+                    try:
+                        oh = pyopening_hours.OpeningHours(opening_hours)
+                        oh_warnings = oh.getWarnings()
+                        if oh_warnings != []:
+                            for line in oh_warnings:
+                                place_check_obj["properties"]["issues"].append(f"opening_hours: {line}")
+                    except pyopening_hours.ParseException as error:
+                        place_check_obj["properties"]["issues"].append(f"opening_hours: {error.message}")
+                    except json.decoder.JSONDecodeError as error:
+                        print(error)
+                        place_check_obj["properties"]["issues"].append(f"opening_hours: {error}")
+                    except BrokenPipeError as error:
+                        print(error)
+                        place_check_obj["properties"]["issues"].append(f"opening_hours: {error}")
+                    except ImportError as error:
+                        print(error)
+                        place_check_obj["properties"]["issues"].append(f"opening_hours: {error}")
 
             # Disused
             if "disused" in "".join(tags):
