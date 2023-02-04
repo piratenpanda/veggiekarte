@@ -6,8 +6,9 @@ With this module we check the OpenStreetMap data.
 import datetime  # for the timestamp
 import json  # read and write json
 from urllib.parse import urlparse
-import pyopening_hours # to check opening_hours
+from pathlib import Path
 import phonenumbers  # to check phone numbers
+import pyopening_hours  # to check opening_hours
 import requests  # to check if websites are reachable
 from email_validator import EmailNotValidError, validate_email
 
@@ -16,11 +17,15 @@ from email_validator import EmailNotValidError, validate_email
 TIMESTAMP = str(datetime.datetime.now())
 # the actual date
 DATE = str(datetime.date.today())
+# the path of this script
+SCRIPT_PATH = Path(__file__).parent
+# the path of the data folder
+DATA_PATH = f"{SCRIPT_PATH.parent}/data"
 # the raw overpass output file (useful for later use)
-OVERPASS_FILE = "../data/overpass.json"
-VEGGIEPLACES_CHECK_RESULT_FILE = "../data/check_results.json"  # check results
+OVERPASS_FILE = f"{DATA_PATH}/overpass.json"
+VEGGIEPLACES_CHECK_RESULT_FILE = f"{DATA_PATH}/check_results.json"  # check results
 # results of previous url checks
-URL_DATA_FILE = "../data/urldata.json"
+URL_DATA_FILE = f"{DATA_PATH}/urldata.json"
 
 # don't check more than 100 url's (because it takes to much time)
 MAX_URL_CHECKS = 100
