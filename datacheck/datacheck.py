@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 With this module we check the OpenStreetMap data.
 """
