@@ -368,6 +368,10 @@ def check_data(data):
                 place_check_obj["properties"]["issues"].append(
                     "'phone' and 'contact:phone' defined -> remove one"
                 )
+            if "mobile" in tags:
+                place_check_obj["properties"]["issues"].append(
+                    "'mobile' tag is not an offial tag and should therefore not be used. -> change it to 'contact:mobile'"
+                )
 
             # Opening hours
             opening_hours = "undefined"
