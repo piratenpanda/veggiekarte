@@ -255,7 +255,7 @@ def check_data(data):
             if "website" in tags:
                 website = tags.get("website", "")
                 check = is_url_ok(website)
-                if check is False:
+                if check["isOk"] is False:
                     place_check_obj["properties"]["issues"].append(
                         f"'website' {check['text']}"
                     )
