@@ -3,7 +3,6 @@
   "plugins": ["stylelint-prettier"],
   "root": true,
   "rules": {
-    "prettier/prettier": true,
-    "no-eol-whitespace": true
+    "prettier/prettier": true
   }
 }
