@@ -9,25 +9,22 @@
   width: 30px;
 }
 
-
 /* Hide title and languages when button is active */
 .leaflet-control-languageselector-button > .leaflet-languageselector-title,
 .leaflet-control-languageselector-button > .leaflet-languageselector-languagesdiv {
   display: none;
 }
 
-
 /* Flag stlye */
 .leaflet-languageselector-langdiv > img {
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(0,0,0,0.2);
+  border-color: rgba(0 0 0 / 20%);
   border-radius: 3px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
 
 /* Title stlye */
 .leaflet-languageselector-title {
@@ -50,7 +47,7 @@
 }
 
 .leaflet-languageselector-langdiv:hover {
-  background-color: LightGrey;
+  background-color: lightgrey;
 }
 
 .leaflet-languageselector-clearfloat {
