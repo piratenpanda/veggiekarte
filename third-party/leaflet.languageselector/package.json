@@ -1,16 +1,34 @@
 {
   "name": "leaflet.languageselector",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "A language selector for Leaflet based maps",
   "main": "leaflet.languageselector.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/buche/leaflet-languageselector.git"
+    "url": "git+https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector.git"
   },
   "author": "buche",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/buche/leaflet-languageselector/issues"
+    "url": "https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/issues"
   },
-  "homepage": "https://github.com/buche/leaflet-languageselector#readme"
+  "homepage": "https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector#readme",
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "stylelint": "^15.6.2",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-prettier": "^3.0.0"
+  },
+  "scripts": {
+    "lint": "eslint . && stylelint **/*.css && prettier --check .",
+    "lint:fix": "eslint --fix . && stylelint --fix **/*.css && prettier --write .",
+    "test": "npm run lint"
+  }
 }
