@@ -61,6 +61,7 @@ map.addControl(
       L.langObject("eo", "Esperanto", "eo.svg"),
       L.langObject("de", "Deutsch", "de.svg"),
       L.langObject("fr", "Français", "fr.svg"),
+      L.langObject("it", "Italiano", "it.svg"),
       L.langObject("ru", "Русский", "ru.svg")
     ),
     callback: changeLanguage
