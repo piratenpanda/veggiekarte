@@ -1,0 +1,63 @@
+﻿{
+  "it": {
+    "translation": {
+      "__comment__": "Traduzione Italiana",
+      "texts": {
+        "will open soon": ", aprirà tra poco",
+        "will close soon": ", chiuderà tra poco",
+        "more_info": "Più informazioni",
+        "content-welcome-heading": "Benvenutǝ",
+        "content-welcome-text": "Su veggiekarte.de puoi trovare tutti i ristoranti, gelaterie, bar, ecc per veganɜ e vegetarianɜ che sono presenti su OpenStreetMap. Clicca sulla lente per avviare una ricerca nella tua zona. Tutte le icone con uno sfondo verde sono luoghi con piatti vegani, mentre le icone con sfondo bianco offrono piatti vegetariani ma non vegani.",
+        "content-osm-heading": "Riguardo OpenStreetMap",
+        "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>OpenStreetMap</a> è una mappa mondiale libera e funziona in modo simile a Wikipedia. Chiunque può partecipare e inserire informazioni. Questo significa che la mappa contiene un sacco di informazioni utili e viene aggiornata continuamente. Chiunque abbia suggerimenti per migliorarla o per correggere errori può contribuire.",
+        "content-contribute-heading": "Informazioni sui contributi",
+        "content-contribute-text": "Se conosci ristoranti, bar, gelaterie o chioschi vegetariani e vegani che non sono ancora sulla mappa, puoi semplicemente aggiungerli. Per farlo, devi inserirli in OpenStreetMap con l'etichetta 'diet:vegan' o 'diet:vegetarian' (\"Tipi di dieta\"). Le istruzioni sono disponibili su <a href='how-to/tutorial_it.html' target='_blank' rel='noopener noreferrer'>here</a>.",
+        "content-reviews-heading": "Recensioni",
+        "content-reviews-text": "<a href='https://lib.reviews/' target='_blank' rel='noopener noreferrer'>lib.reviews</a> è una piattaforma libera e aperta per recensire ogni cosa. Se c'è una recensione di un locale, verrà visualizzata con un link qui dentro.",
+        "content-further-heading": "Altro",
+        "content-further-text": "Veggiekarte è aggiornata automaticamente ogni ora. Puoi trovare il codice su <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>. E come espediente abbiamo anche un piccolo e interessante diagramma <a href='data_chart.html'>qui</a>.",
+        "i18n_vegan_only": "solo vegano",
+        "i18n_vegan_only_title": "Offre esclusivamente piatti vegani.",
+        "i18n_vegetarian_only": "solo vegetariano e vegano",
+        "i18n_vegetarian_only_title": "Offre esclusivamente piatti vegani e vegetariani.",
+        "i18n_vegan_friendly": "adatti ai vegani",
+        "i18n_vegan_friendly_title": "Offre anche piatti vegani, ma non solo.",
+        "i18n_vegan_limited": "vegano limitato",
+        "i18n_vegan_limited_title": "Potrebbe offrire piatti vegani (devi chiedere esplicitamente se hanno opzioni fuori menu).",
+        "i18n_vegetarian_friendly": "adatto ai vegetariani",
+        "i18n_vegetarian_friendly_title": "Offre anche piatti vegetariani ma non solo, ma niente di vegano."
+      },
+      "words": {
+        "open": "aperto",
+        "unknown": "sconosciuto",
+        "closed": "chiuso",
+        "public_holiday": "festività",
+        "review": "recensione",
+        "school_holidays": "giorno non scolastico"
+      },
+      "leaflet": {
+        "L-control-fullscreen": {
+          "fullscreen": "Schermo interno",
+          "exitFullscreen": "Esci da schermo intero"
+        },
+        "L-control-geocoder": {
+          "title": "Cerca",
+          "placeholder": "Cerca…",
+          "error_message": "Nessun risultato trovato."
+        },
+        "L-control-infoButton": {
+          "title": "Informazioni su questo sito"
+        },
+        "L-control-locate": {
+          "where_am_i": "Mostrami dove sono!",
+          "meter": "metri",
+          "distance": "Sei a {distance} {unit} da questo punto."
+        },
+        "L-control-zoom": {
+          "zoom_in": "Ingrandisci",
+          "zoom_out": "Rimpicciolisci"
+        }
+      }
+    }
+  }
+}
