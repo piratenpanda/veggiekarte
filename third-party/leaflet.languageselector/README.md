@@ -12,8 +12,8 @@ A demo page with different configurations you can find at [/demo/demo.html](/dem
 
 Maps using this library (and others) can be seen here:
 
-- https://ahorn.lima-city.de/owm/ [(GitHub)](https://github.com/buche/leaflet-openweathermap)
-- https://www.veggiekarte.de [(GitHub)](https://github.com/piratenpanda/veggiekarte)
+- <https://ahorn.lima-city.de/owm/> [(GitHub)](https://github.com/buche/leaflet-openweathermap)
+- <https://www.veggiekarte.de> [(GitHub)](https://github.com/piratenpanda/veggiekarte)
 
 ## License
 
@@ -61,7 +61,6 @@ map.addControl(
       L.langObject("eo", "Esperanto", "eo.svg"),
       L.langObject("de", "Deutsch", "de.svg"),
       L.langObject("fr", "Français", "fr.svg"),
-      L.langObject("it", "Italiano", "it.svg"),
       L.langObject("ru", "Русский", "ru.svg")
     ),
     callback: changeLanguage
@@ -98,7 +97,7 @@ _leaflet-languageselector.css_ is used to style the components of the control. A
 
 ## Language images
 
-Only some images are provided here - look at [Image info](/images/image_info.md). If you need more, there are a lot of free ones out there in the universe. For example https://openclipart.org/, http://commons.wikimedia.org/ or http://famfamfam.com/lab/icons/flags/ ("These flag icons are available for free use for any purpose with no requirement for attribution").
+Only some images are provided here - look at [Image info](/images/image_info.md). If you need more, there are a lot of free ones out there in the universe. For example <https://openclipart.org/>, <http://commons.wikimedia.org/> or <http://famfamfam.com/lab/icons/flags/> ("These flag icons are available for free use for any purpose with no requirement for attribution").
 
 ## Best practice for presenting languages
 
