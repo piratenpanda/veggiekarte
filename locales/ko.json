@@ -1,0 +1,63 @@
+{
+  "ko": {
+    "translation": {
+      "__comment__": "Korean localization",
+      "texts": {
+        "will open soon": ", but will open soon",
+        "will close soon": ", but will close soon",
+        "more_info": "More information",
+        "content-welcome-heading": "어서오세요",
+        "content-welcome-text": "On veggiekarte.de you can find all vegan and vegetarian restaurants, ice cream parlors, cafés etc. registered in OpenStreetMap. Simply use the search field to search for your area or your street. All icons with a green background are venues with vegan options, while icons with a white background offer vegetarian but not vegan options.",
+        "content-osm-heading": "오픈스트리트맵은",
+        "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>오픈스트리트맵</a>은 무료 세계 지도로 위키백과와 비슷하게 작동합니다. Everyone can participate and enter information. This means that the map is full of useful information and updates continuously. Anyone who has suggestions for improvement or finds errors in the map can simply enter or fix data.",
+        "content-contribute-heading": "기여 방법",
+        "content-contribute-text": "If you yourself know restaurants, cafes, ice cream parlors or food kiosks that are not yet on the map, or run one yourself, then you can simply add them yourself. To do this, you have to mark the venue in OpenStreetMap with the 'diet:vegan' or 'diet:vegetarian' tag (\"Diet Types\"). Instructions are available <a href='how-to/tutorial_de.html' target='_blank' rel='noopener noreferrer'>here</a>.",
+        "content-reviews-heading": "리뷰",
+        "content-reviews-text": "<a href='https://lib.reviews/' target='_blank' rel='noopener noreferrer'>lib.reviews</a> is a free and open platform for reviewing anything. If there is a review of a place there, we will show a link to it.",
+        "content-further-heading": "더 나아가",
+        "content-further-text": "Veggiekarte is updated automatically every hour. You can find the code on <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>. And as a little gimmick we also have a little diagram <a href='data_chart.html'>here</a>.",
+        "i18n_vegan_only": "vegan only",
+        "i18n_vegan_only_title": "Place which offers exclusively vegan food.",
+        "i18n_vegetarian_only": "vegetarian and vegan only",
+        "i18n_vegetarian_only_title": "Place which offers exclusively vegetarian and vegan food.",
+        "i18n_vegan_friendly": "vegan friendly",
+        "i18n_vegan_friendly_title": "Place which offers also vegan food.",
+        "i18n_vegan_limited": "vegan limited",
+        "i18n_vegan_limited_title": "Place with limited vegan offer (often you have to ask for it outside the menu).",
+        "i18n_vegetarian_friendly": "vegetarian friendly",
+        "i18n_vegetarian_friendly_title": "Place which offers also vegetarian food, but no vegan."
+      },
+      "words": {
+        "open": "open",
+        "unknown": "unknown",
+        "closed": "closed",
+        "public_holiday": "holiday",
+        "review": "review",
+        "school_holidays": "school holidays"
+      },
+      "leaflet": {
+        "L-control-fullscreen": {
+          "fullscreen": "전체화면",
+          "exitFullscreen": "전체화면 끝내기"
+        },
+        "L-control-geocoder": {
+          "title": "검색",
+          "placeholder": "검색…",
+          "error_message": "검색결과가 없습니다."
+        },
+        "L-control-infoButton": {
+          "title": "사이트 정보"
+        },
+        "L-control-locate": {
+          "where_am_i": "현위치",
+          "meter": "미터",
+          "distance": "당신은 이 점에서 {distance} {unit} 내에 있습니다."
+        },
+        "L-control-zoom": {
+          "zoom_in": "확대",
+          "zoom_out": "축소
+        }
+      }
+    }
+  }
+}
