@@ -22,7 +22,9 @@ There are several ways to get involved:
    2. Add and correct information (like opening hours) of places
    3. Check and fix issues on <https://veggiekarte.de/datacheck/>
 2. Report issues
-3. Help to translate (take [locales/en.json](locales/en.json) as template)
+3. Help to translate
+   1. Translate to new languages - take [locales/en.json](locales/en.json) as template.
+   2. Complete translations: [locales/ko.json](locales/ko.json) is incomplete.
 4. Participate in development
 5. Write reviews for places on [https://lib.reviews/](lib.reviews)
 

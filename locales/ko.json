@@ -1,0 +1,63 @@
+{
+  "ko": {
+    "translation": {
+      "__comment__": "Korean localization",
+      "texts": {
+        "will open soon": ", 하지만 곧 오픈",
+        "will close soon": "이나 곧 닫음",
+        "more_info": "추가 정보",
+        "content-welcome-heading": "어서오세요",
+        "content-welcome-text": "veggiekarte.de에서는 오픈스트리트맵에 등록된 모든 비건 및 채식주의자 레스토랑이나 식당, 카페를 찾을 수 있습니다. 검색 필드를 사용하여 지역 또는 거리를 검색하기 만하면됩니다. 녹색 배경의 아이콘은 모두 비건 옵션을 제공하는 장소이며, 흰색 배경의 아이콘은 배지테리언 메뉴를 제공하지만 비건 옵션은 제공하지 않는 곳입니다.",
+        "content-osm-heading": "오픈스트리트맵은",
+        "content-osm-text": "<a href='https://www.openstreetmap.org' target='_blank' rel='noopener noreferrer'>오픈스트리트맵</a>은 무료 세계 지도로 위키백과와 비슷하게 작동합니다. 이것은 즉 누구나 참여하여 정보를 입력할 수 있고 따라서 지도에는 유용한 정보가 가득하며 지속적으로 업데이트된다는 것을 뜻합니다. 개선할 점이 있거나 지도의 오류를 발견한 사람은 누구나 간단히 데이터를 입력하거나 수정할 수 있습니다.",
+        "content-contribute-heading": "기여 방법",
+        "content-contribute-text": "아직 지도에 표시되지 않은 식당, 카페 또는 음식 판매점을 알고 있거나 직접 운영하는 경우 직접 추가할 수 있습니다. 그렇게 하려면, 오픈스트리트맵에서 'diet:vegan' 또는 'diet:vegetarian' 태그 (\"Diet Types\")를 사용하여 장소를 표시해야 합니다. <a href='https://wiki.openstreetmap.org/wiki/Ko:Key:diet:vegan' target='_blank' rel='noopener noreferrer'>여기</a>에서 방법을 확인할 수 있습니다.",
+        "content-reviews-heading": "리뷰",
+        "content-reviews-text": "<a href='https://lib.reviews/' target='_blank' rel='noopener noreferrer'>lib.reviews</a> 는 무엇이든 리뷰할 수 있는 무료 개방형 플랫폼입니다. 이곳에 특정 장소에 대한 리뷰가 있으면 이 지도는 해당 링크를 표시합니다.",
+        "content-further-heading": "더 나아가",
+        "content-further-text": "Veggiekarte는 매시간 자동으로 업데이트됩니다. 코드는 <a href='https://github.com/piratenpanda/veggiekarte' target='_blank' rel='noopener noreferrer'>GitHub</a>.에서 찾을 수 있습니다. 또 <a href='data_chart.html'>여기</a>에 간단한 다이어그램도 있습니다..",
+        "i18n_vegan_only": "비건 전용",
+        "i18n_vegan_only_title": "오로지 비건 음식만 제공.",
+        "i18n_vegetarian_only": "채식 및 비건 전용",
+        "i18n_vegetarian_only_title": "오로지 채식 및 비건 음식만 제공.",
+        "i18n_vegan_friendly": "비건 친화",
+        "i18n_vegan_friendly_title": "비건 음식도 제공.",
+        "i18n_vegan_limited": "제한적 비건",
+        "i18n_vegan_limited_title": "제한적인 비건 음식 제공 (메뉴 외에 별도로 요청해야 할 수 있음).",
+        "i18n_vegetarian_friendly": "채식 친화",
+        "i18n_vegetarian_friendly_title": "채식 음식은 제공하지만 비건 음식은 제공하지 않음."
+      },
+      "words": {
+        "open": "영업 중",
+        "unknown": "알 수 없음",
+        "closed": "영업 중이 아님",
+        "public_holiday": "공휴일",
+        "review": "리뷰",
+        "school_holidays": "방학 중"
+      },
+      "leaflet": {
+        "L-control-fullscreen": {
+          "fullscreen": "전체화면",
+          "exitFullscreen": "전체화면 끝내기"
+        },
+        "L-control-geocoder": {
+          "title": "검색",
+          "placeholder": "검색…",
+          "error_message": "검색결과가 없습니다."
+        },
+        "L-control-infoButton": {
+          "title": "사이트 정보"
+        },
+        "L-control-locate": {
+          "where_am_i": "현위치",
+          "meter": "미터",
+          "distance": "당신은 여기에서 {distance} {unit} 내에 있습니다."
+        },
+        "L-control-zoom": {
+          "zoom_in": "확대",
+          "zoom_out": "축소"
+        }
+      }
+    }
+  }
+}
