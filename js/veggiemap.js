@@ -110,7 +110,8 @@ function veggiemap() {
       L.langObject("eo", "eo - Esperanto", "./third-party/leaflet.languageselector/images/eo.svg"),
       L.langObject("fi", "fi - suomi", "./third-party/leaflet.languageselector/images/fi.svg"),
       L.langObject("fr", "fr - Français", "./third-party/leaflet.languageselector/images/fr.svg"),
-      L.langObject("it", "it - Italiano", "./third-party/leaflet.languageselector/images/it.svg")
+      L.langObject("it", "it - Italiano", "./third-party/leaflet.languageselector/images/it.svg"),
+      L.langObject("ko", "ko - 한국어", "./third-party/leaflet.languageselector/images/ko.svg")
     ],
     callback: setUserLanguage,
     initialLanguage: getUserLanguage(),
