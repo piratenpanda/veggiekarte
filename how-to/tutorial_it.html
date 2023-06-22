@@ -1,149 +1,148 @@
 <!DOCTYPE html>
 <html lang="it">
-
-<head>
+  <head>
     <title>Aggiungi informazioni a Veggiekarte</title>
     <meta charset="utf-8" />
     <link href="style.css" rel="stylesheet" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="main">
-        <h1>Come posso inserire il mio bar preferito o ristorante?</h1>
-        <h2>Prefazione</h2>
-        <div class="section">Per la Veggiekarte utilizziamo i dati di OpenStreetMap. Questo ha molti vantaggi; per
-            esempio, chiunque può unirsi e aggiungere o correggere le informazioni.
-            E se si fanno nuove voci per la Veggiekarte, non solo gli utenti ne beneficiano, ma anche le molte altre
-            applicazioni OpenStreetMap.
-        </div>
-        <h2>1. Condizione</h2>
-        <div class="section">
-            <p>Se non hai ancora un account OpenStreetMap, puoi crearlo
-                <a href="https://www.openstreetmap.org/user/new" rel="noopener noreferrer" target="_blank">su questa
-                    pagina</a>.
-            </p>
-        </div>
-        <h2>2. Modifica</h2>
-        <div class="section">
-            <p>Dopo aver effettuato l'accesso a OpenStreetMap, posizionati con la mappa al luogo in cui si trova la caffetteria/ristorante
-                e clicca sul pulsante verde
-                "Modifica" a sinistra. Questo ti porterà al programma di modifica di OpenStreetMap che si aprirà direttamente nel browser.
-                Se non hai mai modificato nulla, puoi seguire la guida che ti verrà proposta, altrimenti puoi ignorarla e iniziare a mappare.
-            </p>
-            <p>Abbiamo di fronte due casi:</p>
-        </div>
-        <h3>2.1. La caffetteria/ristorante è già mappata</h3>
-        <div class="section">
-            <p>Occorre identificarla sulla mappa (come punto o area).</p>
-            <p>Cliccare sul punto in mappa che simboleggia il caffè/ristorante. Nella parte sinistra
-                si dovrebbe avere un menu con il titolo
-                "Modifica elemento". Con il pulsante "+" sotto a "Etichette" puoi inserire
-                altre etichette, formate da nome (a sinistra) e valore (a destra).
-            </p>
-            <p>Le etichette chiave per noi sono
-                <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:diet:vegan" rel="noopener noreferrer" target="_blank">diet:vegan</a></code>e
-                <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:diet:vegetarian" rel="noopener noreferrer" target="_blank">diet:vegetarian</a></code>.
-                Queste etichette definiscono se una località viene visualizzata sulla Veggiekarte. Ecco una panoramica dei
-                valori che ci servono:
-            </p>
-            <table>
-                <tr>
-                    <th>Etichetta</th>
-                    <th>Valore</th>
-                    <th>Utilizzo</th>
-                </tr>
-                <tr>
-                    <td rowspan="3">diet:vegan</td>
-                    <td>only</td>
-                    <td>se vengono offerti solamente piatti vegani</td>
-                </tr>
-                <tr>
-                    <td>yes</td>
-                    <td>se vengono offerti piatti vegani ma non solo</td>
-                </tr>
-                <tr>
-                    <td>limited</td>
-                    <td>se vengono offerti anche piatti vegani fuori menu, ma occorre chiedere al personale se e quali sono</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">diet:vegetarian</td>
-                    <td>only</td>
-                    <td>se vengono offerti solamente piatti vegetariani</td>
-                </tr>
-                <tr>
-                    <td>yes</td>
-                    <td>se vengono offerti piatti vegetariani ma non solo</td>
-                </tr>
-            </table>
-            <p>Dopo aver aggiunte le etichette, devi cliccare su "Salva" in alto a destra ed è fatta. Non é stato così
-                difficile, vero?</p>
-            <p>Entro un'ora, i tuoi cambiamenti dovrebbero essere aggiornati anche sulla Veggiekarte. Grazie!</p>
-        </div>
-        <h3>2.2. Il caffè/ristorante non è ancora stato inserito</h3>
-        <div class="section">
-            <p>Non è ancora inserito in mappa.</p>
-            <p>Rispetto al punto 2.1., sono necessari alcuni piccoli lavori preparatori.</p>
-            <p>Selezionare "Punto" dalla parte superiore del menu e fare clic sulla posizione nella mappa in
-                cui si trova la caffetteria/ristorante. Poi nella selezione a sinistra cliccare sulla tipologia di punto di interesse si tratta. 'Café' o 'Ristorante' sono già disponibili come selezione. In ogni caso, compila il
-                nome e l'indirizzo. Poi si può proseguire come nel punto
-                2.1..
-            </p>
-        </div>
-        <h2>3. Altro,</h2>
-        <h3>3.1. Informazioni aggiuntive</h3>
-        <div class="section">
-            <p>È possibile aggiungere altre etichette che vengono visualizzate come informazioni aggiuntive sulla
-                Veggiekarte:</p>
-            <ul>
-                <li><code><a href="https://wiki.openstreetmap.org/wiki/Key:cuisine" rel="noopener noreferrer" target="_blank">cuisine</a></code>Tipo
-                    di cibo offerto
-                </li>
-                <li><code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:addr" rel="noopener noreferrer" target="_blank">addr:*</a></code>Indirizzo
-                </li>
-                <li><code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:opening_hours" rel="noopener noreferrer" target="_blank">opening_hours</a></code>Orari
-                    di apertura
-                </li>
-                <li><code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:phone</a></code>Numero
-                    di telefono (in formato internazionale)
-                </li>
-                <li><code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:email</a></code>Indirizzo
-                    e-mail
-                </li>
-                <li><code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:website</a></code>Sito
-                    web
-                </li>
-                <li><code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:facebook</a></code>Pagina
-                    Facebook
-                </li>
-                <li><code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:instagram</a></code>Pagina
-                    Instagram
-                </li>
-            </ul>
-        </div>
-        <h3>3.2. Aumentare la qualità dei dati</h3>
-        <div class="section">
-            <p>OpenStreetMap è un progetto di comunità enorme, e succede che i dati vengano inseriti erroneamente
-                o diventino obsoleti. Per migliorare la qualità dei dati abbiamo
-                un'ulteriore <a href="../datacheck/" target="_blank">mappa di verifica</a> e <a
-                    href="../datacheck/datacheck_table.html" target="_blank">tabella di verifica</a>, nelle quali identificare i problemi da risolvere.
-            </p>
-            <p>Non tutti i "problemi" elencati sono effettivamente dei problemi, quindi controlla sempre attentamente prima di apportare modifiche.</p>
-            <p>Se avete qualche idea, fateci sapere, inserendo ad esempio una
-                <a href="https://github.com/piratenpanda/veggiekarte/issues" rel="noopener noreferrer"
-                    target="_blank">segnalazione su GitHub</a>).
-            </p>
-        </div>
-        <h3>3.3. Migliorare OpenStreetMap</h3>
-        <div class="section">
-            <p>Se vuoi migliorare ancora di più la mappa, le possibilità sono tante. Una
-                panoramica dei tag comuni è presente anche in
-                <a href="https://wiki.openstreetmap.org/wiki/IT:Map_Features" rel="noopener noreferrer"
-                    target="_blank">OpenStreetMap-Wiki</a>. C'è anche un
-                <a href="https://community.openstreetmap.org/c/communities/it/60" rel="noopener noreferrer"
-                    target="_blank">forum italiano</a>.
-            </p>
-        </div>
+      <h1>Come posso inserire il mio bar preferito o ristorante?</h1>
+      <h2>Prefazione</h2>
+      <div class="section">
+        Per la Veggiekarte utilizziamo i dati di OpenStreetMap. Questo ha molti vantaggi; per esempio, chiunque può unirsi e aggiungere o correggere le informazioni. E se si fanno
+        nuove voci per la Veggiekarte, non solo gli utenti ne beneficiano, ma anche le molte altre applicazioni OpenStreetMap.
+      </div>
+      <h2>1. Condizione</h2>
+      <div class="section">
+        <p>
+          Se non hai ancora un account OpenStreetMap, puoi crearlo <a href="https://www.openstreetmap.org/user/new" rel="noopener noreferrer" target="_blank">su questa pagina</a>.
+        </p>
+      </div>
+      <h2>2. Modifica</h2>
+      <div class="section">
+        <p>
+          Dopo aver effettuato l'accesso a OpenStreetMap, posizionati con la mappa al luogo in cui si trova la caffetteria/ristorante e clicca sul pulsante verde "Modifica" a
+          sinistra. Questo ti porterà al programma di modifica di OpenStreetMap che si aprirà direttamente nel browser. Se non hai mai modificato nulla, puoi seguire la guida che
+          ti verrà proposta, altrimenti puoi ignorarla e iniziare a mappare.
+        </p>
+        <p>Abbiamo di fronte due casi:</p>
+      </div>
+      <h3>2.1. La caffetteria/ristorante è già mappata</h3>
+      <div class="section">
+        <p>Occorre identificarla sulla mappa (come punto o area).</p>
+        <p>
+          Cliccare sul punto in mappa che simboleggia il caffè/ristorante. Nella parte sinistra si dovrebbe avere un menu con il titolo "Modifica elemento". Con il pulsante "+"
+          sotto a "Etichette" puoi inserire altre etichette, formate da nome (a sinistra) e valore (a destra).
+        </p>
+        <p>
+          Le etichette chiave per noi sono <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:diet:vegan" rel="noopener noreferrer" target="_blank">diet:vegan</a></code
+          >e <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:diet:vegetarian" rel="noopener noreferrer" target="_blank">diet:vegetarian</a></code
+          >. Queste etichette definiscono se una località viene visualizzata sulla Veggiekarte. Ecco una panoramica dei valori che ci servono:
+        </p>
+        <table>
+          <tr>
+            <th>Etichetta</th>
+            <th>Valore</th>
+            <th>Utilizzo</th>
+          </tr>
+          <tr>
+            <td rowspan="3">diet:vegan</td>
+            <td>only</td>
+            <td>se vengono offerti solamente piatti vegani</td>
+          </tr>
+          <tr>
+            <td>yes</td>
+            <td>se vengono offerti piatti vegani ma non solo</td>
+          </tr>
+          <tr>
+            <td>limited</td>
+            <td>se vengono offerti anche piatti vegani fuori menu, ma occorre chiedere al personale se e quali sono</td>
+          </tr>
+          <tr>
+            <td rowspan="2">diet:vegetarian</td>
+            <td>only</td>
+            <td>se vengono offerti solamente piatti vegetariani</td>
+          </tr>
+          <tr>
+            <td>yes</td>
+            <td>se vengono offerti piatti vegetariani ma non solo</td>
+          </tr>
+        </table>
+        <p>Dopo aver aggiunte le etichette, devi cliccare su "Salva" in alto a destra ed è fatta. Non é stato così difficile, vero?</p>
+        <p>Entro un'ora, i tuoi cambiamenti dovrebbero essere aggiornati anche sulla Veggiekarte. Grazie!</p>
+      </div>
+      <h3>2.2. Il caffè/ristorante non è ancora stato inserito</h3>
+      <div class="section">
+        <p>Non è ancora inserito in mappa.</p>
+        <p>Rispetto al punto 2.1., sono necessari alcuni piccoli lavori preparatori.</p>
+        <p>
+          Selezionare "Punto" dalla parte superiore del menu e fare clic sulla posizione nella mappa in cui si trova la caffetteria/ristorante. Poi nella selezione a sinistra
+          cliccare sulla tipologia di punto di interesse si tratta. 'Café' o 'Ristorante' sono già disponibili come selezione. In ogni caso, compila il nome e l'indirizzo. Poi si
+          può proseguire come nel punto 2.1..
+        </p>
+      </div>
+      <h2>3. Altro,</h2>
+      <h3>3.1. Informazioni aggiuntive</h3>
+      <div class="section">
+        <p>È possibile aggiungere altre etichette che vengono visualizzate come informazioni aggiuntive sulla Veggiekarte:</p>
+        <ul>
+          <li>
+            <code><a href="https://wiki.openstreetmap.org/wiki/Key:cuisine" rel="noopener noreferrer" target="_blank">cuisine</a></code
+            >Tipo di cibo offerto
+          </li>
+          <li>
+            <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:addr" rel="noopener noreferrer" target="_blank">addr:*</a></code
+            >Indirizzo
+          </li>
+          <li>
+            <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:opening_hours" rel="noopener noreferrer" target="_blank">opening_hours</a></code
+            >Orari di apertura
+          </li>
+          <li>
+            <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:phone</a></code
+            >Numero di telefono (in formato internazionale)
+          </li>
+          <li>
+            <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:email</a></code
+            >Indirizzo e-mail
+          </li>
+          <li>
+            <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:website</a></code
+            >Sito web
+          </li>
+          <li>
+            <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:facebook</a></code
+            >Pagina Facebook
+          </li>
+          <li>
+            <code><a href="https://wiki.openstreetmap.org/wiki/IT:Key:contact" rel="noopener noreferrer" target="_blank">contact:instagram</a></code
+            >Pagina Instagram
+          </li>
+        </ul>
+      </div>
+      <h3>3.2. Aumentare la qualità dei dati</h3>
+      <div class="section">
+        <p>
+          OpenStreetMap è un progetto di comunità enorme, e succede che i dati vengano inseriti erroneamente o diventino obsoleti. Per migliorare la qualità dei dati abbiamo
+          un'ulteriore <a href="../datacheck/" target="_blank">mappa di verifica</a> e <a href="../datacheck/datacheck_table.html" target="_blank">tabella di verifica</a>, nelle
+          quali identificare i problemi da risolvere.
+        </p>
+        <p>Non tutti i "problemi" elencati sono effettivamente dei problemi, quindi controlla sempre attentamente prima di apportare modifiche.</p>
+        <p>
+          Se avete qualche idea, fateci sapere, inserendo ad esempio una
+          <a href="https://github.com/piratenpanda/veggiekarte/issues" rel="noopener noreferrer" target="_blank">segnalazione su GitHub</a>).
+        </p>
+      </div>
+      <h3>3.3. Migliorare OpenStreetMap</h3>
+      <div class="section">
+        <p>
+          Se vuoi migliorare ancora di più la mappa, le possibilità sono tante. Una panoramica dei tag comuni è presente anche in
+          <a href="https://wiki.openstreetmap.org/wiki/IT:Map_Features" rel="noopener noreferrer" target="_blank">OpenStreetMap-Wiki</a>. C'è anche un
+          <a href="https://community.openstreetmap.org/c/communities/it/60" rel="noopener noreferrer" target="_blank">forum italiano</a>.
+        </p>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
