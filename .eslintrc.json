@@ -14,7 +14,6 @@
     "no-console": "off",
     "prefer-destructuring": "off",
     "import/extensions": "off",
-    "import/prefer-default-export": "off",
     "new-cap": "off",
     "no-underscore-dangle": "off",
     "no-use-before-define": ["error", { "functions": false }]

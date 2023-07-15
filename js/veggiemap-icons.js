@@ -5,7 +5,7 @@ const whiteIconColor = "-white.svg";
 const blackIconColor = "-black.svg";
 
 /* Function to get the icon depending from the symbol and the category */
-export function getIcon(symbol, category) {
+export default function getIcon(symbol, category) {
   let iconColor;
   if (category === "vegan_only") {
     iconColor = whiteIconColor;
