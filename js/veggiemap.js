@@ -1,6 +1,6 @@
 /* global i18next, L, opening_hours */
 
-import { getIcon } from "./veggiemap-icons.js";
+import getIcon from "./veggiemap-icons.js";
 import { setUserLanguage, getUserLanguage, addLanguageRecources } from "./i18n.js";
 
 /* Definition (polyfill) for the function replaceAll
