@@ -1,5 +1,7 @@
 /* global i18next */
 
+import "../third-party/i18next/i18next.min.js";
+
 // Declare module variables
 let userLanguage;
 const fallbackLanguage = "en";
